@@ -71,9 +71,10 @@ avatar: /uploads/icon.jpg
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: https://github.com/eddy2015/eddy2015.github.io.git
-  branch: master
+  - type: git
+    repo: https://github.com/eddy2015/eddy2015.github.io.git
+    branch: master
+  - type: baidu_url_submitter
 
 # 百度/谷歌/本地 自定义站点内容搜索
 search:
@@ -87,5 +88,15 @@ duoshuo_shortname: eddywiki
 
 # 多说分享服务
 duoshuo_share: true
+
+# 网站地图
+sitemap: 
+  path: sitemap.xml
+
+baidu_url_submit:
+  count: 3 ## 比如3，代表提交最新的三个链接
+  host: www.eddy.wiki ## 在百度站长平台中注册的域名
+  token: 0J3PCufzX7YVoTIT ## 请注意这是您的秘钥， 请不要发布在公众仓库里!
+  path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
 
 
