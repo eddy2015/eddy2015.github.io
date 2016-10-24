@@ -14,7 +14,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://eddy.wiki
 root: /
-permalink: :year/:month/:day/:title/
+permalink: :year-:i_month-:i_day-:title.html
 permalink_defaults:
 
 # Directory
@@ -87,12 +87,13 @@ search:
 duoshuo_shortname: eddywiki
 
 # 多说分享服务
-duoshuo_share: true
+#duoshuo_share: true
 
 # 网站地图
 sitemap: 
   path: sitemap.xml
 
+# 主动推送链接到百度搜索
 baidu_url_submit:
   count: 3 ## 比如3，代表提交最新的三个链接
   host: www.eddy.wiki ## 在百度站长平台中注册的域名
