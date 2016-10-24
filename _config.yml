@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
-subtitle:
-description:
-author: John Doe
-language:
+title: Eddy's Blog
+subtitle: I do what I do.
+description: 
+author: Eddy
+language: zh-Hans
 timezone:
 
 # URL
@@ -63,9 +63,17 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+#theme: landscape
+theme: next
+# 设置 next 主题的头像
+avatar: /uploads/icon.jpg
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/eddy2015/eddy2015.github.io.git
+  branch: master
+
+
+
