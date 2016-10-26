@@ -1,11 +1,13 @@
 ---
 title: Android 面试：某些公司的试题
-date: 2016-10-26 13:08:19
+date: 2016-10-26 14:08:19
 tags:
 - Android 面试
 categories:
 - Android 面试
 ---
+
+本文从网络上收集了一些公司的 Android 面试题。<!--more-->
 
 ## Alibaba
 
