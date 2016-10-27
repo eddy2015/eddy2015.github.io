@@ -525,7 +525,27 @@ android.os.Handler可以通过Looper对象实例化，并运行于另外的线�
 
 参考：[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
 
+一旦Handler被声明为内部类，那么可能导致它的外部类不能够被垃圾回收。如果Handler是在其他线程（我们通常成为worker 
+thread）使用Looper或MessageQueue（消息队列），而不是main线程（UI线程），那么就没有这个问题。如果Handler使用
+Looper或MessageQueue在主线程（main thread），你需要对Handler的声明做如下修改： 
+
+声明Handler为static类；在外部类中实例化一个外部类的WeakReference（弱引用）并且在Handler初始化时传入这个对象给你的Handler；将所有引用的外部类成员使用WeakReference对象。
+
+```java
+private static class MyHandler extends Handler {          private final WeakReference<HandlerActivity2> mActivity;            public MyHandler(HandlerActivity2 activity) {              mActivity = new WeakReference<HandlerActivity2>(activity);          }            @Override          public void handleMessage(Message msg) {              System.out.println(msg);              if (mActivity.get() == null) {                  return;              }              mActivity.get().todo();          }      }  
+```
+
+  当Activity finish后 handler对象还是在Message中排队。 还是会处理消息，这些处理有必要？
+  正常Activitiy finish后，已经没有必要对消息处理，那需要怎么做呢？
+  解决方案也很简单，在Activity onStop或者onDestroy的时候，取消掉该Handler对象的Message和Runnable。
+  通过查看Handler的API，它有几个方法：removeCallbacks(Runnable r)和removeMessages(int what)等。
+
+```java
+/**    * 一切都是为了不要让mHandler拖泥带水    */   @Override   public void onDestroy() {       mHandler.removeMessages(MESSAGE_1);       mHandler.removeMessages(MESSAGE_2);       mHandler.removeMessages(MESSAGE_3);         // ... ...         mHandler.removeCallbacks(mRunnable);         // ... ...   }  
+```
+
 # AsyncTask
+
 
 ## AsyncTask原理
 
@@ -890,15 +910,17 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 内存泄漏是指无用对象（不再使用的对象）持续占有内存或无用对象的内存得不到及时释放，从而造成内存空间的浪费称为内存泄漏。
 
-1. 资源对象没关闭造成的内存泄漏，例如：打开数据库、文件等
-2. 构造Adapter时，没有使用缓存的convertView
-3. Bitmap对象不在使用时调用recycle()释放内存
-4. 试着使用关于application的context来替代和activity相关的context
-5. 注册没取消造成的内存泄漏
-6. 集合中对象没清理造成的内存泄漏
-7. 内部类持有外部类的引用造成的内存泄漏
+1. 资源对象没关闭造成的内存泄漏。对于使用了BraodcastReceiver，ContentObserver，File，游标 Cursor，Stream，Bitmap等资源的使用，应该在Activity销毁时及时关闭或者注销，否则这些资源将不会被回收，造成内存泄漏。
+2. 构造Adapter时，没有使用缓存的convertView。
+3. Bitmap对象不在使用时没有调用recycle()释放内存。
+4. 长生命周期持有短生命周期对象的引用造成的内存泄漏。试着使用关于application的context来替代和activity相关的context。保持对对象生命周期的敏感，特别注意单例、静态对象、全局性集合等的生命周期。
+5. 注册没取消造成的内存泄漏。
+6. 集合中对象没清理造成的内存泄漏。集合类如果仅仅有添加元素的方法，而没有相应的删除机制，导致内存被占用。如果这个集合类是全局性的变量 (比如类中的静态属性，全局性的 map 等即有静态引用或 final 一直指向它)，那么没有相应的删除机制，很可能导致集合所占用的内存只增不减。
+7. 单例造成的内存泄漏。由于单例的静态特性使得其生命周期跟应用的生命周期一样长，所以如果使用不恰当的话，很容易造成内存泄漏。
+8. 匿名内部类和非静态内部类持有外部类的引用造成的内存泄漏。
+9. Handler 造成的内存泄漏。
 
-- 资源对象没关闭造成的内存泄漏
+- 资源对象没关闭造成的内存泄漏。
 
 描述： 资源性对象比如(Cursor，File文件等)往往都用了一些缓冲，我们在不使用的时候，应该及时关闭它们，以便它们的缓冲及时回收内存。它们的缓冲不仅存在于 java虚拟机内，还存在于java虚拟机外。如果我们仅仅是把它的引用设置为null,而不关闭它们，往往会造成内存泄漏。因为有些资源性对象，比如 SQLiteCursor(在析构函数finalize(),如果我们没有关闭它，它自己会调close()关闭)，如果我们没有关闭它，系统在回收它时也会关闭它，但是这样的效率太低了。因此对于资源性对象在不使用的时候，应该调用它的close()函数，将其关闭掉，然后才置为null.在我们的程序退出时一定要确保我们的资源性对象已经关闭。 程序中经常会进行查询数据库的操作，但是经常会有使用完毕Cursor后没有关闭的情况。如果我们的查询结果集比较小，对内存的消耗不容易被发现，只有在常时间大量操作的情况下才会复现内存问题，这样就会给以后的测试和问题排查带来困难和风险。
 
