@@ -143,11 +143,6 @@ Java访问控制符的含义和使用情况:
 
 （4）default（默认）：同一包中的类可以访问，声明时没有加修饰符，认为是friendly。
 
-## 数组有没有length()这个方法? String有没有length()这个方法？
-
-- 数组中没有length()这个方法，但是数组中有length这个属性。用来表示数组的长度。
-- String中有length()这个方法。用来得到字符串的长度。
-
 ## Java 里的常量是怎么定义的
 
 方法一采用接口(Interface)的中变量默认为static final的特性。
@@ -373,6 +368,11 @@ java.lang.StringBuilder一个可变的字符序列是5.0新增的。此类提供
 ## String s=new String(“abc”); new了几个对象
 
 两个
+
+## 数组有没有length()这个方法? String有没有length()这个方法？
+
+- 数组中没有length()这个方法，但是数组中有length这个属性。用来表示数组的长度。
+- String中有length()这个方法。用来得到字符串的长度。
 
 # 内部类
 

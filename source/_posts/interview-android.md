@@ -174,8 +174,6 @@ A使用startActivityForResult方法开启B，B类结束时调用finish;A类的In
 -发送特定广播：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。
 -递归退出：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭。
 
-
-
 # Fragment
 
 ## Fragment生命周期
@@ -183,6 +181,8 @@ A使用startActivityForResult方法开启B，B类结束时调用finish;A类的In
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-19/72771704.jpg)
 
 
+
+![](http://o9sn2y8lr.bkt.clouddn.com/16-10-27/49568023.jpg)
 
 ## Activity中如何动态的添加Fragment？
 
@@ -432,42 +432,7 @@ unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 
 ## 关于一个 app 被杀掉进程后，是否还能收到广播
 
-## IntentService 作用是什么，AIDL 解决了什么问题
 
-IntentService 是继承于 Service 并处理异步请求的一个类，在IntentService 内有一个工作线程来处理耗时操作，启动 IntentService 的方式和启动传统 Service 一样，同时，当任务执行完后，IntentService 会自动停止，而不需要我们去手动控制。另外，可以启动 IntentService 多次，而每一个耗时操作会以工作队列的方式在 IntentService 的 onHandleIntent 回调方法中执行，并且，每次只会执行一个工作线程，执行完第一个再执行第二个，以此类推。
-
-IntentService 与 Service的不同：
-
--直接 创建一个默认的工作线程,该线程执行所有的intent传递给onStartCommand()区别于应用程序的主线程。
--直接创建一个工作队列,将一个意图传递给你onHandleIntent()的实现,所以我们就永远不必担心多线程。
--当请求完成后自己会调用stopSelf()，所以你就不用调用该方法了。
--提供的默认实现onBind()返回null，所以也不需要重写这个方法。so easy啊
--提供了一个默认实现onStartCommand(),将意图工作队列,然后发送到你onHandleIntent()实现。真是太方便了
-
-AIDL (Android Interface Definition Language) 是一种IDL 语言，用于生成可以在 Android 设备上两个进程之间进行进程间通信(interprocess communication, IPC)的代码。如果在一个进程中（例如Activity）要调用另一个进程中（例如 Service, 设置了属性 android:process=":remote" 后，Service 就会运行在另外一个进程）对象的操作，就可以使用AIDL生成可序列化的参数。 AIDL IPC机制是面向接口的，像COM或Corba一样，但是更加轻量级。它是使用代理类在客户端和实现端传递数据。
-
-
-
-## AIDL的全称是什么？如何工作？能处理哪些类型的数据
-
-ADIL是一种接口定义语言，用于约束两个进程之间的通信规则，供编译器生成代码，实现android设备之间的进程通信。
-
-进程之间的通信信息首先会被转换成AIDL协议消息，然后发送给对方，对方受到AIDL协议消息后在转换成相应的对象。AIDL支持类型包括java基础类型和String，List，Map,CharSequence,如果使用自定类型，必须实现Parcelable接口
-
-## Broadcast、Content Provider 和 AIDL的区别和联系
-
-这3种都可以实现跨进程的通信，那么从效率，适用范围，安全性等方面来比较的话他们3者之间有什么区别？
-
-Broadcast：用于发送和接收广播！实现信息的发送和接收！
-AIDL：用于不同程序间服务的相互调用！实现了一个程序为另一个程序服务的功能！
-Content Provider:用于将程序的数据库人为地暴露出来！实现一个程序可以对另个程序的数据库进行相对用的操作！
-
-Broadcast,既然是广播，那么它的优点是：注册了这个广播接收器的应用都能够收到广播，范围广。
-缺点是：速度慢点，而且必须在一定时间内把事情处理完(onReceive执行必须在几秒之内)，否则的话系统给出ANR。
-
-AIDL，是进程间通信用的，类似一种协议吧。优点是：速度快(系统底层直接是共享内存)，性能稳，效率高，一般进程间通信就用它。
-
-Content Provider,因为只是把自己的数据库暴露出去，其他程序都可以来获取数据，数据本身不是实时的，不像前两者,只是起个数据供应作用。一般是某个成熟的应用来暴露自己的数据用的。 你要是为了进程间通信，还是别用这个了，这个又不是实时数据。
 
 # Intent
 
@@ -603,11 +568,48 @@ http://www.juwends.com/tech/android/android-inter-thread-comm.html
 
 ## 进程优先级
 
-- 前台进程
-- 可视进程
-- 服务进程
-- 后台进程
-- 空进程
+1. 前台进程：即与用户正在交互的Activity或者Activity用到的Service等，如果系统内存不足时前台进程是最后被杀死的
+2. 可见进程：可以是处于暂停状态(onPause)的Activity或者绑定在其上的Service，即被用户可见，但由于失去了焦点而不能与用户交互
+3. 服务进程：其中运行着使用startService方法启动的Service，虽然不被用户可见，但是却是用户关心的，例如用户正在非音乐界面听的音乐或者正在非下载页面自己下载的文件等；当系统要空间运行前两者进程时才会被终止
+4. 后台进程：其中运行着执行onStop方法而停止的程序，但是却不是用户当前关心的，例如后台挂着的QQ，这样的进程系统一旦没了有内存就首先被杀死
+5. 空进程：不包含任何应用程序的程序组件的进程，这样的进程系统是一般不会让他存在的
+
+## IntentService 作用是什么，AIDL 解决了什么问题
+
+IntentService 是继承于 Service 并处理异步请求的一个类，在IntentService 内有一个工作线程来处理耗时操作，启动 IntentService 的方式和启动传统 Service 一样，同时，当任务执行完后，IntentService 会自动停止，而不需要我们去手动控制。另外，可以启动 IntentService 多次，而每一个耗时操作会以工作队列的方式在 IntentService 的 onHandleIntent 回调方法中执行，并且，每次只会执行一个工作线程，执行完第一个再执行第二个，以此类推。
+
+IntentService 与 Service的不同：
+
+-直接 创建一个默认的工作线程,该线程执行所有的intent传递给onStartCommand()区别于应用程序的主线程。
+-直接创建一个工作队列,将一个意图传递给你onHandleIntent()的实现,所以我们就永远不必担心多线程。
+-当请求完成后自己会调用stopSelf()，所以你就不用调用该方法了。
+-提供的默认实现onBind()返回null，所以也不需要重写这个方法。so easy啊
+-提供了一个默认实现onStartCommand(),将意图工作队列,然后发送到你onHandleIntent()实现。真是太方便了
+
+AIDL (Android Interface Definition Language) 是一种IDL 语言，用于生成可以在 Android 设备上两个进程之间进行进程间通信(interprocess communication, IPC)的代码。如果在一个进程中（例如Activity）要调用另一个进程中（例如 Service, 设置了属性 android:process=":remote" 后，Service 就会运行在另外一个进程）对象的操作，就可以使用AIDL生成可序列化的参数。 AIDL IPC机制是面向接口的，像COM或Corba一样，但是更加轻量级。它是使用代理类在客户端和实现端传递数据。
+
+
+
+## AIDL的全称是什么？如何工作？能处理哪些类型的数据
+
+ADIL是一种接口定义语言，用于约束两个进程之间的通信规则，供编译器生成代码，实现android设备之间的进程通信。
+
+进程之间的通信信息首先会被转换成AIDL协议消息，然后发送给对方，对方受到AIDL协议消息后在转换成相应的对象。AIDL支持类型包括java基础类型和String，List，Map,CharSequence,如果使用自定类型，必须实现Parcelable接口
+
+## Broadcast、Content Provider 和 AIDL的区别和联系
+
+这3种都可以实现跨进程的通信，那么从效率，适用范围，安全性等方面来比较的话他们3者之间有什么区别？
+
+Broadcast：用于发送和接收广播！实现信息的发送和接收！
+AIDL：用于不同程序间服务的相互调用！实现了一个程序为另一个程序服务的功能！
+Content Provider:用于将程序的数据库人为地暴露出来！实现一个程序可以对另个程序的数据库进行相对用的操作！
+
+Broadcast,既然是广播，那么它的优点是：注册了这个广播接收器的应用都能够收到广播，范围广。
+缺点是：速度慢点，而且必须在一定时间内把事情处理完(onReceive执行必须在几秒之内)，否则的话系统给出ANR。
+
+AIDL，是进程间通信用的，类似一种协议吧。优点是：速度快(系统底层直接是共享内存)，性能稳，效率高，一般进程间通信就用它。
+
+Content Provider,因为只是把自己的数据库暴露出去，其他程序都可以来获取数据，数据本身不是实时的，不像前两者,只是起个数据供应作用。一般是某个成熟的应用来暴露自己的数据用的。 你要是为了进程间通信，还是别用这个了，这个又不是实时数据。
 
 ## 进程间传输方式
 
@@ -620,6 +622,8 @@ http://www.juwends.com/tech/android/android-inter-thread-comm.html
 ## View 事件分发机制
 
 WindowManager->window->Decorview->子 view。最后我说当所有的 view 都不处理事件，事件会最后会传递到 Activity 的 onTouchEvent 上
+
+参考：[事件分发机制](http://www.jianshu.com/p/e99b5e8bd67b)
 
 ## Touch 事件传递流程
 
@@ -699,15 +703,7 @@ View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次
 
 ## Android 绘图机制原理
 
-## 优化自定义 View
 
-为了加速你的view，对于频繁调用的方法，需要尽量减少不必要的代码。先从onDraw开始，需要特别注意不应该在这里做内存分配的事情，因为它会导致GC，从而导致卡顿。在初始化或者动画间隙期间做分配内存的动作。不要在动画正在执行的时候做内存分配的事情。
-
-你还需要尽可能的减少onDraw被调用的次数，大多数时候导致onDraw都是因为调用了invalidate().因此请尽量减少调用invaildate()的次数。如果可能的话，尽量调用含有4个参数的invalidate()方法而不是没有参数的invalidate()。没有参数的invalidate会强制重绘整个view。
-
-另外一个非常耗时的操作是请求layout。任何时候执行requestLayout()，会使得Android UI系统去遍历整个View的层级来计算出每一个view的大小。如果找到有冲突的值，它会需要重新计算好几次。另外需要尽量保持View的层级是扁平化的，这样对提高效率很有帮助。
-
-如果你有一个复杂的UI，你应该考虑写一个自定义的ViewGroup来执行他的layout操作。与内置的view不同，自定义的view可以使得程序仅仅测量这一部分，这避免了遍历整个view的层级结构来计算大小。这个PieChart 例子展示了如何继承ViewGroup作为自定义view的一部分。PieChart 有子views，但是它从来不测量它们。而是根据他自身的layout法则，直接设置它们的大小。
 
 ## postInvalidate与invalidate有什么区别？
 
@@ -722,12 +718,13 @@ View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次
 
 ## SurfaceView和View的区别是什么？
 
-SurfaceView中采用了双缓存技术，在单独的线程中更新界面
-View在UI线程中更新界面
+SurfaceView中采用了双缓存技术，在单独的线程中更新界面。而View在UI线程中更新界面。
 
 ## RemoteView在哪些功能中使用
 
 APPwidget和Notification中
+
+# 自定义 View
 
 ## 自定义View相关方法
 
@@ -744,6 +741,16 @@ APPwidget和Notification中
 5. onTouchEvent
 6. onInterceptTouchEvent(ViewGroup)
 7. 状态的恢复与保存
+
+## 优化自定义 View
+
+为了加速你的view，对于频繁调用的方法，需要尽量减少不必要的代码。先从onDraw开始，需要特别注意不应该在这里做内存分配的事情，因为它会导致GC，从而导致卡顿。在初始化或者动画间隙期间做分配内存的动作。不要在动画正在执行的时候做内存分配的事情。
+
+你还需要尽可能的减少onDraw被调用的次数，大多数时候导致onDraw都是因为调用了invalidate().因此请尽量减少调用invaildate()的次数。如果可能的话，尽量调用含有4个参数的invalidate()方法而不是没有参数的invalidate()。没有参数的invalidate会强制重绘整个view。
+
+另外一个非常耗时的操作是请求layout。任何时候执行requestLayout()，会使得Android UI系统去遍历整个View的层级来计算出每一个view的大小。如果找到有冲突的值，它会需要重新计算好几次。另外需要尽量保持View的层级是扁平化的，这样对提高效率很有帮助。
+
+如果你有一个复杂的UI，你应该考虑写一个自定义的ViewGroup来执行他的layout操作。与内置的view不同，自定义的view可以使得程序仅仅测量这一部分，这避免了遍历整个view的层级结构来计算大小。这个PieChart 例子展示了如何继承ViewGroup作为自定义view的一部分。PieChart 有子views，但是它从来不测量它们。而是根据他自身的layout法则，直接设置它们的大小。
 
 # Layout 布局
 
@@ -815,6 +822,16 @@ Animation 框架定义了透明度，旋转，缩放和位移几种常见的动�
 
 ## 对 LruCache 的理解
 
+## **Bitmap**的分析与使用
+
+参考：
+
+[Android 从具体实例分析Bitmap使用时候内存注意点](http://blog.csdn.net/wuyuxing24/article/details/51675133)
+
+[Android之Bitmap大图加载处理](http://blog.csdn.net/xu_fu/article/details/8262153)
+
+[Loading Large Bitmaps Efficiently](https://developer.android.com/training/displaying-bitmaps/load-bitmap.html)
+
 ## Bitmap 压缩
 
 ```java
@@ -869,7 +886,11 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 ## ARGB_8888占用内存大小
 
-首先说说本题的答案，是4byte，即ARGB各占用8个比特来描述。当时回答错了，详细解答看这里[你的 Bitmap 究竟占多大内存](http://bugly.qq.com/bbs/forum.php?mod=viewthread&tid=498) 
+首先说说本题的答案，是4byte，即ARGB各占用8个比特来描述。详细解答看这里[你的 Bitmap 究竟占多大内存](http://bugly.qq.com/bbs/forum.php?mod=viewthread&tid=498) 
+
+1 byte = 8 bit
+
+8+8+8+8 = 32    32/8 = 4 byte 一个像素就占4byte
 
 ## 如何判断本地缓存的时候数据需要从网络端获取
 
@@ -883,20 +904,42 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 2. 尽最大可能避免GC
 3. 滑动的时候不加载图片
 4. 将ListView的scrollingCache和animateCache设置为false
-5. item的布局层级越烧越好
+5. item的布局层级越少越好
 6. 使用ViewHolder
 
 ## ListView 的实现原理
 
+参考：http://blog.csdn.net/guolin_blog/article/details/44996879
+
+## ViewHolder
 
 
-## 下拉刷新实现原理
+
+## ListView 下拉刷新、上拉加载更多实现原理
+
+参考：http://blog.csdn.net/zhangphil/article/details/47036177
+
+https://github.com/Aspsine/IRecyclerView — 一个开源库
 
 ## RecyclerView和ListView的异同
 
 参考：http://www.tuicool.com/articles/aeeaQ3J
 
-# 内存管理
+http://blog.csdn.net/sanjay_f/article/details/48830311
+
+- RecyclerView 自带 ViewHolder；而 ListView 则需要自定义。
+- RecyclerView 支持水平和垂直滚动；而 ListView 只支持垂直滚动。
+- RecyclerView 提供默认的列表项动画实现，例如：添加、删除和移动列表项动画。
+- ListView通过AdapterView.OnItemClickListener接口来探测点击事件。而RecyclerView则通过
+  RecyclerView.OnItemTouchListener接口来探测触摸事件。它虽然增加了实现的难度，但是却给予开发人员拦截触摸事件更多的
+  控制权限。
+- ListView可以设置选择模式，并添加MultiChoiceModeListener；而 RecyclerView 没有该功能。
+
+# 容器
+
+## SparseArray 和 HashMap 的区别
+
+# 内存相关
 
 ## 什么情况会导致内存泄漏
 
@@ -1001,27 +1044,6 @@ return view;
 7. 注意 Cursor 对象是否及时关闭。
 
 
-
-## ANR 定位和修正
-
-如果开发机器上出现问题，我们可以通过查看/data/anr/traces.txt即可，最新的ANR信息在最开始部分。
-
-出现 ANR 原因：
-
-- 主线程被IO操作（从4.0之后网络IO不允许在主线程中）阻塞。
-- 主线程中存在耗时的计算。
-- 主线程中错误的操作，比如Thread.wait或者Thread.sleep等。
-- Android系统会监控程序的响应状况，一旦出现下面两种情况，则弹出ANR对话框。应用在5秒内未响应用户的输入事件（如按键或者触摸）；BroadcastReceiver未在10秒内完成相关的处理。
-- Service在特定的时间内无法处理完成 20秒
-
-修正方法：
-
-- 使用AsyncTask处理耗时IO操作。
-- 使用Thread或者HandlerThread时，调用Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)设置优先级，否则仍然会降低程序响应，因为默认Thread的优先级和主线程相同。
-- 使用Handler处理工作线程结果，而不是使用Thread.wait()或者Thread.sleep()来阻塞主线程。
-- Activity的onCreate和onResume回调中尽量避免耗时的代码。
-- BroadcastReceiver中onReceive代码也要尽量减少耗时，建议使用IntentService处理。
-
 ## Android 为每个应用程序分配的内存大小是多少
 
 android 程序内存一般限制在16M，也有的是24M
@@ -1035,13 +1057,46 @@ android 程序内存一般限制在16M，也有的是24M
 
 ## Android中弱引用与软引用的应用场景。
 
+# ANR
 
+## ANR 定位和修正
+
+如果开发机器上出现问题，我们可以通过查看/data/anr/traces.txt即可，最新的ANR信息在最开始部分。
+
+出现 ANR 原因：
+
+- 主线程被IO操作（从4.0之后网络IO不允许在主线程中）阻塞。
+- 主线程中存在耗时的计算。
+- 主线程中错误的操作，比如Thread.wait或者Thread.sleep等。
+- 应用在5秒内未响应用户的输入事件（如按键或者触摸）
+- BroadcastReceiver未在10秒内完成相关的处理。
+- Service在特定的时间内无法处理完成 20秒
+
+修正方法：
+
+- 使用AsyncTask处理耗时IO操作。
+
+- 使用Thread或者HandlerThread时，调用Process.setThreadPriority(Process.THREAD_PRIORITY_BACKGROUND)设置优先级，否则仍然会降低程序响应，因为默认Thread的优先级和主线程相同。
+
+- 使用Handler处理工作线程结果，而不是使用Thread.wait()或者Thread.sleep()来阻塞主线程。
+
+- Activity的onCreate和onResume回调中尽量避免耗时的代码。
+
+- BroadcastReceiver中onReceive代码也要尽量减少耗时，建议使用IntentService处理
+
+如何避免：
+  1. UI线程尽量只做跟UI相关的工作
+  2. 耗时的操作(比如数据库操作，I/O，连接网络或者别的有可能阻塞UI线程的操作)把它放在单独的线程处理
+  3. 尽量用Handler来处理UIThread和别的Thread之间的交互
+  4. 解决的逻辑。使用 AsyncTask 时：在doInBackground()方法中执行耗时操作；在onPostExecuted()更新UI 。使用Handler实现异步任务时：在子线程中处理耗时操作，处理完成之后，通过handler.sendMessage()传递处理结果；在handler的handleMessage()方法中更新 UI 或者使用handler.post()方法将消息放到Looper中。
 
 # 性能优化
 
-参考：[Android性能优化](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
+## 怎么对 Android APP 进行性能优化
 
-## 性能优化，MAT
+参考：[Android 性能优化](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
+
+## Android APP 内存分析工具有哪些
 
 
 
@@ -1130,6 +1185,10 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 # 其他
 
+## APP启动过程
+
+
+
 ## 如何判断应用被强杀
 
 在Applicatio中定义一个static常量，赋值为－1，在欢迎界面改为0，如果被强杀，application重新初始化，在父类Activity判断该常量的值。
@@ -1215,7 +1274,9 @@ public static Singleton getInstance(){
 
 # Volley 源码解析
 
-参考：[http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90](http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
+参考：
+
+[http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90](http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
 
 ### Volley的磁盘缓存
 
@@ -1315,16 +1376,32 @@ System.out.print("======" + "hI4pFxGOfS@suhVUd:mTo_begImJPB@Fl[6WJ?ai=RXfIx^=Aix
 
 # Glide源码解析
 
-参考：[http://www.lightskystreet.com/2015/10/12/glide_source_analysis/](http://www.lightskystreet.com/2015/10/12/glide_source_analysis/)
+参考：
+
+[http://www.lightskystreet.com/2015/10/12/glide_source_analysis/](http://www.lightskystreet.com/2015/10/12/glide_source_analysis/)
+
 [http://frodoking.github.io/2015/10/10/android-glide/](http://frodoking.github.io/2015/10/10/android-glide/)
 
+# Retrofit源码分析
 
+参考：
 
+[Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
 
+# EventBus源码分析
 
+参考：
 
+[EventBus源码分析](http://p.codekk.com/blogs/detail/54cfab086c4761e5001b2538)
 
+#  greenDAO
 
+参考：
 
+[Android ORM 框架之 greenDAO 使用心得](http://www.open-open.com/lib/view/open1438065400878.html)
 
+# RxJava
 
+参考：
+
+[RxJava](http://gank.io/post/560e15be2dca930e00da1083)
