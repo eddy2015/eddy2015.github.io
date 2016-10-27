@@ -11,7 +11,8 @@ tags:
 
 ## Android 的四大组件
 
-# Activity
+
+
 
 
 ## 介绍Activity、Service、Broadcast、BroadcastReceiver、Intent、IntentFilter
@@ -36,29 +37,29 @@ android平台提供了Content Provider使一个应用程序的指定数据集提
 
 # Activity
 
-## Activity中类似onCreate、onStart运用了哪种设计模式，优点是什么
+## Activity 生命周期
 
-模板模式。每次新建一个Actiivty时都会覆盖onCreate，onStart等方法,这些方法在父类中就相当于一个模板
+- 启动Activity：onCreate->onStart->onResume
+- 锁屏或被其它Activity覆盖：onPause->onStop
+- 解锁或由被覆盖状态再回到前台：onRestart->onStart->onResume
+- 跳转到其它Activity或按Home进入后台：onPause->onStop
+- 退回到此Activity：onRestart->onStart->onResume
+- 退出此Activity：onPause->onStop->onDestory
+- 对话框弹出不会执行任何生命周期(注：对话框如果是Activity(Theme为Dialog)，还是会执行生命周期的)
+- ​
+- 从A跳转到B：当B的主题为透明时，A只会执行onPause（A-onPause->B-(onCreate->onStart->onResume)）
+- 从A跳转到B：A-onPause->B-(onCreate->onStart->onResume)-A-onStop(注意是A执行onPause后开始执行B的生命周期，B执行onResume后，A才执行onStop，所以尽量不要在onPause中做耗时操作)
+- 从B返回到A：B-onPause->A-(onRestart->onStart->onResume)-B-(onStop->onDestroy)
 
-## 如何将一个Activity设置成窗口的样式
+![](http://o9sn2y8lr.bkt.clouddn.com/16-10-25/30416013.jpg)
 
-- 在AndroidManifest.xml文件中设置当前需要改变成窗口样式的Activity的属性，即
+## Activity和Fragment生命周期有哪些？
 
+```java
+Activity——onCreate->onStart->onResume->onPause->onStop->onDestroy
+
+Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onResume->onPause->onStop->onDestroyView->onDestroy->onDetach
 ```
-android:theme="@android:style/Theme.Dialog"  
-```
-
-- 在styles.xml文件中自定义一个主题样式，改主题样式必须继承Dialog的样式.
-
-## Activity的启动过程
-
-1. 无论是通过Launcher来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都通过Binder进程间通信进入到ActivityManagerService进程中，并且调用ActivityManagerService.startActivity接口； 
-2. ActivityManagerService调用ActivityStack.startActivityMayWait来做准备要启动的Activity的相关信息；
-3. ActivityStack通知ApplicationThread要进行Activity启动调度了，这里的ApplicationThread代表的是调用ActivityManagerService.startActivity接口的进程，对于通过点击应用程序图标的情景来说，这个进程就是Launcher了，而对于通过在Activity内部调用startActivity的情景来说，这个进程就是这个Activity所在的进程了；
-4. ApplicationThread不执行真正的启动操作，它通过调用ActivityManagerService.activityPaused接口进入到ActivityManagerService进程中，看看是否需要创建新的进程来启动Activity；
-5. 对于通过点击应用程序图标来启动Activity的情景来说，ActivityManagerService在这一步中，会调用startProcessLocked来创建一个新的进程，而对于通过在Activity内部调用startActivity来启动新的Activity来说，这一步是不需要执行的，因为新的Activity就在原来的Activity所在的进程中进行启动；
-6. ActivityManagerServic调用ApplicationThread.scheduleLaunchActivity接口，通知相应的进程执行启动Activity的操作；
-7. ApplicationThread把这个启动Activity的操作转发给ActivityThread，ActivityThread通过ClassLoader导入相应的Activity类，然后把它启动起来。
 
 ## LanchMode 的应用场景
 
@@ -92,6 +93,32 @@ singleInstance应用场景：
 
 闹铃的响铃界面。 你以前设置了一个闹铃：上午6点。在上午5点58分，你启动了闹铃设置界面，并按 Home 键回桌面；在上午5点59分时，你在微信和朋友聊天；在6点时，闹铃响了，并且弹出了一个对话框形式的 Activity(名为 AlarmAlertActivity) 提示你到6点了(这个 Activity 就是以 SingleInstance 加载模式打开的)，你按返回键，回到的是微信的聊天界面，这是因为 AlarmAlertActivity 所在的 Task 的栈只有他一个元素， 因此退出之后这个 Task 的栈空了。如果是以 SingleTask 打开 AlarmAlertActivity，那么当闹铃响了的时候，按返回键应该进入闹铃设置界面。
 
+## Activity中类似onCreate、onStart运用了哪种设计模式，优点是什么
+
+模板模式。每次新建一个Actiivty时都会覆盖onCreate，onStart等方法,这些方法在父类中就相当于一个模板
+
+## 如何将一个Activity设置成窗口的样式
+
+- 在AndroidManifest.xml文件中设置当前需要改变成窗口样式的Activity的属性，即
+
+```
+android:theme="@android:style/Theme.Dialog"  
+```
+
+- 在styles.xml文件中自定义一个主题样式，改主题样式必须继承Dialog的样式.
+
+## Activity的启动过程
+
+1. 无论是通过Launcher来启动Activity，还是通过Activity内部调用startActivity接口来启动新的Activity，都通过Binder进程间通信进入到ActivityManagerService进程中，并且调用ActivityManagerService.startActivity接口； 
+2. ActivityManagerService调用ActivityStack.startActivityMayWait来做准备要启动的Activity的相关信息；
+3. ActivityStack通知ApplicationThread要进行Activity启动调度了，这里的ApplicationThread代表的是调用ActivityManagerService.startActivity接口的进程，对于通过点击应用程序图标的情景来说，这个进程就是Launcher了，而对于通过在Activity内部调用startActivity的情景来说，这个进程就是这个Activity所在的进程了；
+4. ApplicationThread不执行真正的启动操作，它通过调用ActivityManagerService.activityPaused接口进入到ActivityManagerService进程中，看看是否需要创建新的进程来启动Activity；
+5. 对于通过点击应用程序图标来启动Activity的情景来说，ActivityManagerService在这一步中，会调用startProcessLocked来创建一个新的进程，而对于通过在Activity内部调用startActivity来启动新的Activity来说，这一步是不需要执行的，因为新的Activity就在原来的Activity所在的进程中进行启动；
+6. ActivityManagerServic调用ApplicationThread.scheduleLaunchActivity接口，通知相应的进程执行启动Activity的操作；
+7. ApplicationThread把这个启动Activity的操作转发给ActivityThread，ActivityThread通过ClassLoader导入相应的Activity类，然后把它启动起来。
+
+
+
 ## windows和activity之间关系？
 
 ## WindowManager 的相关知识
@@ -117,29 +144,9 @@ Activity 是控制单元，Window 是承载模型，View 是显示视图
 
 A使用startActivityForResult方法开启B，B类结束时调用finish;A类的Intent有一个子Activity结束事件onActivityResult，在这个事件里继续播放音乐。
 
-## Activity和Fragment生命周期有哪些？
+## 内存不足时，怎么保持Activity的一些状态，在哪个方法里面做具体操作？
 
-```
-Activity——onCreate->onStart->onResume->onPause->onStop->onDestroy
-
-Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onResume->onPause->onStop->onDestroyView->onDestroy->onDetach
-```
-
-## Activity 生命周期
-
-- 启动Activity：onCreate->onStart->onResume
-- 锁屏或被其它Activity覆盖：onPause->onStop
-- 解锁或由被覆盖状态再回到前台：onRestart->onStart->onResume
-- 跳转到其它Activity或按Home进入后台：onPause->onStop
-- 退回到此Activity：onRestart->onStart->onResume
-- 退出此Activity：onPause->onStop->onDestory
-- 对话框弹出不会执行任何生命周期(注：对话框如果是Activity(Theme为Dialog)，还是会执行生命周期的)
-- ​
-- 从A跳转到B：当B的主题为透明时，A只会执行onPause（A-onPause->B-(onCreate->onStart->onResume)）
-- 从A跳转到B：A-onPause->B-(onCreate->onStart->onResume)-A-onStop(注意是A执行onPause后开始执行B的生命周期，B执行onResume后，A才执行onStop，所以尽量不要在onPause中做耗时操作)
-- 从B返回到A：B-onPause->A-(onRestart->onStart->onResume)-B-(onStop->onDestroy)
-
-![](http://o9sn2y8lr.bkt.clouddn.com/16-10-25/30416013.jpg)
+在onSaveInstanceState方法中保存Activity的状态，在onRestoreInstanceState或onCreate方法中恢复Activity的状态
 
 ## onSaveInstanceState方法
 
@@ -155,11 +162,7 @@ Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onRe
 - onRestoreInstanceState和onCreate的区别：当onRestoreInstanceState被调用时Bundle参数一定是有值的，不用做为null判断，onCreate的Bundle则可能会为null。官方文档建议在此方法中进行数据恢复。
 - 由于系统资源不足被kill之后又回到此Activity会被调用
 - 用户改变屏幕方向重建Activity时会被调用
-  -会在onStart之后被调用
-
-## 内存不足时，怎么保持Activity的一些状态，在哪个方法里面做具体操作？
-
-在onSaveInstanceState方法中保存Activity的状态，在onRestoreInstanceState或onCreate方法中恢复Activity的状态
+- 会在onStart之后被调用
 
 ## 同一个程序不同的Activity如何放在不同的任务栈中？
 
@@ -221,8 +224,6 @@ transacction.commit();
 
 # Service
 
-## 注册Service需要注意什么
-
 ## 什么是Service以及描述下它的生命周期。
 
 Service是运行在后台的android组件，没有用户界面，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序的上下
@@ -245,11 +246,15 @@ conn就会调用其onServiceConnected方法
 
    停用Service使用Context.stopService
 
-## 什么是IntentService？有何优点？
+## 注册Service需要注意什么
 
-IntentService也是一个Service，是Service的子类；
-IntentService和Service有所不同，通过Looper和Thread来解决标准Service中处理逻辑的阻塞的问题
-优点：Activity的进程，当处理Intent的时候，会产生一个对应的Service,Android的进程处理器现在会尽可能的不kill掉你。
+无论使用哪种启动方法，都需要在xml里注册你的Service，就像这样:
+
+```
+<service
+        android:name=".packnameName.youServiceName"
+        android:enabled="true" />
+```
 
 ## service 可以执行耗时操作吗
 
@@ -303,6 +308,10 @@ this.finish();结束自己..
 
 Binder 相关知识参考：http://blog.csdn.net/boyupeng/article/details/47011383
 
+## 为什么在Service中创建子线程而不是Activity中
+
+这是因为Activity很难对Thread进行控制，当Activity被销毁之后，就没有任何其它的办法可以再重新获取到之前创建的子线程的实例。而且在一个Activity中创建的子线程，另一个Activity无法对其进行操作。但是Service就不同了，所有的Activity都可以与Service进行关联，然后可以很方便地操作其中的方法，即使Activity被销毁了，之后只要重新与Service建立关联，就又能够获取到原有的Service中Binder的实例。因此，使用Service来处理后台任务，Activity就可以放心地finish，完全不需要担心无法对后台任务进行控制的情况。
+
 ## 如何保证 Service 在后台不被 kill
 
 -onStartCommand方法，返回START_STICKY
@@ -339,9 +348,28 @@ service +broadcast  方式，就是当service走ondestory的时候，发送一�
 
 通过系统的一些广播，比如：手机重启、界面唤醒、应用状态改变等等监听并捕获到，然后判断我们的Service是否还存活，别忘记加权限啊。
 
+## 什么是IntentService？有何优点？
+
+IntentService也是一个Service，是Service的子类；
+IntentService和Service有所不同，通过Looper和Thread来解决标准Service中处理逻辑的阻塞的问题
+优点：Activity的进程，当处理Intent的时候，会产生一个对应的Service,Android的进程处理器现在会尽可能的不kill掉你。
+
+**IntentService的使用场景与特点。**
+
+> IntentService是Service的子类，是一个异步的，会自动停止的服务，很好解决了传统的Service中处理完耗时操作忘记停止并销毁Service的问题
+
+优点：
+
+- 一方面不需要自己去new Thread
+- 另一方面不需要考虑在什么时候关闭该Service
+
+onStartCommand中回调了onStart，onStart中通过mServiceHandler发送消息到该handler的handleMessage中去。最后handleMessage中回调onHandleIntent(intent)。
+
 # ContentProvider
 
-## ContentProvider
+参考：[http://blog.csdn.net/coder_pig/article/details/47858489](http://blog.csdn.net/coder_pig/article/details/47858489)
+
+## ContentProvider 简介
 
 ContentProvider(内容提供者)：为存储和获取数据提供统一的接口。可以在不同的应用程序之间共享数据。Android已经为常见的一些数据提供了默认的ContentProvider
 
@@ -352,6 +380,10 @@ ContentProvider(内容提供者)：为存储和获取数据提供统一的接口
 ## 请介绍下ContentProvider是如何实现数据共享的
 
 创建一个属于你自己的Content provider或者将你的数据添加到一个已经存在的Content provider中，前提是有相同数据类型并且有写入Content provider的权限。
+
+## ContentProvider使用方法
+
+参考：[http://blog.csdn.net/juetion/article/details/17481039](http://blog.csdn.net/juetion/article/details/17481039)
 
 # Broadcast
 
@@ -384,6 +416,9 @@ unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 1)第一种不是常驻型广播，也就是说广播跟随程序的生命周期。
 
 2)第二种是常驻型，也就是说当应用程序关闭后，如果有信息广播来，程序也会被系统调用自动运行。
+
+- 静态注册：在AndroidManifest.xml文件中进行注册，当App退出后，Receiver仍然可以接收到广播并且进行相应的处理
+- 动态注册：在代码中动态注册，当App退出后，也就没办法再接受广播了
 
 ## Android引入广播机制的用意？
 
@@ -434,6 +469,28 @@ AIDL，是进程间通信用的，类似一种协议吧。优点是：速度快(
 
 Content Provider,因为只是把自己的数据库暴露出去，其他程序都可以来获取数据，数据本身不是实时的，不像前两者,只是起个数据供应作用。一般是某个成熟的应用来暴露自己的数据用的。 你要是为了进程间通信，还是别用这个了，这个又不是实时数据。
 
+# Intent
+
+**Intent的使用方法，可以传递哪些数据类型。**
+
+通过查询Intent/Bundle的API文档，我们可以获知，Intent/Bundle支持传递基本类型的数据和基本类型的数组数据，以及String/CharSequence类型的数据和String/CharSequence类型的数组数据。而对于其它类型的数据貌似无能为力，其实不然，我们可以在Intent/Bundle的API中看到Intent/Bundle还可以传递Parcelable（包裹化，邮包）和Serializable（序列化）类型的数据，以及它们的数组/列表数据。
+
+所以要让非基本类型和非String/CharSequence类型的数据通过Intent/Bundle来进行传输，我们就需要在数据类型中实现Parcelable接口或是Serializable接口。
+
+[http://blog.csdn.net/kkk0526/article/details/7214247](http://blog.csdn.net/kkk0526/article/details/7214247)
+
+# Context
+
+## Context区别
+
+- Activity和Service以及Application的Context是不一样的,Activity继承自ContextThemeWraper.其他的继承自ContextWrapper
+- 每一个Activity和Service以及Application的Context都是一个新的ContextImpl对象
+- getApplication()用来获取Application实例的，但是这个方法只有在Activity和Service中才能调用的到。那么也许在绝大多数情况下我们都是在Activity或者Service中使用Application的，但是如果在一些其它的场景，比如BroadcastReceiver中也想获得Application的实例，这时就可以借助getApplicationContext()方法，getApplicationContext()比getApplication()方法的作用域会更广一些，任何一个Context的实例，只要调用getApplicationContext()方法都可以拿到我们的Application对象。
+- Activity在创建的时候会new一个ContextImpl对象并在attach方法中关联它，Application和Service也差不多。ContextWrapper的方法内部都是转调ContextImpl的方法
+- 创建对话框传入Application的Context是不可以的
+- 尽管Application、Activity、Service都有自己的ContextImpl，并且每个ContextImpl都有自己的mResources成员，但是由于它们的mResources成员都来自于唯一的ResourcesManager实例，所以它们看似不同的mResources其实都指向的是同一块内存
+- Context的数量等于Activity的个数 + Service的个数 + 1，这个1为Application
+
 #  Handler
 
 ## Handler 原理
@@ -448,6 +505,8 @@ Message Queue(消息队列):用来存放线程放入的消息。
 
 线程：UIthread 通常就是main thread，而Android启动程序时会替它建立一个MessageQueue。
 
+参考：[Handler、Looper、Message、MessageQueue基础流程分析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.md)
+
 ## Handler消息机制，postDelayed会造成线程阻塞吗？对内存有什么影响？
 
 
@@ -461,6 +520,10 @@ Handler 会关联一个单独的线程和消息队列。Handler默认关联主�
 HandlerThread继承于Thread，所以它本质就是个Thread。与普通Thread的差别就在于，主要的作用是建立了一个线程，并且创立了消息队列，有自己的looper,可以让我们在自己的线程中分发和处理消息。
 
 android.os.Handler可以通过Looper对象实例化，并运行于另外的线程中，Android提供了让Handler运行于其它线程的线程实现，也是就HandlerThread。HandlerThread对象start后可以获得其Looper对象，并且使用这个Looper对象实例Handler。
+
+## 使用 Handler 时怎么避免引起内存泄漏
+
+参考：[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
 
 # AsyncTask
 
@@ -626,8 +689,6 @@ View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次
 
 如果你有一个复杂的UI，你应该考虑写一个自定义的ViewGroup来执行他的layout操作。与内置的view不同，自定义的view可以使得程序仅仅测量这一部分，这避免了遍历整个view的层级结构来计算大小。这个PieChart 例子展示了如何继承ViewGroup作为自定义view的一部分。PieChart 有子views，但是它从来不测量它们。而是根据他自身的layout法则，直接设置它们的大小。
 
-## 自定义View相关方法
-
 ## postInvalidate与invalidate有什么区别？
 
 - 都用于刷新界面
@@ -648,15 +709,31 @@ View在UI线程中更新界面
 
 APPwidget和Notification中
 
+## 自定义View相关方法
+
+## 如何自定义控件
+
+1. 自定义属性的声明和获取
+   - 分析需要的自定义属性
+   - 在res/values/attrs.xml定义声明
+   - 在layout文件中进行使用
+   - 在View的构造方法中进行获取
+2. 测量onMeasure
+3. 布局onLayout(ViewGroup)
+4. 绘制onDraw
+5. onTouchEvent
+6. onInterceptTouchEvent(ViewGroup)
+7. 状态的恢复与保存
+
 # Layout 布局
 
 ## Android中常用的五种布局
 
--FrameLayout（框架布局）
--LinearLayout （线性布局）
--AbsoluteLayout（绝对布局）
--RelativeLayout（相对布局）
--TableLayout（表格布局）
+* FrameLayout（框架布局）
+* LinearLayout （线性布局）
+* AbsoluteLayout（绝对布局）
+* RelativeLayout（相对布局）
+* TableLayout（表格布局）
 
 ## LinearLayout和RelativeLayout性能对比
 
@@ -669,6 +746,12 @@ APPwidget和Notification中
 参考 ：http://www.jianshu.com/p/8a7d059da746
 
 ## Android中px,sp,dip,dp的区别与联系
+
+## Asset目录与res目录的区别。
+
+res 目录下面有很多文件，例如 drawable,mipmap,raw 等。res 下面除了 raw 
+文件不会被压缩外，其余文件都会被压缩。同时 res目录下的文件可以通过R 文件访问。Asset 也是用来存储资源，但是 asset 
+文件内容只能通过路径或者 AssetManager 读取。 [官方文档](https://developer.android.com/studio/projects/index.html)
 
 # 动画
 
@@ -787,19 +870,39 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 
 
+## 下拉刷新实现原理
+
+## RecyclerView和ListView的异同
+
+参考：http://www.tuicool.com/articles/aeeaQ3J
+
 # 内存管理
-
-## Android 为每个应用程序分配的内存大小是多少
-
-android 程序内存一般限制在16M，也有的是24M
 
 ## 什么情况会导致内存泄漏
 
-1. 资源对象没关闭造成的内存泄漏
+参考：
+
+[Android内存泄漏总结](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md)
+
+[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
+
+内存泄漏，简单点说就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。
+
+内存泄漏是指无用对象（不再使用的对象）持续占有内存或无用对象的内存得不到及时释放，从而造成内存空间的浪费称为内存泄漏。
+
+1. 资源对象没关闭造成的内存泄漏，例如：打开数据库、文件等
+2. 构造Adapter时，没有使用缓存的convertView
+3. Bitmap对象不在使用时调用recycle()释放内存
+4. 试着使用关于application的context来替代和activity相关的context
+5. 注册没取消造成的内存泄漏
+6. 集合中对象没清理造成的内存泄漏
+7. 内部类持有外部类的引用造成的内存泄漏
+
+- 资源对象没关闭造成的内存泄漏
 
 描述： 资源性对象比如(Cursor，File文件等)往往都用了一些缓冲，我们在不使用的时候，应该及时关闭它们，以便它们的缓冲及时回收内存。它们的缓冲不仅存在于 java虚拟机内，还存在于java虚拟机外。如果我们仅仅是把它的引用设置为null,而不关闭它们，往往会造成内存泄漏。因为有些资源性对象，比如 SQLiteCursor(在析构函数finalize(),如果我们没有关闭它，它自己会调close()关闭)，如果我们没有关闭它，系统在回收它时也会关闭它，但是这样的效率太低了。因此对于资源性对象在不使用的时候，应该调用它的close()函数，将其关闭掉，然后才置为null.在我们的程序退出时一定要确保我们的资源性对象已经关闭。 程序中经常会进行查询数据库的操作，但是经常会有使用完毕Cursor后没有关闭的情况。如果我们的查询结果集比较小，对内存的消耗不容易被发现，只有在常时间大量操作的情况下才会复现内存问题，这样就会给以后的测试和问题排查带来困难和风险。
 
-1. 构造Adapter时，没有使用缓存的convertView
+2. 构造Adapter时，没有使用缓存的convertView
 
 描述： 以构造ListView的BaseAdapter为例，在BaseAdapter中提供了方法： public View getView(int position, ViewconvertView, ViewGroup parent) 来向ListView提供每一个item所需要的view对象。初始时ListView会从BaseAdapter中根据当前的屏幕布局实例化一定数量的 view对象，同时ListView会将这些view对象缓存起来。当向上滚动ListView时，原先位于最上面的list item的view对象会被回收，然后被用来构造新出现的最下面的list item。这个构造过程就是由getView()方法完成的，getView()的第二个形参View convertView就是被缓存起来的list item的view对象(初始化时缓存中没有view对象则convertView是null)。由此可以看出，如果我们不去使用 convertView，而是每次都在getView()中重新实例化一个View对象的话，即浪费资源也浪费时间，也会使得内存占用越来越大。 ListView回收list item的view对象的过程可以查看: android.widget.AbsListView.java --> voidaddScrapView(View scrap) 方法。 示例代码：
 
@@ -897,7 +1000,24 @@ return view;
 - Activity的onCreate和onResume回调中尽量避免耗时的代码。
 - BroadcastReceiver中onReceive代码也要尽量减少耗时，建议使用IntentService处理。
 
+## Android 为每个应用程序分配的内存大小是多少
+
+android 程序内存一般限制在16M，也有的是24M
+
+## 查看每个应用程序最高可用内存
+
+```java
+    int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);  
+    Log.d("TAG", "Max memory is " + maxMemory + "KB");  
+```
+
+## Android中弱引用与软引用的应用场景。
+
+
+
 # 性能优化
+
+参考：[Android性能优化](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
 ## 性能优化，MAT
 
@@ -912,6 +1032,10 @@ return view;
 - 文件
 - ContentProvider内容提供者，如联系人
 - 网络
+- SQLite：SQLite是一个轻量级的数据库，支持基本的SQL语法，是常被采用的一种数据存储方式。Android为此数据库提供了一个名为SQLiteDatabase的类，封装了一些操作数据库的api
+- SharedPreference： 除SQLite数据库外，另一种常用的数据存储方式，其本质就是一个xml文件，常用于存储较简单的参数设置。
+- File： 即常说的文件（I/O）存储方法，常用语存储大数量的数据，但是缺点是更新数据将是一件困难的事情。
+- ContentProvider: Android系统中能实现所有应用程序共享的一种数据存储方式，由于数据通常在各应用间的是互相私密的，所以此存储方式较少使用，但是其又是必不可少的一种存储方式。例如音频，视频，图片和通讯录，一般都可以采用此种方式进行存储。每个Content Provider都会对外提供一个公共的URI（包装成Uri对象），如果应用程序有数据需要共享时，就需要使用Content Provider为这些数据定义一个URI，然后其他的应用程序就通过Content Provider传入这个URI来对数据进行操作。
 
 ## 文件和数据库哪个效率高
 
@@ -983,6 +1107,14 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 
 # 其他
+
+## 如何判断应用被强杀
+
+在Applicatio中定义一个static常量，赋值为－1，在欢迎界面改为0，如果被强杀，application重新初始化，在父类Activity判断该常量的值。
+
+## 应用被强杀如何解决
+
+如果在每一个Activity的onCreate里判断是否被强杀，冗余了，封装到Activity的父类中，如果被强杀，跳转回主界面，如果没有被强杀，执行Activity的初始化操作，给主界面传递intent参数，主界面会调用onNewIntent方法，在onNewIntent跳转到欢迎页面，重新来一遍流程。
 
 ## 简述静默安装的原理，如何在无需root权限的情况下实现静默安装？
 
@@ -1059,7 +1191,9 @@ public static Singleton getInstance(){
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-19/71303594.jpg)
 
-# Volley 开源库
+# Volley 源码解析
+
+参考：[http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90](http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
 
 ### Volley的磁盘缓存
 
@@ -1157,7 +1291,10 @@ System.out.print("======" + "hI4pFxGOfS@suhVUd:mTo_begImJPB@Fl[6WJ?ai=RXfIx^=Aix
 再回到我们的问题，为什么会要把一个key分成两部分。现在可以肯定的答出，目的是为了尽可能避免hashcode重复造成的文件名重复(求两次hash两次都与另一个url重复的概率总要比一次重复的概率小吧)。
 顺带再提一点，就像上面说的，概率小并不代表不存在。但是Java计算hashcode的速度是很快的，应该是在效率和安全性上取舍的结果吧。
 
+# Glide源码解析
 
+参考：[http://www.lightskystreet.com/2015/10/12/glide_source_analysis/](http://www.lightskystreet.com/2015/10/12/glide_source_analysis/)
+[http://frodoking.github.io/2015/10/10/android-glide/](http://frodoking.github.io/2015/10/10/android-glide/)
 
 
 

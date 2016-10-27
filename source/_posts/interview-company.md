@@ -244,3 +244,110 @@ tips：静态类持有Activity引用会导致内存泄露
 - 聊项目，聊大学做过的事
 - 写代码，反转字符串
 - 写代码，字符串中出现最多的字符。
+
+# 2016年4月某公司面试题及面试流程。
+
+
+
+#### 静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？
+
+- 静态内部类：使用static修饰的内部类
+- 内部类：就是在某个类的内部又定义了一个类，内部类所嵌入的类称为外部类
+- 匿名内部类：使用new生成的内部类
+- 因为内部类的产生依赖于外部类，持有的引用是类名.this
+
+#### ArrayList和Vector的主要区别是什么？
+
+ArrayList在Java1.2引入，用于替换Vector
+
+**Vector:**  
+
+- 线程同步  
+- 当Vector中的元素超过它的初始大小时，Vector会将它的容量翻倍
+
+**ArrayList:**  
+
+- 线程不同步，但性能很好    
+- 当ArrayList中的元素超过它的初始大小时，ArrayList只增加50%的大小
+
+[java集合类框架](http://yuweiguocn.github.io/java-collection/)
+
+#### Java中try catch finally的执行顺序
+
+先执行try中代码发生异常执行catch中代码，最后一定会执行finally中代码
+
+#### switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？
+
+switch支持使用byte类型，不支持long类型，String支持在java1.7引入
+
+#### Activity和Fragment生命周期有哪些？
+
+- Activity——onCreate->onStart->onResume->onPause->onStop->onDestroy
+- Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onResume->onPause->onStop->onDestroyView->onDestroy->onDetach
+
+#### onInterceptTouchEvent()和onTouchEvent()的区别？
+
+onInterceptTouchEvent()用于拦截触摸事件
+onTouchEvent()用于处理触摸事件
+
+#### RemoteView在哪些功能中使用
+
+APPwidget和Notification中
+
+#### SurfaceView和View的区别是什么？
+
+SurfaceView中采用了双缓存技术，在单独的线程中更新界面
+View在UI线程中更新界面
+
+#### 讲一下android中进程的优先级？
+
+- 前台进程
+- 可见进程
+- 服务进程
+- 后台进程
+- 空进程
+
+#### 代码查错题，没记下来
+
+tips：静态变量持有Activity引用会导致内存泄露
+
+# 某公司面试题
+
+#### 一面
+
+- service生命周期，可以执行耗时操作吗？
+- JNI开发流程
+- Java线程池，线程同步
+- 自己设计一个图片加载框架
+- 自定义View相关方法
+- http ResponseCode
+- 插件化，动态加载
+- 性能优化，MAT
+- AsyncTask原理
+- 65k限制
+- Serializable和Parcelable
+- 文件和数据库哪个效率高
+- 断点续传
+- WebView和JS
+
+[Android基础——Service](http://yuweiguocn.github.io/android-basic-service/)
+[Android基础——IntentService](http://yuweiguocn.github.io/android-basic-intentservice/)
+[Android开发指导——Service](http://yuweiguocn.github.io/android-guide-service/)
+[Android开发指导——绑定Service](http://yuweiguocn.github.io/android-guide-bound-service/)
+[Android开发指导——进程间通信AIDL](http://yuweiguocn.github.io/android-guide-aidl/)
+
+[Android面试基础知识总结（一）](http://yuweiguocn.github.io/android-interview-basic-1/)
+
+[Android面试——APP性能优化](http://yuweiguocn.github.io/android-interview-peformance/)
+
+[Android中Java和JavaScript交互](http://droidyue.com/blog/2014/09/20/interaction-between-java-and-javascript-in-android/)
+[WebView 远程代码执行漏洞浅析](http://jaq.alibaba.com/blog.htm?spm=0.0.0.0.oMsDAl&id=48)
+[WebView中的Java与JavaScript提供【安全可靠】的多样互通方案](https://github.com/pedant/safe-java-js-webview-bridge)
+
+#### 二面
+
+- 所使用的开源框架的实现原理，源码
+- 没看过，被pass了
+- 去面试之前把用到的开源框架源码分析一定要看看啊
+
+[codekk：开源框架源码解析](http://codekk.com/open-source-project-analysis)
