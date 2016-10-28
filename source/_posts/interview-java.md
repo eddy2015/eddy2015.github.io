@@ -11,7 +11,13 @@ tags:
 
 #  面向对象
 
-## 面向对象三大特性
+**Java面向对象的三个特征与含义。**
+
+继承：继承是从已有类得到继承信息创建新类的过程。提供继承信息的类被称为父类（超类、基类）；得到继承信息的类被称为子类（派生类）。继承让变化中的软件系统有了一定的延续性，同时继承也是封装程序中可变因素的重要手段。
+
+封装：通常认为封装是把数据和操作数据的方法绑定起来，对数据的访问只能通过已定义的接口。面向对象的本质就是将现实世界描绘成一系列完全自治、封闭的对象。我们在类中编写的方法就是对实现细节的一种封装；我们编写一个类就是对数据和数据操作的封装。可以说，封装就是隐藏一切可隐藏的东西，只向外界提供最简单的编程接口（可以想想普通洗衣机和全自动洗衣机的差别，明显全自动洗衣机封装更好因此操作起来更简单；我们现在使用的智能手机也是封装得足够好的，因为几个按键就搞定了所有的事情）。
+
+多态：多态性是指允许不同子类型的对象对同一消息作出不同的响应。简单的说就是用同样的对象引用调用同样的方法但是做了不同的事情。多态性分为编译时的多态性和运行时的多态性。如果将对象的方法视为对象向外界提供的服务，那么运行时的多态性可以解释为：当A系统访问B系统提供的服务时，B系统有多种提供服务的方式，但一切对A系统来说都是透明的（就像电动剃须刀是A系统，它的供电系统是B系统，B系统可以使用电池供电或者用交流电，甚至还有可能是太阳能，A系统只会通过B类对象调用供电的方法，但并不知道供电系统的底层实现是什么，究竟通过何种方式获得了动力）。方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。运行时的多态是面向对象最精髓的东西，要实现多态需要做两件事：1. 方法重写（子类继承父类并重写父类中已有的或抽象的方法）；2. 对象造型（用父类型引用引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。
 
 ## Java 多态
 
@@ -126,12 +132,12 @@ Overloaded的方法是可以改变返回值的类型。
 
 Java访问控制符的含义和使用情况:
 
-| 修饰符       | 类内部  | 包    | 子类   | 包外部  |
-| --------- | ---- | ---- | ---- | ---- |
-| public    | √    | √    | √    | √    |
-| protected | √    | √    | √    | ×    |
-| default   | √    | √    | ×    | ×    |
-| private   | √    | ×    | ×    | ×    |
+| 修饰符 | 类内部 | 包 | 子类 | 包外部 |
+|  |  |  |  |  |
+| public | √ | √ | √ | √ |
+| protected | √ | √ | √ | × |
+| default | √ | √ | × | × |
+| private | √ | × | × | × |
 
 区别：
 
@@ -289,19 +295,99 @@ Java访问控制符的含义和使用情况:
 
 3,对于方法，表示不可覆盖，并且可以通过类名直接访问。
 
+## Switch能否用string做参数？
+
+在Java 5以前，switch(expr)中，expr只能是byte、short、char、int。从Java 5开始，Java中引入了枚举类型，expr也可以是enum类型，从Java 7开始，expr还可以是字符串（String），但是长整型（long）在目前所有的版本中都是不可以的。
+
+## Object有哪些公用方法？
+
+[http://www.cnblogs.com/yumo/p/4908315.html](http://www.cnblogs.com/yumo/p/4908315.html)
+
+1．clone方法
+
+保护方法，实现对象的浅复制，只有实现了Cloneable接口才可以调用该方法，否则抛出CloneNotSupportedException异常。
+
+主要是JAVA里除了8种基本类型传参数是值传递，其他的类对象传参数都是引用传递，我们有时候不希望在方法里讲参数改变，这是就需要在类中复写clone方法。
+
+2．getClass方法
+
+final方法，获得运行时类型。
+
+3．toString方法
+
+该方法用得比较多，一般子类都有覆盖。
+
+4．finalize方法
+
+该方法用于释放资源。因为无法确定该方法什么时候被调用，很少使用。
+
+5．equals方法
+
+该方法是非常重要的一个方法。一般equals和==是不一样的，但是在Object中两者是一样的。子类一般都要重写这个方法。
+
+6．hashCode方法
+
+该方法用于哈希查找，可以减少在查找中使用equals的次数，重写了equals方法一般都要重写hashCode方法。这个方法在一些具有哈希功能的Collection中用到。
+
+一般必须满足obj1.equals(obj2)==true。可以推出obj1.hashCode()==obj2.hashCode()，但是hashCode相等不一定就满足equals。不过为了提高效率，应该尽量使上面两个条件接近等价。
+
+如果不重写hashCode(),在HashSet中添加两个equals的对象，会将两个对象都加入进去。
+
+7．wait方法
+
+wait方法就是使当前线程等待该对象的锁，当前线程必须是该对象的拥有者，也就是具有该对象的锁。wait()方法一直等待，直到获得锁或者被中断。wait(long timeout)设定一个超时间隔，如果在规定时间内没有获得锁就返回。
+
+调用该方法后当前线程进入睡眠状态，直到以下事件发生。
+
+（1）其他线程调用了该对象的notify方法。
+
+（2）其他线程调用了该对象的notifyAll方法。
+
+（3）其他线程调用了interrupt中断该线程。
+
+（4）时间间隔到了。
+
+此时该线程就可以被调度了，如果是被中断的话就抛出一个InterruptedException异常。
+
+8．notify方法
+
+该方法唤醒在该对象上等待的某个线程。
+
+9．notifyAll方法
+
+该方法唤醒在该对象上等待的所有线程。
+
+## foreach与正常for循环效率对比。
+
+[http://904510742.iteye.com/blog/2118331](http://904510742.iteye.com/blog/2118331)
+
+直接for循环效率最高，其次是迭代器和 ForEach操作。作为语法糖，其实 ForEach 编译成 字节码之后，使用的是迭代器实现的，反编译后，testForEach方法如下：
+
+```
+public static void testForEach(List list) {  
+    for (Iterator iterator = list.iterator(); iterator.hasNext();) {  
+        Object t = iterator.next();  
+        Object obj = t;  
+    }  
+}  
+
+```
+
+可以看到，只比迭代器遍历多了生成中间变量这一步，因为性能也略微下降了一些。
+
 # 基本数据类型
 
 ## int char long 各占多少字节数
 
-| 类型     | 位数   | 字节数  |
-| ------ | ---- | ---- |
-| byte   | 8    | 1    |
-| short  | 16   | 2    |
-| int    | 32   | 4    |
-| long   | 64   | 8    |
-| float  | 32   | 4    |
-| double | 64   | 8    |
-| char   | 16   | 2    |
+| 类型 | 位数 | 字节数 |
+|  |  |  |
+| byte | 8 | 1 |
+| short | 16 | 2 |
+| int | 32 | 4 |
+| long | 64 | 8 |
+| float | 32 | 4 |
+| double | 64 | 8 |
+| char | 16 | 2 |
 
 ## int 和 integer 的区别
 
@@ -374,9 +460,13 @@ java.lang.StringBuilder一个可变的字符序列是5.0新增的。此类提供
 - 数组中没有length()这个方法，但是数组中有length这个属性。用来表示数组的长度。
 - String中有length()这个方法。用来得到字符串的长度。
 
+## String 源码分析
+
+[String源码分析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/String%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
+
 # 内部类
 
-## Static Nested Class 和 Inner Class 的不同
+## Static Inner Class 和 Inner Class 的不同
 
 - 静态内部类不持有外部类的引用；非静态内部类持有外部类的引用。
 - 静态内部类可以有静态成员（方法、属性），而非静态内部类则不用有静态成员（方法、属性）。
@@ -525,6 +615,16 @@ abstract class AbstractClass extends EntityClass implements MyInterface {
 }
 ```
 
+## abstract的method是否可同时是static,是否可同时是native，是否可同时是synchronized?
+
+都不行。
+
+abstract的method不可以是static的，因为抽象的方法是要被子类实现的，而static与子类扯不上关系！
+
+native方法表示该方法要用另外一种依赖平台的编辑语言实现的，不存在者被子类实现的问题，所以，他也不能是抽象的，不能与abstract混用。
+
+关于synchronized中avstract合用的问题，我觉得也不行，因为我觉得 synchronized应该是作用在一个具体的方法上才有意义。而且，方法上的synchronized同步所使用的同步锁对象是this，而抽象方法 上无法确定this是什么。 
+
 # final
 
 ## 类使用 final 修饰符的用处？
@@ -651,6 +751,83 @@ set里面存放的是对象的引用，所以当两个元素只要满足了equal
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-19/59789853.jpg)
 
+## Collection包结构，与Collections的区别。
+
+Collection是一个接口，它是Set、List等容器的父接口；Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包括对容器的搜索、排序、线程安全化等等。
+
+## 多线程环境中安全使用集合API
+
+在集合API中，最初设计的Vector和Hashtable是多线程安全的。例如：对于Vector来说，用来添加和删除元素的方法是同步的。如果只有一个线程与Vector的实例交互，那么，要求获取和释放对象锁便是一种浪费，另外在不必要的时候如果滥用同步化，也有可能会带来死锁。因此，对于更改集合内容的方法，没有一个是同步化的。集合本质上是非多线程安全的，当多个线程与集合交互时，为了使它多线程安全，必须采取额外的措施。
+
+在Collections类 中有多个静态方法，它们可以获取通过同步方法封装非同步集合而得到的集合：
+
+-public static Collection synchronizedCollention(Collection c)
+-public static List synchronizedList(list l)
+-public static Map synchronizedMap(Map m)
+-public static Set synchronizedSet(Set s)
+-public static SortedMap synchronizedSortedMap(SortedMap sm)
+-public static SortedSet synchronizedSortedSet(SortedSet ss)
+
+这些方法基本上返回具有同步集合方法版本的新类。比如，为了创建多线程安全且由ArrayList支持的List，可以使用如下代码：
+
+```
+List list = Collection.synchronizedList(new ArrayList());
+
+```
+
+注意，ArrayList实例马上封装起来，不存在对未同步化ArrayList的直接引用（即直接封装匿名实例）。这是一种最安全的途径。如果另一个线程要直接引用ArrayList实例，它可以执行非同步修改。
+
+下面给出一段多线程中安全遍历集合元素的示例。我们使用Iterator逐个扫描List中的元素，在多线程环境中，当遍历当前集合中的元素时，一般希望阻止其他线程添加或删除元素。安全遍历的实现方法如下：
+
+```
+import java.util.*;  
+
+public class SafeCollectionIteration extends Object {  
+    public static void main(String[] args) {  
+        //为了安全起见，仅使用同步列表的一个引用，这样可以确保控制了所有访问  
+        //集合必须同步化，这里是一个List  
+        List wordList = Collections.synchronizedList(new ArrayList());  
+
+        //wordList中的add方法是同步方法，会获取wordList实例的对象锁  
+        wordList.add("Iterators");  
+        wordList.add("require");  
+        wordList.add("special");  
+        wordList.add("handling");  
+
+        //获取wordList实例的对象锁，  
+        //迭代时，阻塞其他线程调用add或remove等方法修改元素  
+        synchronized ( wordList ) {  
+            Iterator iter = wordList.iterator();  
+            while ( iter.hasNext() ) {  
+                String s = (String) iter.next();  
+                System.out.println("found string: " + s + ", length=" + s.length());  
+            }  
+        }  
+    }  
+}  
+
+```
+
+这里需要注意的是：在Java语言中，大部分的线程安全类都是相对线程安全的，它能保证对这个对象单独的操作时线程安全的，我们在调用的时候不需要额外的保障措施，但是对于一些特定的连续调用，就可能需要在调用端使用额外的同步手段来保证调用的正确性。例如Vector、HashTable、Collections的synchronizedXxxx（）方法包装的集合等。
+
+## Java 集合框架
+
+[Java集合框架](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.md)
+
+## 集合类的源码分析
+
+[ArrayList源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/ArrayList%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
+[LinkedList源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/LinkedList%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
+[Vector源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/Vector%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
+[HashMap源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashMap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
+[HashTable源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashTable%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
+[LinkedHashMap源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/LinkedHashMap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
 # 容器类之间的区别
 
 ## HashMap 和 HashTable 的区别
@@ -700,7 +877,39 @@ Hashtable和HashMap它们两个内部实现方式的数组的初始大小和扩�
 - LinkedList 在添加、删除元素时具有更好的性能，但读取性能要低一些。
 - LinkedList 与 ArrayList 最大的区别是 LinkedList 更加灵活，并且部分方法的效率比 ArrayList 对应方法的效率要高很多，对于数据频繁出入的情况下，并且要求操作要足够灵活，建议使用 LinkedList；对于数组变动不大，主要是用来查询的情况下，可以使用 ArrayList。 
 
+## TreeMap、HashMap、LinkedHashMap的底层实现区别。
 
+[http://blog.csdn.net/lolashe/article/details/20806319](http://blog.csdn.net/lolashe/article/details/20806319)
+
+## Set、List之间的区别是什么?*
+
+[http://developer.51cto.com/art/201309/410205_all.htm
+
+## Map、Set、List、Queue、Stack的特点与用法。
+
+[http://www.cnblogs.com/yumo/p/4908718.html](http://www.cnblogs.com/yumo/p/4908718.html)
+
+Collection 是对象集合， Collection 有两个子接口 List 和 Set
+
+List 可以通过下标 (1,2..) 来取得值，值可以重复
+
+而 Set 只能通过游标来取值，并且值是不能重复的
+
+ArrayList ， Vector ， LinkedList 是 List 的实现类
+
+ArrayList 是线程不安全的， Vector 是线程安全的，这两个类底层都是由数组实现的
+
+LinkedList 是线程不安全的，底层是由链表实现的   
+
+Map 是键值对集合
+
+HashTable 和 HashMap 是 Map 的实现类
+HashTable 是线程安全的，不能存储 null 值
+HashMap 不是线程安全的，可以存储 null 值  
+
+Stack类：继承自Vector，实现一个后进先出的栈。提供了几个基本方法，push、pop、peak、empty、search等。
+
+Queue接口：提供了几个基本方法，offer、poll、peek等。已知实现类有LinkedList、PriorityQueue等。
 
 # 内存相关知识
 
@@ -902,7 +1111,13 @@ Java 的堆是一个运行时数据区,类的(对象从中分配空间。这些�
 
 垃圾回收机制有分代复制垃圾回收、标记垃圾回收、增量垃圾回收。
 
+## 垃圾回收算法
 
+1. 引用计数法：缺点是无法处理循环引用问题
+2. 标记-清除法：标记所有从根结点开始的可达对象，缺点是会造成内存空间不连续，不连续的内存空间的工作效率低于连续的内存空间，不容易分配内存
+3. 复制算法：将内存空间分成两块，每次将正在使用的内存中存活对象复制到未使用的内存块中，之后清除正在使用的内存块。算法效率高，但是代价是系统内存折半。适用于新生代(存活对象少，垃圾对象多)
+4. 标记－压缩算法：标记－清除的改进，清除未标记的对象时还将所有的存活对象压缩到内存的一端，之后，清理边界所有空间既避免碎片产生，又不需要两块同样大小的内存快，性价比高。适用于老年代。
+5. 分代
 
 
 
@@ -910,17 +1125,26 @@ Java 的堆是一个运行时数据区,类的(对象从中分配空间。这些�
 
 Java 语言的一个非常重要的特点就是与平台的无关性，而 Java 虚拟机就是实现这一特点的关键。一般的高级语言如果要在不同的平台上运行，至少需要编译成不同的目标代码。而引入Java语言虚拟机后，Java语言在不同平台上运行时不需要重新编译。Java语言使用模式Java虚拟机屏蔽了与具体平台相关的信息，使得Java语言编译程序只需生成在Java虚拟机上运行的目标代码（字节码），就可以在多种平台上不加修改地运行。Java虚拟机在执行字节码时，把字节码解释成具体平台上的机器指令执行。
 
+[JVM基础知识](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JVM/JVM.md)
+
+[JVM类加载机制](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JVM/JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6.md)
+
+[Java内存区域与内存溢出](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JVM/Java%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E4%B8%8E%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA.md)
+
 ## 那些情况下的对象会被垃圾回收机制处理掉
 
 Java 垃圾回收机制最基本的做法是分代回收。内存中的区域被划分成不同的世代，对象根据其存活的时间被保存在对应的世代的区域中。一般的实现是划分为3个世代：年轻、年老和永久。内存的分配是发生在年轻世代中的。当一个对象存活时间足够长的时候，它就会被复制到年老世代中。对于不同的世代可以使用不同的垃圾回收算法。进行世代划分的出发点是对应用中对象存活时间进行研究之后得出的统计规律。一般来说，一个应用中的大部分对象的存活时间都很短。比如局部变量的存活时间就只在方法的执行过程中。基于这一点，对于年轻世代的垃圾回收算法就可以很有针对性。
 
-
-
-
-
 ## 状态机
 
+## Java的四种引用，强弱软虚，用到的场景。
 
+JDK1.2之前只有强引用,其他几种引用都是在JDK1.2之后引入的.
+
+- 强引用（Strong Reference）最常用的引用类型，如Object obj = new Object(); 。只要强引用存在则GC时则必定不被回收。
+- 软引用（Soft Reference）用于描述还有用但非必须的对象，当堆将发生OOM（Out Of Memory）时则会回收软引用所指向的内存空间，若回收后依然空间不足才会抛出OOM。一般用于实现内存敏感的高速缓存。当真正对象被标记finalizable以及的finalize()方法调用之后并且内存已经清理, 那么如果SoftReference object还存在就被加入到它的 ReferenceQueue.只有前面几步完成后,Soft Reference和Weak Reference的get方法才会返回null
+- 弱引用（Weak Reference）发生GC时必定回收弱引用指向的内存空间。和软引用加入队列的时机相同
+- 虚引用（Phantom Reference)又称为幽灵引用或幻影引用，虚引用既不会影响对象的生命周期，也无法通过虚引用来获取对象实例，仅用于在发生GC时接收一个系统通知。当一个对象的finalize方法已经被调用了之后，这个对象的幽灵引用会被加入到队列中。通过检查该队列里面的内容就知道一个对象是不是已经准备要被回收了.虚引用和软引用和弱引用都不同,它会在内存没有清理的时候被加入引用队列.虚引用的建立必须要传入引用队列,其他可以没有
 
 # 多线程
 
@@ -974,15 +1198,86 @@ Java 垃圾回收机制最基本的做法是分代回收。内存中的区域被
 
 再补一个，才学到的。利用`clone()`方法，如果是一个类的多个对象想共用对象内部的一个变量，而又不想这个变量static，可以使用浅复制方式。(查看设计模式原型模式)
 
+## 并发编程中实现内存可见的两种方法比较：加锁和volatile变量
+
+1. volatile变量是一种稍弱的同步机制在访问volatile变量时不会执行加锁操作，因此也就不会使执行线程阻塞，因此volatile变量是一种比synchronized关键字更轻量级的同步机制。
+
+
+1. 从内存可见性的角度看，写入volatile变量相当于退出同步代码块，而读取volatile变量相当于进入同步代码块。
+2. 在代码中如果过度依赖volatile变量来控制状态的可见性，通常会比使用锁的代码更脆弱，也更难以理解。仅当volatile变量能简化代码的实现以及对同步策略的验证时，才应该使用它。一般来说，用同步机制会更安全些。
+3. 加锁机制（即同步机制）既可以确保可见性又可以确保原子性，而volatile变量只能确保可见性，原因是声明为volatile的简单变量如果当前值与该变量以前的值相关，那么volatile关键字不起作用，也就是说如下的表达式都不是原子操作：“count++”、“count = count+1”。
+
+当且仅当满足以下所有条件时，才应该使用volatile变量：
+
+1. 对变量的写入操作不依赖变量的当前值，或者你能确保只有单个线程更新变量的值。
+2. 该变量没有包含在具有其他变量的不变式中。
+
+总结：在需要同步的时候，第一选择应该是synchronized关键字，这是最安全的方式，尝试其他任何方式都是有风险的。尤其在、jdK1.5之后，对synchronized同步机制做了很多优化，如：自适应的自旋锁、锁粗化、锁消除、轻量级锁等，使得它的性能明显有了很大的提升。
+
 ## 启动一个线程是用run()还是start()?
 
 启动一个线程是调用start()方法，使线程就绪状态，以后可以被调度为运行状态，一个线程必须关联一些具体的执行代码，run()方法是该线程所关联的执行代码。
 
-## 多线程有几种实现方法,都是什么?同步有几种实现方法,都是什么?
+## 多线程有几种实现方法,都是什么?
 
 多线程有两种实现方法，分别是继承Thread类与实现Runnable接口。
 
+Java 5以前实现多线程有两种实现方法：一种是继承Thread类；另一种是实现Runnable接口。两种方式都要通过重写run()方法来定义线程的行为，推荐使用后者，因为Java中的继承是单继承，一个类有一个父类，如果继承了Thread类就无法再继承其他类了，显然使用Runnable接口更为灵活。
+
+实现Runnable接口相比继承Thread类有如下优势：
+
+1. 可以避免由于Java的单继承特性而带来的局限
+2. 增强程序的健壮性，代码能够被多个程序共享，代码与数据是独立的
+3. 适合多个相同程序代码的线程区处理同一资源的情况
+
+补充：Java 5以后创建线程还有第三种方式：实现Callable接口，该接口中的call方法可以在线程执行结束时产生一个返回值，代码如下所示：
+
+```java
+class MyTask implements Callable<Integer> {  
+    private int upperBounds;  
+
+    public MyTask(int upperBounds) {  
+        this.upperBounds = upperBounds;  
+    }  
+
+    @Override  
+    public Integer call() throws Exception {  
+        int sum = 0;   
+        for(int i = 1; i <= upperBounds; i++) {  
+            sum += i;  
+        }  
+        return sum;  
+    }  
+
+}  
+
+public class Test {  
+
+    public static void main(String[] args) throws Exception {  
+        List<Future<Integer>> list = new ArrayList<>();  
+        ExecutorService service = Executors.newFixedThreadPool(10);  
+        for(int i = 0; i < 10; i++) {  
+            list.add(service.submit(new MyTask((int) (Math.random() * 100))));  
+        }  
+
+        int sum = 0;  
+        for(Future<Integer> future : list) {  
+            while(!future.isDone()) ;  
+            sum += future.get();  
+        }  
+
+        System.out.println(sum);  
+    }  
+}  
+```
+
+## 同步有几种实现方法,都是什么?
+
 同步的实现方面有两种，分别是synchronized,wait与notify
+
+## 锁的等级
+
+方法锁、对象锁、类锁
 
 ## 同步和异步的区别？
 
@@ -1013,6 +1308,11 @@ Java 垃圾回收机制最基本的做法是分代回收。内存中的区域被
 
 wait()：则是指当前线程让自己暂时退让出同步资源锁，以便其他正在等待该资源的线程得到该资源进而运行，只有调用了notify()方法，之前调用wait()的线程才会解除wait状态，可以去参与竞争同步资源锁，进而得到执行
 
+sleep()方法是线程类（Thread）的静态方法，导致此线程暂停执行指定时间，将执行机会给其他线程，但是监控状态依然保持，到时后会自动恢复
+（线程回到就绪（ready）状态），因为调用sleep 不会释放对象锁。wait()是Object 
+类的方法，对此对象调用wait()方法导致本线程放弃对象锁(线程暂停执行)，进入等待此对象的等待锁定池，只有针对此对象发出notify 
+方法（或notifyAll）后本线程才进入对象锁定池准备获得对象锁进入就绪状态。
+
 ## 进程和线程的区别
 
 程序是一段静态的代码。一个进程可以有一个或多个线程，每个线程都有一个唯一的标识符。进程和线程的区别为：进程空间大体分为数据区 、代码区、栈区、堆区。多个进程的内部数据和状态都是完全独立的；而线程共享进程的数据区、代码区、堆区，只有栈区是独立的，所以线程切换比进程切换的代价小。
@@ -1021,17 +1321,22 @@ wait()：则是指当前线程让自己暂时退让出同步资源锁，以便�
 
 ## Java线程池，线程同步
 
+## 详细讲解一下 synchronized
 
+在并发编程中，多线程同时并发访问的资源叫做临界资源，当多个线程同时访问对象并要求操作相同资源时，分割了原子操作就有可能出现数据的不一致或数据不完整的情况，为避免这种情况的发生，我们会采取同步机制，以确保在某一时刻，方法内只允许有一个线程。
 
-## abstract的method是否可同时是static,是否可同时是native，是否可同时是synchronized?
+采用synchronized修饰符实现的同步机制叫做互斥锁机制，它所获得的锁叫做互斥锁。每个对象都有一个monitor(锁标记)，当线程拥有这个锁标记时才能访问这个资源，没有锁标记便进入锁池。任何一个对象系统都会为其创建一个互斥锁，这个锁是为了分配给线程的，防止打断原子操作。每个对象的锁只能分配给一个线程，因此叫做互斥锁。
 
-都不行。
+这里就使用同步机制获取互斥锁的情况，进行几点说明：
 
-abstract的method不可以是static的，因为抽象的方法是要被子类实现的，而static与子类扯不上关系！
-
-native方法表示该方法要用另外一种依赖平台的编辑语言实现的，不存在者被子类实现的问题，所以，他也不能是抽象的，不能与abstract混用。
-
-关于synchronized中avstract合用的问题，我觉得也不行，因为我觉得 synchronized应该是作用在一个具体的方法上才有意义。而且，方法上的synchronized同步所使用的同步锁对象是this，而抽象方法 上无法确定this是什么。 
+1. 如果同一个方法内同时有两个或更多线程，则每个线程有自己的局部变量拷贝。
+2. 类的每个实例都有自己的对象级别锁。当一个线程访问实例对象中的synchronized同步代码块或同步方法时，该线程便获取了该实例的对象级别锁，其他线程这时如果要访问synchronized同步代码块或同步方法，便需要阻塞等待，直到前面的线程从同步代码块或方法中退出，释放掉了该对象级别锁。
+3. 访问同一个类的不同实例对象中的同步代码块，不存在阻塞等待获取对象锁的问题，因为它们获取的是各自实例的对象级别锁，相互之间没有影响。
+4. 持有一个对象级别锁不会阻止该线程被交换出来，也不会阻塞其他线程访问同一示例对象中的非synchronized代码。当一个线程A持有一个对象级别锁（即进入了synchronized修饰的代码块或方法中）时，线程也有可能被交换出去，此时线程B有可能获取执行该对象中代码的时间，但它只能执行非同步代码（没有用synchronized修饰），当执行到同步代码时，便会被阻塞，此时可能线程规划器又让A线程运行，A线程继续持有对象级别锁，当A线程退出同步代码时（即释放了对象级别锁），如果B线程此时再运行，便会获得该对象级别锁，从而执行synchronized中的代码。
+5. 持有对象级别锁的线程会让其他线程阻塞在所有的synchronized代码外。例如，在一个类中有三个synchronized方法a，b，c，当线程A正在执行一个实例对象M中的方法a时，它便获得了该对象级别锁，那么其他的线程在执行同一实例对象（即对象M）中的代码时，便会在所有的synchronized方法处阻塞，即在方法a，b，c处都要被阻塞，等线程A释放掉对象级别锁时，其他的线程才可以去执行方法a，b或者c中的代码，从而获得该对象级别锁。
+6. 使用synchronized（obj）同步语句块，可以获取指定对象上的对象级别锁。obj为对象的引用，如果获取了obj对象上的对象级别锁，在并发访问obj对象时时，便会在其synchronized代码处阻塞等待，直到获取到该obj对象的对象级别锁。当obj为this时，便是获取当前对象的对象级别锁。
+7. 类级别锁被特定类的所有示例共享，它用于控制对static成员变量以及static方法的并发访问。具体用法与对象级别锁相似。
+8. 互斥是实现同步的一种手段，临界区、互斥量和信号量都是主要的互斥实现方式。synchronized关键字经过编译后，会在同步块的前后分别形成monitorenter和monitorexit这两个字节码指令。根据虚拟机规范的要求，在执行monitorenter指令时，首先要尝试获取对象的锁，如果获得了锁，把锁的计数器加1，相应地，在执行monitorexit指令时会将锁计数器减1，当计数器为0时，锁便被释放了。由于synchronized同步块对同一个线程是可重入的，因此一个线程可以多次获得同一个对象的互斥锁，同样，要释放相应次数的该互斥锁，才能最终释放掉该锁。
 
 ## 当一个线程进入一个对象的一个synchronized方法后，其它线程是否可进入此对象的其它方法?
 
@@ -1067,6 +1372,274 @@ staticMethod这个静态方法，无法你实例化多少次，它都只是存�
 instanceMethod这个实例方法，你创建多少个A实例，这些实例都存在各自的instanceMethod方法，这个方法前加synchronized关键词，会锁住该instanceMethod方法所在的实例。如a1的instanceMethod方法会锁住a1指向的实例，a2的instanceMethod会锁住a2指向的实例。
 
 由此得出结论，staticMethod与instanceMethod锁住的对象是不可能相同的，这就是两个方法不能同步的原因。 
+
+## 内存可见性
+
+加锁（synchronized同步）的功能不仅仅局限于互斥行为，同时还存在另外一个重要的方面：内存可见性。我们不仅希望防止某个线程正在使用对象状态而另一个线程在同时修改该状态，而且还希望确保当一个线程修改了对象状态后，其他线程能够看到该变化。而线程的同步恰恰也能够实现这一点。
+
+内置锁可以用于确保某个线程以一种可预测的方式来查看另一个线程的执行结果。为了确保所有的线程都能看到共享变量的最新值，可以在所有执行读操作或写操作的线程上加上同一把锁。下图示例了同步的可见性保证。
+
+[![img](https://camo.githubusercontent.com/e55eb94078f86c197d053aa7d05d005fc8bb7d0e/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313331323132323131303239313235)](https://camo.githubusercontent.com/e55eb94078f86c197d053aa7d05d005fc8bb7d0e/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313331323132323131303239313235)
+
+当线程A执行某个同步代码块时，线程B随后进入由同一个锁保护的同步代码块，这种情况下可以保证，当锁被释放前，A看到的所有变量值（锁释放前，A看到的变量包括y和x）在B获得同一个锁后同样可以由B看到。换句话说，当线程B执行由锁保护的同步代码块时，可以看到线程A之前在同一个锁保护的同步代码块中的所有操作结果。如果在线程A unlock M之后，线程B才进入lock M，那么线程B都可以看到线程A unlock M之前的操作，可以得到i=1，j=1。如果在线程B unlock M之后，线程A才进入lock M，那么线程B就不一定能看到线程A中的操作，因此j的值就不一定是1。
+
+现在考虑如下代码：
+
+```
+public class  MutableInteger  
+{  
+    private int value;  
+
+    public int get(){  
+        return value;  
+    }  
+    public void set(int value){  
+        this.value = value;  
+    }  
+}  
+
+```
+
+以上代码中，get和set方法都在没有同步的情况下访问value。如果value被多个线程共享，假如某个线程调用了set，那么另一个正在调用get的线程可能会看到更新后的value值，也可能看不到。
+
+通过对set和get方法进行同步，可以使MutableInteger成为一个线程安全的类，如下：
+
+```
+public class  SynchronizedInteger  
+{  
+    private int value;  
+
+    public synchronized int get(){  
+        return value;  
+    }  
+    public synchronized void set(int value){  
+        this.value = value;  
+    }  
+}  
+
+```
+
+对set和get方法进行了同步，加上了同一把对象锁，这样get方法可以看到set方法中value值的变化，从而每次通过get方法取得的value的值都是最新的value值。     
+
+## 生产者和消费者问题
+
+[生产者和消费者问题](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaConcurrent/%E7%94%9F%E4%BA%A7%E8%80%85%E5%92%8C%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98.md)
+
+## 守护线程与阻塞线程的四种情况
+
+Java中有两类线程：User Thread(用户线程)、Daemon Thread(守护线程)
+
+用户线程即运行在前台的线程，而守护线程是运行在后台的线程。 守护线程作用是为其他前台线程的运行提供便利服务，而且仅在普通、非守护线程仍然运行时才需要，比如垃圾回收线程就是一个守护线程。当VM检测仅剩一个守护线程，而用户线程都已经退出运行时，VM就会退出，因为如果没有了守护者，也就没有继续运行程序的必要了。如果有非守护线程仍然活着，VM就不会退出。
+
+守护线程并非只有虚拟机内部提供，用户在编写程序时也可以自己设置守护线程。用户可以用Thread的setDaemon(true)方法设置当前线程为守护线程。
+
+虽然守护线程可能非常有用，但必须小心确保其它所有非守护线程消亡时，不会由于它的终止而产生任何危害。因为你不可能知道在所有的用户线程退出运行前，守护线程是否已经完成了预期的服务任务。一旦所有的用户线程退出了，虚拟机也就退出运行了。因此，不要再守护线程中执行业务逻辑操作(比如对数据的读写等)。
+
+还有几点：
+
+1. setDaemon(true)必须在调用线程的start()方法之前设置，否则会跑出IllegalThreadStateException异常。
+2. 在守护线程中产生的新线程也是守护线程
+3. 不要认为所有的应用都可以分配给守护线程来进行服务，比如读写操作或者计算逻辑。
+
+## 死锁
+
+当线程需要同时持有多个锁时，有可能产生死锁。考虑如下情形：
+
+线程A当前持有互斥所锁lock1，线程B当前持有互斥锁lock2。接下来，当线程A仍然持有lock1时，它试图获取lock2，因为线程B正持有lock2，因此线程A会阻塞等待线程B对lock2的释放。如果此时线程B在持有lock2的时候，也在试图获取lock1，因为线程A正持有lock1，因此线程B会阻塞等待A对lock1的释放。二者都在等待对方所持有锁的释放，而二者却又都没释放自己所持有的锁，这时二者便会一直阻塞下去。这种情形称为死锁。
+
+下面给出一个两个线程间产生死锁的示例，如下：
+
+```
+public class Deadlock {
+
+    private String objID;
+
+    public Deadlock(String id) {
+        objID = id;
+    }
+
+    public synchronized void checkOther(Deadlock other) {
+        print("entering checkOther()");  
+        try { Thread.sleep(2000); }   
+        catch ( InterruptedException x ) { }  
+        print("in checkOther() - about to " + "invoke 'other.action()'");  
+      //调用other对象的action方法，由于该方法是同步方法，因此会试图获取other对象的对象锁  
+        other.action();  
+        print("leaving checkOther()");  
+    }
+
+    public synchronized void action() {  
+        print("entering action()");  
+        try { Thread.sleep(500); }   
+        catch ( InterruptedException x ) { }  
+        print("leaving action()");  
+    }  
+
+    public void print(String msg) {
+        threadPrint("objID=" + objID + " - " + msg);
+    }
+
+    public static void threadPrint(String msg) {  
+        String threadName = Thread.currentThread().getName();  
+        System.out.println(threadName + ": " + msg);  
+    }  
+
+    public static void main(String[] args) {
+        final Deadlock obj1 = new Deadlock("obj1");  
+        final Deadlock obj2 = new Deadlock("obj2");  
+
+        Runnable runA = new Runnable() {  
+            public void run() {  
+                obj1.checkOther(obj2);  
+            }  
+        };  
+
+        Thread threadA = new Thread(runA, "threadA");  
+        threadA.start();  
+
+        try { Thread.sleep(200); }   
+        catch ( InterruptedException x ) { }  
+
+        Runnable runB = new Runnable() {  
+            public void run() {  
+                obj2.checkOther(obj1);  
+            }  
+        };  
+
+        Thread threadB = new Thread(runB, "threadB");  
+        threadB.start();  
+
+        try { Thread.sleep(5000); }   
+        catch ( InterruptedException x ) { }  
+
+        threadPrint("finished sleeping");  
+
+        threadPrint("about to interrupt() threadA"); 
+
+        threadA.interrupt();  
+
+        try { Thread.sleep(1000); }   
+        catch ( InterruptedException x ) { }  
+
+        threadPrint("about to interrupt() threadB");  
+        threadB.interrupt();  
+
+        try { Thread.sleep(1000); }   
+        catch ( InterruptedException x ) { }  
+
+        threadPrint("did that break the deadlock?");  
+    }
+}
+
+
+```
+
+运行结果：
+
+```
+threadA: objID=obj1 - entering checkOther()
+threadB: objID=obj2 - entering checkOther()
+threadA: objID=obj1 - in checkOther() - about to invoke 'other.action()'
+threadB: objID=obj2 - in checkOther() - about to invoke 'other.action()'
+main: finished sleeping
+main: about to interrupt() threadA
+main: about to interrupt() threadB
+main: did that break the deadlock?
+
+```
+
+从结果中可以看出，在执行到other.action（）时，由于两个线程都在试图获取对方的锁，但对方都没有释放自己的锁，因而便产生了死锁，在主线程中试图中断两个线程，但都无果。
+
+大部分代码并不容易产生死锁，死锁可能在代码中隐藏相当长的时间，等待不常见的条件地发生，但即使是很小的概率，一旦发生，便可能造成毁灭性的破坏。避免死锁是一件困难的事，遵循以下原则有助于规避死锁： 
+
+1. 只在必要的最短时间内持有锁，考虑使用同步语句块代替整个同步方法；
+2. 尽量编写不在同一时刻需要持有多个锁的代码，如果不可避免，则确保线程持有第二个锁的时间尽量短暂；
+3. 创建和使用一个大锁来代替若干小锁，并把这个锁用于互斥，而不是用作单个对象的对象级别锁；
+
+## 可重入内置锁
+
+每个Java对象都可以用做一个实现同步的锁，这些锁被称为内置锁或监视器锁。线程在进入同步代码块之前会自动获取锁，并且在退出同步代码块时会自动释放锁。获得内置锁的唯一途径就是进入由这个锁保护的同步代码块或方法。
+
+当某个线程请求一个由其他线程持有的锁时，发出请求的线程就会阻塞。然而，由于内置锁是可重入的，因此如果摸个线程试图获得一个已经由它自己持有的锁，那么这个请求就会成功。“重入”意味着获取锁的操作的粒度是“线程”，而不是调用。重入的一种实现方法是，为每个锁关联一个获取计数值和一个所有者线程。当计数值为0时，这个锁就被认为是没有被任何线程所持有，当线程请求一个未被持有的锁时，JVM将记下锁的持有者，并且将获取计数值置为1，如果同一个线程再次获取这个锁，计数值将递增，而当线程退出同步代码块时，计数器会相应地递减。当计数值为0时，这个锁将被释放。
+
+重入进一步提升了加锁行为的封装性，因此简化了面向对象并发代码的开发。分析如下程序：
+
+```
+public class Father  
+{  
+    public synchronized void doSomething(){  
+        ......  
+    }  
+}  
+
+public class Child extends Father  
+{  
+    public synchronized void doSomething(){  
+        ......  
+        super.doSomething();  
+    }  
+}  
+
+```
+
+子类覆写了父类的同步方法，然后调用父类中的方法，此时如果没有可重入的锁，那么这段代码件产生死锁。
+
+由于Fither和Child中的doSomething方法都是synchronized方法，因此每个doSomething方法在执行前都会获取Child对象实例上的锁。如果内置锁不是可重入的，那么在调用super.doSomething时将无法获得该Child对象上的互斥锁，因为这个锁已经被持有，从而线程会永远阻塞下去，一直在等待一个永远也无法获取的锁。重入则避免了这种死锁情况的发生。
+
+同一个线程在调用本类中其他synchronized方法/块或父类中的synchronized方法/块时，都不会阻碍该线程地执行，因为互斥锁时可重入的。
+
+## 使用wait/notify/notifyAll实现线程间通信
+
+在Java中，可以通过配合调用Object对象的wait（）方法和notify（）方法或notifyAll（）方法来实现线程间的通信。在线程中调用wait（）方法，将阻塞等待其他线程的通知（其他线程调用notify（）方法或notifyAll（）方法），在线程中调用notify（）方法或notifyAll（）方法，将通知其他线程从wait（）方法处返回。
+
+Object是所有类的超类，它有5个方法组成了等待/通知机制的核心：notify（）、notifyAll（）、wait（）、wait（long）和wait（long，int）。在Java中，所有的类都从Object继承而来，因此，所有的类都拥有这些共有方法可供使用。而且，由于他们都被声明为final，因此在子类中不能覆写任何一个方法。
+
+这里详细说明一下各个方法在使用中需要注意的几点：
+
+1、wait（）
+
+```
+public final void wait()  throws InterruptedException,IllegalMonitorStateException
+
+```
+
+该方法用来将当前线程置入休眠状态，直到接到通知或被中断为止。在调用wait（）之前，线程必须要获得该对象的对象级别锁，即只能在同步方法或同步块中调用wait（）方法。进入wait（）方法后，当前线程释放锁。在从wait（）返回前，线程与其他线程竞争重新获得锁。如果调用wait（）时，没有持有适当的锁，则抛出IllegalMonitorStateException，它是RuntimeException的一个子类，因此，不需要try-catch结构。
+
+2、notify（）
+
+```
+public final native void notify() throws IllegalMonitorStateException
+
+```
+
+该方法也要在同步方法或同步块中调用，即在调用前，线程也必须要获得该对象的对象级别锁，的如果调用notify（）时没有持有适当的锁，也会抛出IllegalMonitorStateException。
+
+该方法用来通知那些可能等待该对象的对象锁的其他线程。如果有多个线程等待，则线程规划器任意挑选出其中一个wait（）状态的线程来发出通知，并使它等待获取该对象的对象锁（notify后，当前线程不会马上释放该对象锁，wait所在的线程并不能马上获取该对象锁，要等到程序退出synchronized代码块后，当前线程才会释放锁，wait所在的线程也才可以获取该对象锁），但不惊动其他同样在等待被该对象notify的线程们。当第一个获得了该对象锁的wait线程运行完毕以后，它会释放掉该对象锁，此时如果该对象没有再次使用notify语句，则即便该对象已经空闲，其他wait状态等待的线程由于没有得到该对象的通知，会继续阻塞在wait状态，直到这个对象发出一个notify或notifyAll。这里需要注意：它们等待的是被notify或notifyAll，而不是锁。这与下面的notifyAll（）方法执行后的情况不同。 
+
+3、notifyAll（）
+
+```
+public final native void notifyAll() throws IllegalMonitorStateException
+
+```
+
+该方法与notify（）方法的工作方式相同，重要的一点差异是：
+
+notifyAll使所有原来在该对象上wait的线程统统退出wait的状态（即全部被唤醒，不再等待notify或notifyAll，但由于此时还没有获取到该对象锁，因此还不能继续往下执行），变成等待获取该对象上的锁，一旦该对象锁被释放（notifyAll线程退出调用了notifyAll的synchronized代码块的时候），他们就会去竞争。如果其中一个线程获得了该对象锁，它就会继续往下执行，在它退出synchronized代码块，释放锁后，其他的已经被唤醒的线程将会继续竞争获取该锁，一直进行下去，直到所有被唤醒的线程都执行完毕。
+
+4、wait（long）和wait（long,int）
+
+显然，这两个方法是设置等待超时时间的，后者在超值时间上加上ns，精度也难以达到，因此，该方法很少使用。对于前者，如果在等待线程接到通知或被中断之前，已经超过了指定的毫秒数，则它通过竞争重新获得锁，并从wait（long）返回。另外，需要知道，如果设置了超时时间，当wait（）返回时，我们不能确定它是因为接到了通知还是因为超时而返回的，因为wait（）方法不会返回任何相关的信息。但一般可以通过设置标志位来判断，在notify之前改变标志位的值，在wait（）方法后读取该标志位的值来判断，当然为了保证notify不被遗漏，我们还需要另外一个标志位来循环判断是否调用wait（）方法。
+
+深入理解：
+
+- 如果线程调用了对象的wait（）方法，那么线程便会处于该对象的等待池中，等待池中的线程不会去竞争该对象的锁。
+- 当有线程调用了对象的notifyAll（）方法（唤醒所有wait线程）或notify（）方法（只随机唤醒一个wait线程），被唤醒的的线程便会进入该对象的锁池中，锁池中的线程会去竞争该对象锁。
+- 优先级高的线程竞争到对象锁的概率大，假若某线程没有竞争到该对象锁，它还会留在锁池中，唯有线程再次调用wait（）方法，它才会重新回到等待池中。而竞争到对象锁的线程则继续往下执行，直到执行完了synchronized代码块，它会释放掉该对象锁，这时锁池中的线程会继续竞争该对象锁。
+
+## 线程中断
+
+[线程中断](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaConcurrent/%E7%BA%BF%E7%A8%8B%E4%B8%AD%E6%96%AD.md)
 
 # Error 和 Exception
 
@@ -1111,6 +1684,46 @@ ObjectOutputStream
 ## Serializable和Parcelable
 
 
+
+# 反射
+
+## 反射机制
+
+JAVA反射机制是在运行状态中, 对于任意一个类, 都能够知道这个类的所有属性和方法; 对于任意一个对象, 都能够调用它的任意一个方法和属性; 这种动态获取的信息以及动态调用对象的方法的功能称为java语言的反射机制.
+
+主要作用有三：
+
+运行时取得类的方法和字段的相关信息。
+
+创建某个类的新实例(.newInstance())
+
+取得字段引用直接获取和设置对象字段，无论访问修饰符是什么。
+
+用处如下：
+
+观察或操作应用程序的运行时行为。
+
+调试或测试程序，因为可以直接访问方法、构造函数和成员字段。
+
+通过名字调用不知道的方法并使用该信息来创建对象和调用方法。
+
+# 泛型
+
+## 泛型的优缺点
+
+优点：
+
+使用泛型类型可以最大限度地重用代码、保护类型的安全以及提高性能。
+
+泛型最常见的用途是创建集合类。
+
+缺点：
+
+在性能上不如数组快。
+
+## 泛型常用特点，`List<String>`能否转为`List<Object>`
+
+能，但是利用类都继承自Object，所以使用是每次调用里面的函数都要通过强制转换还原回原来的类，这样既不安全，运行速度也慢。
 
 # 网络
 
@@ -1218,6 +1831,20 @@ Server端Listen(监听)某个端口是否有连接请求，Client端向Server �
 
 （4） 关闭Socket.（在实际应用中，并未使用到显示的close，虽然很多文章都推荐如此，不过在我的程序中，可能因为程序本身比较简单，要求不高，所以并未造成什么影响。）
 
+# IO（IO,NIO，目前okio已经被集成Android包）
+
+## IO框架主要用到什么设计模式
+
+## JDK的I/O包中就主要使用到了两种设计模式：Adatper模式和Decorator模式。
+
+## NIO包有哪些结构？分别起到的作用？
+
+[NIO](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaConcurrent/NIO.md)
+
+## NIO针对什么情景会比IO有更好的优化？
+
+## OKIO底层实现
+
 # json
 
 ## JSON，fastjson 和 GSON的区别
@@ -1256,6 +1883,12 @@ FastJson采用独创的算法，将parse的速度提升到极致，超过所有j
 # xml
 
 ## XML，解析XML的几种方式的原理与特点：DOM、SAX、PULL
+
+参考：[http://www.cnblogs.com/HaroldTihan/p/4316397.html](http://www.cnblogs.com/HaroldTihan/p/4316397.html)
+
+# JNI
+
+参考：[http://landerlyoung.github.io/blog/2014/10/16/java-zhong-jnide-shi-yong/](http://landerlyoung.github.io/blog/2014/10/16/java-zhong-jnide-shi-yong/)
 
 ## MD5加密原理，可否解密。
 
