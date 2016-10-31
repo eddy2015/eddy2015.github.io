@@ -9,9 +9,9 @@ tags:
 
 本文收集整理了 Android 面试中会遇到的编程算法题。<!-- more -->
 
-## 参考
+## 题目整理来源
 
-[Mr-YangCheng/ForAndroidInterview](https://github.com/Mr-YangCheng/ForAndroidInterview/tree/master/algorithm/swordForOffer) — 该处题目好像也是来源于剑指 Offer，不过每题都有详细思路和解法，值得一看。
+[Mr-YangCheng/ForAndroidInterview](https://github.com/Mr-YangCheng/ForAndroidInterview/tree/master/algorithm/swordForOffer) — 该处题目应该也是来源于剑指 Offer，不过每题都有详细思路和解法，值得一看。
 
 [牛客网-剑指 Offer](http://www.nowcoder.com/ta/coding-interviews?page=1)
 
@@ -775,12 +775,6 @@ public class Solution {
 - 3.考虑下同步问题
 - 4.考虑扩容问题
 
-## 快速排序
-
-
-
-
-## 冒泡排序
 ## 求素数
 ## 单例模式——写一个Singleton出来
 
@@ -911,9 +905,7 @@ public class Test {
 
 ## 二叉树遍历
 
-# 重建二叉树
-
-------
+## 重建二叉树
 
 题目：
 
@@ -965,9 +957,7 @@ public class Solution {
 }
 ```
 
-# 数值的整数次方
-
-------
+## 数值的整数次方
 
 题目：
 
@@ -975,7 +965,7 @@ public class Solution {
 
 看到了很多人会这样写：
 
-```
+```java
 public static double powerWithExponent(double base,int exponent){
         double result = 1.0;
         for(int i = 1; i <= exponent; i++){
@@ -983,14 +973,13 @@ public static double powerWithExponent(double base,int exponent){
         }
         return result;
     }
-
 ```
 
 输入的指数(exponent)小于1即是零和负数时怎么办？
 
 当指数为负数的时候，可以先对指数求绝对值，然后算出次方的结果之后再取倒数，当底数(base)是零且指数是负数的时候，如果不做特殊处理，就会出现对0求倒数从而导致程序运行出错。最后，由于0的0次方在数学上是没有意义的，因此无论是输出0还是1都是可以接受的。
 
-```
+```java
 public double power(double base, int exponent) throws Exception {
         double result = 0.0;
         if (equal(base, 0.0) && exponent < 0) {
@@ -1023,7 +1012,6 @@ public double power(double base, int exponent) throws Exception {
             return false;
         }
     }
-
 ```
 
 一个细节，再判断底数base是不是等于0时，不能直接写base==0，这是因为在计算机内表示小数时(包括float和double型小数)都有误差。判断两个数是否相等，只能判断 它们之间的绝对值是不是在一个很小的范围内。如果两个数相差很小，就可以认为它们相等。
@@ -1036,7 +1024,7 @@ public double power(double base, int exponent) throws Exception {
 
 [![img](https://camo.githubusercontent.com/ec88bcb539f7040696223964d7d3fe5e86984ed2/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313530373331303834303339363533)](https://camo.githubusercontent.com/ec88bcb539f7040696223964d7d3fe5e86984ed2/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313530373331303834303339363533)
 
-```
+```java
 private double powerWithExponent2(double base,int exponent){
         if(exponent == 0){
             return 1;
@@ -1051,14 +1039,11 @@ private double powerWithExponent2(double base,int exponent){
         }
         return result;
     }
-
 ```
 
 我们用右移运算代替除2，用位与运算符代替了求余运算符（%)来判断一个数是奇数还是偶数。位运算的效率比乘除法及求余运算的效率要高很多。
 
-# 扑克牌的顺子
-
-------
+## 扑克牌的顺子
 
 题目:
 
@@ -1108,9 +1093,7 @@ public class Solution {
 
 ```
 
-# 圆圈中最后剩下的数字
-
-------
+## 圆圈中最后剩下的数字
 
 题目
 
@@ -1148,7 +1131,7 @@ k-1   --------->    n-k
 
 代码如下：
 
-```
+```java
 public static int lastRemaining(int n, int m){
         if(n < 1 || m < 1){
             return -1;
@@ -1161,9 +1144,7 @@ public static int lastRemaining(int n, int m){
     }
 ```
 
-# two-sum
-
-------
+## two-sum
 
 Question
 
@@ -1181,7 +1162,6 @@ Output: index1=1, index2=2
 ```
 给定一个整数数组，找到2个数字，这样他们就可以添加到一个特定的目标号。功能twosum应该返回两个数字，他们总计达目标数，其中index1必须小于index2。请注意，你的答案返回（包括指数和指数）不为零的基础。你可以假设每个输入都有一个解决方案。
 输入数字numbers= { 2，7，11，15 }，目标= 9输出：index1 = 1，index2= 2
-
 ```
 
 解题思路：
@@ -1193,7 +1173,7 @@ Output: index1=1, index2=2
 
 代码；
 
-```
+```java
 import java.util.HashMap;
 
 public class Solution {
@@ -1214,9 +1194,7 @@ public class Solution {
 }
 ```
 
-# 设计一个有getMin功能的栈
-
-------
+## 设计一个有getMin功能的栈
 
 实现一个特殊的栈，在实现栈的基本功能的基础上，在实现返回栈中最小元素的操作。
 
@@ -1227,7 +1205,7 @@ public class Solution {
 
 解题：
 
-```
+```java
 package chapter01_stackandqueue;
 
 import java.util.Stack;
@@ -1317,23 +1295,19 @@ public class Problem01_GetMinStack {
     }
 
 }
-
 ```
 
-# 由两个栈组成的队列
-
-------
+## 由两个栈组成的队列
 
 题目：
 
 ```
 编写一个类，用两个栈实现队列，支持队列的基本操作(add、poll、peek)。
-
 ```
 
 解题：
 
-```
+```java
 /**
  * 
  * 编写一个类，用两个栈实现队列，支持队列的基本操作(add、poll、peek)。
@@ -1403,12 +1377,9 @@ public class Problem02_TwoStacksImplementQueue {
 
     }
 }
-
 ```
 
-# 如何仅用递归函数和栈操作逆序一个栈
-
-------
+## 如何仅用递归函数和栈操作逆序一个栈
 
 题目：
 
@@ -1419,7 +1390,7 @@ public class Problem02_TwoStacksImplementQueue {
 
 解题：
 
-```
+```java
 /**
  * 一个栈一次压入了1、2、3、4、5，那么从栈顶到栈底分别为5、4、3、2、1.将这个栈转置后，
  * 从栈顶到栈底为1、2、3、4、5，
