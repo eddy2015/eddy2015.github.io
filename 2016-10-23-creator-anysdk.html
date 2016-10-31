@@ -1,28 +1,363 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Eddy Wiki</title>
-  <subtitle>I do what I do.</subtitle>
-  <link href="/atom.xml" rel="self"/>
+<!doctype html>
+
+
+
   
-  <link href="http://eddy.wiki/"/>
-  <updated>2016-10-31T10:28:21.000Z</updated>
-  <id>http://eddy.wiki/</id>
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
   
-  <author>
-    <name>Eddy</name>
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
     
-  </author>
-  
-  <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>CocosCreator 集成 AnySDK 教程</title>
-    <link href="http://eddy.wiki/2016-10-23-creator-anysdk.html"/>
-    <id>http://eddy.wiki/2016-10-23-creator-anysdk.html</id>
-    <published>2016-10-23T13:00:50.000Z</published>
-    <updated>2016-10-31T10:28:21.000Z</updated>
     
-    <content type="html"><![CDATA[<p>本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。<a id="more"></a></p>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="CocosCreator,AnySDK," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eddy Wiki" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CocosCreator 集成 AnySDK 教程">
+<meta property="og:url" content="http://eddy.wiki/2016-10-23-creator-anysdk.html">
+<meta property="og:site_name" content="Eddy Wiki">
+<meta property="og:description" content="本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/81864543.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/14676565.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/13005876.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/32945476.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/66057765.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/32756607.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/43516864.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/28805762.jpg">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/47841800.jpg">
+<meta property="og:updated_time" content="2016-10-31T10:28:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CocosCreator 集成 AnySDK 教程">
+<meta name="twitter:description" content="本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。">
+<meta name="twitter:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/81864543.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://eddy.wiki/2016-10-23-creator-anysdk.html"/>
+
+
+  <title> CocosCreator 集成 AnySDK 教程 | Eddy Wiki </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Eddy Wiki</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I do what I do.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                CocosCreator 集成 AnySDK 教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-23T21:00:50+08:00" content="2016-10-23">
+              2016-10-23
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/CocosCreator/" itemprop="url" rel="index">
+                    <span itemprop="name">CocosCreator</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016-10-23-creator-anysdk.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-10-23-creator-anysdk.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016-10-23-creator-anysdk.html" class="leancloud_visitors" data-flag-title="CocosCreator 集成 AnySDK 教程">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。<a id="more"></a></p>
 <h2 id="本人开发环境"><a href="#本人开发环境" class="headerlink" title="本人开发环境"></a>本人开发环境</h2><p>CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3</p>
 <h2 id="Android-平台集成-AnySDK-详细步骤"><a href="#Android-平台集成-AnySDK-详细步骤" class="headerlink" title="Android 平台集成 AnySDK 详细步骤"></a>Android 平台集成 AnySDK 详细步骤</h2><p>由于本人使用 git 对项目进行版本控制管理，所以下列步骤中会有一些与 git 相关的操作。如果你没有使用 git，那么你可以直接忽略下列步骤中与 git 相关的操作。</p>
 <h3 id="获取-AnySDK-Framework"><a href="#获取-AnySDK-Framework" class="headerlink" title="获取 AnySDK Framework"></a>获取 AnySDK Framework</h3><p>安装 AnySDK 客户端，然后在 AnySDK 客户端的【安妮市场】【分类】【框架】中找到 JS(Android) 框架并下载。如下图：<br><img src="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/81864543.jpg" alt=""></p>
@@ -93,114 +428,601 @@ build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/gen/
 <h2 id="如何快速集成-AnySDK"><a href="#如何快速集成-AnySDK" class="headerlink" title="如何快速集成 AnySDK"></a>如何快速集成 AnySDK</h2><p>我在 GitHub 上面分享了一个便于在 CocosCreator 项目的 Android 平台快速集成 AnySDK 的项目：<a href="https://github.com/eddy2015/anysdk-files-for-ccc" target="_blank" rel="external">anysdk-files-for-ccc</a> 。具体使用方法请参考该项目的 README.md 文件，这里就不详细说明了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要讲解了如何在 CocosCreator 项目的 Android 平台集成 AnySDK ，并提供了一个快速集成方法。ios 平台请参考 AnySDK 的官方文档自行尝试。</p>
 <p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> 转载请注明出处：<a href="http://eddy.wiki/2016-10-23-creator-anysdk.html">http://eddy.wiki/2016-10-23-creator-anysdk.html</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。
-    
-    </summary>
-    
-      <category term="CocosCreator" scheme="http://eddy.wiki/categories/CocosCreator/"/>
-    
-    
-      <category term="CocosCreator" scheme="http://eddy.wiki/tags/CocosCreator/"/>
-    
-      <category term="AnySDK" scheme="http://eddy.wiki/tags/AnySDK/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CocosCreator 集成 Pomelo 教程</title>
-    <link href="http://eddy.wiki/2016-10-23-creator-pomelo.html"/>
-    <id>http://eddy.wiki/2016-10-23-creator-pomelo.html</id>
-    <published>2016-10-23T12:10:50.000Z</published>
-    <updated>2016-10-31T10:27:26.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>本文主要介绍怎么在 CocosCreator 中集成 Pomelo， 以及使用CocosCreattor + Pomelo 开发一个多人聊天应用。</p>
-<p>使用 Pomelo 官方多人聊天 demo（下文统一称为 pomelo-chat-demo）的服务端代码作为本多人聊天应用的服务端，而本聊天应用客户端（下文统一称为 ccc-pomelo-chat-client）则是参考 pomelo-chat-demo 的web客户端使用CocosCreattor实现。<a id="more"></a></p>
-<h2 id="怎么运行ccc-pomelo-chat-client"><a href="#怎么运行ccc-pomelo-chat-client" class="headerlink" title="怎么运行ccc-pomelo-chat-client"></a>怎么运行ccc-pomelo-chat-client</h2><h3 id="本人开发环境"><a href="#本人开发环境" class="headerlink" title="本人开发环境"></a>本人开发环境</h3><p>CocosCreator 1.1, Pomelo 1.2.2, MacOS 10.10.3</p>
-<h3 id="安装-pomelo"><a href="#安装-pomelo" class="headerlink" title="安装 pomelo"></a>安装 pomelo</h3><p>参考 <a href="https://github.com/NetEase/pomelo/wiki/%E5%AE%89%E8%A3%85pomelo" target="_blank" rel="external">安装 pomelo wiki</a> 安装 pomelo。</p>
-<h3 id="pomelo-chat-demo-源码下载与运行"><a href="#pomelo-chat-demo-源码下载与运行" class="headerlink" title="pomelo-chat-demo 源码下载与运行"></a>pomelo-chat-demo 源码下载与运行</h3><p>ccc-pomelo-chat-client 服务端使用的是 pomelo-chat-demo 的服务端，并没有另外开发，这样可以很方便的展示多人聊天应用的多端（Web, Android, desktop等）聊天通讯功能。</p>
-<p>参考 <a href="https://github.com/NetEase/pomelo/wiki/chat%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85" target="_blank" rel="external">pomelo chat 源码下载与安装 wiki</a> 下载 pomelo-chat-demo 源码。</p>
-<p>下载源码后，通过下列步骤来运行 pomelo-chat-demo。下文使用 <code>yourdir</code> 指代你本地 pomelo-chat-demo 源码的存放目录。</p>
-<p>打开终端，启动 pomelo-chat-demo 的聊天服务器。</p>
-<pre><code>$ cd yourdir/chatofpomelo-websocket/game-server 
-$ pomelo start
-</code></pre><p>打开另外一个终端，启动 pomelo-chat-demo 的 web 服务器。</p>
-<pre><code>$ cd yourdir/chatofpomelo-websocket/web-server
-$ node app.js
-</code></pre><p>如果启动过程中没有错误，那么我们就可以打开浏览器，输入 <a href="http://127.0.0.1:3001/index.html" target="_blank" rel="external">http://127.0.0.1:3001/index.html</a>, 然后就可以看到聊天应用的界面了。输入一个用户名和一个房间名，就可以开始聊天了。可以多开几个客户端实例（即打开多个网页），测试 pomelo-chat-demo 是否能正常地运行。效果图如下：</p>
-<p><img src="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/88275169.jpg" alt=""></p>
-<p>那么怎么关闭 pomelo-chat-demo 的聊天服务器呢，其实很简单。打开另外一个终端</p>
-<pre><code>$ cd yourdir/chatofpomelo-websocket/game-server 
-$ pomelo stop 或 pomelo kill
-</code></pre><p>注意：如果不是按以上步骤关闭聊天服务器，那么当你再次启动聊天服务器的时候，就有可能因为聊天服务器未完全关闭而出现错误。出现这种情况可以直接关闭启动聊天服务器的终端（这样聊天服务器就被完全关闭了），然后重新打一个终端启动聊天服务器。</p>
-<h3 id="ccc-pomelo-chat-client源码下载与运行"><a href="#ccc-pomelo-chat-client源码下载与运行" class="headerlink" title="ccc-pomelo-chat-client源码下载与运行"></a>ccc-pomelo-chat-client源码下载与运行</h3><p>下文使用 <code>yourdir</code> 指代你本地 ccc-pomelo-chat-client 源码的存放目录。</p>
-<p>从GitHub上下载 <a href="https://github.com/eddy2015/ccc-pomelo-chat-client" target="_blank" rel="external">ccc-pomelo-chat-client</a> 源码。</p>
-<pre><code>$ cd yourdir
-$ git clone https://github.com/eddy2015/ccc-pomelo-chat-client.git
-</code></pre><p>使用 CocosCreator 打开 ccc-pomelo-chat-client 项目并运行预览（模拟器和浏览器都行），效果图如下：</p>
-<p><img src="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/92132623.jpg" alt=""></p>
-<p>经本人测试，该客户端在web、Android、ccc模拟器都可以正常运行，其他平台请自行尝试。服务器 ip 地址默认为 127.0.0.1，如果你是在 Android 等其他不和服务器同一台机器平台运行，请把该 ip 修改成你启动服务器的电脑 ip 地址。端口默认为 3014，这个一般不需要修改，除非你改动了服务器端的代码。输入一个用户名和一个房间名（用户名和房间名限制了只能是字母、数字、或汉字），然后点击 join 按钮登陆后就可以进行一对多或者一对一聊天了。</p>
-<h2 id="CocosCreator-怎么集成-pomelo"><a href="#CocosCreator-怎么集成-pomelo" class="headerlink" title="CocosCreator 怎么集成 pomelo"></a>CocosCreator 怎么集成 pomelo</h2><h3 id="集成-pomelo-步骤"><a href="#集成-pomelo-步骤" class="headerlink" title="集成 pomelo 步骤"></a>集成 pomelo 步骤</h3><p>下载 <a href="https://github.com/eddy2015/ccc-pomelo-chat-client" target="_blank" rel="external">ccc-pomelo-chat-client</a> 源码，把源码中的 <code>ccc-pomelo-chat-client/assets/pomelo</code> 拷贝到你的 CocosCreator 项目 assets 目录下，这样在你的项目中即可使用 pomelo-client 相关 API 了。</p>
-<p>API请阅读 <code>pomelo/pomelo-client.js</code> 源码，具体使用方法可以参考 <a href="https://github.com/eddy2015/ccc-pomelo-chat-client" target="_blank" rel="external">ccc-pomelo-chat-client</a> 源码，或者参考以下网址：</p>
-<ol>
-<li><a href="https://github.com/NetEase/pomelo/wiki/Home-in-Chinese" target="_blank" rel="external">pomelo 官方中文 wiki</a></li>
-<li><a href="https://github.com/NetEase/pomelo/wiki/chat%E6%BA%90%E7%A0%81%E4%B8%8B%E8%BD%BD%E4%B8%8E%E5%AE%89%E8%A3%85" target="_blank" rel="external">pomelo-chat-demo 源码</a></li>
-<li><a href="https://github.com/NetEase/pomelo/wiki/pomelo%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%BC%80%E5%8F%91#web%E7%AB%AFapi%E7%AE%80%E4%BB%8B" target="_blank" rel="external">pomelo 客服端开发</a></li>
-</ol>
-<h3 id="集成后的会出现的一些警告"><a href="#集成后的会出现的一些警告" class="headerlink" title="集成后的会出现的一些警告"></a>集成后的会出现的一些警告</h3><p>CocosCreator 项目集成 pomelo 后，你会在 CocosCreator 编辑器中看到如下的红色错误信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Simulator : mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create</div><div class="line">    at a: &quot;Buffer.prototype.__proto__ = Uint8Array.prototype&quot; (../../../../../../../Applications/CocosCreator.app/Contents/Resources/app.asar/node_modules/buffer/index.js:153)</div></pre></td></tr></table></figure>
-<p>或者在 web 上运行时，看到下列警告信息：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create</div></pre></td></tr></table></figure>
-<p>以上的警告信息并不影响 pomelo 的使用。由于本人水平有限，所以暂时没有解决该警告问题，如果各位有解决方法，请指出。</p>
-<h3 id="该-CocosCreator-pomelo-库由来"><a href="#该-CocosCreator-pomelo-库由来" class="headerlink" title="该 CocosCreator pomelo 库由来"></a>该 CocosCreator pomelo 库由来</h3><p>由于前一段时间对 pomelo 比较感兴趣，所有就去了解了一下。最近也一直在关注 CocosCreator，看到论坛有不少人问 CocosCreator 是否能集成pomelo。根据我个人的理解：CocosCreator 实现了 websocket 的跨平台封装；而 pomelo 也有基于 websocket 的客户端实例。因此，CocosCreator 集成 pomelo 应该不会有什么问题的。刚好端午节有空就尝试集成了一下，然后就有了这篇文章和 ccc-pomelo-chat-client。</p>
-<p>ccc-pomelo-chat-client 中的 pomelo 库生成过程：</p>
-<ol>
-<li>拷贝 <code>chatofpomelo-websocket/web-server/public/js/lib/components/component-emitter/index.js</code> 文件并修改文件名为 emitter.js，在 emitter.js 文件的 <code>module.exports = Emitter;</code> 代码后面添加 <code>window.EventEmitter = Emitter;</code> 代码。</li>
-<li>拷贝 <code>chatofpomelo-websocket/web-server/public/js/lib/components/NetEase-pomelo-protocol/lib/protocol.js</code> 文件。</li>
-<li>拷贝 <code>chatofpomelo-websocket/web-server/public/js/lib/components/pomelonode-pomelo-protobuf/lib/client/protobuf.js</code> 文件。</li>
-<li>拷贝 <code>chatofpomelo-websocket/web-server/public/js/lib/components/pomelonode-pomelo-jsclient-websocket/lib/pomelo-client.js</code> 文件，并使用 cc.log、 cc.error 替换文件中的 console.log、console.error。</li>
-</ol>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>这是我博客的第一篇博文（除了 HelloWord 外^_^），希望大家喜欢。由于本人水平有限，文章中难免错漏之处，请各位不吝指正。</p>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> 转载请注明出处：<a href="http://eddy.wiki/2016-10-23-creator-pomelo.html">http://eddy.wiki/2016-10-23-creator-pomelo.html</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;本文主要介绍怎么在 CocosCreator 中集成 Pomelo， 以及使用CocosCreattor + Pomelo 开发一个多人聊天应用。&lt;/p&gt;
-&lt;p&gt;使用 Pomelo 官方多人聊天 demo（下文统一称为 pomelo-chat-demo）的服务端代码作为本多人聊天应用的服务端，而本聊天应用客户端（下文统一称为 ccc-pomelo-chat-client）则是参考 pomelo-chat-demo 的web客户端使用CocosCreattor实现。
-    
-    </summary>
-    
-      <category term="CocosCreator" scheme="http://eddy.wiki/categories/CocosCreator/"/>
-    
-    
-      <category term="CocosCreator" scheme="http://eddy.wiki/tags/CocosCreator/"/>
-    
-      <category term="Pomelo" scheme="http://eddy.wiki/tags/Pomelo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://eddy.wiki/2016-10-23-hello-world.html"/>
-    <id>http://eddy.wiki/2016-10-23-hello-world.html</id>
-    <published>2016-10-23T12:00:50.000Z</published>
-    <updated>2016-10-31T10:23:14.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>欢迎来到本博客！本博客永久地址为：<a href="http://eddy.wiki">http://eddy.wiki</a></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;欢迎来到本博客！本博客永久地址为：&lt;a href=&quot;http://eddy.wiki&quot;&gt;http://eddy.wiki&lt;/a&gt;&lt;/p&gt;
 
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/CocosCreator/" rel="tag">#CocosCreator</a>
+          
+            <a href="/tags/AnySDK/" rel="tag">#AnySDK</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016-10-23-creator-pomelo.html" rel="next" title="CocosCreator 集成 Pomelo 教程">
+                <i class="fa fa-chevron-left"></i> CocosCreator 集成 Pomelo 教程
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
     
-    </summary>
+      <div class="ds-thread" data-thread-key="2016-10-23-creator-anysdk.html"
+           data-title="CocosCreator 集成 AnySDK 教程" data-url="http://eddy.wiki/2016-10-23-creator-anysdk.html">
+      </div>
     
-    
-  </entry>
+  </div>
+
+
+        </div>
+        
+          
   
-</feed>
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/icon.jpg"
+               alt="Eddy" />
+          <p class="site-author-name" itemprop="name">Eddy</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#本人开发环境"><span class="nav-number">1.</span> <span class="nav-text">本人开发环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-平台集成-AnySDK-详细步骤"><span class="nav-number">2.</span> <span class="nav-text">Android 平台集成 AnySDK 详细步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-AnySDK-Framework"><span class="nav-number">2.1.</span> <span class="nav-text">获取 AnySDK Framework</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建并编译-CocosCreator-项目"><span class="nav-number">2.2.</span> <span class="nav-text">构建并编译 CocosCreator 项目</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改项目中的-gitignore-文件。"><span class="nav-number">2.2.1.</span> <span class="nav-text">修改项目中的 gitignore 文件。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#构建发布-Android-平台"><span class="nav-number">2.2.2.</span> <span class="nav-text">构建发布 Android 平台</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-anysdk-jsb-绑定文件"><span class="nav-number">2.3.</span> <span class="nav-text">获取 anysdk jsb 绑定文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-anysdk-jsb-文件"><span class="nav-number">2.3.1.</span> <span class="nav-text">添加 anysdk jsb 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-build-cfg-json-文件"><span class="nav-number">2.3.2.</span> <span class="nav-text">修改 build-cfg.json 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改-jsb-js-文件"><span class="nav-number">2.3.3.</span> <span class="nav-text">修改 jsb.js 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝anysdk-framework-stl库"><span class="nav-number">2.4.</span> <span class="nav-text">拷贝anysdk framework stl库</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-protocols-文件"><span class="nav-number">2.4.1.</span> <span class="nav-text">添加 protocols 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-libPluginProtocol-jar-文件"><span class="nav-number">2.4.2.</span> <span class="nav-text">添加 libPluginProtocol.jar 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加-res-文件"><span class="nav-number">2.4.3.</span> <span class="nav-text">添加 res 文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加-Classes-文件"><span class="nav-number">2.5.</span> <span class="nav-text">添加 Classes 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-AppDelegate-cpp-文件"><span class="nav-number">2.6.</span> <span class="nav-text">修改 AppDelegate.cpp 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-Android-mk-文件"><span class="nav-number">2.7.</span> <span class="nav-text">修改 Android.mk 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-main-cpp-文件"><span class="nav-number">2.8.</span> <span class="nav-text">修改 main.cpp 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-AndroidManifest-xml-文件"><span class="nav-number">2.9.</span> <span class="nav-text">修改 AndroidManifest.xml 文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改-AppActivity-java-文件"><span class="nav-number">2.10.</span> <span class="nav-text">修改 AppActivity.java 文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在项目中使用AnySDK"><span class="nav-number">3.</span> <span class="nav-text">在项目中使用AnySDK</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-AnySDK-参数"><span class="nav-number">3.1.</span> <span class="nav-text">获取 AnySDK 参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在项目中添加-AnySDK-功能代码"><span class="nav-number">3.2.</span> <span class="nav-text">在项目中添加 AnySDK 功能代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生成渠道包"><span class="nav-number">3.3.</span> <span class="nav-text">生成渠道包</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何快速集成-AnySDK"><span class="nav-number">4.</span> <span class="nav-text">如何快速集成 AnySDK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eddy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"eddywiki"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EF3CoMp2LzWRzehcBHJveykz-gzGzoHsz", "SVD7NmzGndSjO8es0BzwclRp");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
