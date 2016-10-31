@@ -7,9 +7,17 @@ tags:
 - Android 面试
 ---
 
-本文收集整理了 Android 面试中会遇到的编程算法题。<!-- more -->
+本文收集整理了 Android 面试中会遇到的编程算法题。
 
-## 题目整理来源
+## 推荐几个做编程题目的网站
+
+- [牛客网](http://www.nowcoder.com/)
+- [LeetCode](https://leetcode.com/)
+- [SillGun](http://skillgun.com/android/interview-questions-and-answers) — 需要翻墙
+
+<!-- more -->
+
+## 下列题目来源
 
 [Mr-YangCheng/ForAndroidInterview](https://github.com/Mr-YangCheng/ForAndroidInterview/tree/master/algorithm/swordForOffer) — 该处题目应该也是来源于剑指 Offer，不过每题都有详细思路和解法，值得一看。
 
