@@ -195,51 +195,7 @@ public class Solution {
 思路：实现两个栈，stack用来存储数据，min用来保存最小值；为了使min栈顶元素一直是当前stack栈中的最小值，要在stack入栈时进行判断，如果入栈值比当前min栈顶值更小，则把该值入为min新的栈顶，否则再**重复入一次min栈顶元素**（为了stack和min同时出栈，虽然出栈值可能不一样，但并不影响min栈顶是当前stack中的最小元素）。
 　　在min函数中min.peek()就行了，返回栈顶但不出栈。
 
-## 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法
 
-题目分析
-
-- 设n阶的跳数为f(n) 
-- 当n=1时，f(1) = 1
-- 当n=2时，分为最后一步 跳2阶和跳1阶 两种情况，有f(2)=f(0)+f(1)=1+1=2  
-- 当n=3时，分为最后一步 跳3阶、跳2阶和跳1阶 三种情况，有f(3)=f(0)+f(1)+f(2)=1+1+2=4  
-- 有 　　  f(n) = f(n-1)+f(n-2)+...+f(1) + f(0)成立同时有　f(n-1)＝f(n-2)+...+f(1) + f(0)　成立，可得出f(n)=2f(n-1)  (n>=2)
-
-![](https://camo.githubusercontent.com/f840353bd8a32a5a02166410d818243d02c182fe/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343237313435363036363037)
-
-很明显可以得出递推公式：
-
-　　　　  | 1       　　　　(n=0 ) f(n) =   　  | 1     　　　　  (n=1 )　　　　 | 2*f(n-1)　　(n>=2)
-
-> 解法一 　运行时间：35ms  　 占用内存：654k
-
-```java
-public class Solution {
-    public int JumpFloorII(int target) {
-        if(target<=1)  return 1;
-        return 2*JumpFloorII(target-1);
-    }
-}
-```
-
-> 解法二   　运行时间：34ms　  占用内存：654k
-
-```java
-public class Solution {
-    public int JumpFloorII(int target) {
-   　　 if(target<=1)  return 1;
-        return 1<<(target-1);
-    }
-}
-```
-
-　　换一种思路想一下：一共有ｎ个台阶，最后一个台阶是一定要跳上去的，其他的　ｎ－１个可跳可不跳，一共有多少总情况？
-
-　　
-
-> ２（ｎ－１）
-
-这里用移位实现乘法，时间上要快一些！
 
 ## 请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 
@@ -490,7 +446,7 @@ public:
 
 
 
-## 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。
+## 斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。
 
 输入描述
 
@@ -596,6 +552,203 @@ public class Solution {
 会报编译错误：
 
 > required: booleanfound: int
+
+## 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法
+
+**该题答案和上题一样，其实就是斐波那契数列**
+
+题目分析
+
+- 设n阶的跳数为f(n) 
+- 当n=1时，f(1) = 1
+- 当n=2时，分为最后一步 跳2阶和跳1阶 两种情况，有f(2)=f(0)+f(1)=1+1=2  
+- 当n=3时，分为最后一步 跳3阶、跳2阶和跳1阶 三种情况，有f(3)=f(0)+f(1)+f(2)=1+1+2=4  
+- 有 　　  f(n) = f(n-1)+f(n-2)+...+f(1) + f(0)成立同时有　f(n-1)＝f(n-2)+...+f(1) + f(0)　成立，可得出f(n)=2f(n-1)  (n>=2)
+
+![](https://camo.githubusercontent.com/f840353bd8a32a5a02166410d818243d02c182fe/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343237313435363036363037)
+
+很明显可以得出递推公式：
+
+　　　　  | 1       　　　　(n=0 ) f(n) =   　  | 1     　　　　  (n=1 )　　　　 | 2*f(n-1)　　(n>=2)
+
+> 解法一 　运行时间：35ms  　 占用内存：654k
+
+```java
+public class Solution {
+    public int JumpFloorII(int target) {
+        if(target<=1)  return 1;
+        return 2*JumpFloorII(target-1);
+    }
+}
+```
+
+> 解法二   　运行时间：34ms　  占用内存：654k
+
+```java
+public class Solution {
+    public int JumpFloorII(int target) {
+   　　 if(target<=1)  return 1;
+        return 1<<(target-1);
+    }
+}
+```
+
+　　换一种思路想一下：一共有ｎ个台阶，最后一个台阶是一定要跳上去的，其他的　ｎ－１个可跳可不跳，一共有多少总情况？
+
+　　
+
+> ２（ｎ－１）
+
+这里用移位实现乘法，时间上要快一些！
+
+## 把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个**非递减序列**的一个旋转，输出旋转数组的最小元素。例如数组{3,4,5,1,2}为{1,2,3,4,5}的一个旋转，该数组的最小值为1。
+
+```java
+import java.util.ArrayList;
+public class Solution {
+    public int minNumberInRotateArray(int [] array) {
+        if(array.length==0){
+            return 0;
+        }
+
+        for(int i =0;i<array.length-2;i++){
+            if(array[i+1] < array[i]){
+               return array[i+1];
+            }
+        }
+        return array[0];
+    }
+}
+```
+
+```java
+import java.util.ArrayList;
+public class Solution {
+    public int minNumberInRotateArray(int [] array) {
+      	// 二分法
+        int low = 0 ; int high = array.length - 1;   
+        while(low < high){
+            int mid = low + (high - low) / 2;        
+            if(array[mid] > array[high]){
+                low = mid + 1;
+            }else if(array[mid] == array[high]){
+                high = high - 1;
+            }else{
+                high = mid;
+            }   
+        }
+        return array[low];
+    }
+}
+```
+
+## 我们可以用 2 * 1 的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2 * 1的小矩形无重叠地覆盖一个2 * n的大矩形，总共有多少种方法？
+
+输入描述
+
+> 一个大矩形
+
+输出描述
+
+> 覆盖的方法数
+
+题目分析
+
+> 设 被n个2*1的小矩形无重叠地覆盖的方法总数为 f(n)
+
+- 当n=1时，明显f(1)=1; 
+- 当n=2时，只能两个都横着或两个都竖着放，有f(2)=2; 
+- 当小矩形个数为n，来覆盖这个**2\*n**的大矩形。第一步只有两种放法：
+
+　①竖着放，那么剩下的摆放总数为 f(n-1)
+
+[![这里写图片描述](https://camo.githubusercontent.com/393d4e55423ccadbb5c8e54663564a8b585772ba/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343238313030333030373732)](https://camo.githubusercontent.com/393d4e55423ccadbb5c8e54663564a8b585772ba/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343238313030333030373732)　
+
+　　　②横着放，那么剩下的摆放总数为 f(n-２)。因为它下面的那块也跟随着它的摆放而确定（必须是一个横着放的小矩形）。
+
+[![这里写图片描述](https://camo.githubusercontent.com/ad9058f28750746bab2acca22144de8210876436/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343238313030373039353833)](https://camo.githubusercontent.com/ad9058f28750746bab2acca22144de8210876436/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343238313030373039353833)　
+
+很容易看出满足斐波那契数列。
+
+> 斐波那契数列（Fibonacci sequence），又称黄金分割数列
+>
+> 在数学上，斐波纳契数列以如下被以递归的方法定义：F（0）=0，F（1）=1，F（n）=F(n-1)+F(n-2)（n≥2，n∈N*）　　
+>
+> 指的是这样一个数列：0、1、1、2、3、5、8、13、21、34、……　
+
+可以得出递推公式：
+
+　　　　 | 1 　　　　(n=0 ) f(n) = 　 | 1 　　　　 (n=1 ) 　　　　 | f(ｎ-1)＋f(n-2)　　(n>=2)
+
+> 解法一 （递归）   　运行时间：924ms 　占用内存：654k
+
+```
+public class Solution {
+    public int RectCover(int target) {
+        if(target<=1) return 1;
+        return RectCover(target-1)+RectCover(target-2);
+    }
+}
+
+```
+
+递归效率不高，重复计算多，比如：
+
+```
+ｆ(4) = ｆ(3) + ｆ(2);
+    　 = ｆ(2) + ｆ(1) + ｆ(1) + ｆ(0);
+    　 = ｆ(1) + ｆ(0) + ｆ(1) + ｆ(1) + ｆ(0);
+
+```
+
+求ｆ(4)就要计算三次ｆ(1)和两次ｆ(0)，显然这是不行的。
+
+> 解法二（动态规划）　　运行时间：29ms　占用内存：629k
+
+```
+public class Solution {
+    public int RectCover(int target) {
+        if(target<=1) return 1;
+        int i =1;//f(0)
+        int j =1;//f(1)
+        for(;target>=2;target--){
+            j+=i;
+            i=j-i;
+        }
+        return j;
+    }
+}
+
+```
+
+显然这个快很多，n>=2时，根据 f(n)=f(ｎ-1)＋f(n-2)进行依次计算，最后得出 f（target）并返回。
+
+## 输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有的奇数位于数组的前半部分，所有的偶数位于位于数组的后半部分，并保证奇数和奇数，偶数和偶数之间的相对位置不变。
+
+> 解法二　运行时间：27ms 　占用内存：503k
+
+```java
+public class Solution {
+    public void reOrderArray(int [] array) {
+        if(array.length==0 || array==null){
+            return;
+        }
+
+        for(int i=0;i<array.length-1;i++){
+            for(int j=0;j<array.length-i-1;j++){
+                if(array[j]%2==0 && array[j+1]%2==1){
+                    int temp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = temp;
+                }
+            }
+
+        }
+    }
+}
+```
+
+　　类似于冒泡排序，以为用到array[j+1]数组不要越界。
 
 ## 有一个容器类 ArrayList，保存整数类型的元素，现在要求编写一个帮助类，类内提供一个帮助函数，帮助函数的功能是删除 容器中<10的元素。
 
