@@ -7,6 +7,8 @@ categories:
 - Android 面试
 
 ---
+本文收集整理了排序、查找算法相关的知识。<!-- more -->
+
 ## 排序算法参考
 
  [排序算法过程演示动画](http://www.atool.org/sort.php)

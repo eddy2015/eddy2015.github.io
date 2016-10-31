@@ -7,11 +7,356 @@ tags:
 - Android 面试
 ---
 
-本文收集整理了 Android 面试中会遇到的编程算法题。<!--more-->
+本文收集整理了 Android 面试中会遇到的编程算法题。<!-- more -->
+
+## 参考
+
+[Mr-YangCheng/ForAndroidInterview](https://github.com/Mr-YangCheng/ForAndroidInterview/tree/master/algorithm/swordForOffer) — 该处题目好像也是来源于剑指 Offer，不过每题都有详细思路和解法，值得一看。
+
+[牛客网-剑指 Offer](http://www.nowcoder.com/ta/coding-interviews?page=1)
+
+## 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 
+
+根据题意画了个简单的图，首先我们要确定查找开始的位置，因为它是二维的数组，它的下标变化是两个方向的，根据四个边界点来分析。
+
+　　a b
+
+​	c d
+
+> Ａ：向下　增　，向右　增
+>
+> Ｂ：向左　减　，向下　增
+>
+> Ｃ：向上　减　，向右　增
+>
+> Ｄ：向左　减　，向上　减
+
+　　可以看出从B 或Ｃ点开始查找刚好可以构建一个二叉查找树。
+
+> 　　二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为二叉排序树。
+
+　　先确定二维数组的行数和列数，把 查找值 与 二叉查找树的根节点（Ｂ或者　Ｃ）开始比较，如果相等返回true，小于查找左子树，大于就查找右子树。如果遍历超过数组边界，就返回 false。
+
+> 以C为根节点查找
+
+```
+public class Solution {
+    public boolean Find(int [][] array,int target) {
+
+        int i = array.length -1;
+        int m = array[0].length -1;
+        int j = 0;
+
+        while(i>=0 && j<=m){
+            if(target == array[i][j]){
+                return true;
+            }else if(target >array[i][j]){
+                j++;
+            }else{
+                i--;
+            }
+        }
+
+        return false;
+    }
+}
+
+```
+
+> 以B为根节点查找
+
+```
+public class Solution {
+    public boolean Find(int [][] array,int target) {
+
+        int i = array.length -1;
+        int j = array[0].length -1;
+        int n = 0;
+
+        while(j>=0 && n<=i){
+            if(target == array[n][j]){
+                return true;
+            }else if(target >array[n][j]){
+                n++;
+            }else{
+                j--;
+            }
+        }
+
+        return false;
+    }
+}
+```
+
+## 输入一个整数，输出该数二进制表示中1的个数。其中负数用补码表示。
+
+题目分析
+
+> 解法一　　运行时间：29m 　占用内存：629k
+
+```
+public int  NumberOf1(int n) {
+        String s=Integer.toBinaryString(n);
+        char[] c=s.toCharArray();
+        int j=0;
+        for(int i=0;i<c.length;i++){
+
+                if(c[i]=='1'){
+                    j++;
+                }
+
+        }
+        return j;
+     }
+}
+
+```
+
+解析：
+
+> public static String toBinaryString(int i)
+>
+> 以二进制（基数 2）无符号整数形式返回一个整数参数的字符串表示形式。  
+
+①先把整数转换成二进制字符串 
+
+②把字符串转换成字符数组 
+
+③遍历该数组，判断每位是否为1，为1 计数加1。 
+
+④遍历完成返回1的个数
+
+> 解法二   运行时间：30ms    占用内存：629k
+
+```
+public class Solution {
+public int  NumberOf1(int n) {
+      int count =0;
+      while(n!=0){
+          count++;
+          n = n&(n-1);
+      }
+     return count; 
+   }
+}
+
+```
+
+解析：
+
+　　
+
+> 如果一个整数不为0，那么这个整数至少有一位是1。如果我们把这个整数减1，那么原来处在整数最右边的1就会变为0，原来在1后面的所有的0都会变成1(如果最右边的1后面还有0的话)。其余所有位将不会受到影响。
+
+举个例子：
+
+①二进制数　　1100 
+
+② 减１后，得　1011 
+
+③1100&1011=1000
+
+对比①和③你会发现，**把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。**
 
 ## 有一个容器类 ArrayList，保存整数类型的元素，现在要求编写一个帮助类，类内提供一个帮助函数，帮助函数的功能是删除 容器中<10的元素。
 
+## 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。
 
+```java
+import java.util.Stack;
+
+public class Solution {
+
+    Stack<Integer> stack = new Stack<Integer>();
+    Stack<Integer> min = new Stack<Integer>();
+    public void push(int node) {
+        stack.push(node);
+        if(min.isEmpty()){
+            min.push(node);
+        }else{
+          if (node <= min.peek()) {
+            min.push(node);
+          }
+        }
+    }
+
+    public void pop() {
+      	if (stack.peek() == min.peek()) {
+          min.pop();
+        }
+        stack.pop();
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int min() {
+        return min.peek();
+    }
+}
+```
+
+思路：实现两个栈，stack用来存储数据，min用来保存最小值；为了使min栈顶元素一直是当前stack栈中的最小值，要在stack入栈时进行判断，如果入栈值比当前min栈顶值更小，则把该值入为min新的栈顶，否则再**重复入一次min栈顶元素**（为了stack和min同时出栈，虽然出栈值可能不一样，但并不影响min栈顶是当前stack中的最小元素）。
+　　在min函数中min.peek()就行了，返回栈顶但不出栈。
+
+## 一只青蛙一次可以跳上1级台阶，也可以跳上2级……它也可以跳上n级。求该青蛙跳上一个n级的台阶总共有多少种跳法
+
+题目分析
+
+- 设n阶的跳数为f(n) 
+- 当n=1时，f(1) = 1
+- 当n=2时，分为最后一步 跳2阶和跳1阶 两种情况，有f(2)=f(0)+f(1)=1+1=2  
+- 当n=3时，分为最后一步 跳3阶、跳2阶和跳1阶 三种情况，有f(3)=f(0)+f(1)+f(2)=1+1+2=4  
+- 有 　　  f(n) = f(n-1)+f(n-2)+...+f(1) + f(0)成立同时有　f(n-1)＝f(n-2)+...+f(1) + f(0)　成立，可得出f(n)=2f(n-1)  (n>=2)
+
+![](https://camo.githubusercontent.com/f840353bd8a32a5a02166410d818243d02c182fe/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630343237313435363036363037)
+
+很明显可以得出递推公式：
+
+　　　　  | 1       　　　　(n=0 ) f(n) =   　  | 1     　　　　  (n=1 )　　　　 | 2*f(n-1)　　(n>=2)
+
+> 解法一 　运行时间：35ms  　 占用内存：654k
+
+```
+public class Solution {
+    public int JumpFloorII(int target) {
+        if(target<=1)  return 1;
+        return 2*JumpFloorII(target-1);
+    }
+}
+
+```
+
+> 解法二   　运行时间：34ms　  占用内存：654k
+
+```
+public class Solution {
+    public int JumpFloorII(int target) {
+   　　 if(target<=1)  return 1;
+        return 1<<(target-1);
+    }
+}
+
+```
+
+　　换一种思路想一下：一共有ｎ个台阶，最后一个台阶是一定要跳上去的，其他的　ｎ－１个可跳可不跳，一共有多少总情况？
+
+　　
+
+> ２（ｎ－１）
+
+这里用移位实现乘法，时间上要快一些！
+
+## 请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
+
+输入描述
+
+> str 是StringBuffer的对象
+
+输出描述
+
+> 返回替换后的字符串的String对象
+
+题目分析
+
+　　**首先要对输入参数进行判空和越界判断**（任何算法题都要注意）。
+
+> 解法一 （运行时间：36ms    占用内存：688k）
+
+```
+public class Solution {
+    public String replaceSpace(StringBuffer str) {
+        if(str==null){
+            return null;
+        }
+        StringBuffer sb = new StringBuffer();
+        char [] strChar = str.toString().toCharArray();
+        for(int i=0;i<strChar.length;i++){
+            if(strChar[i]==' '){
+                sb.append("%20");
+            }else{
+                sb.append(strChar[i]);
+            }
+        }
+        return sb.toString();
+    }
+}
+```
+
+　　把传入的StringBuffer 对象 str 转换成字符串 再转换成**字符数组**,申请一个新的StringBuffer 对象 sb来存最后的结果，遍历整个字符数组，如果当前字符为空格则把　＂％２０＂加入到sb中，否则直接追加当前字符，最后把sb转换成字符串返回。
+
+> 解法二 （运行时间：34ms  占用内存：503k）
+
+```
+public class Solution {
+    public String replaceSpace(StringBuffer str) {
+        if(str == null){
+            return null;
+        }
+        for(int i =0;i<str.length();i++){
+            char c = str.charAt(i);
+            if(c==' '){
+                str.replace(i,i+1,"%20");
+            }
+        }
+        return str.toString();
+    }
+}
+
+```
+
+> public StringBuffer replace(int start, int end, String str)
+>
+> 　　使用给定 String 中的字符替换此序列的子字符串中的字符。该子字符串从指定的 start 处开始，一直到索引 end - 1 处的字符，如果不存在这种字符，则一直到序列尾部。**先将子字符串中的字符移除，然后将指定的 String 插入 start。**（如果需要，序列将延长以适应指定的字符串。）参数：start - 起始索引（包含）。end - 结束索引（**不包含**）。str - 将替换原有内容的字符串。返回：此对象。
+
+源码（可以看出它调用的是父类的方法）
+
+```
+  public synchronized StringBuffer More ...replace(int start, int end, String str) {
+453        toStringCache = null;
+454        super.replace(start, end, str);
+455        return this;
+456    }
+
+```
+
+父类AbstractStringBuilder
+
+```
+822     public AbstractStringBuilder More ...replace(int start, int end, String str) {
+823         if (start < 0)
+824             throw new StringIndexOutOfBoundsException(start);
+825         if (start > count)
+826             throw new StringIndexOutOfBoundsException("start > length()");
+827         if (start > end)
+828             throw new StringIndexOutOfBoundsException("start > end");
+829 
+830         if (end > count)
+831             end = count;
+832         int len = str.length();
+833         int newCount = count + len - (end - start);
+834         ensureCapacityInternal(newCount);
+835 
+836         System.arraycopy(value, end, value, start + len, count - end);
+837         str.getChars(value, start);
+838         count = newCount;
+839         return this;
+840     }
+
+```
+
+　　可以看出StringBuffer类 提供了 插入的函数，值得注意的是 StringBuilder 也是继承于AbstractStringBuilder这个抽象类的。所以它也有这个方法，但是String并没有。　　
+
+> 解法三（不推荐，运行时间：38ms  占用内存：654k）
+
+```
+public class Solution {
+    public String replaceSpace(StringBuffer str) {
+        return str.toString().replaceAll("\\s", "%20");
+    }
+}
+```
 
 ## LeetCode上股票利益最大化问题 
 
@@ -180,7 +525,6 @@ public class Test {
 
 ```
 输入二叉树的前序遍历和中序遍历的结果,重建出该二叉树。假设前序遍历和中序遍历结果中都不包含重复的数字,例如输入的前序遍历序列 {1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}重建出如图所示的二叉 树。
-
 ```
 
 解题思路：
@@ -731,7 +1075,146 @@ public class Problem03_ReverseStackUsingRecursive {
     }
 
 }
+```
 
+## 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。 结果请按字母顺序输出。 
+
+输入描述
+
+> 输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
+
+输出描述
+
+> 顺序输出字符串的所有排列
+
+题目分析
+
+　　这是一个字符串全排列的问题，把全部序列存在TreeSet中默认可得到字典顺序。
+
+> TreeSet  　　　　基于TreeMap实现的SortedSet，可以对Set集合中的元素进行排序，排序后按升序排列元素（缺省是按照自然排序），非线程安全。
+
+思路：
+
+　　固定一个字符串之后，之后再将问题变小，只需求出后面子串的排列个数就可以得出结果，然后依次将后面的字符串与前面的交换，再递归子串的排列结果，最后当所有字符都固定结束递归。
+
+下面这张图很清楚的给出了递归的过程：
+
+[![这里写图片描述](https://camo.githubusercontent.com/5ef7cb004bc0072b24ef062b3085f872974cf463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630353233313135383231333836)](https://camo.githubusercontent.com/5ef7cb004bc0072b24ef062b3085f872974cf463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630353233313135383231333836)　
+
+> 解法　运行时间：131ms　占用内存：1477k　
+
+```java
+import java.util.*;
+public class Solution {
+    //用于最后返回结果
+    ArrayList<String> list  = new ArrayList<>();
+    //遍历的时候来存储序列实现排序
+    TreeSet<String> set = new TreeSet<>();
+
+    public ArrayList<String> Permutation(String str) {      
+       if(str==null || str.length()==0) return list;
+
+       Permutation(str.toCharArray(),0);
+       //容器转换
+       list.addAll(set);
+       return list;
+    }
+    public void Permutation(char[] s,int index){
+        if(s==null ||s.length==0 || index<0 || index>s.length-1)  return ;
+        if(index==s.length-1){//递归固定到最后一个位置，把该串加入集合
+            set.add(new String(s));
+        }else{//固定前index+1个字符，递归后面所有可能的子串
+           for(int i = index;i<s.length;i++){
+               swap(s,index,i);//交换一次形成一个子串
+               Permutation(s,index+1);
+               swap(s,i,index);//复原使下次循环产生下一个子串
+           }
+        }
+    }
+    public void swap(char[] s,int i,int j){
+        char temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+    }
+}
+```
+
+## 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+
+  思路一：**数组排序后，如果符合条件的数存在，则一定是数组中间那个数**。（比如：1，2，2，2，3；或2，2，2，3，4；或2，3，4，4，4等等） 
+
+  这种方法虽然容易理解，但由于涉及到快排sort，其时间复杂度为**O(NlogN)**并非最优； 
+
+  参考代码如下：
+
+```java
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers)
+    {
+        // 因为用到了sort，时间复杂度O(NlogN)，并非最优
+        if(numbers.empty()) return 0;
+         
+        sort(numbers.begin(),numbers.end()); // 排序，取数组中间那个数
+        int middle = numbers[numbers.size()/2];
+         
+        int count=0; // 出现次数
+        for(int i=0;i<numbers.size();++i)
+        {
+            if(numbers[i]==middle) ++count;
+        }
+         
+        return (count>numbers.size()/2) ? middle :  0;
+    }
+};
+ 
+```
+
+  思路二：如果有符合条件的数字，则它出现的次数比其他所有数字出现的次数和还要多。 
+
+  在遍历数组时保存两个值：一是数组中一个数字，一是次数。遍历下一个数字时，若它与之前保存的数字相同，则次数加1，否则次数减1；若次数为0，则保存下一个数字，并将次数置为1。遍历结束后，所保存的数字即为所求。然后再判断它是否符合条件即可。 
+
+  参考代码如下：
+
+```java
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers)
+    {
+        if(numbers.empty()) return 0;
+         
+        // 遍历每个元素，并记录次数；若与前一个元素相同，则次数加1，否则次数减1
+        int result = numbers[0];
+        int times = 1; // 次数
+         
+        for(int i=1;i<numbers.size();++i)
+        {
+            if(times == 0)
+            {
+                // 更新result的值为当前元素，并置次数为1
+                result = numbers[i];
+                times = 1;
+            }
+            else if(numbers[i] == result)
+            {
+                ++times; // 相同则加1
+            }
+            else
+            {
+                --times; // 不同则减1               
+            }
+        }
+         
+        // 判断result是否符合条件，即出现次数大于数组长度的一半
+        times = 0;
+        for(int i=0;i<numbers.size();++i)
+        {
+            if(numbers[i] == result) ++times;
+        }
+         
+        return (times > numbers.size()/2) ? result : 0;
+    }
+};
 ```
 
 ## 最长不重复子串（最长重复子串）
