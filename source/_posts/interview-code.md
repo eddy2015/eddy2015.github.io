@@ -39,7 +39,7 @@ tags:
 
 > 以C为根节点查找
 
-```
+```java
 public class Solution {
     public boolean Find(int [][] array,int target) {
 
@@ -60,12 +60,11 @@ public class Solution {
         return false;
     }
 }
-
 ```
 
 > 以B为根节点查找
 
-```
+```java
 public class Solution {
     public boolean Find(int [][] array,int target) {
 
@@ -94,7 +93,7 @@ public class Solution {
 
 > 解法一　　运行时间：29m 　占用内存：629k
 
-```
+```java
 public int  NumberOf1(int n) {
         String s=Integer.toBinaryString(n);
         char[] c=s.toCharArray();
@@ -109,7 +108,6 @@ public int  NumberOf1(int n) {
         return j;
      }
 }
-
 ```
 
 解析：
@@ -128,7 +126,7 @@ public int  NumberOf1(int n) {
 
 > 解法二   运行时间：30ms    占用内存：629k
 
-```
+```java
 public class Solution {
 public int  NumberOf1(int n) {
       int count =0;
@@ -139,7 +137,6 @@ public int  NumberOf1(int n) {
      return count; 
    }
 }
-
 ```
 
 解析：
@@ -157,8 +154,6 @@ public int  NumberOf1(int n) {
 ③1100&1011=1000
 
 对比①和③你会发现，**把一个整数减去1，再和原整数做与运算，会把该整数最右边一个1变成0.那么一个整数的二进制有多少个1，就可以进行多少次这样的操作。**
-
-## 有一个容器类 ArrayList，保存整数类型的元素，现在要求编写一个帮助类，类内提供一个帮助函数，帮助函数的功能是删除 容器中<10的元素。
 
 ## 定义栈的数据结构，请在该类型中实现一个能够得到栈最小元素的min函数。
 
@@ -218,26 +213,24 @@ public class Solution {
 
 > 解法一 　运行时间：35ms  　 占用内存：654k
 
-```
+```java
 public class Solution {
     public int JumpFloorII(int target) {
         if(target<=1)  return 1;
         return 2*JumpFloorII(target-1);
     }
 }
-
 ```
 
 > 解法二   　运行时间：34ms　  占用内存：654k
 
-```
+```java
 public class Solution {
     public int JumpFloorII(int target) {
    　　 if(target<=1)  return 1;
         return 1<<(target-1);
     }
 }
-
 ```
 
 　　换一种思路想一下：一共有ｎ个台阶，最后一个台阶是一定要跳上去的，其他的　ｎ－１个可跳可不跳，一共有多少总情况？
@@ -264,7 +257,7 @@ public class Solution {
 
 > 解法一 （运行时间：36ms    占用内存：688k）
 
-```
+```java
 public class Solution {
     public String replaceSpace(StringBuffer str) {
         if(str==null){
@@ -288,7 +281,7 @@ public class Solution {
 
 > 解法二 （运行时间：34ms  占用内存：503k）
 
-```
+```java
 public class Solution {
     public String replaceSpace(StringBuffer str) {
         if(str == null){
@@ -303,7 +296,6 @@ public class Solution {
         return str.toString();
     }
 }
-
 ```
 
 > public StringBuffer replace(int start, int end, String str)
@@ -312,18 +304,17 @@ public class Solution {
 
 源码（可以看出它调用的是父类的方法）
 
-```
+```java
   public synchronized StringBuffer More ...replace(int start, int end, String str) {
 453        toStringCache = null;
 454        super.replace(start, end, str);
 455        return this;
 456    }
-
 ```
 
 父类AbstractStringBuilder
 
-```
+```java
 822     public AbstractStringBuilder More ...replace(int start, int end, String str) {
 823         if (start < 0)
 824             throw new StringIndexOutOfBoundsException(start);
@@ -343,20 +334,270 @@ public class Solution {
 838         count = newCount;
 839         return this;
 840     }
-
 ```
 
 　　可以看出StringBuffer类 提供了 插入的函数，值得注意的是 StringBuilder 也是继承于AbstractStringBuilder这个抽象类的。所以它也有这个方法，但是String并没有。　　
 
 > 解法三（不推荐，运行时间：38ms  占用内存：654k）
 
-```
+```java
 public class Solution {
     public String replaceSpace(StringBuffer str) {
         return str.toString().replaceAll("\\s", "%20");
     }
 }
 ```
+
+## 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。 结果请按字母顺序输出。
+
+输入描述
+
+> 输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
+
+输出描述
+
+> 顺序输出字符串的所有排列
+
+题目分析
+
+　　这是一个字符串全排列的问题，把全部序列存在TreeSet中默认可得到字典顺序。
+
+> TreeSet  　　　　基于TreeMap实现的SortedSet，可以对Set集合中的元素进行排序，排序后按升序排列元素（缺省是按照自然排序），非线程安全。
+
+思路：
+
+　　固定一个字符串之后，之后再将问题变小，只需求出后面子串的排列个数就可以得出结果，然后依次将后面的字符串与前面的交换，再递归子串的排列结果，最后当所有字符都固定结束递归。
+
+下面这张图很清楚的给出了递归的过程：
+
+[![这里写图片描述](https://camo.githubusercontent.com/5ef7cb004bc0072b24ef062b3085f872974cf463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630353233313135383231333836)](https://camo.githubusercontent.com/5ef7cb004bc0072b24ef062b3085f872974cf463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630353233313135383231333836)　
+
+> 解法　运行时间：131ms　占用内存：1477k　
+
+```java
+import java.util.*;
+public class Solution {
+    //用于最后返回结果
+    ArrayList<String> list  = new ArrayList<>();
+    //遍历的时候来存储序列实现排序
+    TreeSet<String> set = new TreeSet<>();
+
+    public ArrayList<String> Permutation(String str) {      
+       if(str==null || str.length()==0) return list;
+
+       Permutation(str.toCharArray(),0);
+       //容器转换
+       list.addAll(set);
+       return list;
+    }
+    public void Permutation(char[] s,int index){
+        if(s==null ||s.length==0 || index<0 || index>s.length-1)  return ;
+        if(index==s.length-1){//递归固定到最后一个位置，把该串加入集合
+            set.add(new String(s));
+        }else{//固定前index+1个字符，递归后面所有可能的子串
+           for(int i = index;i<s.length;i++){
+               swap(s,index,i);//交换一次形成一个子串
+               Permutation(s,index+1);
+               swap(s,i,index);//复原使下次循环产生下一个子串
+           }
+        }
+    }
+    public void swap(char[] s,int i,int j){
+        char temp = s[i];
+        s[i] = s[j];
+        s[j] = temp;
+    }
+}
+```
+
+## 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
+
+  思路一：**数组排序后，如果符合条件的数存在，则一定是数组中间那个数**。（比如：1，2，2，2，3；或2，2，2，3，4；或2，3，4，4，4等等） 
+
+  这种方法虽然容易理解，但由于涉及到快排sort，其时间复杂度为**O(NlogN)**并非最优； 
+
+  参考代码如下：
+
+```java
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers)
+    {
+        // 因为用到了sort，时间复杂度O(NlogN)，并非最优
+        if(numbers.empty()) return 0;
+         
+        sort(numbers.begin(),numbers.end()); // 排序，取数组中间那个数
+        int middle = numbers[numbers.size()/2];
+         
+        int count=0; // 出现次数
+        for(int i=0;i<numbers.size();++i)
+        {
+            if(numbers[i]==middle) ++count;
+        }
+         
+        return (count>numbers.size()/2) ? middle :  0;
+    }
+};
+ 
+```
+
+  思路二：如果有符合条件的数字，则它出现的次数比其他所有数字出现的次数和还要多。 
+
+  在遍历数组时保存两个值：一是数组中一个数字，一是次数。遍历下一个数字时，若它与之前保存的数字相同，则次数加1，否则次数减1；若次数为0，则保存下一个数字，并将次数置为1。遍历结束后，所保存的数字即为所求。然后再判断它是否符合条件即可。 
+
+  参考代码如下：
+
+```java
+class Solution {
+public:
+    int MoreThanHalfNum_Solution(vector<int> numbers)
+    {
+        if(numbers.empty()) return 0;
+         
+        // 遍历每个元素，并记录次数；若与前一个元素相同，则次数加1，否则次数减1
+        int result = numbers[0];
+        int times = 1; // 次数
+         
+        for(int i=1;i<numbers.size();++i)
+        {
+            if(times == 0)
+            {
+                // 更新result的值为当前元素，并置次数为1
+                result = numbers[i];
+                times = 1;
+            }
+            else if(numbers[i] == result)
+            {
+                ++times; // 相同则加1
+            }
+            else
+            {
+                --times; // 不同则减1               
+            }
+        }
+         
+        // 判断result是否符合条件，即出现次数大于数组长度的一半
+        times = 0;
+        for(int i=0;i<numbers.size();++i)
+        {
+            if(numbers[i] == result) ++times;
+        }
+         
+        return (times > numbers.size()/2) ? result : 0;
+    }
+};
+```
+
+
+
+## 大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项。
+
+输入描述
+
+> 一个整数n
+
+输出描述
+
+> 斐波那契数列的第n项。
+
+题目分析
+
+什么是斐波那契数列？
+
+　　
+
+> 斐波那契数列（Fibonacci sequence），又称黄金分割数列
+>
+> 在数学上，斐波纳契数列以如下被以递归的方法定义：**F（0）=0，F（1）=1**，F（n）=F(n-1)+F(n-2)（n≥2，n∈N*）　　
+>
+> 指的是这样一个数列：0、1、1、2、3、5、8、13、21、34、……　
+
+递归？
+
+　　看到这个的第一想法就是用递归，当ｎ＜２时返回ｎ，ｎ＞＝２时返回ｆ(n-1)+f(n-2), 于是就来试一下...　　
+
+```java
+public class Solution {
+    public int Fibonacci(int n) {
+        if(n<2){
+            return n;
+        }
+
+        return Fibonacci(n-1)+Fibonacci(n-2);
+    }
+}
+```
+
+> 运行超时:您的程序未能在规定时间内运行结束，请检查是否循环有错或算法复杂度过大。
+
+为什么呢？
+
+　　因为重复计算，比如：
+
+```
+ｆ(4) = ｆ(3) + ｆ(2);
+    　 = ｆ(2) + ｆ(1) + ｆ(1) + ｆ(0);
+    　 = ｆ(1) + ｆ(0) + ｆ(1) + ｆ(1) + ｆ(0);
+```
+
+求ｆ(4)就要计算三次ｆ(1)和两次ｆ(0)，显然这是不行的。
+
+> 解法 (动态规划)
+>
+> 运行时间：27ms     占用内存：629k
+
+```java
+public class Solution {
+    public int Fibonacci(int n) {
+         int i = 0, j = 1;
+         for(;n>0;n--){
+            j += i;
+            i = j-i;
+        }
+        return i;
+    }
+}
+```
+
+```java
+public class Solution {
+    public int Fibonacci(int n) {
+        int a=1,b=1,c=0;
+        if(n<0){
+            return 0;
+        }else if(n==1||n==2){
+            return 1;
+        }else{
+            for (int i=3;i<=n;i++){
+                c=a+b;
+                b=a;
+                a=c;
+            }
+            return c;
+        }
+    }
+}
+```
+
+
+
+根据n的大小，从f(0)=i 和 f(1)=j 从头开始遍历整个序列
+
+> 有f(n)=f(n-1)+f(n-2)  （**n≥2**，n∈N*）
+>
+> j+=i, 使j成为新的f(n-1)i = j-i ，使i成为f(n-2)
+>
+> 完成后，返回 f(n-2)
+
+注意：java中
+
+> while(n--)
+
+会报编译错误：
+
+> required: booleanfound: int
+
+## 有一个容器类 ArrayList，保存整数类型的元素，现在要求编写一个帮助类，类内提供一个帮助函数，帮助函数的功能是删除 容器中<10的元素。
 
 ## LeetCode上股票利益最大化问题 
 
@@ -1076,323 +1317,3 @@ public class Problem03_ReverseStackUsingRecursive {
 
 }
 ```
-
-## 输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。 结果请按字母顺序输出。 
-
-输入描述
-
-> 输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
-
-输出描述
-
-> 顺序输出字符串的所有排列
-
-题目分析
-
-　　这是一个字符串全排列的问题，把全部序列存在TreeSet中默认可得到字典顺序。
-
-> TreeSet  　　　　基于TreeMap实现的SortedSet，可以对Set集合中的元素进行排序，排序后按升序排列元素（缺省是按照自然排序），非线程安全。
-
-思路：
-
-　　固定一个字符串之后，之后再将问题变小，只需求出后面子串的排列个数就可以得出结果，然后依次将后面的字符串与前面的交换，再递归子串的排列结果，最后当所有字符都固定结束递归。
-
-下面这张图很清楚的给出了递归的过程：
-
-[![这里写图片描述](https://camo.githubusercontent.com/5ef7cb004bc0072b24ef062b3085f872974cf463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630353233313135383231333836)](https://camo.githubusercontent.com/5ef7cb004bc0072b24ef062b3085f872974cf463/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313630353233313135383231333836)　
-
-> 解法　运行时间：131ms　占用内存：1477k　
-
-```java
-import java.util.*;
-public class Solution {
-    //用于最后返回结果
-    ArrayList<String> list  = new ArrayList<>();
-    //遍历的时候来存储序列实现排序
-    TreeSet<String> set = new TreeSet<>();
-
-    public ArrayList<String> Permutation(String str) {      
-       if(str==null || str.length()==0) return list;
-
-       Permutation(str.toCharArray(),0);
-       //容器转换
-       list.addAll(set);
-       return list;
-    }
-    public void Permutation(char[] s,int index){
-        if(s==null ||s.length==0 || index<0 || index>s.length-1)  return ;
-        if(index==s.length-1){//递归固定到最后一个位置，把该串加入集合
-            set.add(new String(s));
-        }else{//固定前index+1个字符，递归后面所有可能的子串
-           for(int i = index;i<s.length;i++){
-               swap(s,index,i);//交换一次形成一个子串
-               Permutation(s,index+1);
-               swap(s,i,index);//复原使下次循环产生下一个子串
-           }
-        }
-    }
-    public void swap(char[] s,int i,int j){
-        char temp = s[i];
-        s[i] = s[j];
-        s[j] = temp;
-    }
-}
-```
-
-## 数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。如果不存在则输出0。
-
-  思路一：**数组排序后，如果符合条件的数存在，则一定是数组中间那个数**。（比如：1，2，2，2，3；或2，2，2，3，4；或2，3，4，4，4等等） 
-
-  这种方法虽然容易理解，但由于涉及到快排sort，其时间复杂度为**O(NlogN)**并非最优； 
-
-  参考代码如下：
-
-```java
-class Solution {
-public:
-    int MoreThanHalfNum_Solution(vector<int> numbers)
-    {
-        // 因为用到了sort，时间复杂度O(NlogN)，并非最优
-        if(numbers.empty()) return 0;
-         
-        sort(numbers.begin(),numbers.end()); // 排序，取数组中间那个数
-        int middle = numbers[numbers.size()/2];
-         
-        int count=0; // 出现次数
-        for(int i=0;i<numbers.size();++i)
-        {
-            if(numbers[i]==middle) ++count;
-        }
-         
-        return (count>numbers.size()/2) ? middle :  0;
-    }
-};
- 
-```
-
-  思路二：如果有符合条件的数字，则它出现的次数比其他所有数字出现的次数和还要多。 
-
-  在遍历数组时保存两个值：一是数组中一个数字，一是次数。遍历下一个数字时，若它与之前保存的数字相同，则次数加1，否则次数减1；若次数为0，则保存下一个数字，并将次数置为1。遍历结束后，所保存的数字即为所求。然后再判断它是否符合条件即可。 
-
-  参考代码如下：
-
-```java
-class Solution {
-public:
-    int MoreThanHalfNum_Solution(vector<int> numbers)
-    {
-        if(numbers.empty()) return 0;
-         
-        // 遍历每个元素，并记录次数；若与前一个元素相同，则次数加1，否则次数减1
-        int result = numbers[0];
-        int times = 1; // 次数
-         
-        for(int i=1;i<numbers.size();++i)
-        {
-            if(times == 0)
-            {
-                // 更新result的值为当前元素，并置次数为1
-                result = numbers[i];
-                times = 1;
-            }
-            else if(numbers[i] == result)
-            {
-                ++times; // 相同则加1
-            }
-            else
-            {
-                --times; // 不同则减1               
-            }
-        }
-         
-        // 判断result是否符合条件，即出现次数大于数组长度的一半
-        times = 0;
-        for(int i=0;i<numbers.size();++i)
-        {
-            if(numbers[i] == result) ++times;
-        }
-         
-        return (times > numbers.size()/2) ? result : 0;
-    }
-};
-```
-
-## 最长不重复子串（最长重复子串）
-
-## 有一个一维整型数组int[]data保存的是一张宽为width，高为height的图片像素值信息。请写一个算法，将该图片所有的白色不透明(xffffffff)像素点的透明度调整为5%。
-## 写一个求递归程序 求54321
-## 请使用java或者C++实现反转单链表
-## 生产者、消费者
-## 死锁（同步嵌套同步且锁不同）
-## 写一个多线程实例代码；
-## 写一个方法，交换两个变量的值？
-## 给最外层的rootview，把这个根视图下的全部button背景设置成红色，手写代码，不许用递归
-## 给一串字符串比如abbbcccd，输出a1b3c3d1，手写代码（注意有个别字符可能会出现十次以上的情况）
-## 一个序列，它的形式是12349678，9是最高峰，经历了一个上升又下降的过程，找出里面的最大值的位置，要求效率尽可能高
-## 二叉查找树的删除操作，手写代码
-## 二分查找，手写代码
-## 有海量条 url，其中不重复的有300万条，现在希望挑选出重复出现次数最高的 url，要求效率尽可能的高
-## 一篇英语文章，去掉字符只留下k个，如何去掉才能使这k个字符字典序最小
-## 弗洛伊德算法和 Dijkstra算法的区别？复杂度是多少？讲讲 Dijkstra算法的具体过程
-## 反转字符串，要求手写代码，优化速度、优化空间
-## 给出两个无向图，找出这2个无向图中相同的环路。手写代码
-
-
-## 通过反射获取字段的值和方法名
-
-```java
-import java.lang.reflect.Field;
-
-public class ReflectClass {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Person p = new Person(1, "ctl", true, 'c', 2.0f, 2.0, 1L, (short) 1, (byte) 1);
-
-		p.setId(0);
-		p.setName("张三");
-		p.setIsMen(true);
-		p.setCh('c');
-		p.setFloat_(2.0f);
-		p.setDouble_(3.0);
-		p.setLong_(2l);
-		p.setShort_((short) 1);
-		p.setByte_((byte) 2);
-		reflect(p);
-	}
-
-	public static void reflect(Object obj) {
-		if (obj == null)
-			return;
-		Field[] fields = obj.getClass().getDeclaredFields();
-		String[] types1 = { "int", "java.lang.String", "boolean", "char", "float", "double", "long", "short", "byte" };
-		String[] types2 = { "Integer", "java.lang.String", "java.lang.Boolean", "java.lang.Character",
-				"java.lang.Float", "java.lang.Double", "java.lang.Long", "java.lang.Short", "java.lang.Byte" };
-		for (int j = 0; j < fields.length; j++) {
-			fields[j].setAccessible(true);
-			// 字段名
-			System.out.print(fields[j].getName() + ":");
-			// 字段值
-			for (int i = 0; i < types1.length; i++) {
-				if (fields[j].getType().getName().equalsIgnoreCase(types1[i])
-						|| fields[j].getType().getName().equalsIgnoreCase(types2[i])) {
-					try {
-						System.out.print(fields[j].get(obj) + "     ");
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				}
-			}
-		}
-	}
-}
-
-class Person {
-	public int id;
-	public String name;
-	public boolean isMen;
-	public Character ch;
-	public Float float_;
-	public Double double_;
-	public Long long_;
-	public Short short_;
-	public Byte byte_;
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public boolean getIsMen() {
-		return isMen;
-	}
-
-	public void setIsMen(boolean isMen) {
-		this.isMen = isMen;
-	}
-
-	public Character getCh() {
-		return ch;
-	}
-
-	public void setCh(Character ch) {
-		this.ch = ch;
-	}
-
-	public Float getFloat_() {
-		return float_;
-	}
-
-	public void setFloat_(Float float_) {
-		this.float_ = float_;
-	}
-
-	public Double getDouble_() {
-		return double_;
-	}
-
-	public void setDouble_(Double double_) {
-		this.double_ = double_;
-	}
-
-	public Long getLong_() {
-		return long_;
-	}
-
-	public void setLong_(Long long_) {
-		this.long_ = long_;
-	}
-
-	public Short getShort_() {
-		return short_;
-	}
-
-	public void setShort_(Short short_) {
-		this.short_ = short_;
-	}
-
-	public Byte getByte_() {
-		return byte_;
-	}
-
-	public void setByte_(Byte byte_) {
-		this.byte_ = byte_;
-	}
-
-	public Person(int id, String name, Boolean isMen, Character ch, Float float_, Double double_, Long long_,
-			Short short_, Byte byte_) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.isMen = isMen;
-		this.ch = ch;
-		this.float_ = float_;
-		this.double_ = double_;
-		this.long_ = long_;
-		this.short_ = short_;
-		this.byte_ = byte_;
-	}
-
-	public Person() {
-		super();
-	}
-}
-```
-
-## 用 Arraylist,用数组 写一个队列
-
-
-## 有一个数组最多存储6个数，如果有普通用户的话，存储四个 vip的客户，另外两个是普通用户（留出一定的空间给普通用户），让考虑全面点（一般都是结合实际场景，让你写出一个算法，要具备的能力就是抽象，处理问题的思路与细节，还有最基本的编码功底）
