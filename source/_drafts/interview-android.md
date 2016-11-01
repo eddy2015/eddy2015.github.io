@@ -11,6 +11,8 @@ tags:
 
 ## Android 的四大组件
 
+## 四大组件的具体作用以及用法
+
 
 
 
@@ -60,6 +62,8 @@ Activity——onCreate->onStart->onResume->onPause->onStop->onDestroy
 
 Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onResume->onPause->onStop->onDestroyView->onDestroy->onDetach
 ```
+
+## Activity四种启动模式的区别
 
 ## LanchMode 的应用场景
 
@@ -898,6 +902,8 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 # ListView
 
+## ListView的优化
+
 ## ListView卡顿原因
 
 1. 在adapter中的getView方法中尽量少使用逻辑
@@ -1098,6 +1104,8 @@ android 程序内存一般限制在16M，也有的是24M
 
 ## Android APP 内存分析工具有哪些
 
+## 屏幕适配经验
+
 
 
 # 数据存储
@@ -1252,6 +1260,12 @@ public static Singleton getInstance(){
   }
 }
 ```
+
+## 如 View 的事件分发，屏幕适配经验，性能优化的经验、Java 线程几种用法等    
+
+
+
+## 如 AIDL、插件化, 如网络的优化, 如缓存的处理, 如插件化, 如 Service 保活
 
 # 设计模式
 

@@ -1,6 +1,5 @@
 ---
 title: Hello World
-categories:
 date: 2016-10-23 20:00:50
 tags:
 ---

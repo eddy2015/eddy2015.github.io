@@ -13,7 +13,7 @@ tags:
 
 - [牛客网](http://www.nowcoder.com/)
 - [LeetCode](https://leetcode.com/)
-- [SillGun](http://skillgun.com/android/interview-questions-and-answers) — 需要翻墙
+- [LintCode](http://www.lintcode.com/zh-cn/#)
 
 <!-- more -->
 
