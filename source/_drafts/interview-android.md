@@ -9,6 +9,8 @@ tags:
 
 本文收集整理了 Android 面试中会遇到与 Android 知识相关的简述题。<!--more-->
 
+# 基本概念
+
 ## Android 的四大组件
 
 ## 四大组件的具体作用以及用法
@@ -36,6 +38,10 @@ Content Provider内容提供者 :
 android平台提供了Content Provider使一个应用程序的指定数据集提供给其他应用程序。这些数据可以存储在文件系统中、在一个SQLite数据库、或以任何其他合理的方式。其他应用可以通过ContentResolver类(见ContentProviderAccessApp例子)从该内容提供者中获取或存入数据.(相当于在应用外包了一层壳),只有需要在多个应用程序间共享数据是才需要内容提供者。例如，通讯录数据被多个应用程序使用，且必须存储在一个内容提供者中。
 
 它的好处:统一数据访问方式。
+
+## android平台的framework的层次结构？
+
+## App 生命流程
 
 # Activity
 
@@ -178,6 +184,8 @@ A使用startActivityForResult方法开启B，B类结束时调用finish;A类的In
 -发送特定广播：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。
 -递归退出：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭。
 
+## 有几种在activity之间切换的方法？
+
 # Fragment
 
 ## Fragment生命周期
@@ -225,6 +233,8 @@ transacction.commit();
 ## Fragment嵌套多个Fragment会出现bug吗？
 
 参考：http://blog.csdn.net/megatronkings/article/details/51417510
+
+## 怎么理解Activity和Fragment的关系？
 
 # Service
 
@@ -460,6 +470,8 @@ unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 - 尽管Application、Activity、Service都有自己的ContextImpl，并且每个ContextImpl都有自己的mResources成员，但是由于它们的mResources成员都来自于唯一的ResourcesManager实例，所以它们看似不同的mResources其实都指向的是同一块内存
 - Context的数量等于Activity的个数 + Service的个数 + 1，这个1为Application
 
+## Context 的理解(Application Context 和 Activity Context 异同)
+
 #  Handler
 
 ## Handler 原理
@@ -513,12 +525,23 @@ private static class MyHandler extends Handler {          privat
 /**    * 一切都是为了不要让mHandler拖泥带水    */   @Override   public void onDestroy() {       mHandler.removeMessages(MESSAGE_1);       mHandler.removeMessages(MESSAGE_2);       mHandler.removeMessages(MESSAGE_3);         // ... ...         mHandler.removeCallbacks(mRunnable);         // ... ...   }  
 ```
 
+## Handler, Looper的理解
+
+## Handler,Message,Looper异步实现机制与源码分析
+
+## Handler有何作用？如何使用之（具体讲需要实现什么function）？
+
 # AsyncTask
 
 
 ## AsyncTask原理
 
+## 网络请求是怎么做的异步呢？什么情况下用Handler，什么情况下用AsyncTask
 
+## Handler和AsyncTask的区别
+这俩类都是用来实现异步的，其中AsyncTask的集成度较高，使用简单，Handler则需要手动写Runnable或者Thread的代码；另外，由于AsyncTask内部实现了一个非常简单的线程池，实际上是只适用于轻量级的异步操作的，一般不应该用于网络操作。（感谢网友指正，AsyncTask 通过重写的方式是可以用于长耗时操作的，而我只考虑了直接使用的情况就说它不适合网络操作，是不对的。）我问他Handler和AsyncTask的区别，一方面是因为他说用AsyncTask联网，因此我认为他对AsyncTask并不熟悉；但更重要的是在我问他实现异步的具体手段的时候，他同时提到了Handler和AsyncTask——用这种“混搭”的使用方式来写联网框架，就算不考虑AsyncTask的可用性，也显得非常怪异，这听起来更像是在“列举Android实现异步操作最常用的类”，而非“讲述实现网络异步操作的具体方式”。也就是说，我听了这句话后开始怀疑他封装过联网框架这件事的真实性。但我只是怀疑，并不确定，因此接着问了我想问的。
+
+## Asynctask的优缺点？能否同时并发100+asynctask呢？
 
 # 线程
 
@@ -619,7 +642,9 @@ Content Provider,因为只是把自己的数据库暴露出去，其他程序都
 
 ## Android进程间通信，Binder机制
 
+## Android跨进程通讯的方式
 
+## Android Mashup设计的理解
 
 # 触摸事件
 
@@ -661,6 +686,8 @@ OnTouchListener优先于onTouchEvent()对事件进行消费
 
 onInterceptTouchEvent()用于拦截触摸事件
 onTouchEvent()用于处理触摸事件
+
+## view的事件冲突处理
 
 # View
 
@@ -746,6 +773,8 @@ APPwidget和Notification中
 6. onInterceptTouchEvent(ViewGroup)
 7. 状态的恢复与保存
 
+## 有哪些实现自定义控件的方法？
+
 ## 优化自定义 View
 
 为了加速你的view，对于频繁调用的方法，需要尽量减少不必要的代码。先从onDraw开始，需要特别注意不应该在这里做内存分配的事情，因为它会导致GC，从而导致卡顿。在初始化或者动画间隙期间做分配内存的动作。不要在动画正在执行的时候做内存分配的事情。
@@ -755,6 +784,10 @@ APPwidget和Notification中
 另外一个非常耗时的操作是请求layout。任何时候执行requestLayout()，会使得Android UI系统去遍历整个View的层级来计算出每一个view的大小。如果找到有冲突的值，它会需要重新计算好几次。另外需要尽量保持View的层级是扁平化的，这样对提高效率很有帮助。
 
 如果你有一个复杂的UI，你应该考虑写一个自定义的ViewGroup来执行他的layout操作。与内置的view不同，自定义的view可以使得程序仅仅测量这一部分，这避免了遍历整个view的层级结构来计算大小。这个PieChart 例子展示了如何继承ViewGroup作为自定义view的一部分。PieChart 有子views，但是它从来不测量它们。而是根据他自身的layout法则，直接设置它们的大小。
+
+## 自定义view控件以及自定义属性的使用
+
+## NavigationDrawer，PageAdapter等UI模式的使用和定制
 
 # Layout 布局
 
@@ -783,6 +816,8 @@ APPwidget和Notification中
 res 目录下面有很多文件，例如 drawable,mipmap,raw 等。res 下面除了 raw 
 文件不会被压缩外，其余文件都会被压缩。同时 res目录下的文件可以通过R 文件访问。Asset 也是用来存储资源，但是 asset 
 文件内容只能通过路径或者 AssetManager 读取。 [官方文档](https://developer.android.com/studio/projects/index.html)
+
+## Android屏幕适配
 
 # 动画
 
@@ -825,6 +860,12 @@ Animation 框架定义了透明度，旋转，缩放和位移几种常见的动�
 参考：http://www.csdn.net/article/2015-10-21/2825984 — Android 图片缓存开源库
 
 ## 对 LruCache 的理解
+
+## 缓存算法
+
+## 图片缓存
+
+大多数情况下，内存中使用LRUCache是最合适的。如果用HashMap来实现，不是不可以，但完全没必要嘛！需要注意在合适的时候释放缓存。至于具体怎么释放，我没考虑过，但用软引用的问题在于，你很难控制缓存的大小，也就是说，只有等到你的内存快要撑爆，你的图片缓存才会被回收。是不是感觉傻傻的？（经网友指出，LRUCache 的内部实现就是用的 HashMap。由于我没有读过 LRUCache 的源码不知道这点，在评论里被大家骂惨了。）
 
 ## **Bitmap**的分析与使用
 
@@ -898,7 +939,7 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 ## 如何判断本地缓存的时候数据需要从网络端获取
 
-
+## 图片加载机制
 
 # ListView
 
@@ -940,6 +981,8 @@ http://blog.csdn.net/sanjay_f/article/details/48830311
   RecyclerView.OnItemTouchListener接口来探测触摸事件。它虽然增加了实现的难度，但是却给予开发人员拦截触摸事件更多的
   控制权限。
 - ListView可以设置选择模式，并添加MultiChoiceModeListener；而 RecyclerView 没有该功能。
+
+## 能否讲讲你用过的adapter？
 
 # 容器
 
@@ -1057,11 +1100,34 @@ android 程序内存一般限制在16M，也有的是24M
 ## 查看每个应用程序最高可用内存
 
 ```java
-    int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);  
-    Log.d("TAG", "Max memory is " + maxMemory + "KB");  
+int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);  
+Log.d("TAG", "Max memory is " + maxMemory + "KB");  
+```
+
+```java
+ActivityManager manager = (ActivityManager)getSystemService(Context.ACTIVITY_SERVICE);  
+//可用堆内存，单个应用可以使用的最大内存，如果应用内存使用超过这个值，就报OOM  
+int heapgrowthlimit = manager.getMemoryClass();  
+//进程内存空间分配的最大值，表示的是单个虚拟机可用的最大内存  
+int heapsize = manager.getLargeMemoryClass();  
+L.d("heapgrowthlimit = "+heapgrowthlimit+"m"+", heapsize = "+heapsize+"");  
+```
+
+```java
+//应用程序最大可用内存  
+int maxMemory = ((int) Runtime.getRuntime().maxMemory())/1024/1024;  
+//应用程序已获得内存  
+long totalMemory = ((int) Runtime.getRuntime().totalMemory())/1024/1024;  
+//应用程序已获得内存中未使用内存  
+long freeMemory = ((int) Runtime.getRuntime().freeMemory())/1024/1024;  
+System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,freeMemory="+freeMemory+"M"); 
 ```
 
 ## Android中弱引用与软引用的应用场景。
+
+## 预防内存泄漏！擅用WeakReference!
+
+所有从类外部传来的对象（特别对于Context,View,Fragmet,Activity对象），如果要将其放进类内部的容器对象或者静态类中引用，请一直用WeakReference包装！比如在TabLayout的源码中，容器对象或者静态类中引用，请一直用WeakReference包装！比如在TabLayout的源码中，在TabLayoutOnPageChangeListener中，就为TabLayout做了WeakReference wrap。
 
 # ANR
 
@@ -1095,6 +1161,10 @@ android 程序内存一般限制在16M，也有的是24M
   2. 耗时的操作(比如数据库操作，I/O，连接网络或者别的有可能阻塞UI线程的操作)把它放在单独的线程处理
   3. 尽量用Handler来处理UIThread和别的Thread之间的交互
   4. 解决的逻辑。使用 AsyncTask 时：在doInBackground()方法中执行耗时操作；在onPostExecuted()更新UI 。使用Handler实现异步任务时：在子线程中处理耗时操作，处理完成之后，通过handler.sendMessage()传递处理结果；在handler的handleMessage()方法中更新 UI 或者使用handler.post()方法将消息放到Looper中。
+
+## 什么是ANR，如何避免ANR。
+
+## 什么是FC？如何避免FC的发生，另外FC发生时如何捕获相应的uncaught exception？
 
 # 性能优化
 
@@ -1132,7 +1202,9 @@ android 程序内存一般限制在16M，也有的是24M
 
 把数据库存放到 res/raw 目录下，然后在第一次安装启动应用的时间把该数据库拷贝到应用的内部存储空间即 android 系统下的 /data/data/packagename/ 目录下。
 
+## 谈谈SQLite
 
+## 已经发布了软件版本A，使用sqlite存储用户数据其DB version为1包含某张表T1，则其后需要发布版本B，在版本A的T1表结构的基础上又增加了2个新的字段，则能否在保存用户已经安装的版本A的数据的前提下，更新安装新版本B？
 
 # 网络通讯
 
@@ -1156,12 +1228,16 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 ## Android 代码中实现 WAP 方式联网
 
--通过 APN 列表，获取代码服务器和端口号，如果未设置，则设置成对应运营商的配置。
--实现 HtppClient 代理。
+- 通过 APN 列表，获取代码服务器和端口号，如果未设置，则设置成对应运营商的配置。
+- 实现 HtppClient 代理。
+
+## CMWAP, CMNET有何区别，网络通讯时是否要特殊处理？如何切换接入点？
 
 ## 断点续传
 
+## 网络的优化
 
+## HttpClient
 
 # 动态加载
 
@@ -1183,7 +1259,7 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 ## WebView和JS
 
-
+## React Native
 
 # jar
 
@@ -1267,6 +1343,14 @@ public static Singleton getInstance(){
 
 ## 如 AIDL、插件化, 如网络的优化, 如缓存的处理, 如插件化, 如 Service 保活
 
+## 函数调用Trace 怎么玩
+
+## AlarmManager以及Wakelock的使用
+
+# 算法理解
+
+## 什么是二分算法
+
 # 设计模式
 
 ## Android 中主要用到的几种设计模式
@@ -1285,6 +1369,8 @@ public static Singleton getInstance(){
 参考：http://www.tianmaying.com/tutorial/AndroidMVC
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-19/71303594.jpg)
+
+## 你怎么看待在android上面应用MVC框架，是否有必要抽象独立于activity的C？
 
 # Volley 源码解析
 
