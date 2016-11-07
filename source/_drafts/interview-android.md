@@ -13,13 +13,7 @@ tags:
 
 ## Android 的四大组件
 
-## 四大组件的具体作用以及用法
-
-
-
-
-
-## 介绍Activity、Service、Broadcast、BroadcastReceiver、Intent、IntentFilter
+Acitivity、Service、BroadcastReceiver、ContentProvider
 
 Activity :
 
@@ -35,17 +29,28 @@ Service 服务:
 
 Content Provider内容提供者 :
 
-android平台提供了Content Provider使一个应用程序的指定数据集提供给其他应用程序。这些数据可以存储在文件系统中、在一个SQLite数据库、或以任何其他合理的方式。其他应用可以通过ContentResolver类(见ContentProviderAccessApp例子)从该内容提供者中获取或存入数据.(相当于在应用外包了一层壳),只有需要在多个应用程序间共享数据是才需要内容提供者。例如，通讯录数据被多个应用程序使用，且必须存储在一个内容提供者中。
+android平台提供了Content Provider使一个应用程序的指定数据集提供给其他应用程序。这些数据可以存储在文件系统中、在一个SQLite数据库、或以任何其他合理的方式。其他应用可以通过ContentResolver类(见ContentProviderAccessApp例子)从该内容提供者中获取或存入数据.(相当于在应用外包了一层壳),只有需要在多个应用程序间共享数据是才需要内容提供者。例如，通讯录数据被多个应用程序使用，且必须存储在一个内容提供者中。它的好处:统一数据访问方式。
 
-它的好处:统一数据访问方式。
+参考：
 
-## android平台的framework的层次结构？
+[Android四大基本组件介绍与生命周期](http://www.cnblogs.com/bravestarrhu/archive/2012/05/02/2479461.html)
 
-## App 生命流程
+## 四大组件的具体作用以及用法
+
+- Acitivity 用于显示界面，接收用户输入，和用户交互。
+- Service 运行于后台无界面的程序，用于在后台完成一下任务，例如：音乐播放等。
+- BroadCast Receiver 接收系统或应用发出的广播并作出响应，例如：电话的呼入呼出等。
+- Content Provider 用于把APP本身的数据共享给其他APP，提供本APP数据的存取接口给其他APP。
+
+## Android平台的framework的层次结构？
+
+应用层、应用框架层、中间件（核心库和运行时）、Linux内核
 
 # Activity
 
 ## Activity 生命周期
+
+![](http://o9sn2y8lr.bkt.clouddn.com/16-10-25/30416013.jpg)
 
 - 启动Activity：onCreate->onStart->onResume
 - 锁屏或被其它Activity覆盖：onPause->onStop
@@ -54,24 +59,16 @@ android平台提供了Content Provider使一个应用程序的指定数据集提
 - 退回到此Activity：onRestart->onStart->onResume
 - 退出此Activity：onPause->onStop->onDestory
 - 对话框弹出不会执行任何生命周期(注：对话框如果是Activity(Theme为Dialog)，还是会执行生命周期的)
-- ​
 - 从A跳转到B：当B的主题为透明时，A只会执行onPause（A-onPause->B-(onCreate->onStart->onResume)）
 - 从A跳转到B：A-onPause->B-(onCreate->onStart->onResume)-A-onStop(注意是A执行onPause后开始执行B的生命周期，B执行onResume后，A才执行onStop，所以尽量不要在onPause中做耗时操作)
 - 从B返回到A：B-onPause->A-(onRestart->onStart->onResume)-B-(onStop->onDestroy)
 
-![](http://o9sn2y8lr.bkt.clouddn.com/16-10-25/30416013.jpg)
-
 ## Activity和Fragment生命周期有哪些？
-
-```java
 Activity——onCreate->onStart->onResume->onPause->onStop->onDestroy
 
 Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onResume->onPause->onStop->onDestroyView->onDestroy->onDetach
-```
 
-## Activity四种启动模式的区别
-
-## LanchMode 的应用场景
+## Activity四种启动模式的区别（LanchMode 的应用场景）
 
 - standard 模式
 
@@ -91,25 +88,19 @@ Fragment——onAttach->onCreate->onCreateView->onActivityCreated->onStart->onRe
 
 设置启动模式的位置在 AndroidManifest.xml 文件中 Activity 元素的 Android:launchMode 属性。
 
-singleTop适合接收通知启动的内容显示页面。
+singleTop适合接收通知启动的内容显示页面。例如，某个新闻客户端的新闻内容页面，如果收到10个新闻推送，每次都打开一个新闻内容页面是很烦人的。
 
-例如，某个新闻客户端的新闻内容页面，如果收到10个新闻推送，每次都打开一个新闻内容页面是很烦人的。
+singleTask适合作为程序入口点。例如浏览器的主界面。不管从多少个应用启动浏览器，只会启动主界面一次，其余情况都会走onNewIntent，并且会清空主界面上面的其他页面。
 
-singleTask适合作为程序入口点。
-
-例如浏览器的主界面。不管从多少个应用启动浏览器，只会启动主界面一次，其余情况都会走onNewIntent，并且会清空主界面上面的其他页面。
-
-singleInstance应用场景：
-
-闹铃的响铃界面。 你以前设置了一个闹铃：上午6点。在上午5点58分，你启动了闹铃设置界面，并按 Home 键回桌面；在上午5点59分时，你在微信和朋友聊天；在6点时，闹铃响了，并且弹出了一个对话框形式的 Activity(名为 AlarmAlertActivity) 提示你到6点了(这个 Activity 就是以 SingleInstance 加载模式打开的)，你按返回键，回到的是微信的聊天界面，这是因为 AlarmAlertActivity 所在的 Task 的栈只有他一个元素， 因此退出之后这个 Task 的栈空了。如果是以 SingleTask 打开 AlarmAlertActivity，那么当闹铃响了的时候，按返回键应该进入闹铃设置界面。
+singleInstance应用场景：闹铃的响铃界面。 你以前设置了一个闹铃：上午6点。在上午5点58分，你启动了闹铃设置界面，并按 Home 键回桌面；在上午5点59分时，你在微信和朋友聊天；在6点时，闹铃响了，并且弹出了一个对话框形式的 Activity(名为 AlarmAlertActivity) 提示你到6点了(这个 Activity 就是以 SingleInstance 加载模式打开的)，你按返回键，回到的是微信的聊天界面，这是因为 AlarmAlertActivity 所在的 Task 的栈只有他一个元素， 因此退出之后这个 Task 的栈空了。如果是以 SingleTask 打开 AlarmAlertActivity，那么当闹铃响了的时候，按返回键应该进入闹铃设置界面。
 
 ## Activity中类似onCreate、onStart运用了哪种设计模式，优点是什么
 
-模板模式。每次新建一个Actiivty时都会覆盖onCreate，onStart等方法,这些方法在父类中就相当于一个模板
+模板模式。每次新建一个Actiivty时都会覆盖onCreate，onStart等方法,这些方法在父类中就相当于一个模板。
 
 ## 如何将一个Activity设置成窗口的样式
 
-- 在AndroidManifest.xml文件中设置当前需要改变成窗口样式的Activity的属性，即
+- 在AndroidManifest.xml文件中设置当前需要改变成窗口样式的Activity的属性。
 
 ```
 android:theme="@android:style/Theme.Dialog"  
@@ -124,21 +115,21 @@ android:theme="@android:style/Theme.Dialog"
 3. ActivityStack通知ApplicationThread要进行Activity启动调度了，这里的ApplicationThread代表的是调用ActivityManagerService.startActivity接口的进程，对于通过点击应用程序图标的情景来说，这个进程就是Launcher了，而对于通过在Activity内部调用startActivity的情景来说，这个进程就是这个Activity所在的进程了；
 4. ApplicationThread不执行真正的启动操作，它通过调用ActivityManagerService.activityPaused接口进入到ActivityManagerService进程中，看看是否需要创建新的进程来启动Activity；
 5. 对于通过点击应用程序图标来启动Activity的情景来说，ActivityManagerService在这一步中，会调用startProcessLocked来创建一个新的进程，而对于通过在Activity内部调用startActivity来启动新的Activity来说，这一步是不需要执行的，因为新的Activity就在原来的Activity所在的进程中进行启动；
-6. ActivityManagerServic调用ApplicationThread.scheduleLaunchActivity接口，通知相应的进程执行启动Activity的操作；
+6. ActivityManagerService调用ApplicationThread.scheduleLaunchActivity接口，通知相应的进程执行启动Activity的操作；
 7. ApplicationThread把这个启动Activity的操作转发给ActivityThread，ActivityThread通过ClassLoader导入相应的Activity类，然后把它启动起来。
 
 
 
-## windows和activity之间关系？
+## window和activity之间关系？
 
 ## WindowManager 的相关知识
 
 ## Activity、Window 和 View 三者的区别
 
-- 一个 Activity 构造的时候一定会构造一个 Window(PhoneWindow)，并且只有一个
-- 这个Window会有一个ViewRoot(View、ViewGroup)
-- 通过addView()加载布局
-- WindowMangerService 接收消息，并且回到 Activity 函数，比如onKeyDown()
+- 一个 Activity 构造的时候一定会构造一个 Window(PhoneWindow)，并且只有一个。
+- 这个Window会有一个ViewRoot(View、ViewGroup)。
+- 通过addView()加载布局。
+- WindowMangerService 接收消息，并且回到 Activity 函数，比如onKeyDown()。
 
 Activity 是控制单元，Window 是承载模型，View 是显示视图
 
@@ -180,11 +171,15 @@ A使用startActivityForResult方法开启B，B类结束时调用finish;A类的In
 
 ## 如何安全退出已调用多个Activity的Application？
 
--记录打开的Activity：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可。
--发送特定广播：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。
--递归退出：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭。
+- 记录打开的Activity：每打开一个Activity，就记录下来。在需要退出时，关闭每一个Activity即可。
+- 发送特定广播：在需要结束应用时，发送一个特定的广播，每个Activity收到广播后，关闭即可。
+- 递归退出：在打开新的Activity时使用startActivityForResult，然后自己加标志，在onActivityResult中处理，递归关闭。
 
 ## 有几种在activity之间切换的方法？
+
+startActivity()
+
+startActivityForResult()
 
 # Fragment
 
@@ -221,14 +216,14 @@ transacction.commit();
 
 ## Fragment 特点
 
--Fragment可以作为Activity界面的一部分组成出现；
--可以在一个Activity中同时出现多个Fragment，并且一个Fragment也可以在多个Activity中使用；
--在Activity运行过程中，可以添加、移除或者替换Fragment；
--Fragment可以响应自己的输入事件，并且有自己的生命周期，它们的生命周期会受宿主Activity的生命周期影响。
--Fragment可以轻松得创建动态灵活的UI设计，可以适应于不同的屏幕尺寸。从手机到平板电脑。
--Fragment 解决Activity间的切换不流畅，轻量切换。
--Fragment 替代TabActivity做导航，性能更好。
--Fragment做局部内容更新更方便，原来为了到达这一点要把多个布局放到一个activity里面，现在可以用多Fragment来代替，只有在需要的时候才加载Fragment，提高性能。
+- Fragment可以作为Activity界面的一部分组成出现；
+- 可以在一个Activity中同时出现多个Fragment，并且一个Fragment也可以在多个Activity中使用；
+- 在Activity运行过程中，可以添加、移除或者替换Fragment；
+- Fragment可以响应自己的输入事件，并且有自己的生命周期，它们的生命周期会受宿主Activity的生命周期影响。
+- Fragment可以轻松得创建动态灵活的UI设计，可以适应于不同的屏幕尺寸。从手机到平板电脑。
+- Fragment 解决Activity间的切换不流畅，轻量切换。
+- Fragment 替代TabActivity做导航，性能更好。
+- Fragment做局部内容更新更方便，原来为了达到这一点要把多个布局放到一个activity里面，现在可以用多Fragment来代替，只有在需要的时候才加载Fragment，提高性能。
 
 ## Fragment嵌套多个Fragment会出现bug吗？
 
@@ -236,9 +231,15 @@ transacction.commit();
 
 ## 怎么理解Activity和Fragment的关系？
 
+- Fragment 拥有和 Activity 一致的生命周期，它和 Activity 一样被定义为 Controller 层的类。有过中大型项目开发经验的开发者，应该都会遇到过 Activity 过于臃肿的情况，而 Fragment 的出现就是为了缓解这一状况，可以说 它将屏幕分解为多个「Fragment（碎片）」（这句话很重要），但它又不同于 View，它干的实质上就是 Activity 的事情，负责控制 View 以及它们之间的逻辑。
+- 将屏幕碎片化为多个 Fragment 后，其实 Activity 只需要花精力去管理当前屏幕内应该显示哪些 Fragments，以及应该对它们进行如何布局就行了。这是一种组件化的思维，用 Fragment 去组合了一系列有关联的 UI 组件，并管理它们之间的逻辑，而 Activity 负责在不同屏幕下（例如横竖屏）布局不同的 Fragments 组合。
+- 这种碎片不单单能管理可视的 Views，它也能执行不可视的 Tasks，它提供了 retainInstance 属性，能够在 Activity 因为屏幕状态发生改变（例如切换横竖屏时）而销毁重建时，依然保留实例。这示意着我们能在 RetainedFragment 里面执行一些在屏幕状态发生改变时不被中断的操作。例如使用 RetainedFragment 来缓存在线音乐文件，它在横竖屏切换时依然维持下载进度，并通过一个 DialogFragment 来展示进度。
+
 # Service
 
-## 什么是Service以及描述下它的生命周期。
+## Service的生命周期。
+
+![](http://o9sn2y8lr.bkt.clouddn.com/16-10-25/20789048.jpg)
 
 Service是运行在后台的android组件，没有用户界面，不能与用户交互，可以运行在自己的进程，也可以运行在其他应用程序的上下
 文里。
@@ -247,55 +248,85 @@ Service随着启动形式的不同，其生命周期稍有差别。当用Context
 
 当用Context.bindService()启动时:onStart——>onBind——>onUnbind——>onDestroy
 
-![](http://o9sn2y8lr.bkt.clouddn.com/16-10-25/20789048.jpg)
-
 ## Service有哪些启动方法，有什么区别，怎样停用Service？
 
 Service启动方式有两种；一是Context.startService和Context.bindService。
-   区别是通过startService启动时Service组件和应用程序没多大的联系；当用访问者启动之后，如果访问者不主动关闭，Service就不会关闭，Service组件之间
-因为没什么关联，所以Service也不能和应用程序进行数据交互。而通过bindService进行绑定时，应用程序可以通过ServiceConnection进行数据交互。在实现Service
-时重写的onBind方法中，其返回的对象会传给ServiceConnection对象的onServiceConnected(ComponentName name, IBinder service)中的service参数；也就是说获取
-了serivce这个参数就得到了Serivce组件返回的值。Context.bindService(Intent intent,ServiceConnection conn,int flag)其中只要与Service连接成功
-conn就会调用其onServiceConnected方法
 
-   停用Service使用Context.stopService
+区别是通过startService启动时Service组件和应用程序没多大的联系；当用访问者启动之后，如果访问者不主动关闭，Service就不会关闭，Service组件之间因为没什么关联，所以Service也不能和应用程序进行数据交互。
+
+而通过bindService进行绑定时，应用程序可以通过ServiceConnection进行数据交互。在实现Service时重写的onBind方法中，其返回的对象会传给ServiceConnection对象的onServiceConnected(ComponentName name, IBinder service)中的service参数；也就是说获取了serivce这个参数就得到了Serivce组件返回的值。Context.bindService(Intent intent,ServiceConnection conn,int flag)其中只要与Service连接成功conn就会调用其onServiceConnected方法
+
+停用Service使用Context.stopService
 
 ## 注册Service需要注意什么
 
 无论使用哪种启动方法，都需要在xml里注册你的Service，就像这样:
 
-```
+```java
 <service
-        android:name=".packnameName.youServiceName"
-        android:enabled="true" />
+  android:name=".packnameName.youServiceName"
+  android:enabled="true" />
 ```
 
 ## service 可以执行耗时操作吗
 
-不能
+不能，超过20s就会出现ARN
 
 ## Service和Activity在同一个线程吗
 
 默认情况下是在同一个主线程中。但可以通过配置android:process=":remote" 属性让 Service 运行在不同的进程。
 
+Service分为本地服务（LocalService）和远程服务（RemoteService）：
+
+1、本地服务依附在主进程上而不是独立的进程，这样在一定程度上节约了资源，另外Local服务因为是在同一进程因此不需要IPC，
+
+也不需要AIDL。相应bindService会方便很多。主进程被Kill后，服务便会终止。
+
+2、远程服务为独立的进程，对应进程名格式为所在包名加上你指定的android:process字符串。由于是独立的进程，因此在Activity所在进程被Kill的时候，该服务依然在运行，
+
+不受其他进程影响，有利于为多个进程提供服务具有较高的灵活性。该服务是独立的进程，会占用一定资源，并且使用AIDL进行IPC稍微麻烦一点。
+
+按使用方式可以分为以下三种：
+
+1. startService 启动的服务：主要用于启动一个服务执行后台任务，不进行通信。停止服务使用stopService；
+2. bindService 启动的服务：该方法启动的服务可以进行通信。停止服务使用unbindService
+3. startService 同时也 bindService 启动的服务：停止服务应同时使用stepService与unbindService
+
+参考：http://www.cnblogs.com/linlf03/p/3296323.html
+
 ## Service与Activity怎么实现通信
 
--通过Binder对象
+- 通过Binder对象。Activity调用bindService (Intent service, ServiceConnection conn, int flags)方法，得到Service对象的一个引用，这样Activity可以直接调用到Service中的方法，如果要主动通知Activity，我们可以利用回调方法。Binder 相关知识参考：http://blog.csdn.net/boyupeng/article/details/47011383
 
-当Activity通过调用bindService(Intent service, ServiceConnection conn,int flags),我们可以得到一个Service的一个对象实例，然后我们就可以访问Service中的方法
 
--Activity调用bindService (Intent service, ServiceConnection conn, int flags)方法，得到Service对象的一个引用，这样Activity可以直接调用到Service中的方法，如果要主动通知Activity，我们可以利用回调方法
--Service向Activity发送消息，可以使用广播，当然Activity要注册相应的接收器。比如Service要向多个Activity发送同样的消息的话，用这种方法就更好。
+- 通过广播。Service向Activity发送消息，可以使用广播，当然Activity要注册相应的接收器。比如Service要向多个Activity发送同样的消息的话，用这种方法就更好。
 
 ## Service里面可以弹出 dialog 或 Toast 吗
 
 可以。`getApplicationContext()`
 
-## Service 上能不能弹出对话框
+Toast必须在UI主线程上才能正常显示，而在Service中是无法获得Acivity的Context的，在service中想显示出Toast只需将show的消息发送给主线程Looper就可以了。此时便可显示Toast。
+
+```java
+Handler handler = new Handler(Looper.getMainLooper());  
+handler.post(new Runnable() {  
+  public void run() {  
+    Toast.makeText(getApplicationContext(), "存Service is runing!",  
+                   Toast.LENGTH_SHORT).show();  
+  }  
+}); 
+```
+
+Dialog的用法与此类似，但是要多加个权限，在manifest中添加此权限以弹出dialog 
+
+```java
+<uses-permission Android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+dialog.getWindow().setType((WindowManager.LayoutParams.TYPE_SYSTEM_ALERT));  
+```
 
 ## 什么时候使用Service?
 
-比如播放多媒体的时候用户启动了其他的Activity这个时候程序要在后台继续播放，比如检测SD卡上文件的变化，在或者在后台记录你地理位置的改变等等
+比如播放多媒体的时候，用户启动了其他的Activity这个时候程序要在后台继续播放。比如检测SD卡上文件的变化。在或者在后台记录你地理位置的改变等等。
 
 ## 说说Activity、Intent、Service是什么关系
 
@@ -309,26 +340,31 @@ Activity 跳转到Activity,Activtiy启动Service,Service打开Activity都需要I
 
 ## 怎么在启动一个activity时就启动一个service
 
-在activity的onCreate里写
-startService(xxx);
-然后
-this.finish();结束自己..
+在activity的onCreate里写startService(xxx);然后this.finish();结束自己..
+
 这是最简单的方法 可能会有屏幕一闪的现象，如果UI要求严格的话用AIDL把
-
-## Service 和 Activity 之间通讯的几种方式
-
--通过 Binder 对象。
--通过 broadcast(广播) 的形式。
-
-Binder 相关知识参考：http://blog.csdn.net/boyupeng/article/details/47011383
 
 ## 为什么在Service中创建子线程而不是Activity中
 
 这是因为Activity很难对Thread进行控制，当Activity被销毁之后，就没有任何其它的办法可以再重新获取到之前创建的子线程的实例。而且在一个Activity中创建的子线程，另一个Activity无法对其进行操作。但是Service就不同了，所有的Activity都可以与Service进行关联，然后可以很方便地操作其中的方法，即使Activity被销毁了，之后只要重新与Service建立关联，就又能够获取到原有的Service中Binder的实例。因此，使用Service来处理后台任务，Activity就可以放心地finish，完全不需要担心无法对后台任务进行控制的情况。
 
+## Service 与 Thread 的区别
+
+很多时候，你可能会问，为什么要用 Service，而不用 Thread 呢，因为用 Thread 是很方便的，比起 Service 也方便多了，下面我详细的来解释一下。
+
+1). Thread：Thread 是程序执行的最小单元，它是分配CPU的基本单位。可以用 Thread 来执行一些异步的操作。
+
+2). Service：Service 是android的一种机制，当它运行的时候如果是Local Service，那么对应的 Service 是运行在主进程的 main 线程上的。如：onCreate，onStart 这些函数在被系统调用的时候都是在主进程的 main 线程上运行的。如果是Remote Service，那么对应的 Service 则是运行在独立进程的 main 线程上。因此请不要把 Service 理解成线程，它跟线程半毛钱的关系都没有！
+
+既然这样，那么我们为什么要用 Service 呢？其实这跟 android 的系统机制有关，我们先拿 Thread 来说。Thread 的运行是独立于 Activity 的，也就是说当一个 Activity 被 finish 之后，如果你没有主动停止 Thread 或者 Thread 里的 run 方法没有执行完毕的话，Thread 也会一直执行。因此这里会出现一个问题：当 Activity 被 finish 之后，你不再持有该 Thread 的引用。另一方面，你没有办法在不同的 Activity 中对同一 Thread 进行控制。
+
+举个例子：如果你的 Thread 需要不停地隔一段时间就要连接服务器做某种同步的话，该 Thread 需要在 Activity 没有start的时候也在运行。这个时候当你 start 一个 Activity 就没有办法在该 Activity 里面控制之前创建的 Thread。因此你便需要创建并启动一个 Service ，在 Service 里面创建、运行并控制该 Thread，这样便解决了该问题（因为任何 Activity 都可以控制同一 Service，而系统也只会创建一个对应 Service 的实例）。
+
+因此你可以把 Service 想象成一种消息服务，而你可以在任何有 Context 的地方调用 Context.startService、Context.stopService、Context.bindService，Context.unbindService，来控制它，你也可以在 Service 里注册 BroadcastReceiver，在其他地方通过发送 broadcast 来控制它，当然这些都是 Thread 做不到的。
+
 ## 如何保证 Service 在后台不被 kill
 
--onStartCommand方法，返回START_STICKY
+- onStartCommand方法，返回START_STICKY
 
 START_STICKY 在运行onStartCommand后service进程被kill后，那将保留在开始状态，但是不保留那些传入的intent。不久后service就会再次尝试重新创建，因为保留在开始状态，在创建     service后将保证调用onstartCommand。如果没有传递任何开始命令给service，那将获取到null的intent。
 
@@ -336,11 +372,11 @@ START_NOT_STICKY 在运行onStartCommand后service进程被kill后，并且没�
 
 START_REDELIVER_INTENT 在运行onStartCommand后service进程被kill后，系统将会再次启动service，并传入最后一个intent给onstartCommand。直到调用stopSelf(int)才停止传递intent。如果在被kill后还有未处理好的intent，那被kill后服务还是会自动启动。因此onstartCommand不会接收到任何null的intent。
 
--提升service优先级
+- 提升service优先级
 
 在AndroidManifest.xml文件中对于intent-filter可以通过android:priority = "1000"这个属性设置最高优先级，1000是最高值，如果数字越小则优先级越低，同时适用于广播。
 
--提升service进程优先级
+- 提升service进程优先级
 
 Android中的进程是托管的，当系统进程空间紧张的时候，会依照优先级自动进行进程的回收。Android将进程分为6个等级,它们按优先级顺序由高到低依次是:
 
@@ -353,19 +389,19 @@ Android中的进程是托管的，当系统进程空间紧张的时候，会依�
 
 当service运行在低内存的环境时，将会kill掉一些存在的进程。因此进程的优先级将会很重要，可以使用startForeground 将service放到前台状态。这样在低内存时被kill的几率会低一些。
 
--onDestroy方法里重启service
+- onDestroy方法里重启service
 
 service +broadcast  方式，就是当service走ondestory的时候，发送一个自定义的广播，当收到广播的时候，重新启动service；
 
--Application加上Persistent属性
--监听系统广播判断Service状态
+- Application加上Persistent属性
+- 监听系统广播判断Service状态
 
 通过系统的一些广播，比如：手机重启、界面唤醒、应用状态改变等等监听并捕获到，然后判断我们的Service是否还存活，别忘记加权限啊。
 
 ## 什么是IntentService？有何优点？
 
-IntentService也是一个Service，是Service的子类；
-IntentService和Service有所不同，通过Looper和Thread来解决标准Service中处理逻辑的阻塞的问题
+IntentService也是一个Service，是Service的子类；IntentService和Service有所不同，通过Looper和Thread来解决标准Service中处理逻辑的阻塞的问题。
+
 优点：Activity的进程，当处理Intent的时候，会产生一个对应的Service,Android的进程处理器现在会尽可能的不kill掉你。
 
 **IntentService的使用场景与特点。**
@@ -379,6 +415,18 @@ IntentService和Service有所不同，通过Looper和Thread来解决标准Servic
 
 onStartCommand中回调了onStart，onStart中通过mServiceHandler发送消息到该handler的handleMessage中去。最后handleMessage中回调onHandleIntent(intent)。
 
+## IntentService 作用是什么
+
+IntentService 是继承于 Service 并处理异步请求的一个类，在IntentService 内有一个工作线程来处理耗时操作，启动 IntentService 的方式和启动传统 Service 一样，同时，当任务执行完后，IntentService 会自动停止，而不需要我们去手动控制。另外，可以启动 IntentService 多次，而每一个耗时操作会以工作队列的方式在 IntentService 的 onHandleIntent 回调方法中执行，并且，每次只会执行一个工作线程，执行完第一个再执行第二个，以此类推。
+
+## IntentService 与 Service的异同
+
+- 直接创建一个默认的工作线程,该线程执行所有的intent传递给onStartCommand()区别于应用程序的主线程。
+- 直接创建一个工作队列,将一个意图传递给你onHandleIntent()的实现,所以我们就永远不必担心多线程。
+- 当请求完成后自己会调用stopSelf()，所以你就不用调用该方法了。
+- 提供的默认实现onBind()返回null，所以也不需要重写这个方法。so easy啊
+- 提供了一个默认实现onStartCommand(),将意图工作队列,然后发送到你onHandleIntent()实现。真是太方便了
+
 # ContentProvider
 
 参考：[http://blog.csdn.net/coder_pig/article/details/47858489](http://blog.csdn.net/coder_pig/article/details/47858489)
@@ -387,9 +435,9 @@ onStartCommand中回调了onStart，onStart中通过mServiceHandler发送消息�
 
 ContentProvider(内容提供者)：为存储和获取数据提供统一的接口。可以在不同的应用程序之间共享数据。Android已经为常见的一些数据提供了默认的ContentProvider
 
-1.ContentProvider 为存储和读取数据提供了统一的接口
-2.使用ContentProvider，应用程序可以实现 app 间数据共享
-3.Android内置的许多数据都是使用ContentProvider形式，供开发者调用的(如视频，音频，图片，通讯录等)
+1. ContentProvider 为存储和读取数据提供了统一的接口
+2. 使用ContentProvider，应用程序可以实现 app 间数据共享
+3. Android内置的许多数据都是使用ContentProvider形式，供开发者调用的(如视频，音频，图片，通讯录等)
 
 ## 请介绍下ContentProvider是如何实现数据共享的
 
@@ -403,27 +451,22 @@ ContentProvider(内容提供者)：为存储和获取数据提供统一的接口
 
 ## 注册广播有哪几种方式,有什么区别
 
--在应用程序的代码中注册
+- 在应用程序的代码中注册
 
 ```java
 registerReceiver（receiver，filter）；// 注册BroadcastReceiver
-
 unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 ```
 
 当BroadcastReceiver更新UI，通常会使用这样的方法注册。启动Activity时候注册BroadcastReceiver，Activity不可见时候，取消注册。
 
--在androidmanifest.xml当中注册
+- 在androidmanifest.xml当中注册
 
 ```java
 <receiver>
-
     <intent-filter>
-
      <action Android:name = "android.intent.action.PICK"/>
-
     </intent-filter>
-
 </receiver>
 ```
 
@@ -433,6 +476,10 @@ unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 
 - 静态注册：在AndroidManifest.xml文件中进行注册，当App退出后，Receiver仍然可以接收到广播并且进行相应的处理
 - 动态注册：在代码中动态注册，当App退出后，也就没办法再接受广播了
+
+## 一个 app 被杀掉进程后，是否还能收到广播
+
+静态注册的常驻型广播接收器还能接收广播。
 
 ## Android引入广播机制的用意？
 
@@ -444,19 +491,17 @@ unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 
 本地广播 LocalBroadcastReceiver 仅在自己的应用内发送接收广播，也就是只有自己的应用能收到。因广播数据在本应用范围内传播，不用担心隐私数据泄露的问题。 不用担心别的应用伪造广播，造成安全隐患。 相比在系统内发送全局广播，它更高效。
 
-## 关于一个 app 被杀掉进程后，是否还能收到广播
-
-
-
 # Intent
 
-**Intent的使用方法，可以传递哪些数据类型。**
+## Intent的使用方法，可以传递哪些数据类型。
 
 通过查询Intent/Bundle的API文档，我们可以获知，Intent/Bundle支持传递基本类型的数据和基本类型的数组数据，以及String/CharSequence类型的数据和String/CharSequence类型的数组数据。而对于其它类型的数据貌似无能为力，其实不然，我们可以在Intent/Bundle的API中看到Intent/Bundle还可以传递Parcelable（包裹化，邮包）和Serializable（序列化）类型的数据，以及它们的数组/列表数据。
 
 所以要让非基本类型和非String/CharSequence类型的数据通过Intent/Bundle来进行传输，我们就需要在数据类型中实现Parcelable接口或是Serializable接口。
 
-[http://blog.csdn.net/kkk0526/article/details/7214247](http://blog.csdn.net/kkk0526/article/details/7214247)
+参考：[http://blog.csdn.net/kkk0526/article/details/7214247](http://blog.csdn.net/kkk0526/article/details/7214247)
+
+## 介绍一下Intent、IntentFilter
 
 # Context
 
@@ -470,13 +515,15 @@ unregisterReceiver（receiver）；// 取消注册BroadcastReceiver
 - 尽管Application、Activity、Service都有自己的ContextImpl，并且每个ContextImpl都有自己的mResources成员，但是由于它们的mResources成员都来自于唯一的ResourcesManager实例，所以它们看似不同的mResources其实都指向的是同一块内存
 - Context的数量等于Activity的个数 + Service的个数 + 1，这个1为Application
 
-## Context 的理解(Application Context 和 Activity Context 异同)
+## Application Context 和 Activity Context 异同
+
+## Context 的理解
 
 #  Handler
 
 ## Handler 原理
 
-andriod提供了Handler 和 Looper 来满足线程间的通信。Handler先进先出原则。Looper类用来管理特定线程内对象之间的消息交换(MessageExchange)。
+Andriod提供了Handler 和 Looper 来满足线程间的通信。Handler先进先出原则。Looper类用来管理特定线程内对象之间的消息交换(MessageExchange)。
 
 Looper: 一个线程可以产生一个Looper对象，由它来管理此线程里的MessageQueue(消息队列)。
 
@@ -486,15 +533,29 @@ Message Queue(消息队列):用来存放线程放入的消息。
 
 线程：UIthread 通常就是main thread，而Android启动程序时会替它建立一个MessageQueue。
 
-参考：[Handler、Looper、Message、MessageQueue基础流程分析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.md)
+参考：
+
+[Handler、Looper、Message、MessageQueue基础流程分析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/%E7%BA%BF%E7%A8%8B%E9%80%9A%E4%BF%A1%E5%9F%BA%E7%A1%80%E6%B5%81%E7%A8%8B%E5%88%86%E6%9E%90.md)
 
 ## Handler消息机制，postDelayed会造成线程阻塞吗？对内存有什么影响？
 
+## Handler, Looper的理解
 
+## Handler,Message,Looper异步实现机制与源码分析
+
+参考：
+
+[Android 消息处理机制（Looper、Handler、MessageQueue,Message）](http://www.jianshu.com/p/02962454adf7)
+
+## Handler有何作用？如何使用之（具体讲需要实现什么function）？
+
+Android设计了Handler机制，由Handler来负责与子线程进行通讯，从而让子线程与主线程之间建立起协作的桥梁，使Android的UI更新的问题得到完美的解决。
+
+参考：
+
+[Handler有何作用？如何使用？](http://www.androidchina.net/313.html)
 
 ## Handler、Thread 和 HandlerThread 的区别
-
-参考：http://www.juwends.com/tech/android/android_thread_handler.html
 
 Handler 会关联一个单独的线程和消息队列。Handler默认关联主线程(即 UI 线程)，虽然要提供Runnable参数 ，但默认是直接调用Runnable中的run()方法。也就是默认下会在主线程执行，如果在这里面的操作会有阻塞，界面也会卡住。如果要在其他线程执行，可以使用 HandlerThread。
 
@@ -502,46 +563,78 @@ HandlerThread继承于Thread，所以它本质就是个Thread。与普通Thread�
 
 android.os.Handler可以通过Looper对象实例化，并运行于另外的线程中，Android提供了让Handler运行于其它线程的线程实现，也是就HandlerThread。HandlerThread对象start后可以获得其Looper对象，并且使用这个Looper对象实例Handler。
 
+参考：
+
+[Android中的Thread & HandlerThread & Handler](https://www.juwends.com/tech/android/android_thread_handler.html)
+
 ## 使用 Handler 时怎么避免引起内存泄漏
 
-参考：[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
+一旦Handler被声明为内部类，那么可能导致它的外部类不能够被垃圾回收。如果Handler是在其他线程（我们通常成为worker thread）使用Looper或MessageQueue（消息队列），而不是main线程（UI线程），那么就没有这个问题。如果Handler使用Looper或MessageQueue在主线程（main thread），你需要对Handler的声明做如下修改： 
 
-一旦Handler被声明为内部类，那么可能导致它的外部类不能够被垃圾回收。如果Handler是在其他线程（我们通常成为worker 
-thread）使用Looper或MessageQueue（消息队列），而不是main线程（UI线程），那么就没有这个问题。如果Handler使用
-Looper或MessageQueue在主线程（main thread），你需要对Handler的声明做如下修改： 
-
-声明Handler为static类；在外部类中实例化一个外部类的WeakReference（弱引用）并且在Handler初始化时传入这个对象给你的Handler；将所有引用的外部类成员使用WeakReference对象。
+1. 声明Handler为static类；
+2. 在外部类中实例化一个外部类的WeakReference（弱引用）并且在Handler初始化时传入这个对象给你的Handler；
+3. 将所有引用的外部类成员使用WeakReference对象。
 
 ```java
-private static class MyHandler extends Handler {          private final WeakReference<HandlerActivity2> mActivity;            public MyHandler(HandlerActivity2 activity) {              mActivity = new WeakReference<HandlerActivity2>(activity);          }            @Override          public void handleMessage(Message msg) {              System.out.println(msg);              if (mActivity.get() == null) {                  return;              }              mActivity.get().todo();          }      }  
+private static class MyHandler extends Handler {          
+  private final WeakReference<HandlerActivity2> mActivity; 
+  
+  public MyHandler(HandlerActivity2 activity) {              
+  	mActivity = new WeakReference<HandlerActivity2>(activity);          
+  }
+  
+  @Override          
+  public void handleMessage(Message msg) {              
+  	System.out.println(msg);             
+    if (mActivity.get() == null) {                  
+    	return;              
+    }              
+    mActivity.get().todo();          
+  }      
+}  
 ```
 
-  当Activity finish后 handler对象还是在Message中排队。 还是会处理消息，这些处理有必要？
-  正常Activitiy finish后，已经没有必要对消息处理，那需要怎么做呢？
-  解决方案也很简单，在Activity onStop或者onDestroy的时候，取消掉该Handler对象的Message和Runnable。
-  通过查看Handler的API，它有几个方法：removeCallbacks(Runnable r)和removeMessages(int what)等。
+当Activity finish后 handler对象还是在Message中排队。 还是会处理消息，这些处理有必要？正常Activitiy finish后，已经没有必要对消息处理，那需要怎么做呢？解决方案也很简单，在Activity onStop或者onDestroy的时候，取消掉该Handler对象的Message和Runnable。通过查看Handler的API，它有几个方法：removeCallbacks(Runnable r)和removeMessages(int what)等。
 
 ```java
-/**    * 一切都是为了不要让mHandler拖泥带水    */   @Override   public void onDestroy() {       mHandler.removeMessages(MESSAGE_1);       mHandler.removeMessages(MESSAGE_2);       mHandler.removeMessages(MESSAGE_3);         // ... ...         mHandler.removeCallbacks(mRunnable);         // ... ...   }  
+/**    * 一切都是为了不要让mHandler拖泥带水    */   
+@Override   
+public void onDestroy() {       
+  mHandler.removeMessages(MESSAGE_1);       
+  mHandler.removeMessages(MESSAGE_2);       
+  mHandler.removeMessages(MESSAGE_3);        
+  // ... ...         
+  mHandler.removeCallbacks(mRunnable);         
+  // ... ...   
+}  
 ```
 
-## Handler, Looper的理解
+参考：
 
-## Handler,Message,Looper异步实现机制与源码分析
-
-## Handler有何作用？如何使用之（具体讲需要实现什么function）？
+[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
 
 # AsyncTask
 
-
 ## AsyncTask原理
+
+参考：
+
+[深入理解AsyncTask的工作原理](http://www.cnblogs.com/absfree/p/5357678.html)
 
 ## 网络请求是怎么做的异步呢？什么情况下用Handler，什么情况下用AsyncTask
 
 ## Handler和AsyncTask的区别
 这俩类都是用来实现异步的，其中AsyncTask的集成度较高，使用简单，Handler则需要手动写Runnable或者Thread的代码；另外，由于AsyncTask内部实现了一个非常简单的线程池，实际上是只适用于轻量级的异步操作的，一般不应该用于网络操作。（感谢网友指正，AsyncTask 通过重写的方式是可以用于长耗时操作的，而我只考虑了直接使用的情况就说它不适合网络操作，是不对的。）我问他Handler和AsyncTask的区别，一方面是因为他说用AsyncTask联网，因此我认为他对AsyncTask并不熟悉；但更重要的是在我问他实现异步的具体手段的时候，他同时提到了Handler和AsyncTask——用这种“混搭”的使用方式来写联网框架，就算不考虑AsyncTask的可用性，也显得非常怪异，这听起来更像是在“列举Android实现异步操作最常用的类”，而非“讲述实现网络异步操作的具体方式”。也就是说，我听了这句话后开始怀疑他封装过联网框架这件事的真实性。但我只是怀疑，并不确定，因此接着问了我想问的。
 
-## Asynctask的优缺点？能否同时并发100+asynctask呢？
+参考：
+
+https://www.zhihu.com/question/30804052
+
+## AsyncTask的优缺点？能否同时并发100+AsyncTask呢？
+
+参考：
+
+[AsyncTask到底是什么](http://www.jianshu.com/p/3a4d25efce46)
 
 # 线程
 
@@ -582,14 +675,24 @@ new Handler(context.getMainLooper()).post(
 - Activity.runOnUiThread(Runnable)
 - View.post(Runnable),View.postDelay(Runnable,long)
 
+|                                | **Service**                              | **Thread**                               | **IntentService**                        | **AsyncTask**                            |
+| ------------------------------ | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| **When to use ?**              | Task with no UI, but shouldn't be too long. Use threads within service   for long tasks. | - Long task in general.- For tasks in parallel use Multiple threads (traditional mechanisms) | - Long task **usually** with no communication to main thread.**(Update)**- If communication is required, can use main thread handler or   broadcast intents- When callbacks are needed (Intent triggered tasks). | - Small task having to communicate with main thread.- For tasks in parallel use multiple instances OR Executor |
+| **Trigger**                    | Call to methodonStartService()           | Thread start() method                    | Intent                                   | Call to method execute()                 |
+| **Triggered From (thread)**    | Any thread                               | Any Thread                               | Main Thread (Intent is received on main thread and then worker thread   is spawed) | Main Thread                              |
+| **Runs On (thread)**           | Main Thread                              | Its own thread                           | Separate worker thread                   | Worker thread. However, Main thread methods may be invoked in between   to publish progress. |
+| **Limitations /****Drawbacks** | May block main thread                    | - Manual thread management- Code may become difficult to read | - Cannot run tasks in parallel.- Multiple intents are queued on the same worker thread. | - one instance can only be executed once (hence cannot run in a loop) - Must be created and executed from the Main thread |
+
 ## 线程同步
-
-参考：http://www.itzhai.com/java-based-notebook-thread-synchronization-problem-solving-synchronization-problems-synchronized-block-synchronized-methods.html#2.1%E3%80%81%E4%BD%BF%E7%94%A8synchronized%E5%85%B3%E9%94%AE%E5%AD%97%E5%88%9B%E5%BB%BAsynchronized%E6%96%B9%E6%B3%95%EF%BC%9A
-
-http://www.juwends.com/tech/android/android-inter-thread-comm.html
 
 - 使用 synchronized 关键字创建 synchronized 方法。
 - 使用 synchronized 创建同步代码块。
+
+参考：
+
+http://www.itzhai.com/java-based-notebook-thread-synchronization-problem-solving-synchronization-problems-synchronized-block-synchronized-methods.html#2.1%E3%80%81%E4%BD%BF%E7%94%A8synchronized%E5%85%B3%E9%94%AE%E5%AD%97%E5%88%9B%E5%BB%BAsynchronized%E6%96%B9%E6%B3%95%EF%BC%9A
+
+http://www.juwends.com/tech/android/android-inter-thread-comm.html
 
 # 进程
 
@@ -601,21 +704,9 @@ http://www.juwends.com/tech/android/android-inter-thread-comm.html
 4. 后台进程：其中运行着执行onStop方法而停止的程序，但是却不是用户当前关心的，例如后台挂着的QQ，这样的进程系统一旦没了有内存就首先被杀死
 5. 空进程：不包含任何应用程序的程序组件的进程，这样的进程系统是一般不会让他存在的
 
-## IntentService 作用是什么，AIDL 解决了什么问题
-
-IntentService 是继承于 Service 并处理异步请求的一个类，在IntentService 内有一个工作线程来处理耗时操作，启动 IntentService 的方式和启动传统 Service 一样，同时，当任务执行完后，IntentService 会自动停止，而不需要我们去手动控制。另外，可以启动 IntentService 多次，而每一个耗时操作会以工作队列的方式在 IntentService 的 onHandleIntent 回调方法中执行，并且，每次只会执行一个工作线程，执行完第一个再执行第二个，以此类推。
-
-IntentService 与 Service的不同：
-
--直接 创建一个默认的工作线程,该线程执行所有的intent传递给onStartCommand()区别于应用程序的主线程。
--直接创建一个工作队列,将一个意图传递给你onHandleIntent()的实现,所以我们就永远不必担心多线程。
--当请求完成后自己会调用stopSelf()，所以你就不用调用该方法了。
--提供的默认实现onBind()返回null，所以也不需要重写这个方法。so easy啊
--提供了一个默认实现onStartCommand(),将意图工作队列,然后发送到你onHandleIntent()实现。真是太方便了
+## AIDL 解决了什么问题
 
 AIDL (Android Interface Definition Language) 是一种IDL 语言，用于生成可以在 Android 设备上两个进程之间进行进程间通信(interprocess communication, IPC)的代码。如果在一个进程中（例如Activity）要调用另一个进程中（例如 Service, 设置了属性 android:process=":remote" 后，Service 就会运行在另外一个进程）对象的操作，就可以使用AIDL生成可序列化的参数。 AIDL IPC机制是面向接口的，像COM或Corba一样，但是更加轻量级。它是使用代理类在客户端和实现端传递数据。
-
-
 
 ## AIDL的全称是什么？如何工作？能处理哪些类型的数据
 
@@ -628,11 +719,11 @@ ADIL是一种接口定义语言，用于约束两个进程之间的通信规则�
 这3种都可以实现跨进程的通信，那么从效率，适用范围，安全性等方面来比较的话他们3者之间有什么区别？
 
 Broadcast：用于发送和接收广播！实现信息的发送和接收！
+
 AIDL：用于不同程序间服务的相互调用！实现了一个程序为另一个程序服务的功能！
 Content Provider:用于将程序的数据库人为地暴露出来！实现一个程序可以对另个程序的数据库进行相对用的操作！
 
-Broadcast,既然是广播，那么它的优点是：注册了这个广播接收器的应用都能够收到广播，范围广。
-缺点是：速度慢点，而且必须在一定时间内把事情处理完(onReceive执行必须在几秒之内)，否则的话系统给出ANR。
+Broadcast,既然是广播，那么它的优点是：注册了这个广播接收器的应用都能够收到广播，范围广。缺点是：速度慢点，而且必须在一定时间内把事情处理完(onReceive执行必须在几秒之内)，否则的话系统给出ANR。
 
 AIDL，是进程间通信用的，类似一种协议吧。优点是：速度快(系统底层直接是共享内存)，性能稳，效率高，一般进程间通信就用它。
 
@@ -652,11 +743,13 @@ Content Provider,因为只是把自己的数据库暴露出去，其他程序都
 
 WindowManager->window->Decorview->子 view。最后我说当所有的 view 都不处理事件，事件会最后会传递到 Activity 的 onTouchEvent 上
 
-参考：[事件分发机制](http://www.jianshu.com/p/e99b5e8bd67b)
+参考：
+
+[事件分发机制](http://www.jianshu.com/p/e99b5e8bd67b)
 
 ## Touch 事件传递流程
 
-Android事件的基础知识：
+**Android事件的基础知识：*
 
 所有的Touch事件都封装到MotionEvent里面
 
@@ -664,7 +757,7 @@ Android事件的基础知识：
 
 事件类型分为ACTION_DOWN, ACTION_UP, ACTION_MOVE, ACTION_POINTER_DOWN, ACTION_POINTER_UP, ACTION_CANCEL等，每个事件都是以ACTION_DOWN开始ACTION_UP结束
 
-Android事件传递流程：
+**Android事件传递流程：*
 
 事件都是从Activity.dispatchTouchEvent()开始传递
 
@@ -685,6 +778,8 @@ OnTouchListener优先于onTouchEvent()对事件进行消费
 ## onInterceptTouchEvent()和onTouchEvent()的区别？
 
 onInterceptTouchEvent()用于拦截触摸事件
+
+
 onTouchEvent()用于处理触摸事件
 
 ## view的事件冲突处理
@@ -1137,12 +1232,13 @@ System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,f
 
 出现 ANR 原因：
 
+- 应用在5秒内未响应用户的输入事件（如按键或者触摸）。
+- BroadcastReceiver在10秒内未完成相关的处理。
+- Service在 20秒内无法处理完成。
+
 - 主线程被IO操作（从4.0之后网络IO不允许在主线程中）阻塞。
 - 主线程中存在耗时的计算。
 - 主线程中错误的操作，比如Thread.wait或者Thread.sleep等。
-- 应用在5秒内未响应用户的输入事件（如按键或者触摸）
-- BroadcastReceiver未在10秒内完成相关的处理。
-- Service在特定的时间内无法处理完成 20秒
 
 修正方法：
 
@@ -1372,136 +1468,3 @@ public static Singleton getInstance(){
 
 ## 你怎么看待在android上面应用MVC框架，是否有必要抽象独立于activity的C？
 
-# Volley 源码解析
-
-参考：
-
-[http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90](http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90)
-
-### Volley的磁盘缓存
-
-在面试的时候，聊到 Volley 请求到网络的数据缓存。当时说到是 Volley 会将每次通过网络请求到的数据，采用`FileOutputStream`，写入到本地的文件中。 
-那么问题来了：这个缓存文件，是声明在一个SD卡文件夹中的(也可以是getCacheFile())。如果不停的请求网络数据，这个缓存文件夹将无限制的增大，最终达到SD卡容量时，会发生无法写入的异常(因为存储空间满了)。
-这个问题的确以前没有想到，当时也没说出怎么回事。回家了赶紧又看了看代码才知道，原来 Volley 考虑过这个问题(汗!想想也是)
-翻看代码`DiskBasedCache#pruneIfNeeded()`
-
-```
-private void pruneIfNeeded(int neededSpace) {
-    if ((mTotalSize + neededSpace) < mMaxCacheSizeInBytes) {
-        return;
-    }
-    
-    long before = mTotalSize;
-    int prunedFiles = 0;
-    long startTime = SystemClock.elapsedRealtime();
-
-    Iterator<Map.Entry<String, CacheHeader>> iterator = mEntries.entrySet().iterator();
-    while (iterator.hasNext()) {
-        Map.Entry<String, CacheHeader> entry = iterator.next();
-        CacheHeader e = entry.getValue();
-        boolean deleted = getFileForKey(e.key).delete();
-        if (deleted) {
-            mTotalSize -= e.size;
-        } else {
-	//print log
-        }
-        iterator.remove();
-        prunedFiles++;
-        if ((mTotalSize + neededSpace) < mMaxCacheSizeInBytes * HYSTERESIS_FACTOR) {
-            break;
-        }
-    }
-}
-```
-
-其中`mMaxCacheSizeInBytes`是构造方法传入的一个缓存文件夹的大小，如果不传默认是5M的大小。
-通过这个方法可以发现，每当被调用时会传入一个`neededSpace`，也就是需要申请的磁盘大小(即要新缓存的那个文件所需大小)。首先会判断如果这个`neededSpace`申请成功以后是否会超过最大可用容量，如果会超过，则通过遍历本地已经保存的缓存文件的header(header中包含了缓存文件的缓存有效期、占用大小等信息)去删除文件，直到可用容量不大于声明的缓存文件夹的大小。 
-其中`HYSTERESIS_FACTOR`是一个值为0.9的常量，应该是为了防止误差的存在吧(我猜的)。
-
-### Volley缓存命中率的优化
-
-如果让你去设计Volley的缓存功能，你要如何增大它的命中率。
-可惜了，如果上面的缓存功能是昨天看的，今天的面试这个问题就能说出来了。
-还是上面的代码，在缓存内容可能超过缓存文件夹的大小时，删除的逻辑是直接遍历header删除。这个时候删除的文件有可能是我们上一次请求时刚刚保存下来的，屁股都还没坐稳呢，现在立即删掉，有点舍不得啊。
-如果遍历的时候，判断一下，首先删除超过缓存有效期的(过期缓存)，其次按照LRU算法，删除最久未使用的，岂不是更合适？
-
-### Volley缓存文件名的计算
-
-这个是我一直没弄懂的问题。
-如下代码：
-
-```
-private String getFilenameForKey(String key) {
-    int firstHalfLength = key.length() / 2;
-    String localFilename = String.valueOf(key.substring(0, firstHalfLength).hashCode());
-    localFilename += String.valueOf(key.substring(firstHalfLength).hashCode());
-    return localFilename;
-}
-```
-
-为什么会要把一个key分成两部分，分别求hashCode，最后又做拼接。
-这个问题之前在stackoverflow上问过 [#链接](http://stackoverflow.com/questions/34984302/why-volley-diskbasedcache-splicing-without-direct-access-to-the-cache-file-name/34987423#34987423) 
-原谅我，别人的回答我最初并没有看懂。直到最近被问到，如果让你设计一个HashMap，如何避免value被覆盖，我才想到原因。
-先来看一下 `String#hashCode()` 的实现：
-
-```
-@Override public int hashCode() {
-    int hash = hashCode;
-    if (hash == 0) {
-        if (count == 0) {
-            return 0;
-        }
-        final int end = count + offset;
-        final char[] chars = value;
-        for (int i = offset; i < end; ++i) {
-            hash = 31*hash + chars[i];
-        }
-        hashCode = hash;
-    }
-    return hash;
-}
-```
-
-从上面的实现可以看到，String的hashcode是根据字符数组中每个位置的字母的int值再加上上次hash值乘以31，这种算法求出来的，至于为什么是31，我也不清楚。
-但是可以肯定一点，hashcode并不是唯一的。不信你运行下面这两个输出：
-
-```
-System.out.print("======" + "vFrKiaNHfF7t[9::E[XsX?L7xPp3DZSteIZvdRT8CX:w6d;v<_KZnhsM_^dqoppe".hashCode());
-System.out.print("======" + "hI4pFxGOfS@suhVUd:mTo_begImJPB@Fl[6WJ?ai=RXfIx^=Aix@9M;;?Vdj_Zsi".hashCode());
-```
-
-这两个字符串是根据hashcode的算法逆向出来的，他们的hashcode都是12345。逆向算法请见[这里](http://my.oschina.net/backtract/blog/169310)
-再回到我们的问题，为什么会要把一个key分成两部分。现在可以肯定的答出，目的是为了尽可能避免hashcode重复造成的文件名重复(求两次hash两次都与另一个url重复的概率总要比一次重复的概率小吧)。
-顺带再提一点，就像上面说的，概率小并不代表不存在。但是Java计算hashcode的速度是很快的，应该是在效率和安全性上取舍的结果吧。
-
-# Glide源码解析
-
-参考：
-
-[http://www.lightskystreet.com/2015/10/12/glide_source_analysis/](http://www.lightskystreet.com/2015/10/12/glide_source_analysis/)
-
-[http://frodoking.github.io/2015/10/10/android-glide/](http://frodoking.github.io/2015/10/10/android-glide/)
-
-# Retrofit源码分析
-
-参考：
-
-[Retrofit源码分析](http://www.jianshu.com/p/c1a3a881a144)
-
-# EventBus源码分析
-
-参考：
-
-[EventBus源码分析](http://p.codekk.com/blogs/detail/54cfab086c4761e5001b2538)
-
-#  greenDAO
-
-参考：
-
-[Android ORM 框架之 greenDAO 使用心得](http://www.open-open.com/lib/view/open1438065400878.html)
-
-# RxJava
-
-参考：
-
-[RxJava](http://gank.io/post/560e15be2dca930e00da1083)
