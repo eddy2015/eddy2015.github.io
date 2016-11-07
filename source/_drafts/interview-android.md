@@ -749,7 +749,7 @@ WindowManager->window->Decorview->子 view。最后我说当所有的 view 都�
 
 ## Touch 事件传递流程
 
-**Android事件的基础知识：*
+**Android事件的基础知识：**
 
 所有的Touch事件都封装到MotionEvent里面
 
@@ -757,7 +757,7 @@ WindowManager->window->Decorview->子 view。最后我说当所有的 view 都�
 
 事件类型分为ACTION_DOWN, ACTION_UP, ACTION_MOVE, ACTION_POINTER_DOWN, ACTION_POINTER_UP, ACTION_CANCEL等，每个事件都是以ACTION_DOWN开始ACTION_UP结束
 
-**Android事件传递流程：*
+**Android事件传递流程：**
 
 事件都是从Activity.dispatchTouchEvent()开始传递
 
@@ -777,10 +777,10 @@ OnTouchListener优先于onTouchEvent()对事件进行消费
 
 ## onInterceptTouchEvent()和onTouchEvent()的区别？
 
-onInterceptTouchEvent()用于拦截触摸事件
+onInterceptTouchEvent()用于拦截触摸事件。
 
 
-onTouchEvent()用于处理触摸事件
+onTouchEvent()用于处理触摸事件。
 
 ## view的事件冲突处理
 
@@ -788,26 +788,24 @@ onTouchEvent()用于处理触摸事件
 
 ## View 绘制流程
 
-参考：http://www.codekk.com/blogs/detail/54cfab086c4761e5001b253f
-
-当 Activity 接收到焦点的时候，它会被请求绘制布局,该请求由 Android framework 处理.绘制是从根节点开始，对布局树进行 measure 和 draw。整个 View 树的绘图流程在ViewRoot.java类的performTraversals()函数展开，该函数所做 的工作可简单概况为是否需要重新计算视图大小(measure)、是否需要重新安置视图的位置(layout)、以及是否需要重绘(draw)，流程图如下：
+当 Activity 接收到焦点的时候，它会被请求绘制布局，该请求由 Android framework 处理。绘制是从根节点开始，对布局树进行 measure 和 draw。整个 View 树的绘图流程在ViewRoot.java类的 performTraversals() 函数展开，该函数所做 的工作可简单概况为是否需要重新计算视图大小(measure)、是否需要重新安置视图的位置(layout)、以及是否需要重绘(draw)，流程图如下：
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/view_mechanism_flow.png)
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/view_draw_method_chain.png)
 
+View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次经过measure（），layout（）和draw（）三个过程才最终将一个View绘制出来。
+
+参考：
+
+[公共技术点之 View 绘制流程](http://www.codekk.com/blogs/detail/54cfab086c4761e5001b253f)
+
 ## requertlayout onlayout onDraw drawChild 的区别和联系
 
-- requestLayout()方法 ：会导致调用measure()过程 和 layout()过程 。 将会根据标志位判断是否需要ondraw
-- onLayout()方法(如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局)
-- 调用onDraw()方法绘制视图本身   (每个View都需要重载该方法，ViewGroup不需要实现该方法)
-- drawChild()去重新回调每个子视图的draw()方法
-
-## invalidata() 和 postInvalidata() 的区别及使用
-
-- invalidata() 必须在 UI 线程中调用，所以一般都是配合 Handler 使用。
-- postInvalidata() 可以在其他线程直接调用。
-
+- requestLayout()方法 ：会导致调用measure()过程 和 layout()过程 。 将会根据标志位判断是否需要ondraw。
+- onLayout()方法：如果该View是ViewGroup对象，需要实现该方法，对每个子视图进行布局。
+- 调用onDraw()方法绘制视图本身，每个View都需要重载该方法，ViewGroup不需要实现该方法。
+- drawChild()去重新回调每个子视图的draw()方法。
 
 
 ## View 刷新机制
@@ -823,19 +821,16 @@ mView.draw()开始绘制，draw()方法实现的功能如下：
 3. 调用onDraw()方法绘制视图本身   (每个View都需要重载该方法，ViewGroup不需要实现该方法)
 4. 调用dispatchDraw ()方法绘制子视图(如果该View类型不为ViewGroup，即不包含子视图，不需要重载该方法)值得说明的是，ViewGroup类已经为我们重写了dispatchDraw ()的功能实现，应用程序一般不需要重写该方法，但可以重载父类函数实现具体的功能。
 
-参考：http://blog.csdn.net/chenzhiqin20/article/details/8628952
+参考：
 
-View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次经过measure（），layout（）和draw（）三个过程才最终将一个View绘制出来。
+http://blog.csdn.net/chenzhiqin20/article/details/8628952
+
+## invalidata() 和 postInvalidata() 的区别及使用
+
+- invalidata() 必须在 UI 线程中调用，所以一般都是配合 Handler 使用。
+- postInvalidata() 可以在其他线程直接调用。
 
 ## Android 绘图机制原理
-
-
-
-## postInvalidate与invalidate有什么区别？
-
-- 都用于刷新界面
-- postInvalidate()用在子线程
-- invalidate()用在主线程
 
 ## notifyDataSetChanged和notifyDataSetInvalidated的区别
 
@@ -848,7 +843,7 @@ SurfaceView中采用了双缓存技术，在单独的线程中更新界面。而
 
 ## RemoteView在哪些功能中使用
 
-APPwidget和Notification中
+widget和Notification中
 
 # 自定义 View
 
@@ -896,21 +891,27 @@ APPwidget和Notification中
 
 ## LinearLayout和RelativeLayout性能对比
 
-1.RelativeLayout会让子View调用2次onMeasure，LinearLayout 在有weight时，也会调用子View2次onMeasure
-2.RelativeLayout的子View如果高度和RelativeLayout不同，则会引发效率问题，当子View很复杂时，这个问题会更加严重。如果可以，尽量使用padding代替margin。
-3.在不影响层级深度的情况下,使用LinearLayout和FrameLayout而不是RelativeLayout。
+1. RelativeLayout会让子View调用2次onMeasure，LinearLayout 在有weight时，也会调用子View2次onMeasure
+2. RelativeLayout的子View如果高度和RelativeLayout不同，则会引发效率问题，当子View很复杂时，这个问题会更加严重。如果可以，尽量使用padding代替margin。
+3. 在不影响层级深度的情况下,使用LinearLayout和FrameLayout而不是RelativeLayout。
 
 最后再思考一下文章开头那个矛盾的问题，为什么Google给开发者默认新建了个RelativeLayout，而自己却在DecorView中用了个LinearLayout。因为DecorView的层级深度是已知而且固定的，上面一个标题栏，下面一个内容栏。采用RelativeLayout并不会降低层级深度，所以此时在根节点上用LinearLayout是效率最高的。而之所以给开发者默认新建了个RelativeLayout是希望开发者能采用尽量少的View层级来表达布局以实现性能最优，因为复杂的View嵌套对性能的影响会更大一些。
 
-参考 ：http://www.jianshu.com/p/8a7d059da746
+参考 ：
+
+http://www.jianshu.com/p/8a7d059da746
 
 ## Android中px,sp,dip,dp的区别与联系
 
-## Asset目录与res目录的区别。
+## asset目录与res目录的区别。
 
-res 目录下面有很多文件，例如 drawable,mipmap,raw 等。res 下面除了 raw 
-文件不会被压缩外，其余文件都会被压缩。同时 res目录下的文件可以通过R 文件访问。Asset 也是用来存储资源，但是 asset 
-文件内容只能通过路径或者 AssetManager 读取。 [官方文档](https://developer.android.com/studio/projects/index.html)
+res 目录下面有很多文件，例如 drawable,mipmap,raw 等。res 下面除了 raw 文件不会被压缩外，其余文件都会被压缩。同时 res目录下的文件可以通过R 文件访问。
+
+Asset 也是用来存储资源，但是 asset 文件内容只能通过路径或者 AssetManager 读取。
+
+参考：
+
+ [官方文档](https://developer.android.com/studio/projects/index.html)
 
 ## Android屏幕适配
 
@@ -1024,13 +1025,15 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
    public boolean inJustDecodeBounds;
 ```
 
-## ARGB_8888占用内存大小
-
-首先说说本题的答案，是4byte，即ARGB各占用8个比特来描述。详细解答看这里[你的 Bitmap 究竟占多大内存](http://bugly.qq.com/bbs/forum.php?mod=viewthread&tid=498) 
+## ARGB_8888格式图片占用内存大小
 
 1 byte = 8 bit
 
 8+8+8+8 = 32    32/8 = 4 byte 一个像素就占4byte
+
+参考：
+
+[你的 Bitmap 究竟占多大内存](http://bugly.qq.com/bbs/forum.php?mod=viewthread&tid=498) 
 
 ## 如何判断本地缓存的时候数据需要从网络端获取
 
@@ -1051,7 +1054,9 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 ## ListView 的实现原理
 
-参考：http://blog.csdn.net/guolin_blog/article/details/44996879
+参考：
+
+http://blog.csdn.net/guolin_blog/article/details/44996879
 
 ## ViewHolder
 
@@ -1059,23 +1064,25 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 ## ListView 下拉刷新、上拉加载更多实现原理
 
-参考：http://blog.csdn.net/zhangphil/article/details/47036177
+参考：
+
+http://blog.csdn.net/zhangphil/article/details/47036177
 
 https://github.com/Aspsine/IRecyclerView — 一个开源库
 
 ## RecyclerView和ListView的异同
 
-参考：http://www.tuicool.com/articles/aeeaQ3J
-
-http://blog.csdn.net/sanjay_f/article/details/48830311
-
 - RecyclerView 自带 ViewHolder；而 ListView 则需要自定义。
 - RecyclerView 支持水平和垂直滚动；而 ListView 只支持垂直滚动。
 - RecyclerView 提供默认的列表项动画实现，例如：添加、删除和移动列表项动画。
-- ListView通过AdapterView.OnItemClickListener接口来探测点击事件。而RecyclerView则通过
-  RecyclerView.OnItemTouchListener接口来探测触摸事件。它虽然增加了实现的难度，但是却给予开发人员拦截触摸事件更多的
-  控制权限。
+- ListView通过AdapterView.OnItemClickListener接口来探测点击事件。而RecyclerView则通过RecyclerView.OnItemTouchListener接口来探测触摸事件。它虽然增加了实现的难度，但是却给予开发人员拦截触摸事件更多的控制权限。
 - ListView可以设置选择模式，并添加MultiChoiceModeListener；而 RecyclerView 没有该功能。
+
+参考：
+
+http://www.tuicool.com/articles/aeeaQ3J
+
+http://blog.csdn.net/sanjay_f/article/details/48830311
 
 ## 能否讲讲你用过的adapter？
 
@@ -1266,7 +1273,9 @@ System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,f
 
 ## 怎么对 Android APP 进行性能优化
 
-参考：[Android 性能优化](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
+参考：
+
+[Android 性能优化](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
 ## Android APP 内存分析工具有哪些
 
@@ -1404,7 +1413,7 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 - 在使用了高版本 API 的方法前面加一个 @TargetApi(API版本号)。
 - 在代码中判断版本号来控制不同的版本使用不同的代码。
 
-```
+```java
 @TargetApi(11) 
 public void text() { 
 if(Build.VERSION.SDK_INT >= 11){ 
@@ -1416,18 +1425,21 @@ if(Build.VERSION.SDK_INT >= 11){
 
 ## 实现一个单例
 
-```
+```java
 public class Singleton{
-private volatile static Singleton mSingleton;
-private Singleton(){
-}
-public static Singleton getInstance(){
-  if(mSingleton == null){\\A
-    synchronized(Singleton.class){\\C
-     if(mSingleton == null)
-      mSingleton = new Singleton();\\B
+  private volatile static Singleton mSingleton;
+  
+  private Singleton(){
+  }
+  
+  public static Singleton getInstance(){
+    if(mSingleton == null){\\A
+      synchronized(Singleton.class){\\C
+        if(mSingleton == null)
+        	mSingleton = new Singleton();\\B
       }
     }
+    
     return mSingleton;
   }
 }
@@ -1455,16 +1467,20 @@ public static Singleton getInstance(){
 
 ## Android设计模式
 
-参考：http://blog.csdn.net/bboyfeiyu/article/details/44563871
+参考：
+
+http://blog.csdn.net/bboyfeiyu/article/details/44563871
 
 # 架构设计
 
 
 ## mvc mvp mvvm
 
-参考：http://www.tianmaying.com/tutorial/AndroidMVC
-
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-19/71303594.jpg)
+
+参考：
+
+http://www.tianmaying.com/tutorial/AndroidMVC
 
 ## 你怎么看待在android上面应用MVC框架，是否有必要抽象独立于activity的C？
 
