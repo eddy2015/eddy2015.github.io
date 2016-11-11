@@ -739,41 +739,41 @@ Content Provider,因为只是把自己的数据库暴露出去，其他程序都
 
 # 触摸事件
 
-## View 事件分发机制
+## View 的触摸事件分发机制
 
-WindowManager->window->Decorview->子 view。最后我说当所有的 view 都不处理事件，事件会最后会传递到 Activity 的 onTouchEvent 上
+**基础知识**
 
-参考：
+1. 所有Touch事件都被封装成了MotionEvent对象，包括Touch的位置、时间、历史记录以及第几个手指(多指触摸)等。
+2.  事件类型分为ACTION_DOWN, ACTION_UP, ACTION_MOVE, ACTION_POINTER_DOWN, ACTION_POINTER_UP, ACTION_CANCEL，每个事件都是以ACTION_DOWN开始ACTION_UP结束。
+3. 对事件的处理包括三类，分别为传递——dispatchTouchEvent()函数、拦截——onInterceptTouchEvent()函数、消费——onTouchEvent()函数和OnTouchListener
 
-[事件分发机制](http://www.jianshu.com/p/e99b5e8bd67b)
+**传递流程**
 
-## Touch 事件传递流程
+1.  事件从Activity.dispatchTouchEvent()开始传递，只要没有被停止或拦截，从最上层的View(ViewGroup)开始一直往下(子View)传递。子View可以通过onTouchEvent()对事件进行处理。
+2. 事件由父View(ViewGroup)传递给子View，ViewGroup可以通过onInterceptTouchEvent()对事件做拦截，停止其往下传递。
+3. 如果事件从上往下传递过程中一直没有被停止，且最底层子View没有消费事件，事件会反向往上传递，这时父View(ViewGroup)可以进行消费，如果还是没有被消费的话，最后会到Activity的onTouchEvent()函数。
+4.  如果View没有对ACTION_DOWN进行消费，之后的其他事件不会传递过来。
+5. OnTouchListener优先于onTouchEvent()对事件进行消费。
 
-**Android事件的基础知识：**
+上面的消费即表示相应函数返回值为true。
 
-所有的Touch事件都封装到MotionEvent里面
-
-事件处理包括三种情况，分别为：传递—-dispatchTouchEvent()函数、拦截——onInterceptTouchEvent()函数、消费—-onTouchEvent()函数和OnTouchListener
-
-事件类型分为ACTION_DOWN, ACTION_UP, ACTION_MOVE, ACTION_POINTER_DOWN, ACTION_POINTER_UP, ACTION_CANCEL等，每个事件都是以ACTION_DOWN开始ACTION_UP结束
-
-**Android事件传递流程：**
-
-事件都是从Activity.dispatchTouchEvent()开始传递
-
-事件由父View传递给子View，ViewGroup可以通过onInterceptTouchEvent()方法对事件拦截，停止其向子view传递
-
-如果事件从上往下传递过程中一直没有被停止，且最底层子View没有消费事件，事件会反向往上传递，这时父View(ViewGroup)可以进行消费，如果还是没有被消费的话，最后会到Activity的onTouchEvent()函数。
-
-如果View没有对ACTION_DOWN进行消费，之后的其他事件不会传递过来，也就是说ACTION_DOWN必须返回true，之后的事件才会传递进来
-
-OnTouchListener优先于onTouchEvent()对事件进行消费
+- View不处理事件流程图：
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-14/18162238.jpg)
 
-![](http://o9sn2y8lr.bkt.clouddn.com/16-10-14/44984087.jpg)
+- View处理事件流程图：`View.onTouchEvent()` 返回true
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/16-10-14/48753378.jpg)
+
+- 拦截事件流程图：`ViewGroup.onInterceptTouchEvent()` 对MOVE、UP事件进行拦截
+
+![](http://o9sn2y8lr.bkt.clouddn.com/16-10-14/44984087.jpg)
+
+参考：
+
+[Android Touch事件传递机制](http://www.trinea.cn/android/touch-event-delivery-mechanism/)
+
+[事件分发机制](http://www.jianshu.com/p/e99b5e8bd67b)
 
 ## onInterceptTouchEvent()和onTouchEvent()的区别？
 
@@ -794,11 +794,17 @@ onTouchEvent()用于处理触摸事件。
 
 ![](http://o9sn2y8lr.bkt.clouddn.com/view_draw_method_chain.png)
 
-View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次经过measure（），layout（）和draw（）三个过程才最终将一个View绘制出来。
+View的绘制流程是从ViewRoot的`performTraversals()`方法开始，依次经过`measure()`，`layout()`和`draw()`三个过程才最终将一个View绘制出来。
 
 参考：
 
 [公共技术点之 View 绘制流程](http://www.codekk.com/blogs/detail/54cfab086c4761e5001b253f)
+
+## Android 绘图机制原理
+
+参考：
+
+[Android中的绘制机制](http://blog.csdn.net/leehong2005/article/details/7307456)
 
 ## requertlayout onlayout onDraw drawChild 的区别和联系
 
@@ -810,27 +816,22 @@ View的绘制流程是从ViewRoot的performTraversals（）方法开始，依次
 
 ## View 刷新机制
 
-由 ViewRoot对象的performTraversals()方法调用draw()方法发起绘制该View树，值得注意的是每次发起绘图时，并不会重新绘制每个View树的视图，而只会重新绘制那些“需要重绘”的视图，View类内部变量包含了一个标志位DRAWN，当该视图需要重绘时，就会为该View添加该标志位。
+在Android的布局体系中，父View负责刷新、布局显示子View；而当子View需要刷新时，则是通知父View来完成。
 
-调用流程 ：
+子View调用invalidate时，首先找到自己父View(View的成员变量mParent记录自己的父View)，然后将AttachInfo中保存的信息告诉父View刷新自己。
 
-mView.draw()开始绘制，draw()方法实现的功能如下：
+在invalidate中，调用父View的invalidateChild，这是一个从第向上回溯的过程，每一层的父View都将自己的显示区域与传入的刷新Rect做交集。
 
-1. 绘制该View的背景
-2. 为显示渐变框做一些准备操作(见5，大多数情况下，不需要改渐变框)          
-3. 调用onDraw()方法绘制视图本身   (每个View都需要重载该方法，ViewGroup不需要实现该方法)
-4. 调用dispatchDraw ()方法绘制子视图(如果该View类型不为ViewGroup，即不包含子视图，不需要重载该方法)值得说明的是，ViewGroup类已经为我们重写了dispatchDraw ()的功能实现，应用程序一般不需要重写该方法，但可以重载父类函数实现具体的功能。
+这个向上回溯的过程直到ViewRoot那里结束，由ViewRoot对这个最终的刷新区域做刷新。
 
 参考：
 
-http://blog.csdn.net/chenzhiqin20/article/details/8628952
+[Android View刷新机制](http://blog.csdn.net/chenzhiqin20/article/details/8628952)
 
 ## invalidata() 和 postInvalidata() 的区别及使用
 
 - invalidata() 必须在 UI 线程中调用，所以一般都是配合 Handler 使用。
 - postInvalidata() 可以在其他线程直接调用。
-
-## Android 绘图机制原理
 
 ## notifyDataSetChanged和notifyDataSetInvalidated的区别
 
@@ -843,13 +844,15 @@ SurfaceView中采用了双缓存技术，在单独的线程中更新界面。而
 
 ## RemoteView在哪些功能中使用
 
-widget和Notification中
+在 AppWidget（桌面小插件）和 Notification（通知栏）中使用。
+
+参考：
+
+[Android widget 之RemoteView](http://www.cnblogs.com/playing/archive/2011/04/22/2024775.html)
 
 # 自定义 View
 
 ## 自定义View相关方法
-
-## 如何自定义控件
 
 1. 自定义属性的声明和获取
    - 分析需要的自定义属性
@@ -863,7 +866,15 @@ widget和Notification中
 6. onInterceptTouchEvent(ViewGroup)
 7. 状态的恢复与保存
 
+## 如何自定义控件
+
 ## 有哪些实现自定义控件的方法？
+
+自定义控件的实现有三种方式，分别是：组合控件、自绘控件和继承控件。
+
+参考：
+
+[Android自定义View的三种实现方式](http://www.cnblogs.com/jiayongji/p/5560806.html)
 
 ## 优化自定义 View
 
@@ -903,6 +914,12 @@ http://www.jianshu.com/p/8a7d059da746
 
 ## Android中px,sp,dip,dp的区别与联系
 
+px: pixel，即像素，1px代表屏幕上的一个物理的像素点。但px单位不被建议使用。因为同样像素大小的图片在不同手机显示的实际大小可能不同。要用到px的情况是需要画1像素表格线或阴影线的时候，如果用其他单位画则会显得模糊。
+
+dip (dp): device independent pixel。dp (dip)是最常用也是最难理解的尺寸单位。与像素密度密切相关。Android系统定义了四种像素密度：低（120dpi）、中（160dpi）、高（240dpi）和超高（320dpi），它们对应的dp到px的系数分别为0.75、1、1.5和2，这个系数乘以dp长度就是像素数。例如界面上有一个长度为“80dp”的图片，那么它在240dpi的手机上实际显示为80x1.5=120px，在320dpi的手机上实际显示为80x2=160px。如果你拿这两部手机放在一起对比，会发现这个图片的物理尺寸“差不多”，这就是使用dp作为单位的效果。
+
+sp: Scale-independent Pixel，即与缩放无关的抽象像素。sp和dp很类似但唯一的区别是，Android系统允许用户自定义文字尺寸大小（小、正常、大、超大等等），当文字尺寸是“正常”时，1sp=1dp=0.00625英寸，而当文字尺寸是“大”或“超大”时，1sp>1dp=0.00625英寸。类似我们在windows里调整字体尺寸以后的效果——窗口大小不变，只有文字大小改变。
+
 ## asset目录与res目录的区别。
 
 res 目录下面有很多文件，例如 drawable,mipmap,raw 等。res 下面除了 raw 文件不会被压缩外，其余文件都会被压缩。同时 res目录下的文件可以通过R 文件访问。
@@ -931,9 +948,9 @@ Tween Animation(补间动画)
 
 Tween Animation(补间动画)的一些缺点：
 
-1.Tween Animation（补间动画）只是针对于View，超脱了View就无法操作了，这句话的意思是：假如我们需要对一个Button，ImageView，LinearLayout或者是其他的继承自View的各种组件进行动画的操作时，Tween Animation是可以帮我们完成我们需要完成的功能的，但是如果我们需要用到对一个非View的对象进行动画操作的话，那么补间动画就没办法实现了。举个例子：比如我们有一个自定义的View，在这个View中有一个Point对象用于管理坐标，然后在onDraw()方法中的坐标就是根据该Pointde坐标值进行绘制的。也就是说，如果我们可以对Point对象进行动画操作，那么整个自定义的View，那么整个自继承View的当前类就都有了动画，但是我们的目的是不想让View有动画，只是对动画中的Point坐标产生动画，这样补间动画就不能满足了。
-2.Tween Animation动画有四种动画操作（移动，缩放，旋转，淡入淡出），但是我们现在有个需求就是将当前View的背景色进行改变呢？抱歉Tween Animation是不能帮助我们实现的。
-3.Tween Animation动画只是改变View的显示效果而已，但是不会真正的去改变View的属性，举个例子：我们现在屏幕的顶部有一个小球，然后通过补间动画让他移动到右下角，然后我们给这个小球添加了点击事件，希望位置移动到右下角的时候点击小球能的放大小球。但是点击事件是绝对不会触发的，原因是补间动画只是将该小球绘制到了屏幕的右下角，实际这个小球还是停在屏幕的顶部，所以你在右下角点击是没有任何反应的。
+1. Tween Animation（补间动画）只是针对于View，超脱了View就无法操作了，这句话的意思是：假如我们需要对一个Button，ImageView，LinearLayout或者是其他的继承自View的各种组件进行动画的操作时，Tween Animation是可以帮我们完成我们需要完成的功能的，但是如果我们需要用到对一个非View的对象进行动画操作的话，那么补间动画就没办法实现了。举个例子：比如我们有一个自定义的View，在这个View中有一个Point对象用于管理坐标，然后在onDraw()方法中的坐标就是根据该Pointde坐标值进行绘制的。也就是说，如果我们可以对Point对象进行动画操作，那么整个自定义的View，那么整个自继承View的当前类就都有了动画，但是我们的目的是不想让View有动画，只是对动画中的Point坐标产生动画，这样补间动画就不能满足了。
+2. Tween Animation动画有四种动画操作（移动，缩放，旋转，淡入淡出），但是我们现在有个需求就是将当前View的背景色进行改变呢？抱歉Tween Animation是不能帮助我们实现的。
+3. Tween Animation动画只是改变View的显示效果而已，但是不会真正的去改变View的属性，举个例子：我们现在屏幕的顶部有一个小球，然后通过补间动画让他移动到右下角，然后我们给这个小球添加了点击事件，希望位置移动到右下角的时候点击小球能的放大小球。但是点击事件是绝对不会触发的，原因是补间动画只是将该小球绘制到了屏幕的右下角，实际这个小球还是停在屏幕的顶部，所以你在右下角点击是没有任何反应的。
 
 Property Animatior(属性动画)
 
@@ -945,25 +962,37 @@ Animation 框架定义了透明度，旋转，缩放和位移几种常见的动�
 
 每次绘制视图时，View 所在的 ViewGroup 中的 drawChild 函数获取该View 的 Animation 的 Transformation 值，然后调用canvas.concat(transformToApply.getMatrix())，通过矩阵运算完成动画帧，如果动画没有完成，继续调用 invalidate() 函数，启动下次绘制来驱动动画，动画过程中的帧之间间隙时间是绘制函数所消耗的时间，可能会导致动画消耗比较多的CPU资源，最重要的是，动画改变的只是显示，并不能相应事件。
 
-参考：http://www.tuicool.com/articles/bYfYVv
+参考：
+
+[Android动画原理分析](http://www.cnblogs.com/kross/p/4087780.html)
 
 # 图片缓存
 
 ## 图片三级缓存实现？自己设计一个图片加载框架
 
-参考：http://www.jianshu.com/p/2cd59a79ed4a
+参考：
 
-参考：http://www.csdn.net/article/2015-10-21/2825984 — Android 图片缓存开源库
+[Android中图片的三级缓存](http://www.jianshu.com/p/2cd59a79ed4a)
+
+[开源选型之Android三大图片缓存原理、特性对比](http://www.csdn.net/article/2015-10-21/2825984) 
 
 ## 对 LruCache 的理解
 
+参考：
+
+[内存缓存LruCache实现原理](http://www.cnblogs.com/liuling/p/2015-9-24-1.html)
+
+[Android提供的LruCache类简介](http://blog.csdn.net/linghu_java/article/details/8574102)
+
+## DiskLruCache
+
+参考：
+
+[Android DiskLruCache完全解析，硬盘缓存的最佳方案](http://blog.csdn.net/sinyu890807/article/details/28863651)
+
 ## 缓存算法
 
-## 图片缓存
-
-大多数情况下，内存中使用LRUCache是最合适的。如果用HashMap来实现，不是不可以，但完全没必要嘛！需要注意在合适的时候释放缓存。至于具体怎么释放，我没考虑过，但用软引用的问题在于，你很难控制缓存的大小，也就是说，只有等到你的内存快要撑爆，你的图片缓存才会被回收。是不是感觉傻傻的？（经网友指出，LRUCache 的内部实现就是用的 HashMap。由于我没有读过 LRUCache 的源码不知道这点，在评论里被大家骂惨了。）
-
-## **Bitmap**的分析与使用
+## Bitmap的分析与使用
 
 参考：
 
@@ -977,34 +1006,34 @@ Animation 框架定义了透明度，旋转，缩放和位移几种常见的动�
 
 ```java
 public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
-​		//上面的省略了
-​        option.inJustDecodeBounds = true;
-​        BitmapFactory.decodeByteArray(bytes, 0, bytes.length, option);
-​        int actualWidth = option.outWidth;
-​        int actualHeight = option.outHeight;
+		//上面的省略了
+        option.inJustDecodeBounds = true;
+        BitmapFactory.decodeByteArray(bytes, 0, bytes.length, option);
+        int actualWidth = option.outWidth;
+        int actualHeight = option.outHeight;
 
-​        // 计算出图片应该显示的宽高
-​        int desiredWidth = getResizedDimension(maxWidth, maxHeight, actualWidth, actualHeight);
-​        int desiredHeight = getResizedDimension(maxHeight, maxWidth, actualHeight, actualWidth);
+        // 计算出图片应该显示的宽高
+        int desiredWidth = getResizedDimension(maxWidth, maxHeight, actualWidth, actualHeight);
+        int desiredHeight = getResizedDimension(maxHeight, maxWidth, actualHeight, actualWidth);
 
-​        option.inJustDecodeBounds = false;
-​        option.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
-​                desiredWidth, desiredHeight);
-​        Bitmap tempBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, option);
+        option.inJustDecodeBounds = false;
+        option.inSampleSize = findBestSampleSize(actualWidth, actualHeight,
+                desiredWidth, desiredHeight);
+        Bitmap tempBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length, option);
 
-​        // 做缩放
-​        if (tempBitmap != null
-​                && (tempBitmap.getWidth() > desiredWidth || tempBitmap
-​                .getHeight() > desiredHeight)) {
-​            bitmap = Bitmap.createScaledBitmap(tempBitmap, desiredWidth,
-​                    desiredHeight, true);
-​            tempBitmap.recycle();
-​        } else {
-​            bitmap = tempBitmap;
-​        }
-​    }
+        // 做缩放
+        if (tempBitmap != null
+                && (tempBitmap.getWidth() > desiredWidth || tempBitmap
+                .getHeight() > desiredHeight)) {
+            bitmap = Bitmap.createScaledBitmap(tempBitmap, desiredWidth,
+                    desiredHeight, true);
+            tempBitmap.recycle();
+        } else {
+            bitmap = tempBitmap;
+        }
+    }
 
-​    return bitmap;
+    return bitmap;
 }
 ```
 
@@ -1021,8 +1050,8 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 * If set to true, the decoder will return null (no bitmap), but
 * the out... fields will still be set, allowing the caller to query
 * the bitmap without having to allocate the memory for its pixels.
-    */
-   public boolean inJustDecodeBounds;
+*/
+public boolean inJustDecodeBounds;
 ```
 
 ## ARGB_8888格式图片占用内存大小
@@ -1056,26 +1085,30 @@ public static Bitmap create(byte[] bytes, int maxWidth, int maxHeight) {
 
 参考：
 
-http://blog.csdn.net/guolin_blog/article/details/44996879
+[Android ListView工作原理完全解析，带你从源码的角度彻底理解](http://blog.csdn.net/sinyu890807/article/details/44996879)
 
 ## ViewHolder
 
+参考：
 
+[ListView中convertView和ViewHolder的工作原理](http://blog.csdn.net/bill_ming/article/details/8817172)
 
 ## ListView 下拉刷新、上拉加载更多实现原理
 
 参考：
 
-http://blog.csdn.net/zhangphil/article/details/47036177
+[下拉刷新及滚动到底部加载更多的Listview使用](http://www.trinea.cn/android/dropdown-to-refresh-and-bottom-load-more-listview/) — 优先使用该开源实现
 
-https://github.com/Aspsine/IRecyclerView — 一个开源库
+[Android ListView下拉/上拉刷新：设计原理与实现](http://blog.csdn.net/zhangphil/article/details/47036177)
+
+[一个支持下拉上拉的开源库](https://github.com/Aspsine/IRecyclerView)
 
 ## RecyclerView和ListView的异同
 
 - RecyclerView 自带 ViewHolder；而 ListView 则需要自定义。
 - RecyclerView 支持水平和垂直滚动；而 ListView 只支持垂直滚动。
 - RecyclerView 提供默认的列表项动画实现，例如：添加、删除和移动列表项动画。
-- ListView通过AdapterView.OnItemClickListener接口来探测点击事件。而RecyclerView则通过RecyclerView.OnItemTouchListener接口来探测触摸事件。它虽然增加了实现的难度，但是却给予开发人员拦截触摸事件更多的控制权限。
+- ListView通过AdapterView.OnItemClickListener接口来监听点击事件。而RecyclerView则通过RecyclerView.OnItemTouchListener接口来监听触摸事件。它虽然增加了实现的难度，但是却给予开发人员拦截触摸事件更多的控制权限。
 - ListView可以设置选择模式，并添加MultiChoiceModeListener；而 RecyclerView 没有该功能。
 
 参考：
@@ -1090,15 +1123,19 @@ http://blog.csdn.net/sanjay_f/article/details/48830311
 
 ## SparseArray 和 HashMap 的区别
 
-# 内存相关
-
-## 什么情况会导致内存泄漏
+| 类           | cpu                                      | 内存                              | 适用场景                                     |
+| ----------- | ---------------------------------------- | ------------------------------- | ---------------------------------------- |
+| HashMap     | 增、删、查找速度较快                               | 双倍扩容、不做空间整理，内存使用效率低             | 数据量较大或内存空间相对宽裕                           |
+| ArrayMap    | 增、删、查速度较慢                                | size大于8扩容时，只增大当前数组大小的一半，做空间收缩整理 | 数据量小于1000时，速度相对差别不大，可替代HashMap           |
+| SparseArray | 增、查速度较慢，由于延迟删除机制，删速度比ArrayMap快，比HashMap慢 | 矩阵压缩，大大减少了存储空间，节约内存             | 避免了key的自动装箱，空间压缩等机制，使得其在key是Integer、Long，且数据量较小场景下性能最优 |
 
 参考：
 
-[Android内存泄漏总结](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md)
+[HashMap、ArrayMap、SparseArray分析比较](http://blog.csdn.net/chen_lifeng/article/details/52057427)
 
-[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
+# 内存相关
+
+## 什么情况会导致内存泄漏
 
 内存泄漏，简单点说就是该被释放的对象没有释放，一直被某个或某些实例所持有却不再被使用导致 GC 不能回收。
 
@@ -1114,60 +1151,19 @@ http://blog.csdn.net/sanjay_f/article/details/48830311
 8. 匿名内部类和非静态内部类持有外部类的引用造成的内存泄漏。
 9. Handler 造成的内存泄漏。
 
-- 资源对象没关闭造成的内存泄漏。
+参考：
 
-描述： 资源性对象比如(Cursor，File文件等)往往都用了一些缓冲，我们在不使用的时候，应该及时关闭它们，以便它们的缓冲及时回收内存。它们的缓冲不仅存在于 java虚拟机内，还存在于java虚拟机外。如果我们仅仅是把它的引用设置为null,而不关闭它们，往往会造成内存泄漏。因为有些资源性对象，比如 SQLiteCursor(在析构函数finalize(),如果我们没有关闭它，它自己会调close()关闭)，如果我们没有关闭它，系统在回收它时也会关闭它，但是这样的效率太低了。因此对于资源性对象在不使用的时候，应该调用它的close()函数，将其关闭掉，然后才置为null.在我们的程序退出时一定要确保我们的资源性对象已经关闭。 程序中经常会进行查询数据库的操作，但是经常会有使用完毕Cursor后没有关闭的情况。如果我们的查询结果集比较小，对内存的消耗不容易被发现，只有在常时间大量操作的情况下才会复现内存问题，这样就会给以后的测试和问题排查带来困难和风险。
+[Android内存泄漏总结](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md)
 
-2. 构造Adapter时，没有使用缓存的convertView
-
-描述： 以构造ListView的BaseAdapter为例，在BaseAdapter中提供了方法： public View getView(int position, ViewconvertView, ViewGroup parent) 来向ListView提供每一个item所需要的view对象。初始时ListView会从BaseAdapter中根据当前的屏幕布局实例化一定数量的 view对象，同时ListView会将这些view对象缓存起来。当向上滚动ListView时，原先位于最上面的list item的view对象会被回收，然后被用来构造新出现的最下面的list item。这个构造过程就是由getView()方法完成的，getView()的第二个形参View convertView就是被缓存起来的list item的view对象(初始化时缓存中没有view对象则convertView是null)。由此可以看出，如果我们不去使用 convertView，而是每次都在getView()中重新实例化一个View对象的话，即浪费资源也浪费时间，也会使得内存占用越来越大。 ListView回收list item的view对象的过程可以查看: android.widget.AbsListView.java --> voidaddScrapView(View scrap) 方法。 示例代码：
-
-```
-public View getView(int position, ViewconvertView, ViewGroup parent) {
-View view = new Xxx(...); 
-... ... 
-return view; 
-} 
-```
-
-修正示例代码：
-
-```
-public View getView(int position, ViewconvertView, ViewGroup parent) {
-View view = null; 
-if (convertView != null) { 
-view = convertView; 
-populate(view, getItem(position)); 
-... 
-} else { 
-view = new Xxx(...); 
-... 
-} 
-return view; 
-} 
-```
-
-1. Bitmap对象不在使用时调用recycle()释放内存
-
-描述： 有时我们会手工的操作Bitmap对象，如果一个Bitmap对象比较占内存，当它不在被使用的时候，可以调用Bitmap.recycle()方法回收此对象的像素所占用的内存，但这不是必须的，视情况而定。
-
-1. 试着使用关于application的context来替代和activity相关的context
-
-这是一个很隐晦的内存泄漏的情况。有一种简单的方法来避免context相关的内存泄漏。最显著地一个是避免context逃出他自己的范围之外。使用Application context。这个context的生存周期和你的应用的生存周期一样长，而不是取决于activity的生存周期。如果你想保持一个长期生存的对象，并且这个对象需要一个context,记得使用application对象。你可以通过调用 Context.getApplicationContext() or Activity.getApplication()来获得。更多的请看这篇文章如何避免 Android内存泄漏。
-
-1. 注册没取消造成的内存泄漏
-
-一些Android程序可能引用我们的Anroid程序的对象(比如注册机制)。即使我们的Android程序已经结束了，但是别的引用程序仍然还有对我们的Android程序的某个对象的引用，泄漏的内存依然不能被垃圾回收。调用registerReceiver后未调用unregisterReceiver。 比如:假设我们希望在锁屏界面(LockScreen)中，监听系统中的电话服务以获取一些信息(如信号强度等)，则可以在LockScreen中定义一个 PhoneStateListener的对象，同时将它注册到TelephonyManager服务中。对于LockScreen对象，当需要显示锁屏界面的时候就会创建一个LockScreen对象，而当锁屏界面消失的时候LockScreen对象就会被释放掉。 但是如果在释放 LockScreen对象的时候忘记取消我们之前注册的PhoneStateListener对象，则会导致LockScreen无法被垃圾回收。如果不断的使锁屏界面显示和消失，则最终会由于大量的LockScreen对象没有办法被回收而引起OutOfMemory,使得system_process 进程挂掉。 虽然有些系统程序，它本身好像是可以自动取消注册的(当然不及时)，但是我们还是应该在我们的程序中明确的取消注册，程序结束时应该把所有的注册都取消掉。
-
-1. 集合中对象没清理造成的内存泄漏
-
-我们通常把一些对象的引用加入到了集合中，当我们不需要该对象时，并没有把它的引用从集合中清理掉，这样这个集合就会越来越大。如果这个集合是static的话，那情况就更严重了。
+[Handler内存泄漏分析及解决](http://www.jianshu.com/p/cb9b4b71a820)
 
 ## 什么情况会导致 OOM
 
-参考：http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0920/3478.html
+1. 加载对象过大，例如：图片、文件等。
+2. 相应资源过多，没有来不及释放。
+3. 内存泄漏。
 
-如果避免 OOM：
+## 如何避免 OOM：
 
 - 减少对象的内存占用
 
@@ -1195,9 +1191,13 @@ return view;
 7. 注意 Cursor 对象是否及时关闭。
 
 
+参考：
+
+[Android内存优化之OOM](http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2015/0920/3478.html)
+
 ## Android 为每个应用程序分配的内存大小是多少
 
-android 程序内存一般限制在16M，也有的是24M
+Android 程序内存一般限制在16M，也有的是24M
 
 ## 查看每个应用程序最高可用内存
 
@@ -1229,7 +1229,7 @@ System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,f
 
 ## 预防内存泄漏！擅用WeakReference!
 
-所有从类外部传来的对象（特别对于Context,View,Fragmet,Activity对象），如果要将其放进类内部的容器对象或者静态类中引用，请一直用WeakReference包装！比如在TabLayout的源码中，容器对象或者静态类中引用，请一直用WeakReference包装！比如在TabLayout的源码中，在TabLayoutOnPageChangeListener中，就为TabLayout做了WeakReference wrap。
+所有从类外部传来的对象（特别对于Context,View,Fragmet,Activity对象），如果要将其放进类内部的容器对象或者静态类中引用，请一直用WeakReference包装！比如在TabLayout的源码中，容器对象或者静态类中引用，用WeakReference包装。在TabLayoutOnPageChangeListener中，就为TabLayout做了WeakReference wrap。
 
 # ANR
 
@@ -1263,7 +1263,8 @@ System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,f
   1. UI线程尽量只做跟UI相关的工作
   2. 耗时的操作(比如数据库操作，I/O，连接网络或者别的有可能阻塞UI线程的操作)把它放在单独的线程处理
   3. 尽量用Handler来处理UIThread和别的Thread之间的交互
-  4. 解决的逻辑。使用 AsyncTask 时：在doInBackground()方法中执行耗时操作；在onPostExecuted()更新UI 。使用Handler实现异步任务时：在子线程中处理耗时操作，处理完成之后，通过handler.sendMessage()传递处理结果；在handler的handleMessage()方法中更新 UI 或者使用handler.post()方法将消息放到Looper中。
+  4. 使用 AsyncTask 时：在doInBackground()方法中执行耗时操作；在onPostExecuted()更新UI 。
+  5. 使用Handler实现异步任务时：在子线程中处理耗时操作，处理完成之后，通过handler.sendMessage()传递处理结果；在handler的handleMessage()方法中更新 UI 或者使用handler.post()方法将消息放到Looper中。
 
 ## 什么是ANR，如何避免ANR。
 
@@ -1273,33 +1274,67 @@ System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,f
 
 ## 怎么对 Android APP 进行性能优化
 
+**合理管理内存**
+
+1. 节制的使用Service
+2. 当界面不可见时释放内存
+3. 当内存紧张时释放内存
+4. 避免在Bitmap上浪费内存
+5. 使用优化过的数据集合
+6. 知晓内存的开支情况
+7. 谨慎使用抽象编程
+8. 尽量避免使用依赖注入框架
+9. 使用多个进程
+10. 避免内存泄漏
+
+**高性能编码优化**
+
+1. 避免创建不必要的对象
+2. 静态优于抽象
+3. 对常量使用static final修饰符
+4. 使用增强型for循环语法
+5. 多使用系统封装好的API
+6. 避免在内部调用Getters/Setters方法
+
+**布局优化技巧**
+
+1. 重用布局文件
+2. 仅在需要时才加载布局
+
 参考：
 
 [Android 性能优化](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
+[性能优化系列总篇](http://www.trinea.cn/android/performance/)
+
 ## Android APP 内存分析工具有哪些
+
+Square 开源库 LeakCanary
+
+参考：
+
+[利用 LeakCanary 来检查 Android 内存泄漏](http://www.jianshu.com/p/0049e9b344b0)
 
 ## 屏幕适配经验
 
+参考：
 
+[Android屏幕适配全攻略](http://www.cocoachina.com/android/20151030/13971.html)
 
 # 数据存储
 
 ## 数据存储，数据持久化的方式有哪些
 
-- SharedPreference
-- 数据库SQLite
-- 文件
-- ContentProvider内容提供者，如联系人
 - 网络
-- SQLite：SQLite是一个轻量级的数据库，支持基本的SQL语法，是常被采用的一种数据存储方式。Android为此数据库提供了一个名为SQLiteDatabase的类，封装了一些操作数据库的api
 - SharedPreference： 除SQLite数据库外，另一种常用的数据存储方式，其本质就是一个xml文件，常用于存储较简单的参数设置。
+- SQLite：SQLite是一个轻量级的数据库，支持基本的SQL语法，是常被采用的一种数据存储方式。Android为此数据库提供了一个名为SQLiteDatabase的类，封装了一些操作数据库的api
 - File： 即常说的文件（I/O）存储方法，常用语存储大数量的数据，但是缺点是更新数据将是一件困难的事情。
 - ContentProvider: Android系统中能实现所有应用程序共享的一种数据存储方式，由于数据通常在各应用间的是互相私密的，所以此存储方式较少使用，但是其又是必不可少的一种存储方式。例如音频，视频，图片和通讯录，一般都可以采用此种方式进行存储。每个Content Provider都会对外提供一个公共的URI（包装成Uri对象），如果应用程序有数据需要共享时，就需要使用Content Provider为这些数据定义一个URI，然后其他的应用程序就通过Content Provider传入这个URI来对数据进行操作。
 
 ## 文件和数据库哪个效率高
 
-
+1. 数据量非常少，可以使用文件。
+2. 如果涉及到查询等操作，并且数据量大，则应该使用数据库。
 
 ## SharedPreference 实现
 
@@ -1307,29 +1342,69 @@ System.out.println("---> maxMemory="+maxMemory+"M,totalMemory="+totalMemory+"M,f
 
 把数据库存放到 res/raw 目录下，然后在第一次安装启动应用的时间把该数据库拷贝到应用的内部存储空间即 android 系统下的 /data/data/packagename/ 目录下。
 
-## 谈谈SQLite
+## 谈谈 SQLite
 
-## 已经发布了软件版本A，使用sqlite存储用户数据其DB version为1包含某张表T1，则其后需要发布版本B，在版本A的T1表结构的基础上又增加了2个新的字段，则能否在保存用户已经安装的版本A的数据的前提下，更新安装新版本B？
+## SQLite 数据库升级更新如何保留原来数据
+
+在使用数据库之前，基本上会自定义一个类继承自SQLiteOpenHelper。该类的其中一个构造函数形式是这样的（另一个多出来一个DatabaseErrorHandler）：   
+
+```java
+public SQLiteOpenHelper(Context context, String name, 
+  CursorFactory factory, int version) {
+  this(context, name, factory, version, null);
+}
+```
+
+这个构造函数里面的version参数即是我们设定的版本号。第一次使用数据库时传递的这个版本将被系统记录，并调用SQLiteOpenHelper#onCreate()方法进行建表操作。后续传入的版本如果比这个高，则会调用SQLiteOpenHelper#onUpgrade()方法进行升级。 
+
+**跨越版本的升级**  
+
+处理好了单个版本的升级，还有一个更加棘手的问题：如果应用程序发布了多个版本，以致出现了三个以上数据库版本， 如何确保所有的用户升级应用后数据库都能用呢？有两种方式：  
+
+1. 确定 **相邻版本** 的差别，从版本1开始依次迭代更新，先执行v1到v2，再v2到v3……   
+2. 为 **每个版本** 确定与现在数据库的差别，为每个case撰写专门的升级代码。   
+
+方式一的优点是每次更新数据库的时候只需要在onUpgrade方法的末尾加一段从上个版本升级到新版本的代码，易于理解和维护，缺点是当版本变多之后，多次迭代升级可能需要花费不少时间，增加用户等待；  
+
+方式二的优点则是可以保证每个版本的用户都可以在消耗最少的时间升级到最新的数据库而无需做无用的数据多次转存，缺点是强迫开发者记忆所有版本数据库的完整结构，且每次升级时onUpgrade方法都必须全部重写。  
+
+以上简单分析了两种方案的优缺点，它们可以说在花费时间上是刚好相反的，至于如何取舍，可能还需要结合具体情况分析。  
+
+参考：
+
+[Android 数据库升级完整解决方案](http://www.tuicool.com/articles/2iyU3aQ)
+
+## SQLite 性能优化
+
+参考：
+
+[性能优化第一篇——数据库性能优化](http://www.trinea.cn/android/database-performance/)
 
 # 网络通讯
 
 ## 描述一次网络请求的流程
 
-1. 建立TCP连接 在HTTP工作开始之前，Web浏览器首先要通过网络与Web服务器建立连接，该连接是通过TCP来完成的，该协议与IP协议共同构建Internet，即著名的TCP/IP协议族，因此Internet又被称作是TCP/IP网络。HTTP是比TCP更高层次的应用层协议，根据规则，只有低层协议建立之后才能进行更高层协议的连接，因此，首先要建立TCP连接，一般TCP连接的端口号是80。
-2. Web浏览器向Web服务器发送请求命令 一旦建立了TCP连接，Web浏览器就会向Web服务器发送请求命令。例如：GET/sample/hello.jsp HTTP/1.1。
-3. Web浏览器发送请求头信息 浏览器发送其请求命令之后，还要以头信息的形式向Web服务器发送一些别的信息，之后浏览器发送了一空白行来通知服务器，它已经结束了该头信息的发送。
-4. Web服务器应答 客户机向服务器发出请求后，服务器会客户机回送应答， HTTP/1.1 200 OK ，应答的第一部分是协议的版本号和应答状态码。
-5. Web服务器发送应答头信息 正如客户端会随同请求发送关于自身的信息一样，服务器也会随同应答向用户发送关于它自己的数据及被请求的文档。
-6. Web服务器向浏览器发送数据 Web服务器向浏览器发送头信息后，它会发送一个空白行来表示头信息的发送到此为结束，接着，它就以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
-7. Web服务器关闭TCP连接 一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码：Connection:keep-alive
+1. 建立TCP连接。在HTTP工作开始之前，Web浏览器首先要通过网络与Web服务器建立连接，该连接是通过TCP来完成的，该协议与IP协议共同构建Internet，即著名的TCP/IP协议族，因此Internet又被称作是TCP/IP网络。HTTP是比TCP更高层次的应用层协议，根据规则，只有低层协议建立之后才能进行更高层协议的连接，因此，首先要建立TCP连接，一般TCP连接的端口号是80。
+2. Web浏览器向服务器发送请求命令。一旦建立了TCP连接，Web浏览器就会向Web服务器发送请求命令。例如：GET/sample/hello.jsp HTTP/1.1。
+3. Web浏览器发送请求头信息。浏览器发送其请求命令之后，还要以头信息的形式向Web服务器发送一些别的信息，之后浏览器发送了一空白行来通知服务器，它已经结束了该头信息的发送。
+4. Web服务器应答。 客户机向服务器发出请求后，服务器会客户机回送应答， HTTP/1.1 200 OK ，应答的第一部分是协议的版本号和应答状态码。
+5. Web服务器发送应答头信息。 正如客户端会随同请求发送关于自身的信息一样，服务器也会随同应答向用户发送关于它自己的数据及被请求的文档。
+6. Web服务器向浏览器发送数据。Web服务器向浏览器发送头信息后，它会发送一个空白行来表示头信息的发送到此为结束，接着，它就以Content-Type应答头信息所描述的格式发送用户所请求的实际数据。
+7. Web服务器关闭TCP连接。一般情况下，一旦Web服务器向浏览器发送了请求数据，它就要关闭TCP连接，然后如果浏览器或者服务器在其头信息加入了这行代码：Connection:keep-alive
 
 TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继续通过相同的连接发送请求。保持连接节省了为每个请求建立新连接所需的时间，还节约了网络带宽。
 
 ## 推送心跳包是TCP包还是UDP包或者HTTP包
 
-其实聊起这个问题是因为最近看到 [@睡不着起不来的万宵](http://weibo.com/u/2951317192) 同学写的一篇文章《[Android推送技术研究](http://www.jianshu.com/p/584707554ed7)》结果就产生了这个没回答出来的问题(妈蛋，自己给自己挖坑 - -)
-最后看了这篇文章(好像是转的，没找到原地址)[android 心跳的分析](http://blog.csdn.net/wangliang198901/article/details/16542567)
-原来心跳包的实现是调用了`socket.sendUrgentData(0xFF)`这句代码实现的，所以，当然是TCP包。
+TCP
+
+参考：
+
+[Android推送技术研究](http://www.jianshu.com/p/584707554ed7)
+
+[android 心跳的分析](http://blog.csdn.net/wangliang198901/article/details/16542567)
+
+[Android微信智能心跳方案](http://mp.weixin.qq.com/s?__biz=MzAwNDY1ODY2OQ==&mid=207243549&idx=1&sn=4ebe4beb8123f1b5ab58810ac8bc5994&scene=4#wechat_redirect)
 
 ## Android 代码中实现 WAP 方式联网
 
@@ -1340,7 +1415,37 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 ## 断点续传
 
+首先说多线程，我们要多线程下载一个大文件，就有开启多个线程，多个connection，既然是一个文件分开几个线程来下载，那肯定就是一个线程下载一个部分，不能重复。那么我们这么确定一个线程下载一部分呢，就需要我们在请求的header里面设置。
+
+```java
+conn.setRequestProperty("Range", "bytes="+startPos+"-"+endPos);  
+```
+
+这里startPos是指从数据端的哪里开始，endPos是指数据端的结束.根据这样我们就知道，只要多个线程，按顺序指定好开始跟结束，就可以不冲突的下载了。那么我们写文件的时候又该怎么写呢。
+
+```java
+byte[] buffer = new byte[1024];  
+int offset = 0;  
+print("Thread "+this.threadId+" starts to download from position "+startPos);  
+RandomAccessFile threadFile = new RandomAccessFile(this.saveFile,"rwd");  
+threadFile.seek(startPos);  
+// ...  
+threadFile.write(buffer,0,offset);  
+```
+
+这样就可以保证数据的完整性，也不会重复写入了。
+
+那么我们接着说断点续传，断点续传其实也很简单，原理就是使用数据库保存上次每个线程下载的位置和长度。例如我开了两个线程T1，T2来下载一个文件，设文件总大小为1024M，那么就是每个线程下载512M。可是我的下载中断了，那么我下次启动线程的时候（继续下载），是不是应该要知道，我原来下载了多少呢。所以是这样的，我没下载一点，就更新数据库的数据，例如T1，下载了100M,就要实时更新数据库，记录下100M，并且记录下这个线程开始下载位置(startPos)，还有线程负责的长度(512M)。那么我继续下载的时候，就可以像服务器请求startPos+1000M开始的数据了，然后在文件里面也是seek（startPos+1000M）的位置继续下载，就可以实现断点续传了。
+
+参考：
+
+[android多线程断点续传原理解析](http://blog.csdn.net/crazy__chen/article/details/41947577)
+
 ## 网络的优化
+
+参考：
+
+[移动端网络优化](http://www.trinea.cn/android/mobile-performance-optimization/)
 
 ## HttpClient
 
@@ -1348,11 +1453,31 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 ## 插件化，动态加载
 
+参考：
 
+[Android 插件化 动态升级](http://www.trinea.cn/android/android-plugin/)
 
 ## Android中ClassLoader和java中有什么关系和区别？
 
+插件化的原理实际是 Java ClassLoader 的原理，看其他资料前请先看：[Java ClassLoader基础](http://www.trinea.cn/android/java-loader-common-class/)
 
+Android 也有自己的 ClassLoader，分为 dalvik.system.DexClassLoader 和 dalvik.system.PathClassLoader，区别在于 PathClassLoader 不能直接从 zip 包中得到 dex，因此只支持直接操作 dex 文件或者已经安装过的 apk（因为安装过的 apk 在 cache 中存在缓存的 dex 文件）。而 DexClassLoader 可以加载外部的 apk、jar 或 dex文件，并且会在指定的 outpath 路径存放其 dex 文件。  
+
+参考：
+
+[Android 插件化 动态升级](http://www.trinea.cn/android/android-plugin/)
+
+# 注解
+
+## 什么是注解
+
+参考：
+
+[Java Annotation 及几个常用开源项目注解原理简析](http://www.trinea.cn/android/java-annotation-android-open-source-analysis/)
+
+## 使用注解是否会影响性能
+
+有些注解是用反射实现的所以影响性能。这类注解库对程序的性能影响并没有想象中的那么夸张，而且类似dagger2这类编译时注解的框架是没有性能影响的。
 
 # JNI
 
@@ -1370,7 +1495,14 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 ## 65k限制 做内部库设计时，最重要的考虑是jar的成本，方法数、体积。
 
+Android 傻瓜式分包插件
 
+GitHub：https://github.com/TangXiaoLv/Android-Easy-MultiDex
+这是一个可自定义哪些类放在 MainDex 中的插件。ReadMe 中详细介绍了在使用 MultiDex 时，为了解决 MainDex 方法数超标的问题，碰到的一个个坑及如何解决，并列出了详细的参考资料，一篇很不错的文章。
+
+参考：
+
+[U8SDK——支持自动拆分成多个dex文件(MultiDex支持)](http://www.uustory.com/?p=2061)
 
 # 其他
 
@@ -1382,11 +1514,19 @@ TCP连接在发送后将仍然保持打开状态，于是，浏览器可以继�
 
 在Applicatio中定义一个static常量，赋值为－1，在欢迎界面改为0，如果被强杀，application重新初始化，在父类Activity判断该常量的值。
 
+参考：
+
+http://blog.csdn.net/Small_Lee/article/details/51886746
+
 ## 应用被强杀如何解决
 
 如果在每一个Activity的onCreate里判断是否被强杀，冗余了，封装到Activity的父类中，如果被强杀，跳转回主界面，如果没有被强杀，执行Activity的初始化操作，给主界面传递intent参数，主界面会调用onNewIntent方法，在onNewIntent跳转到欢迎页面，重新来一遍流程。
 
 ## 简述静默安装的原理，如何在无需root权限的情况下实现静默安装？
+
+参考：
+
+[Android常用代码之APK root权限静默安装](http://www.trinea.cn/android/android-silent-install/)
 
 ## Serializable和Parcelable的区别
 
