@@ -14,7 +14,7 @@ timezone:
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://eddy.wiki
 root: /
-permalink: :year-:i_month-:i_day-:title.html
+permalink: :title.html
 permalink_defaults:
 
 # Directory
