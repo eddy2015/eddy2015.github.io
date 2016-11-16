@@ -11,17 +11,15 @@ tags:
 
 #  面向对象
 
-**Java面向对象的三个特征与含义。**
+## Java面向对象的三个特征与含义
 
-继承：继承是从已有类得到继承信息创建新类的过程。提供继承信息的类被称为父类（超类、基类）；得到继承信息的类被称为子类（派生类）。继承让变化中的软件系统有了一定的延续性，同时继承也是封装程序中可变因素的重要手段。
-
-封装：通常认为封装是把数据和操作数据的方法绑定起来，对数据的访问只能通过已定义的接口。面向对象的本质就是将现实世界描绘成一系列完全自治、封闭的对象。我们在类中编写的方法就是对实现细节的一种封装；我们编写一个类就是对数据和数据操作的封装。可以说，封装就是隐藏一切可隐藏的东西，只向外界提供最简单的编程接口（可以想想普通洗衣机和全自动洗衣机的差别，明显全自动洗衣机封装更好因此操作起来更简单；我们现在使用的智能手机也是封装得足够好的，因为几个按键就搞定了所有的事情）。
-
-多态：多态性是指允许不同子类型的对象对同一消息作出不同的响应。简单的说就是用同样的对象引用调用同样的方法但是做了不同的事情。多态性分为编译时的多态性和运行时的多态性。如果将对象的方法视为对象向外界提供的服务，那么运行时的多态性可以解释为：当A系统访问B系统提供的服务时，B系统有多种提供服务的方式，但一切对A系统来说都是透明的（就像电动剃须刀是A系统，它的供电系统是B系统，B系统可以使用电池供电或者用交流电，甚至还有可能是太阳能，A系统只会通过B类对象调用供电的方法，但并不知道供电系统的底层实现是什么，究竟通过何种方式获得了动力）。方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。运行时的多态是面向对象最精髓的东西，要实现多态需要做两件事：1. 方法重写（子类继承父类并重写父类中已有的或抽象的方法）；2. 对象造型（用父类型引用引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。
+- 继承：继承是从已有类得到继承信息创建新类的过程。提供继承信息的类被称为父类（超类、基类）；得到继承信息的类被称为子类（派生类）。继承让变化中的软件系统有了一定的延续性，同时继承也是封装程序中可变因素的重要手段。
+- 封装：通常认为封装是把数据和操作数据的方法绑定起来，对数据的访问只能通过已定义的接口。面向对象的本质就是将现实世界描绘成一系列完全自治、封闭的对象。我们在类中编写的方法就是对实现细节的一种封装；我们编写一个类就是对数据和数据操作的封装。可以说，封装就是隐藏一切可隐藏的东西，只向外界提供最简单的编程接口（可以想想普通洗衣机和全自动洗衣机的差别，明显全自动洗衣机封装更好因此操作起来更简单；我们现在使用的智能手机也是封装得足够好的，因为几个按键就搞定了所有的事情）。
+- 多态：多态性是指允许不同子类型的对象对同一消息作出不同的响应。简单的说就是用同样的对象引用调用同样的方法但是做了不同的事情。多态性分为编译时的多态性和运行时的多态性。如果将对象的方法视为对象向外界提供的服务，那么运行时的多态性可以解释为：当A系统访问B系统提供的服务时，B系统有多种提供服务的方式，但一切对A系统来说都是透明的（就像电动剃须刀是A系统，它的供电系统是B系统，B系统可以使用电池供电或者用交流电，甚至还有可能是太阳能，A系统只会通过B类对象调用供电的方法，但并不知道供电系统的底层实现是什么，究竟通过何种方式获得了动力）。方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。运行时的多态是面向对象最精髓的东西，要实现多态需要做两件事：1. 方法重写（子类继承父类并重写父类中已有的或抽象的方法）；2. 对象造型（用父类型引用引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。
 
 ## Java 多态
 
-什么是多态
+**什么是多态**
 
 面向对象的三大特性：封装、继承、多态。从一定角度来看，封装和继承几乎都是为多态而准备的。这是我们最后一个概念，也是最重要的知识点。
 
@@ -53,9 +51,9 @@ Java中多态的实现方式：接口实现，继承父类进行方法重写，�
 
 但&作为逻辑运算符时，即使第一个操作符是false，那么它仍然会计算第二个操作符。&&短路与，如果第一个操作符为false，那么它不会再去计算第二个操作符。
 
-## 用最有效率的方法算出2乘以8等於几?
+## 用最有效率的方法算出2乘以8等于几?
 
-2<< 3
+2 << 3
 
 
 ## Java 中的 SoftReference 是什么
@@ -66,34 +64,34 @@ SoftReference的特点是它的一个实例保存对一个Java对象的软引用
 
 用Map集合缓存软引用的Bitmap对象
 
-```
-Map<String, SoftReference<Bitmap>> imageCache = new new HashMap<String, SoftReference<Bitmap>>();
+```java
+Map<String, SoftReference<Bitmap>> imageCache = new HashMap<String, SoftReference<Bitmap>>();
 //强引用的Bitmap对象
 Bitmap bitmap = BitmapFactory.decodeStream(InputStream);
 //软引用的Bitmap对象
 SoftReference<Bitmap> bitmapcache = new SoftReference<Bitmap>(bitmap);
 //添加该对象到Map中使其缓存
 imageCache.put("1",softRbitmap);
-..
-.
+
+// ...
+
 //从缓存中取软引用的Bitmap对象
 SoftReference<Bitmap> bitmapcache_ = imageCache.get("1");
 //取出Bitmap对象，如果由于内存不足Bitmap被回收，将取得空
-
 Bitmap bitmap_ = bitmapcache_.get();
 ```
 
 ## 谈一下对 Java 中的 abstract 的理解
 
-Abstract(抽象)可以修饰类、方法 
+abstract(抽象)可以修饰类、方法 
 
-如果将一个类设置为abstract，则此类必须被继承使用。此类不可生成对象，必须被继承使用。 Abstract可以将子类的共性最大限度的抽取出来，放在父类中，以提高程序的简洁性。 Abstract虽然不能生成对象，但是可以声明，作为编译时类型，但不能作为运行时类型。 Final和abstract永远不会同时出现。  
+如果将一个类设置为abstract，则此类必须被继承使用。此类不可生成对象，必须被继承使用。 abstract可以将子类的共性最大限度的抽取出来，放在父类中，以提高程序的简洁性。 abstract虽然不能生成对象，但是可以声明，作为编译时类型，但不能作为运行时类型。 final和abstract永远不会同时出现。  
 
 当abstract用于修饰方法时，此时该方法为抽象方法，此时方法不需要实现，实现留给子类覆盖，子类覆盖该方法之后方法才能够生效。  
 
 注意比较： 
-private void print(){}；此语句表示方法的空实现。 
-Abstract void print()； 此语句表示方法的抽象，无实现。  
+`private void print(){};`此语句表示方法的空实现。 
+`abstract void print();` 此语句表示方法的抽象，无实现。  
 
 如果一个类中有一个抽象方法，那么这个类一定为一个抽象类。 反之，如果一个类为抽象类，那么其中可能有非抽象的方法。  
 
@@ -101,207 +99,125 @@ Abstract void print()； 此语句表示方法的抽象，无实现。
 
 所以子类的方法必须覆盖父类的抽象方法。方法才能够起作用。 
 
-只有将理论被熟练运用在实际的程序设计的过程中之后，才能说理论被完全掌握！ 
+为了实现多态，那么父类必须有定义。而父类并不实现，留给子类去实现。此时可将父类定义成abstract类。如果没有定义抽象的父类，那么编译会出现错误。
 
-为了实现多态，那么父类必须有定义。而父类并不实现，留给子类去实现。此时可将父类定义成abstract类。如果没有定义抽象的父类，那么编译会出现错误。  
-Abstract和static不能放在一起，否则便会出现错误。（这是因为static不可被覆盖，而abstract为了生效必须被覆盖。）
+abstract 和 static 不能放在一起，否则便会出现错误。（这是因为static不可被覆盖，而abstract为了生效必须被覆盖。）
+
+abstract 和 final 不能放在一起，否则便会出现错误。
+
+## Overload 和 Override 
+
+方法的重写(Overriding)和重载(Overloading)是Java多态性的不同表现。重写(Overriding)是父类与子类之间多态性的一种表现，而重载(Overloading)是一个类中多态性的一种表现。
+
+如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写 (Overriding)。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被"屏蔽"了。
+
+如果在一个类中定义了多个同名的方法，它们或有不同的参数个数或有不同的参数类型或有不同的参数次序，则称为方法的重载(Overloading)。不能通过访问权限、返回类型、抛出的异常进行重载.
+
+**方法重载规则**
+
+- 被重载的方法必须改变参数列表(参数个数或类型或顺序不一样)；
+- 被重载的方法可以改变返回类型；
+- 被重载的方法可以改变访问修饰符；
+- 被重载的方法可以声明新的或更广的检查异常；
+- 方法能够在同一个类中或者在一个子类中被重载。
+- 无法以返回值类型作为重载函数的区分标准。
+
+**方法的重写规则**
+
+- 参数列表必须完全与被重写方法的相同；
+- 返回类型必须完全与被重写方法的返回类型相同；
+- 访问权限不能比父类中被重写的方法的访问权限更低。例如：如果父类的一个方法被声明为public，那么在子类中重写该方法就不能声明为protected。
+- 父类的成员方法只能被它的子类重写。
+- 声明为final的方法不能被重写。
+- 声明为static的方法不能被重写，但是能够被再次声明。
+- 子类和父类在同一个包中，那么子类可以重写父类所有方法，除了声明为private和final的方法。
+- 子类和父类不在同一个包中，那么子类只能够重写父类的声明为public和protected的非final方法。
+- 重写的方法能够抛出任何非强制异常，无论被重写的方法是否抛出异常。但是，重写的方法不能抛出新的强制性异常，或者比被重写方法声明的更广泛的强制性异常，反之则可以。
+- 构造方法不能被重写。
+- 如果不能继承一个方法，则不能重写这个方法。
 
 ## Overload 和 Override 的区别
 
-方法的重写(Overriding)和重载(Overloading)是Java多态性的不同表现。重写(Overriding)是父类与子类之间多态性的一种表现，而重载(Overloading)是一个类中多态性的一种表现。
-如果在子类中定义某方法与其父类有相同的名称和参数，我们说该方法被重写 (Overriding)。子类的对象使用这个方法时，将调用子类中的定义，对它而言，父类中的定义如同被"屏蔽"了。
-如果在一个类中定义了多个同名的方法，它们或有不同的参数个数或有不同的参数类型或有不同的参数次序，则称为方法的重载(Overloading)。不能通过访问权限、返回类型、抛出的异常进行重载.
+| 区别点  | 方法重载 | 方法重写                    |
+| ---- | ---- | ----------------------- |
+| 参数列表 | 必须修改 | 一定不能修改                  |
+| 返回类型 | 可以修改 | 一定不能修改                  |
+| 异常   | 可以修改 | 可以减少或删除，一定不能抛出新的或者更广的异常 |
+| 访问   | 可以修改 | 一定不能做更严格的限制（可以降低限制）     |
 
-1.方法重载（overload）
-概念：简单的说:方法重载就是类的同一种功能的多种实现方式，到底采用哪种方式，取决于调用者给出的参数。 
-注意事项：
-（1）方法名相同
-（2）方法的参数类型、个数、顺序不至少有一项不同
-（3）方法返回类型可以不同
-（4）方法的修饰符可以不同
-如果只是返回类型不一样，不能够构成重载
-如果只是控制访问修饰符号不一样，也是不能构成重载的
-Overloaded的方法是可以改变返回值的类型。
-2.方法覆盖（override）
-概念：简单的说：方法覆盖就是子类有一个方法，和父类的某个方法的名称、返回类型、参数一样，那么我们就说子类的这个方法覆盖了父类的那个方法。
-注意事项：方法覆盖有很多条件，总的讲有两点一定要注意：
-（1）子类的方法的返回类型，参数，方法名称，要和父类方法的返回类型，参数，方法名称完全一样，否则编译出错。
-（2） 子类方法不能缩小父类方法的访问权限（反过来是可以的） 
-
-## private和default有什么区别
+## 访问控制符 public、protected、default、private区别
 
 Java访问控制符的含义和使用情况:
 
-| 修饰符 | 类内部 | 包 | 子类 | 包外部 |
-|  |  |  |  |  |
-| public | √ | √ | √ | √ |
-| protected | √ | √ | √ | × |
-| default | √ | √ | × | × |
-| private | √ | × | × | × |
+| 修饰符       | 当前类  | 同一个包 | 子类   | 其他包  |
+| --------- | ---- | ---- | ---- | ---- |
+| public    | √    | √    | √    | √    |
+| protected | √    | √    | √    | ×    |
+| default   | √    | √    | ×    | ×    |
+| private   | √    | ×    | ×    | ×    |
 
 区别：
 
-（1）public：可以被所有其他类所访问。
+1. public：可以被所有其他类所访问。
+2. protected：自身，子类及同一个包中类可以访问。
+3. default（默认）：同一包中的类可以访问，声明时没有加修饰符，认为是friendly。
+4. private：只能被自己访问和修改。
 
-（2）private：只能被自己访问和修改。
-
-（3）protected：自身，子类及同一个包中类可以访问。
-
-（4）default（默认）：同一包中的类可以访问，声明时没有加修饰符，认为是friendly。
+接口：接口里的变量都隐式声明为public static final,而接口里的方法默认情况下访问权限为public。
 
 ## Java 里的常量是怎么定义的
 
-方法一采用接口(Interface)的中变量默认为static final的特性。
-
-方法二采用了Java 5.0中引入的Enum类型。
-
-方法三采用了在普通类中使用static final修饰变量的方法。
-
-方法四类似方法三，但是通过函数来获取常量。
-
-```
-    /** 
-     * Method One 
-     */  
-    interface ConstantInterface {  
-        String SUNDAY = "SUNDAY";  
-        String MONDAY = "MONDAY";  
-        String TUESDAY = "TUESDAY";  
-        String WEDNESDAY = "WEDNESDAY";  
-        String THURSDAY = "THURSDAY";  
-        String FRIDAY = "FRIDAY";  
-        String SATURDAY = "SATURDAY";  
-    }  
-    /** 
-     * Method Two  
-     */  
-    enum ConstantEnum {  
-        SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY  
-    }  
-    /** 
-     * Method Three 
-     */  
-    class ConstantClassField {  
-        public static final String SUNDAY = "SUNDAY";  
-        public static final String MONDAY = "MONDAY";  
-        public static final String TUESDAY = "TUESDAY";  
-        public static final String WEDNESDAY = "WEDNESDAY";  
-        public static final String THURSDAY = "THURSDAY";  
-        public static final String FRIDAY = "FRIDAY";  
-        public static final String SATURDAY = "SATURDAY";  
-    }  
-    /** 
-     * Method Four 
-     * http://www.ibm.com/developerworks/cn/java/l-java-interface/index.html 
-     */  
-    class ConstantClassFunction {  
-        private static final String SUNDAY = "SUNDAY";  
-        private static final String MONDAY = "MONDAY";  
-        private static final String TUESDAY = "TUESDAY";  
-        private static final String WEDNESDAY = "WEDNESDAY";  
-        private static final String THURSDAY = "THURSDAY";  
-        private static final String FRIDAY = "FRIDAY";  
-        private static final String SATURDAY = "SATURDAY";  
-        public static String getSunday() {  
-            return SUNDAY;  
-        }  
-        public static String getMonday() {  
-            return MONDAY;  
-        }  
-        public static String getTuesday() {  
-            return TUESDAY;  
-        }  
-        public static String getWednesday() {  
-            return WEDNESDAY;  
-        }  
-        public static String getThursday() {  
-            return THURSDAY;  
-        }  
-        public static String getFirday() {  
-            return FRIDAY;  
-        }  
-        public static String getSaturday() {  
-            return SATURDAY;  
-        }  
-    }  
-    public class TestConstant {  
-        static final String day = "saturday";  
-        public static void main(String[] args) {  
-            System.out.println("Is today Saturday?");  
-            System.out.println(day.equalsIgnoreCase(ConstantInterface.SATURDAY));  
-            System.out.println(day.equalsIgnoreCase(ConstantEnum.SATURDAY.name()));  
-            System.out.println(day.equalsIgnoreCase(ConstantClassField.SATURDAY));  
-            System.out.println(day.equalsIgnoreCase(ConstantClassFunction  
-                    .getSaturday()));  
-        }  
-    }  
-```
+1. 接口(Interface)的中变量默认为static final。
+2. Java 5.0中引入的Enum类型。
+3. 在普通类中使用static final修饰变量。
 
 ## java中abstract,interface,final,static的总结
 
-一,抽象类:abstract
+**抽象类:abstract**
 
-1,只要有一个或一个以上抽象方法的类,必须用abstract声明为抽象类;
+1. 只要有一个或一个以上抽象方法的类,必须用abstract声明为抽象类;
+2. 抽象类中可以有具体的实现方法;
+3. 抽象类中可以没有抽象方法;
+4. 抽象类中的抽象方法必须被它的子类实现,如果子类没有实现,则该子类继续为抽象类
+5. 抽象类不能被实例化,但可以由抽象父类指向的子类实例来调用抽象父类中的具体实现方法;通常作为一种默认行为;
+6. 要使用抽象类中的方法,必须有一个子类继承于这个抽象类,并实现抽象类中的抽象方法,通过子类的实例去调用;
 
-2,抽象类中可以有具体的实现方法;
+**接口:interface**
 
-3,抽象类中可以没有抽象方法;
+1. 接口中可以有成员变量,且接口中的成员变量必须定义初始化;
+2. 接口中的成员方法只能是方法原型,不能有方法主体;
+3. 接口的成员变量和成员方法只能public(或缺省不写),效果一样,都是public
+4. 实现接口的类必须全部实现接口中的方法(父类的实现也算,一般有通过基类实现接口中个异性不大的方法来做为适配器的做法)
 
-4,抽象类中的抽象方法必须被它的子类实现,如果子类没有实现,则该子类继续为抽象类
+**关键字:final**
 
-5,抽象类不能被实例化,但可以由抽象父类指向的子类实例来调用抽象父类中的具体实现方法;通常作为一种默认行为;
+1. 可用于修饰:成员变量,非抽象类(不能与abstract同时出现),非抽象的成员方法,以及方法参数
+2. final方法:不能被子类的方法重写,但可以被继承;
+3. final类:表示该类不能被继承,没有子类;final类中的方法也无法被继承.
+4. final变量:表示常量,只能赋值一次,赋值后不能被修改.final变量必须定义初始化;
+5. final不能用于修饰构造方法;
+6. final参数:只能使用该参数,不能修改该参数的值;
 
-6,要使用抽象类中的方法,必须有一个子类继承于这个抽象类,并实现抽象类中的抽象方法,通过子类的实例去调用;
+**关键字:static**
 
-二,接口:interface
+1. 可以修饰成员变量和成员方法,但不能修饰类以及构造方法;
+2. 被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享
+3. static变量和static方法一般是通过类名直接访问,但也可以通过类的实例来访问(不推荐这种访问方式)
+4. static变量和static方法同样适应java访问修饰符.用public修饰的static变量和static方法,在任何地方都可以通过类名直接来访问,但用private修饰的static变量和static方法,只能在声明的本类方法及静态块中访问,但不能用this访问,因为this属于非静态变量.
 
-1,接口中可以有成员变量,且接口中的成员变量必须定义初始化;
+**static和final同时使用 **
 
-2,接口中的成员方法只能是方法原型,不能有方法主体;
+1. static final用来修饰成员变量和成员方法，可简单理解为“全局常量”！ 
+2. 对于变量，表示一旦给值就不可修改，并且通过类名可以访问。 
+3. 对于方法，表示不可覆盖，并且可以通过类名直接访问。
 
-3,接口的成员变量和成员方法只能public(或缺省不写),效果一样,都是public
+## switch 能否用 String 做参数？
 
-4,实现接口的类必须全部实现接口中的方法(父类的实现也算,一般有通过基类实现接口中个异性不大的方法来做为适配器的做法)
-
-三,关键字:final
-
-1,可用于修饰:成员变量,非抽象类(不能与abstract同时出现),非抽象的成员方法,以及方法参数
-
-2,final方法:不能被子类的方法重写,但可以被继承;
-
-3,final类:表示该类不能被继承,没有子类;final类中的方法也无法被继承.
-
-4,final变量:表示常量,只能赋值一次,赋值后不能被修改.final变量必须定义初始化;
-
-5,final不能用于修饰构造方法;
-
-6,final参数:只能使用该参数,不能修改该参数的值;
-
-四,关键字:static
-
-1,可以修饰成员变量和成员方法,但不能修饰类以及构造方法;
-
-2,被static修饰的成员变量和成员方法独立于该类的任何对象。也就是说，它不依赖类特定的实例，被类的所有实例共享
-
-3,static变量和static方法一般是通过类名直接访问,但也可以通过类的实例来访问(不推荐这种访问方式)
-
-4,static变量和static方法同样适应java访问修饰符.用public修饰的static变量和static方法,在任何地方都可以通过类名直接来访问,但用private修饰的static变量和static方法,只能在声明的本类方法及静态块中访问,但不能用this访问,因为this属于非静态变量.
-
-五,static和final同时使用 
-
-1,static final用来修饰成员变量和成员方法，可简单理解为“全局常量”！ 
-
-2,对于变量，表示一旦给值就不可修改，并且通过类名可以访问。 
-
-3,对于方法，表示不可覆盖，并且可以通过类名直接访问。
-
-## Switch能否用string做参数？
+从 Java 7开始 switch 就能使用 String 做为参数。
 
 在Java 5以前，switch(expr)中，expr只能是byte、short、char、int。从Java 5开始，Java中引入了枚举类型，expr也可以是enum类型，从Java 7开始，expr还可以是字符串（String），但是长整型（long）在目前所有的版本中都是不可以的。
 
 ## Object有哪些公用方法？
-
-[http://www.cnblogs.com/yumo/p/4908315.html](http://www.cnblogs.com/yumo/p/4908315.html)
 
 1．clone方法
 
@@ -359,35 +275,35 @@ wait方法就是使当前线程等待该对象的锁，当前线程必须是该�
 
 ## foreach与正常for循环效率对比。
 
-[http://904510742.iteye.com/blog/2118331](http://904510742.iteye.com/blog/2118331)
-
 直接for循环效率最高，其次是迭代器和 ForEach操作。作为语法糖，其实 ForEach 编译成 字节码之后，使用的是迭代器实现的，反编译后，testForEach方法如下：
 
-```
+```java
 public static void testForEach(List list) {  
     for (Iterator iterator = list.iterator(); iterator.hasNext();) {  
         Object t = iterator.next();  
         Object obj = t;  
     }  
 }  
-
 ```
 
 可以看到，只比迭代器遍历多了生成中间变量这一步，因为性能也略微下降了一些。
 
 # 基本数据类型
 
-## int char long 各占多少字节数
+## 基本数据类型 int char long 等各占多少字节
 
-| 类型 | 位数 | 字节数 |
-|  |  |  |
-| byte | 8 | 1 |
-| short | 16 | 2 |
-| int | 32 | 4 |
-| long | 64 | 8 |
-| float | 32 | 4 |
-| double | 64 | 8 |
-| char | 16 | 2 |
+| 类型      | 位数             | 字节数           |
+| ------- | -------------- | ------------- |
+| boolean | 8（数组）或32（单个变量） | 1（数组）或4（单个变量） |
+| byte    | 8              | 1             |
+| short   | 16             | 2             |
+| int     | 32             | 4             |
+| long    | 64             | 8             |
+| float   | 32             | 4             |
+| double  | 64             | 8             |
+| char    | 16             | 2             |
+
+PS：单个的 boolean 类型变量在编译的时候是使用的 int 类型。而对于 boolean 类型的数组时，在编译的时候是作为 byte。
 
 ## int 和 integer 的区别
 
@@ -425,15 +341,33 @@ StringBuffer类和String一样，也用来代表字符串，只是由于StringBu
 - StringBuffer 字符串变量（线程安全）
 - StringBuilder 字符串变量（非线程安全）
 
-简要的说， String 类型和 StringBuffer 类型的主要性能区别其实在于 String 是不可变的对象, 因此在每次对 String 类型进行改变的时候其实都等同于生成了一个新的 String 对象，然后将指针指向新的 String 对象，所以经常改变内容的字符串最好不要用String ，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后,JVM 的 GC 就会开始工作，那速度是一定会相当慢的。
+和 String 类不同的是，StringBuffer 和 StringBuilder 类的对象能够被多次的修改，并且不产生新的未使用对象。
+
+StringBuilder 类在 Java 5 中被提出，它和 StringBuffer 之间的最大不同在于 StringBuilder 的方法不是线程安全的（不能同步访问）。
+
+由于 StringBuilder 相较于 StringBuffer 有速度优势，所以多数情况下建议使用 StringBuilder 类。然而在应用程序要求线程安全的情况下，则必须使用 StringBuffer 类。
+
+---
+
+简要的说， String 类型和 StringBuffer 类型的主要性能区别其实在于 String 是不可变的对象, 因此在每次对 String 类型进行改变的时候其实都等同于生成了一个新的 String 对象，然后将指针指向新的 String 对象，所以经常改变内容的字符串最好不要用String ，因为每次生成对象都会对系统性能产生影响，特别当内存中无引用对象多了以后，JVM 的 GC 就会开始工作，那速度是一定会相当慢的。
 
 而如果是使用 StringBuffer 类则结果就不一样了，每次结果都会对 StringBuffer 对象本身进行操作，而不是生成新的对象，再改变对象引用。所以在一般情况下我们推荐使用 StringBuffer ，特别是字符串对象经常改变的情况下。而在某些特别情况下， String 对象的字符串拼接其实是被 JVM 解释成了 StringBuffer 对象的拼接，所以这些时候 String 对象的速度并不会比 StringBuffer 对象慢，而特别是以下的字符串对象生成中， String 效率是远要比 StringBuffer 快的：
 
+```java
 String S1 = “This is only a” + “ simple” + “ test”;
+StringBuffer Sb = new StringBuilder(“This is only a”).append(“ simple”).append(“ test”); 
+```
 
-StringBuffer Sb = new StringBuilder(“This is only a”).append(“ simple”).append(“ test”); 你会很惊讶的发现，生成 String S1 对象的速度简直太快了，而这个时候 StringBuffer 居然速度上根本一点都不占优势。其实这是 JVM 的一个把戏，在 JVM 眼里，这个  String S1 = “This is only a” + “ simple” + “test”; 其实就是：  String S1 = “This is only a simple test”; 所以当然不需要太多的时间了。但大家这里要注意的是，如果你的字符串是来自另外的 String 对象的话，速度就没那么快了，譬如：  String S2 = “This is only a”; String S3 = “ simple”; String S4 = “ test”; String S1 = S2 +S3 + S4; 这时候 JVM 会规规矩矩的按照原来的方式去做
+你会很惊讶的发现，生成 String S1 对象的速度简直太快了，而这个时候 StringBuffer 居然速度上根本一点都不占优势。其实这是 JVM 的一个把戏，在 JVM 眼里，这个  String S1 = “This is only a” + “ simple” + “test”; 其实就是：  String S1 = “This is only a simple test”; 所以当然不需要太多的时间了。但大家这里要注意的是，如果你的字符串是来自另外的 String 对象的话，速度就没那么快了，譬如：
 
-在大部分情况下 StringBuffer > String
+```java
+String S2 = “This is only a”; 
+String S3 = “ simple”;
+String S4 = “ test”;
+String S1 = S2 +S3 + S4; 
+```
+
+这时候 JVM 会规规矩矩的按照原来的方式去做。在大部分情况下 StringBuffer > String。
 
 StringBuffer
 
@@ -451,7 +385,7 @@ java.lang.StringBuilder
 
 java.lang.StringBuilder一个可变的字符序列是5.0新增的。此类提供一个与 StringBuffer 兼容的 API，但不保证同步。该类被设计用作 StringBuffer 的一个简易替换，用在字符串缓冲区被单个线程使用的时候（这种情况很普遍）。如果可能，建议优先采用该类，因为在大多数实现中，它比 StringBuffer 要快。两者的方法基本相同
 
-## String s=new String(“abc”); new了几个对象
+## String s = new String(“abc”); new了几个对象
 
 两个
 
@@ -462,6 +396,8 @@ java.lang.StringBuilder一个可变的字符序列是5.0新增的。此类提供
 
 ## String 源码分析
 
+参考：
+
 [String源码分析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/String%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90.md)
 
 # 内部类
@@ -469,17 +405,17 @@ java.lang.StringBuilder一个可变的字符序列是5.0新增的。此类提供
 ## Static Inner Class 和 Inner Class 的不同
 
 - 静态内部类不持有外部类的引用；非静态内部类持有外部类的引用。
-- 静态内部类可以有静态成员（方法、属性），而非静态内部类则不用有静态成员（方法、属性）。
-- 静态内部类只能访问外部类的静态成员和静态方法，而非静态内部类则可以访问内部类的所以成员（方法、属性）。
+- 静态内部类可以有静态成员（方法、属性），而非静态内部类则不能有静态成员（方法、属性）。
+- 静态内部类只能访问外部类的静态成员和静态方法，而非静态内部类则可以访问外部类的所以成员（方法、属性）。
 - 实例化一个静态内部类不依赖于外部类的实例，直接实例化内部类对象；实例化一个非静态内部类依赖于外部类的实例，通过外部类的实例生成内部类的实例。
 - 调用静态内部类的方法或静态变量，直接通过类名调用。
 
 ## 内部类机制
 
-为什么内部类拥有外部类的所有元素的访问权？
+**为什么内部类拥有外部类的所有元素的访问权？**
 当某个外围类对象创建一个内部连对象时，内部类对象必定会捕获一个指向那个外围类对象的引用。内部类对象只能在与其外部类对象关联的情况下才能被创建（在内部类非static时），构建内部类需要一个外部类的引用，内部类正是利用这个引用去访问外部类的。
 
-内部类的种类
+**内部类的种类**
 按照内部类所在的位置不同，内部类可以分为以下几种：
 
 1. 成员内部类
@@ -497,11 +433,12 @@ java.lang.StringBuilder一个可变的字符序列是5.0新增的。此类提供
 
 ## 静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？
 
-```
 静态内部类：使用static修饰的内部类
+
 匿名内部类：使用new生成的内部类
+
 因为内部类的产生依赖于外部类，持有的引用是类名.this。
-```
+
 
 # 继承
 
@@ -515,62 +452,61 @@ Java静态方法形式上可以重写，但从本质上来说不是Java的重写
 
 # 抽象类和接口
 
+## 抽象类总结规定
+
+- 抽象类不能被实例化(初学者很容易犯的错)，如果被实例化，就会报错，编译无法通过。只有抽象类的非抽象子类可以创建对象。
+- 抽象类中不一定包含抽象方法，但是有抽象方法的类必定是抽象类。
+- 抽象类中的抽象方法只是声明，不包含方法体，就是不给出方法的具体实现也就是方法的具体功能。
+- 构造方法，类方法（用static修饰的方法）不能声明为抽象方法。
+- 抽象类的子类必须给出抽象类中的抽象方法的具体实现，除非该子类也是抽象类。
+
+## 接口与类的区别
+
+- 接口不能用于实例化对象。
+- 接口没有构造方法。
+- 接口中所有的方法必须是抽象方法。
+- 接口不能包含成员变量，除了 static 和 final 变量。
+- 接口不是被类继承了，而是要被类实现。
+- 接口支持多重继承。
+
+## 接口特性
+
+- 接口中每一个方法也是隐式抽象的,接口中的方法会被隐式的指定为 **public abstract**（只能是  public abstract，其他修饰符都会报错）。
+- 接口中可以含有变量，但是接口中的变量会被隐式的指定为 **public static final** 变量（并且只能是 public，用 private 修饰会报编译错误）。
+- 接口中的方法是不能在接口中实现的，只能由实现接口的类来实现接口中的方法。
+
 ## 抽象类和接口的区别
 
-- 默认的方法实现。
+1. 抽象类中的方法可以有方法体，就是能实现方法的具体功能，但是接口中的方法不行。
+2. 抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是 **public static final** 类型的。
+3. 接口中不能有静态代码块以及静态方法(用 static 修饰的方法)，而抽象类中可以有静态代码块和静态方法。**注意：Java 8的新特性允许接口中存在静态方法。**
+4. 一个类只能继承一个抽象类，而一个类却可以实现多个接口。
+5. 接口中不能有构造函数和main方法；而抽象类中可以有。
+---
 
-抽象类可以有默认的方法实现完全是抽象的。接口根本不存在方法的实现。
-
-- 实现。
-
-使用extends关键字来继承抽象类。如果子类不是抽象类的话，它需要提供抽象类中所有声明的方法的实现。使用关键字implements来实现接口。它需要提供接口中所有声明的方法的实现。
-
-- 构造器。
-
-抽象类可以有构造器。接口不能有构造器。
-
-- 与正常Java类的区别。
-
-除了你不能实例化抽象类之外，它和普通Java类没有任何区 接口是完全不同的类型
-
-- 访问修饰符
-
-抽象方法可以有public、protected和default这些修饰符 接口方法默认修饰符是public。你不可以使用其它修饰符。
-
-- main方法
-  抽象方法可以有main方法并且我们可以运行它。接口没有main方法，因此我们不能运行它。
-- 多继承
-
-抽象类在java语言中所表示的是一种继承关系，一个子类只能存在一个父类，但是可以存在多个接口。
-
-- 速度
-
-抽象类比接口速度要快。接口是稍微有点慢的，因为它需要时间去寻找在类中实现的方法。
-
-- 添加新方法
-
-如果你往抽象类中添加新的方法，你可以给它提供默认的实现。因此你不需要改变你现在的代码。如果你往接口中添加方法，那么你必须改变实现该接口的类。
+1. 默认的方法实现。抽象类可以有默认的方法实现完全是抽象的。接口根本不存在方法的实现。
+2. 实现。使用extends关键字来继承抽象类。如果子类不是抽象类的话，它需要提供抽象类中所有声明的方法的实现。使用关键字implements来实现接口。它需要提供接口中所有声明的方法的实现。
+3. 构造器。抽象类可以有构造器。接口不能有构造器。
+4. 与正常Java类的区别。除了你不能实例化抽象类之外，它和普通Java类没有任何区 接口是完全不同的类型
+5. 访问修饰符。抽象方法可以有public、protected和default这些修饰符 接口方法默认修饰符是public。你不可以使用其它修饰符。
+6. main方法。抽象方法可以有main方法并且我们可以运行它。接口没有main方法，因此我们不能运行它。
+7. 多继承。抽象类在java语言中所表示的是一种继承关系，一个子类只能存在一个父类，但是可以存在多个接口。
+8. 速度。抽象类比接口速度要快。接口是稍微有点慢的，因为它需要时间去寻找在类中实现的方法。
+9. 添加新方法。如果你往抽象类中添加新的方法，你可以给它提供默认的实现。因此你不需要改变你现在的代码。如果你往接口中添加方法，那么你必须改变实现该接口的类。
 
 ------
 
-参考：http://www.cnblogs.com/dolphin0520/p/3811437.html
+**语法层面上的区别**
 
-1.语法层面上的区别
+1. 抽象类可以提供成员方法的实现细节，而接口中只能存在public abstract 方法；
+2. 抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是public static final类型的；
+3. 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+4. 一个类只能继承一个抽象类，而一个类却可以实现多个接口。
 
-　　1）抽象类可以提供成员方法的实现细节，而接口中只能存在public abstract 方法；
+**设计层面上的区别**
 
-　　2）抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是public static final类型的；
-
-　　3）接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
-
-　　4）一个类只能继承一个抽象类，而一个类却可以实现多个接口。
-
-2.设计层面上的区别
-
-　　1）抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。举个简单的例子，飞机和鸟是不同类的事物，但是它们都有一个共性，就是都会飞。那么在设计的时候，可以将飞机设计为一个类Airplane，将鸟设计为一个类Bird，但是不能将 飞行 这个特性也设计为类，因此它只是一个行为特性，并不是对一类事物的抽象描述。此时可以将 飞行 设计为一个接口Fly，包含方法fly( )，然后Airplane和Bird分别根据自己的需要实现Fly这个接口。然后至于有不同种类的飞机，比如战斗机、民用飞机等直接继承Airplane即可，对于鸟也是类似的，不同种类的鸟直接继承Bird类即可。从这里可以看出，继承是一个 "是不是"的关系，而 接口 实现则是 "有没有"的关系。如果一个类继承了某个抽象类，则子类必定是抽象类的种类，而接口实现则是有没有、具备不具备的关系，比如鸟是否能飞（或者是否具备飞行这个特点），能飞行则可以实现这个接口，不能飞行就不实现这个接口。
-
-　　2）设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计。什么是模板式设计？最简单例子，大家都用过ppt里面的模板，如果用模板A设计了ppt B和ppt C，ppt B和ppt C公共的部分就是模板A了，如果它们的公共部分需要改动，则只需要改动模板A就可以了，不需要重新对ppt B和ppt C进行改动。而辐射式设计，比如某个电梯都装了某种报警器，一旦要更新报警器，就必须全部更新。也就是说对于抽象类，如果需要添加新的方法，可以直接在抽象类中添加具体的实现，子类可以不进行变更；而对于接口则不行，如果接口进行了变更，则所有实现这个接口的类都必须进行相应的改动。
-​    
+1. 抽象类是对一种事物的抽象，即对类抽象，而接口是对行为的抽象。抽象类是对整个类整体进行抽象，包括属性、行为，但是接口却是对类局部（行为）进行抽象。举个简单的例子，飞机和鸟是不同类的事物，但是它们都有一个共性，就是都会飞。那么在设计的时候，可以将飞机设计为一个类Airplane，将鸟设计为一个类Bird，但是不能将 飞行 这个特性也设计为类，因此它只是一个行为特性，并不是对一类事物的抽象描述。此时可以将 飞行 设计为一个接口Fly，包含方法fly( )，然后Airplane和Bird分别根据自己的需要实现Fly这个接口。然后至于有不同种类的飞机，比如战斗机、民用飞机等直接继承Airplane即可，对于鸟也是类似的，不同种类的鸟直接继承Bird类即可。从这里可以看出，继承是一个 "是不是"的关系，而 接口 实现则是 "有没有"的关系。如果一个类继承了某个抽象类，则子类必定是抽象类的种类，而接口实现则是有没有、具备不具备的关系，比如鸟是否能飞（或者是否具备飞行这个特点），能飞行则可以实现这个接口，不能飞行就不实现这个接口。
+2. 设计层面不同，抽象类作为很多子类的父类，它是一种模板式设计。而接口是一种行为规范，它是一种辐射式设计。什么是模板式设计？最简单例子，大家都用过ppt里面的模板，如果用模板A设计了ppt B和ppt C，ppt B和ppt C公共的部分就是模板A了，如果它们的公共部分需要改动，则只需要改动模板A就可以了，不需要重新对ppt B和ppt C进行改动。而辐射式设计，比如某个电梯都装了某种报警器，一旦要更新报警器，就必须全部更新。也就是说对于抽象类，如果需要添加新的方法，可以直接在抽象类中添加具体的实现，子类可以不进行变更；而对于接口则不行，如果接口进行了变更，则所有实现这个接口的类都必须进行相应的改动。
 
 ## 接口的意义
 
@@ -584,20 +520,17 @@ Java静态方法形式上可以重写，但从本质上来说不是Java的重写
 
 ## 接口是否可继承接口? 抽象类是否可实现(implements)接口? 抽象类是否可继承实体类(concreteclass)?
 
-1.接口可以继承接口..但是要使用extends~而不是用implements
+1. 接口可以继承接口。但是要使用extends，而不是用implements。
 
-如:interface a{}
-interface b extends a{}
 
-2.抽象类可以实现接口..
+2. 抽象类可以实现接口。比如java.util中的AbstractCollection类就是实现的Collection接口。
 
-比如java.util中的AbstractCollection类就是实现的Collection接口
 
-3.抽象类可以继承实体类
+3. 抽象类可以继承实体类。
 
 下面这段执行无误的代码说明的所有的问题:
 
-```
+```java
 interface MyInterface {
 
 }
@@ -615,7 +548,53 @@ abstract class AbstractClass extends EntityClass implements MyInterface {
 }
 ```
 
-## abstract的method是否可同时是static,是否可同时是native，是否可同时是synchronized?
+## 接口的继承
+
+一个接口能继承另一个接口，和类之间的继承方式比较相似。接口的继承使用extends关键字，子接口继承父接口的方法。
+
+下面的Sports接口被Hockey和Football接口继承：
+
+```java
+// 文件名: Sports.java
+public interface Sports
+{
+   public void setHomeTeam(String name);
+   public void setVisitingTeam(String name);
+}
+ 
+// 文件名: Football.java
+public interface Football extends Sports
+{
+   public void homeTeamScored(int points);
+   public void visitingTeamScored(int points);
+   public void endOfQuarter(int quarter);
+}
+ 
+// 文件名: Hockey.java
+public interface Hockey extends Sports
+{
+   public void homeGoalScored();
+   public void visitingGoalScored();
+   public void endOfPeriod(int period);
+   public void overtimePeriod(int ot);
+}
+```
+
+Hockey接口自己声明了四个方法，从Sports接口继承了两个方法，这样，实现Hockey接口的类需要实现六个方法。
+
+相似的，实现Football接口的类需要实现五个方法，其中两个来自于Sports接口。
+
+**接口的多重继承**
+
+在Java中，类的多重继承是不合法，但接口允许多重继承。在接口的多重继承中extends关键字只需要使用一次，在其后跟着继承接口。如下所示：
+
+```java
+public interface Hockey extends Sports, Event
+```
+
+以上的程序片段是合法定义的子接口，与类不同的是，接口允许多重继承，而 Sports及  Event 可能定义或是继承相同的方法
+
+## abstract的method是否可同时是static，是否可同时是native，是否可同时时final，是否可同时是synchronized?
 
 都不行。
 
@@ -647,9 +626,9 @@ finalize是Object类的一个方法，在垃圾收集器执行的时候会调用
 
 ## List, Set, Map是否继承自Collection接口?
 
-List，Set是，Map不是。
+List和Set是，Map不是。
 
-```
+```java
 Collection
 
 　　├List
@@ -673,38 +652,44 @@ Collection
 　　└WeakHashMap
 ```
 
+## Set和List的区别
+
+1. Set接口存储的是无序的，不重复的数据。List接口存储的是有序的，可以重复的元素。
+2. Set检索效率低下，删除和插入效率高，插入和删除不会引起元素位置改变 ，实现类有HashSet、TreeSet。
+3. List和数组类似，可以动态增长，根据实际存储的数据的长度自动增长List的长度。查找元素效率高，插入删除效率低，因为会引起其他元素位置改变，实现类有ArrayList、LinkedList、Vector 。
+
 ## hashCode方法的作用
 
 对于包含容器类型的程序设计语言来说，基本上都会涉及到hashCode。在Java中也一样，hashCode方法的主要作用是为了配合基于散列的集合一起正常运行，这样的散列集合包括HashSet、HashMap以及HashTable。
 
-　　为什么这么说呢？考虑一种情况，当向集合中插入对象时，如何判别在集合中是否已经存在该对象了？（注意：集合中不允许重复的元素存在）
+为什么这么说呢？考虑一种情况，当向集合中插入对象时，如何判别在集合中是否已经存在该对象了？（注意：集合中不允许重复的元素存在）
 
-　　也许大多数人都会想到调用equals方法来逐个进行比较，这个方法确实可行。但是如果集合中已经存在一万条数据或者更多的数据，如果采用equals方法去逐一比较，效率必然是一个问题。此时hashCode方法的作用就体现出来了，当集合要添加新的对象时，先调用这个对象的hashCode方法，得到对应的hashcode值，实际上在HashMap的具体实现中会用一个table保存已经存进去的对象的hashcode值，如果table中没有该hashcode值，它就可以直接存进去，不用再进行任何比较了；如果存在该hashcode值， 就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址，所以这里存在一个冲突解决的问题，这样一来实际调用equals方法的次数就大大降低了，说通俗一点：Java中的hashCode方法就是根据一定的规则将与对象相关的信息（比如对象的存储地址，对象的字段等）映射成一个数值，这个数值称作为散列值。下面这段代码是java.util.HashMap的中put方法的具体实现：
+也许大多数人都会想到调用equals方法来逐个进行比较，这个方法确实可行。但是如果集合中已经存在一万条数据或者更多的数据，如果采用equals方法去逐一比较，效率必然是一个问题。此时hashCode方法的作用就体现出来了，当集合要添加新的对象时，先调用这个对象的hashCode方法，得到对应的hashcode值，实际上在HashMap的具体实现中会用一个table保存已经存进去的对象的hashcode值，如果table中没有该hashcode值，它就可以直接存进去，不用再进行任何比较了；如果存在该hashcode值， 就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址，所以这里存在一个冲突解决的问题，这样一来实际调用equals方法的次数就大大降低了，说通俗一点：Java中的hashCode方法就是根据一定的规则将与对象相关的信息（比如对象的存储地址，对象的字段等）映射成一个数值，这个数值称作为散列值。下面这段代码是java.util.HashMap的中put方法的具体实现：
 
-```
+```java
 public V put(K key, V value) {
-        if (key == null)
-            return putForNullKey(value);
-        int hash = hash(key.hashCode());
-        int i = indexFor(hash, table.length);
-        for (Entry<K,V> e = table[i]; e != null; e = e.next) {
-            Object k;
-            if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
-                V oldValue = e.value;
-                e.value = value;
-                e.recordAccess(this);
-                return oldValue;
-            }
-        }
- 
-        modCount++;
-        addEntry(hash, key, value, i);
-        return null;
+  if (key == null)
+    return putForNullKey(value);
+  int hash = hash(key.hashCode());
+  int i = indexFor(hash, table.length);
+  for (Entry<K,V> e = table[i]; e != null; e = e.next) {
+    Object k;
+    if (e.hash == hash && ((k = e.key) == key || key.equals(k))) {
+      V oldValue = e.value;
+      e.value = value;
+      e.recordAccess(this);
+      return oldValue;
     }
+  }
+
+  modCount++;
+  addEntry(hash, key, value, i);
+  return null;
+}
 ```
 
-　　put方法是用来向HashMap中添加新的元素，从put方法的具体实现可知，会先调用hashCode方法得到该元素的hashCode值，然后查看table中是否存在该hashCode值，如果存在则调用equals方法重新确定是否存在该元素，如果存在，则更新value值，否则将新的元素添加到HashMap中。从这里可以看出，hashCode方法的存在是为了减少equals方法的调用次数，从而提高程序效率。
-　　
+put方法是用来向HashMap中添加新的元素，从put方法的具体实现可知，会先调用hashCode方法得到该元素的hashCode值，然后查看table中是否存在该hashCode值，如果存在则调用equals方法重新确定是否存在该元素，如果存在，则更新value值，否则将新的元素添加到HashMap中。从这里可以看出，hashCode方法的存在是为了减少equals方法的调用次数，从而提高程序效率。
+
 hashCode返回的就是对象的存储地址，事实上这种看法是不全面的，确实有些JVM在实现时是直接返回对象的存储地址，但是大多时候并不是这样，只能说可能存储地址有一定关联。
 
 因此有人会说，可以直接根据hashcode值判断两个对象是否相等吗？肯定是不可以的，因为不同的对象可能会生成相同的hashcode值。虽然不能根据hashcode值判断两个对象是否相等，但是可以直接根据hashcode值判断两个对象不等，如果两个对象的hashcode值不等，则必定是两个不同的对象。如果要判断两个对象是否真正相等，必须通过equals方法。　　
@@ -726,7 +711,20 @@ hashCode返回的就是对象的存储地址，事实上这种看法是不全面
 4. 注意的是String、Integer、Boolean、Double等这些类都重写了equals和hashCode方法，这两个方法是根据对象的内容来比较和计算hashCode的。（详细可以查看jdk下的String.java源代码），所以只要对象的基本类型值相同，那么hashcode就一定相同。
 5. equals()相等的两个对象，hashcode()一般是相等的，最好在重写equals()方法时，重写hashcode()方法； equals()不相等的两个对象，却并不能证明他们的hashcode()不相等。换句话说，equals()方法不相等的两个对象，hashcode()有可能相等。 反过来：hashcode()不等，一定能推出equals()也不等；hashcode()相等，equals()可能相等，也可能不等。在object类中，hashcode()方法是本地方法，返回的是对象的引用（地址值），而object类中的equals()方法比较的也是两个对象的引用（地址值），如果equals()相等，说明两个对象地址值也相等，当然hashcode()也就相等了。
 
-有许多人学了很长时间的Java，但一直不明白hashCode方法的作用，我来解释一下吧。首先，想要明白hashCode的作用，你必须要先知道Java中的集合。　　总的来说，Java中的集合（Collection）有两类，一类是List，再有一类是Set。你知道它们的区别吗？前者集合内的元素是有序的，元素可以重复；后者元素无序，但元素不可重复。那么这里就有一个比较严重的问题了：要想保证元素不重复，可两个元素是否重复应该依据什么来判断呢？这就是Object.equals方法了。但是，如果每增加一个元素就检查一次，那么当元素很多时，后添加到集合中的元素比较的次数就非常多了。也就是说，如果集合中现在已经有1000个元素，那么第1001个元素加入集合时，它就要调用1000次equals方法。这显然会大大降低效率。    于是，Java采用了哈希表的原理。哈希（Hash）实际上是个人名，由于他提出一哈希算法的概念，所以就以他的名字命名了。哈希算法也称为散列算法，是将数据依特定算法直接指定到一个地址上。如果详细讲解哈希算法，那需要更多的文章篇幅，我在这里就不介绍了。初学者可以这样理解，hashCode方法实际上返回的就是对象存储的物理地址（实际可能并不是）。   这样一来，当集合要添加新的元素时，先调用这个元素的hashCode方法，就一下子能定位到它应该放置的物理位置上。如果这个位置上没有元素，它就可以直接存储在这个位置上，不用再进行任何比较了；如果这个位置上已经有元素了，就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址。所以这里存在一个冲突解决的问题。这样一来实际调用equals方法的次数就大大降低了，几乎只需要一两次。   所以，Java对于eqauls方法和hashCode方法是这样规定的：1、如果两个对象相同，那么它们的hashCode值一定要相同；2、如果两个对象的hashCode相同，它们并不一定相同    上面说的对象相同指的是用eqauls方法比较。    你当然可以不按要求去做了，但你会发现，相同的对象可以出现在Set集合中。同时，增加新元素的效率会大大下降
+有许多人学了很长时间的Java，但一直不明白hashCode方法的作用，我来解释一下吧。首先，想要明白hashCode的作用，你必须要先知道Java中的集合。
+
+总的来说，Java中的集合（Collection）有两类，一类是List，再有一类是Set。你知道它们的区别吗？前者集合内的元素是有序的，元素可以重复；后者元素无序，但元素不可重复。
+
+那么这里就有一个比较严重的问题了：要想保证元素不重复，可两个元素是否重复应该依据什么来判断呢？这就是Object.equals方法了。但是，如果每增加一个元素就检查一次，那么当元素很多时，后添加到集合中的元素比较的次数就非常多了。也就是说，如果集合中现在已经有1000个元素，那么第1001个元素加入集合时，它就要调用1000次equals方法。这显然会大大降低效率。
+
+于是，Java采用了哈希表的原理。哈希（Hash）实际上是个人名，由于他提出一哈希算法的概念，所以就以他的名字命名了。哈希算法也称为散列算法，是将数据依特定算法直接指定到一个地址上。如果详细讲解哈希算法，那需要更多的文章篇幅，我在这里就不介绍了。初学者可以这样理解，hashCode方法实际上返回的就是对象存储的物理地址（实际可能并不是）。
+
+这样一来，当集合要添加新的元素时，先调用这个元素的hashCode方法，就一下子能定位到它应该放置的物理位置上。如果这个位置上没有元素，它就可以直接存储在这个位置上，不用再进行任何比较了；如果这个位置上已经有元素了，就调用它的equals方法与新元素进行比较，相同的话就不存了，不相同就散列其它的地址。所以这里存在一个冲突解决的问题。这样一来实际调用equals方法的次数就大大降低了，几乎只需要一两次。   所以，Java对于eqauls方法和hashCode方法是这样规定的：
+
+1. 如果两个对象相同，那么它们的hashCode值一定要相同；
+2. 如果两个对象的hashCode相同，它们并不一定相同。
+
+上面说的对象相同指的是用eqauls方法比较。    你当然可以不按要求去做了，但你会发现，相同的对象可以出现在Set集合中。同时，增加新元素的效率会大大下降。
 
 ## Set里的元素是不能重复的，那么用什么方法来区分重复与否呢? 是用==还是equals()? 它们有何区别?
 
@@ -738,7 +736,9 @@ set里面存放的是对象的引用，所以当两个元素只要满足了equal
 
 ## HashMap的底层实现
 
-参考：https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashMap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md
+参考：
+
+https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashMap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md
 
 ## HashMap 的实现原理
 
@@ -753,33 +753,42 @@ set里面存放的是对象的引用，所以当两个元素只要满足了equal
 
 ## Collection包结构，与Collections的区别。
 
-Collection是一个接口，它是Set、List等容器的父接口；Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包括对容器的搜索、排序、线程安全化等等。
+Collection是一个接口，它是Set、List等容器的父接口；
+
+Collections是一个工具类，提供了一系列的静态方法来辅助容器操作，这些方法包括对容器的搜索、排序、线程安全化等等。
 
 ## 多线程环境中安全使用集合API
 
 在集合API中，最初设计的Vector和Hashtable是多线程安全的。例如：对于Vector来说，用来添加和删除元素的方法是同步的。如果只有一个线程与Vector的实例交互，那么，要求获取和释放对象锁便是一种浪费，另外在不必要的时候如果滥用同步化，也有可能会带来死锁。因此，对于更改集合内容的方法，没有一个是同步化的。集合本质上是非多线程安全的，当多个线程与集合交互时，为了使它多线程安全，必须采取额外的措施。
 
-在Collections类 中有多个静态方法，它们可以获取通过同步方法封装非同步集合而得到的集合：
+在Collections类中有多个静态方法，它们可以获取通过同步方法封装非同步集合而得到的集合：
 
--public static Collection synchronizedCollention(Collection c)
--public static List synchronizedList(list l)
--public static Map synchronizedMap(Map m)
--public static Set synchronizedSet(Set s)
--public static SortedMap synchronizedSortedMap(SortedMap sm)
--public static SortedSet synchronizedSortedSet(SortedSet ss)
+```java
+public static Collection synchronizedCollention(Collection c)
+
+public static List synchronizedList(list l)
+
+public static Map synchronizedMap(Map m)
+
+public static Set synchronizedSet(Set s)
+
+public static SortedMap synchronizedSortedMap(SortedMap sm)
+
+public static SortedSet synchronizedSortedSet(SortedSet ss)
+
+```
 
 这些方法基本上返回具有同步集合方法版本的新类。比如，为了创建多线程安全且由ArrayList支持的List，可以使用如下代码：
 
-```
+```java
 List list = Collection.synchronizedList(new ArrayList());
-
 ```
 
 注意，ArrayList实例马上封装起来，不存在对未同步化ArrayList的直接引用（即直接封装匿名实例）。这是一种最安全的途径。如果另一个线程要直接引用ArrayList实例，它可以执行非同步修改。
 
 下面给出一段多线程中安全遍历集合元素的示例。我们使用Iterator逐个扫描List中的元素，在多线程环境中，当遍历当前集合中的元素时，一般希望阻止其他线程添加或删除元素。安全遍历的实现方法如下：
 
-```
+```java
 import java.util.*;  
 
 public class SafeCollectionIteration extends Object {  
@@ -800,21 +809,26 @@ public class SafeCollectionIteration extends Object {
             Iterator iter = wordList.iterator();  
             while ( iter.hasNext() ) {  
                 String s = (String) iter.next();  
-                System.out.println("found string: " + s + ", length=" + s.length());  
+                System.out.println("found string: " + s + ", length=" +s.length());  
             }  
         }  
     }  
 }  
-
 ```
 
 这里需要注意的是：在Java语言中，大部分的线程安全类都是相对线程安全的，它能保证对这个对象单独的操作时线程安全的，我们在调用的时候不需要额外的保障措施，但是对于一些特定的连续调用，就可能需要在调用端使用额外的同步手段来保证调用的正确性。例如Vector、HashTable、Collections的synchronizedXxxx（）方法包装的集合等。
 
 ## Java 集合框架
 
+![img](https://camo.githubusercontent.com/3e7e32f74829d2adcd72143e356c39ccb6c995e8/687474703a2f2f696d672e626c6f672e6373646e2e6e65742f3230313430363238313434323035363235)
+
+参考：
+
 [Java集合框架](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6.md)
 
 ## 集合类的源码分析
+
+参考：
 
 [ArrayList源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/ArrayList%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
 
@@ -824,42 +838,26 @@ public class SafeCollectionIteration extends Object {
 
 [HashMap源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashMap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
 
-[HashTable源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashTable%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
-
 [LinkedHashMap源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/LinkedHashMap%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
+
+[HashTable源码剖析](https://github.com/GeniusVJR/LearningNotes/blob/master/Part2/JavaSE/HashTable%E6%BA%90%E7%A0%81%E5%89%96%E6%9E%90.md)
 
 # 容器类之间的区别
 
 ## HashMap 和 HashTable 的区别
 
-第一，继承不同。
+1. 继承不同。
 
-```
+```java
 public class Hashtable extends Dictionary implements Map
 public class HashMap  extends AbstractMap implements Map
 ```
 
-第二
-
-Hashtable 中的方法是同步的，而HashMap中的方法在缺省情况下是非同步的。在多线程并发的环境下，可以直接使用Hashtable，但是要使用HashMap的话就要自己增加同步处理了。
-
-第三
-
-Hashtable中，key和value都不允许出现null值。
-
-在HashMap中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当get()方法返回null值时，即可以表示 HashMap中没有该键，也可以表示该键所对应的值为null。因此，在HashMap中不能由get()方法来判断HashMap中是否存在某个键， 而应该用containsKey()方法来判断。
-
-第四，两个遍历方式的内部实现上不同。
-
-Hashtable、HashMap都使用了 Iterator。而由于历史原因，Hashtable还使用了Enumeration的方式 。
-
-第五
-
-哈希值的使用不同，HashTable直接使用对象的hashCode。而HashMap重新计算hash值。
-
-第六
-
-Hashtable和HashMap它们两个内部实现方式的数组的初始大小和扩容的方式。HashTable中hash数组默认大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，而且一定是2的指数。 
+2. Hashtable 中的方法是同步的，而HashMap中的方法在缺省情况下是非同步的。在多线程并发的环境下，可以直接使用Hashtable，但是要使用HashMap的话就要自己增加同步处理了。
+3. Hashtable中，key和value都不允许出现null值。在HashMap中，null可以作为键，这样的键只有一个；可以有一个或多个键所对应的值为null。当get()方法返回null值时，即可以表示 HashMap中没有该键，也可以表示该键所对应的值为null。因此，在HashMap中不能由get()方法来判断HashMap中是否存在某个键， 而应该用containsKey()方法来判断。
+4. 两个遍历方式的内部实现上不同。Hashtable、HashMap都使用了 Iterator。而由于历史原因，Hashtable还使用了Enumeration的方式 。
+5. 哈希值的使用不同，HashTable直接使用对象的hashCode。而HashMap重新计算hash值。
+6. Hashtable和HashMap它们两个内部实现方式的数组的初始大小和扩容的方式。HashTable中hash数组默认大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，而且一定是2的指数。 
 
 ## ArrayMap 和 HashMap 的区别
 
@@ -879,17 +877,17 @@ Hashtable和HashMap它们两个内部实现方式的数组的初始大小和扩�
 
 ## TreeMap、HashMap、LinkedHashMap的底层实现区别。
 
-[http://blog.csdn.net/lolashe/article/details/20806319](http://blog.csdn.net/lolashe/article/details/20806319)
 
-## Set、List之间的区别是什么?*
 
-[http://developer.51cto.com/art/201309/410205_all.htm
+参考：
+
+[HashMap,LinkedHashMap,TreeMap的区别](http://blog.csdn.net/fg2006/article/details/6411200)
 
 ## Map、Set、List、Queue、Stack的特点与用法。
 
-[http://www.cnblogs.com/yumo/p/4908718.html](http://www.cnblogs.com/yumo/p/4908718.html)
+**Collection 是对象集合**
 
-Collection 是对象集合， Collection 有两个子接口 List 和 Set
+Collection 有两个子接口 List 和 Set
 
 List 可以通过下标 (1,2..) 来取得值，值可以重复
 
@@ -901,19 +899,27 @@ ArrayList 是线程不安全的， Vector 是线程安全的，这两个类底�
 
 LinkedList 是线程不安全的，底层是由链表实现的   
 
-Map 是键值对集合
+**Map 是键值对集合**
 
 HashTable 和 HashMap 是 Map 的实现类
+
 HashTable 是线程安全的，不能存储 null 值
+
 HashMap 不是线程安全的，可以存储 null 值  
 
 Stack类：继承自Vector，实现一个后进先出的栈。提供了几个基本方法，push、pop、peak、empty、search等。
 
 Queue接口：提供了几个基本方法，offer、poll、peek等。已知实现类有LinkedList、PriorityQueue等。
 
+参考：
+
+[Map、Set、List、Queue、Stack的特点与用法](http://www.cnblogs.com/yumo/p/4908718.html)
+
 # 内存相关知识
 
-参考：[Android内存泄漏总结](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md)
+参考：
+
+[Android内存泄漏总结](https://github.com/GeniusVJR/LearningNotes/blob/master/Part1/Android/Android%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E6%80%BB%E7%BB%93.md)
 
 ## Java 内存分配策略
 
@@ -1949,7 +1955,7 @@ Server端Listen(监听)某个端口是否有连接请求，Client端向Server �
 
 （4） 关闭Socket.（在实际应用中，并未使用到显示的close，虽然很多文章都推荐如此，不过在我的程序中，可能因为程序本身比较简单，要求不高，所以并未造成什么影响。）
 
-# IO（IO,NIO，目前okio已经被集成Android包）
+# IO
 
 ## IO框架主要用到什么设计模式
 
