@@ -86,12 +86,20 @@
 
 
 
-<meta name="description" content="本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。">
+<meta name="description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/creator-anysdk.html
+
+本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。
+本人开发环境CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3
+Android 平台">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CocosCreator 集成 AnySDK 教程">
-<meta property="og:url" content="http://eddy.wiki/2016-10-23-creator-anysdk.html">
+<meta property="og:url" content="http://eddy.wiki/creator-anysdk.html">
 <meta property="og:site_name" content="Eddy Wiki">
-<meta property="og:description" content="本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。">
+<meta property="og:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/creator-anysdk.html
+
+本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。
+本人开发环境CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3
+Android 平台">
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/81864543.jpg">
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/14676565.jpg">
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/13005876.jpg">
@@ -101,10 +109,14 @@
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/43516864.jpg">
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/28805762.jpg">
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/47841800.jpg">
-<meta property="og:updated_time" content="2016-10-31T10:28:21.000Z">
+<meta property="og:updated_time" content="2016-12-10T07:00:37.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CocosCreator 集成 AnySDK 教程">
-<meta name="twitter:description" content="本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。">
+<meta name="twitter:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/creator-anysdk.html
+
+本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。
+本人开发环境CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3
+Android 平台">
 <meta name="twitter:image" content="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/81864543.jpg">
 
 
@@ -126,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="http://eddy.wiki/2016-10-23-creator-anysdk.html"/>
+  <link rel="canonical" href="http://eddy.wiki/creator-anysdk.html"/>
 
 
   <title> CocosCreator 集成 AnySDK 教程 | Eddy Wiki </title>
@@ -324,8 +336,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016-10-23-creator-anysdk.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016-10-23-creator-anysdk.html" itemprop="commentsCount"></span>
+                <a href="/creator-anysdk.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="creator-anysdk.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -335,7 +347,7 @@
 
           
           
-             <span id="/2016-10-23-creator-anysdk.html" class="leancloud_visitors" data-flag-title="CocosCreator 集成 AnySDK 教程">
+             <span id="/creator-anysdk.html" class="leancloud_visitors" data-flag-title="CocosCreator 集成 AnySDK 教程">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -357,9 +369,12 @@
       
 
       
-        <p>本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。<a id="more"></a></p>
+        <blockquote>
+<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/creator-anysdk.html">http://eddy.wiki/creator-anysdk.html</a></p>
+</blockquote>
+<p>本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。</p>
 <h2 id="本人开发环境"><a href="#本人开发环境" class="headerlink" title="本人开发环境"></a>本人开发环境</h2><p>CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3</p>
-<h2 id="Android-平台集成-AnySDK-详细步骤"><a href="#Android-平台集成-AnySDK-详细步骤" class="headerlink" title="Android 平台集成 AnySDK 详细步骤"></a>Android 平台集成 AnySDK 详细步骤</h2><p>由于本人使用 git 对项目进行版本控制管理，所以下列步骤中会有一些与 git 相关的操作。如果你没有使用 git，那么你可以直接忽略下列步骤中与 git 相关的操作。</p>
+<h2 id="Android-平台集成-AnySDK-详细步骤"><a href="#Android-平台集成-AnySDK-详细步骤" class="headerlink" title="Android 平台集成 AnySDK 详细步骤"></a>Android 平台集成 AnySDK 详细步骤</h2><p>由于本人使用 git 对项目进行版本控制管理，所以下列步骤中会有一些与 git 相关的操作。如果你没有使用 git，那么你可以直接忽略下列步骤中与 git 相关的操作。<a id="more"></a></p>
 <h3 id="获取-AnySDK-Framework"><a href="#获取-AnySDK-Framework" class="headerlink" title="获取 AnySDK Framework"></a>获取 AnySDK Framework</h3><p>安装 AnySDK 客户端，然后在 AnySDK 客户端的【安妮市场】【分类】【框架】中找到 JS(Android) 框架并下载。如下图：<br><img src="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/81864543.jpg" alt=""></p>
 <p>下载完成后打开 JS(Android) 框架文件夹即可看到 <code>AnySDKFiles/Store/Frameworks/AnySDK_Framework_JS_Android_2.1.2/AnySDK_Framework_JS(Android)/</code> 这样的目录。如下图：<br><img src="http://o9sn2y8lr.bkt.clouddn.com/16-7-5/14676565.jpg" alt=""></p>
 <p>下文统一使用 <code>AnySDK_Framework_JS(Android)</code> 指代 AnySDK Framework 文件目录。</p>
@@ -427,7 +442,6 @@ build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/gen/
 <p>在这里就不详细说明 AnySDK 客户端的使用了，详情请参考 <a href="http://docs.anysdk.com/PackageTool" target="_blank" rel="external">AnySDK 的官方文档</a>。</p>
 <h2 id="如何快速集成-AnySDK"><a href="#如何快速集成-AnySDK" class="headerlink" title="如何快速集成 AnySDK"></a>如何快速集成 AnySDK</h2><p>我在 GitHub 上面分享了一个便于在 CocosCreator 项目的 Android 平台快速集成 AnySDK 的项目：<a href="https://github.com/eddy2015/anysdk-files-for-ccc" target="_blank" rel="external">anysdk-files-for-ccc</a> 。具体使用方法请参考该项目的 README.md 文件，这里就不详细说明了。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文主要讲解了如何在 CocosCreator 项目的 Android 平台集成 AnySDK ，并提供了一个快速集成方法。ios 平台请参考 AnySDK 的官方文档自行尝试。</p>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> 转载请注明出处：<a href="http://eddy.wiki/2016-10-23-creator-anysdk.html">http://eddy.wiki/2016-10-23-creator-anysdk.html</a></p>
 
       
     </div>
@@ -461,13 +475,17 @@ build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/gen/
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016-10-23-creator-pomelo.html" rel="next" title="CocosCreator 集成 Pomelo 教程">
+              <a href="/creator-pomelo.html" rel="next" title="CocosCreator 集成 Pomelo 教程">
                 <i class="fa fa-chevron-left"></i> CocosCreator 集成 Pomelo 教程
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/interview-start.html" rel="prev" title="Android 面试之开篇">
+                Android 面试之开篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -531,8 +549,8 @@ build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/gen/
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016-10-23-creator-anysdk.html"
-           data-title="CocosCreator 集成 AnySDK 教程" data-url="http://eddy.wiki/2016-10-23-creator-anysdk.html">
+      <div class="ds-thread" data-thread-key="creator-anysdk.html"
+           data-title="CocosCreator 集成 AnySDK 教程" data-url="http://eddy.wiki/creator-anysdk.html">
       </div>
     
   </div>
@@ -577,7 +595,7 @@ build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/gen/
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

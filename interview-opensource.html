@@ -1,0 +1,1012 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android 面试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eddy Wiki" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-opensource.html
+
+本文收集整理了 Android 中常用的一些开源库。
+图片加载开源库参考：
+
+Android开源项目推荐之「图片加载到底哪家强」
+
+网络请求开源库参考：
+
+Android开源项目推荐之「网络请求哪家强」">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 面试之常用开源库">
+<meta property="og:url" content="http://eddy.wiki/interview-opensource.html">
+<meta property="og:site_name" content="Eddy Wiki">
+<meta property="og:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-opensource.html
+
+本文收集整理了 Android 中常用的一些开源库。
+图片加载开源库参考：
+
+Android开源项目推荐之「图片加载到底哪家强」
+
+网络请求开源库参考：
+
+Android开源项目推荐之「网络请求哪家强」">
+<meta property="og:updated_time" content="2016-12-10T06:50:03.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 面试之常用开源库">
+<meta name="twitter:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-opensource.html
+
+本文收集整理了 Android 中常用的一些开源库。
+图片加载开源库参考：
+
+Android开源项目推荐之「图片加载到底哪家强」
+
+网络请求开源库参考：
+
+Android开源项目推荐之「网络请求哪家强」">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://eddy.wiki/interview-opensource.html"/>
+
+
+  <title> Android 面试之常用开源库 | Eddy Wiki </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Eddy Wiki</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I do what I do.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 面试之常用开源库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T22:56:25+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android-面试/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/interview-opensource.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="interview-opensource.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/interview-opensource.html" class="leancloud_visitors" data-flag-title="Android 面试之常用开源库">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-opensource.html">http://eddy.wiki/interview-opensource.html</a></p>
+</blockquote>
+<p>本文收集整理了 Android 中常用的一些开源库。</p>
+<h1 id="图片加载开源库"><a href="#图片加载开源库" class="headerlink" title="图片加载开源库"></a>图片加载开源库</h1><p>参考：</p>
+<ol>
+<li><a href="http://stormzhang.com/opensource/2016/06/26/android-open-source-project-recommend1/" target="_blank" rel="external">Android开源项目推荐之「图片加载到底哪家强」</a></li>
+</ol>
+<h1 id="网络请求开源库"><a href="#网络请求开源库" class="headerlink" title="网络请求开源库"></a>网络请求开源库</h1><p>参考：</p>
+<ol>
+<li><a href="http://stormzhang.com/opensource/2016/08/05/android-open-source-project-recommend2/" target="_blank" rel="external">Android开源项目推荐之「网络请求哪家强」</a><a id="more"></a></li>
+</ol>
+<h1 id="Volley-源码解析"><a href="#Volley-源码解析" class="headerlink" title="Volley 源码解析"></a>Volley 源码解析</h1><p>参考：</p>
+<p><a href="http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90" target="_blank" rel="external">http://a.codekk.com/detail/Android/grumoon/Volley%20%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90</a></p>
+<h3 id="Volley的磁盘缓存"><a href="#Volley的磁盘缓存" class="headerlink" title="Volley的磁盘缓存"></a>Volley的磁盘缓存</h3><p>在面试的时候，聊到 Volley 请求到网络的数据缓存。当时说到是 Volley 会将每次通过网络请求到的数据，采用<code>FileOutputStream</code>，写入到本地的文件中。<br>那么问题来了：这个缓存文件，是声明在一个SD卡文件夹中的(也可以是getCacheFile())。如果不停的请求网络数据，这个缓存文件夹将无限制的增大，最终达到SD卡容量时，会发生无法写入的异常(因为存储空间满了)。<br>这个问题的确以前没有想到，当时也没说出怎么回事。回家了赶紧又看了看代码才知道，原来 Volley 考虑过这个问题(汗!想想也是)<br>翻看代码<code>DiskBasedCache#pruneIfNeeded()</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">private void pruneIfNeeded(int neededSpace) &#123;</div><div class="line">    if ((mTotalSize + neededSpace) &lt; mMaxCacheSizeInBytes) &#123;</div><div class="line">        return;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    long before = mTotalSize;</div><div class="line">    int prunedFiles = 0;</div><div class="line">    long startTime = SystemClock.elapsedRealtime();</div><div class="line"></div><div class="line">    Iterator&lt;Map.Entry&lt;String, CacheHeader&gt;&gt; iterator = mEntries.entrySet().iterator();</div><div class="line">    while (iterator.hasNext()) &#123;</div><div class="line">        Map.Entry&lt;String, CacheHeader&gt; entry = iterator.next();</div><div class="line">        CacheHeader e = entry.getValue();</div><div class="line">        boolean deleted = getFileForKey(e.key).delete();</div><div class="line">        if (deleted) &#123;</div><div class="line">            mTotalSize -= e.size;</div><div class="line">        &#125; else &#123;</div><div class="line">	//print log</div><div class="line">        &#125;</div><div class="line">        iterator.remove();</div><div class="line">        prunedFiles++;</div><div class="line">        if ((mTotalSize + neededSpace) &lt; mMaxCacheSizeInBytes * HYSTERESIS_FACTOR) &#123;</div><div class="line">            break;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中<code>mMaxCacheSizeInBytes</code>是构造方法传入的一个缓存文件夹的大小，如果不传默认是5M的大小。<br>通过这个方法可以发现，每当被调用时会传入一个<code>neededSpace</code>，也就是需要申请的磁盘大小(即要新缓存的那个文件所需大小)。首先会判断如果这个<code>neededSpace</code>申请成功以后是否会超过最大可用容量，如果会超过，则通过遍历本地已经保存的缓存文件的header(header中包含了缓存文件的缓存有效期、占用大小等信息)去删除文件，直到可用容量不大于声明的缓存文件夹的大小。<br>其中<code>HYSTERESIS_FACTOR</code>是一个值为0.9的常量，应该是为了防止误差的存在吧(我猜的)。</p>
+<h3 id="Volley缓存命中率的优化"><a href="#Volley缓存命中率的优化" class="headerlink" title="Volley缓存命中率的优化"></a>Volley缓存命中率的优化</h3><p>如果让你去设计Volley的缓存功能，你要如何增大它的命中率。<br>可惜了，如果上面的缓存功能是昨天看的，今天的面试这个问题就能说出来了。<br>还是上面的代码，在缓存内容可能超过缓存文件夹的大小时，删除的逻辑是直接遍历header删除。这个时候删除的文件有可能是我们上一次请求时刚刚保存下来的，屁股都还没坐稳呢，现在立即删掉，有点舍不得啊。<br>如果遍历的时候，判断一下，首先删除超过缓存有效期的(过期缓存)，其次按照LRU算法，删除最久未使用的，岂不是更合适？</p>
+<h3 id="Volley缓存文件名的计算"><a href="#Volley缓存文件名的计算" class="headerlink" title="Volley缓存文件名的计算"></a>Volley缓存文件名的计算</h3><p>这个是我一直没弄懂的问题。<br>如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">private String getFilenameForKey(String key) &#123;</div><div class="line">    int firstHalfLength = key.length() / 2;</div><div class="line">    String localFilename = String.valueOf(key.substring(0, firstHalfLength).hashCode());</div><div class="line">    localFilename += String.valueOf(key.substring(firstHalfLength).hashCode());</div><div class="line">    return localFilename;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>为什么会要把一个key分成两部分，分别求hashCode，最后又做拼接。<br>这个问题之前在stackoverflow上问过 <a href="http://stackoverflow.com/questions/34984302/why-volley-diskbasedcache-splicing-without-direct-access-to-the-cache-file-name/34987423#34987423" target="_blank" rel="external">#链接</a><br>原谅我，别人的回答我最初并没有看懂。直到最近被问到，如果让你设计一个HashMap，如何避免value被覆盖，我才想到原因。<br>先来看一下 <code>String#hashCode()</code> 的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">@Override public int hashCode() &#123;</div><div class="line">    int hash = hashCode;</div><div class="line">    if (hash == 0) &#123;</div><div class="line">        if (count == 0) &#123;</div><div class="line">            return 0;</div><div class="line">        &#125;</div><div class="line">        final int end = count + offset;</div><div class="line">        final char[] chars = value;</div><div class="line">        for (int i = offset; i &lt; end; ++i) &#123;</div><div class="line">            hash = 31*hash + chars[i];</div><div class="line">        &#125;</div><div class="line">        hashCode = hash;</div><div class="line">    &#125;</div><div class="line">    return hash;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>从上面的实现可以看到，String的hashcode是根据字符数组中每个位置的字母的int值再加上上次hash值乘以31，这种算法求出来的，至于为什么是31，我也不清楚。<br>但是可以肯定一点，hashcode并不是唯一的。不信你运行下面这两个输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">System.out.print(&quot;======&quot; + &quot;vFrKiaNHfF7t[9::E[XsX?L7xPp3DZSteIZvdRT8CX:w6d;v&lt;_KZnhsM_^dqoppe&quot;.hashCode());</div><div class="line">System.out.print(&quot;======&quot; + &quot;hI4pFxGOfS@suhVUd:mTo_begImJPB@Fl[6WJ?ai=RXfIx^=Aix@9M;;?Vdj_Zsi&quot;.hashCode());</div></pre></td></tr></table></figure>
+<p>这两个字符串是根据hashcode的算法逆向出来的，他们的hashcode都是12345。逆向算法请见<a href="http://my.oschina.net/backtract/blog/169310" target="_blank" rel="external">这里</a><br>再回到我们的问题，为什么会要把一个key分成两部分。现在可以肯定的答出，目的是为了尽可能避免hashcode重复造成的文件名重复(求两次hash两次都与另一个url重复的概率总要比一次重复的概率小吧)。<br>顺带再提一点，就像上面说的，概率小并不代表不存在。但是Java计算hashcode的速度是很快的，应该是在效率和安全性上取舍的结果吧。</p>
+<h1 id="Glide源码解析"><a href="#Glide源码解析" class="headerlink" title="Glide源码解析"></a>Glide源码解析</h1><p>参考：</p>
+<p><a href="http://www.lightskystreet.com/2015/10/12/glide_source_analysis/" target="_blank" rel="external">http://www.lightskystreet.com/2015/10/12/glide_source_analysis/</a></p>
+<p><a href="http://frodoking.github.io/2015/10/10/android-glide/" target="_blank" rel="external">http://frodoking.github.io/2015/10/10/android-glide/</a></p>
+<h1 id="Retrofit源码分析"><a href="#Retrofit源码分析" class="headerlink" title="Retrofit源码分析"></a>Retrofit源码分析</h1><p>参考：</p>
+<p><a href="http://www.jianshu.com/p/c1a3a881a144" target="_blank" rel="external">Retrofit源码分析</a></p>
+<h1 id="EventBus源码分析"><a href="#EventBus源码分析" class="headerlink" title="EventBus源码分析"></a>EventBus源码分析</h1><p>参考：</p>
+<p><a href="http://p.codekk.com/blogs/detail/54cfab086c4761e5001b2538" target="_blank" rel="external">EventBus源码分析</a></p>
+<h1 id="greenDAO"><a href="#greenDAO" class="headerlink" title="greenDAO"></a>greenDAO</h1><p>参考：</p>
+<p><a href="http://www.open-open.com/lib/view/open1438065400878.html" target="_blank" rel="external">Android ORM 框架之 greenDAO 使用心得</a></p>
+<h1 id="RxJava"><a href="#RxJava" class="headerlink" title="RxJava"></a>RxJava</h1><p>参考：</p>
+<p><a href="http://gank.io/post/560e15be2dca930e00da1083" target="_blank" rel="external">RxJava</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-面试/" rel="tag">#Android 面试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/interview-company.html" rel="next" title="Android 面试之某些公司的面试题">
+                <i class="fa fa-chevron-left"></i> Android 面试之某些公司的面试题
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/interview-algorithm.html" rel="prev" title="Android 面试之排序算法">
+                Android 面试之排序算法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="interview-opensource.html"
+           data-title="Android 面试之常用开源库" data-url="http://eddy.wiki/interview-opensource.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/icon.jpg"
+               alt="Eddy" />
+          <p class="site-author-name" itemprop="name">Eddy</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#图片加载开源库"><span class="nav-number">1.</span> <span class="nav-text">图片加载开源库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络请求开源库"><span class="nav-number">2.</span> <span class="nav-text">网络请求开源库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Volley-源码解析"><span class="nav-number">3.</span> <span class="nav-text">Volley 源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Volley的磁盘缓存"><span class="nav-number">3.0.1.</span> <span class="nav-text">Volley的磁盘缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Volley缓存命中率的优化"><span class="nav-number">3.0.2.</span> <span class="nav-text">Volley缓存命中率的优化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Volley缓存文件名的计算"><span class="nav-number">3.0.3.</span> <span class="nav-text">Volley缓存文件名的计算</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Glide源码解析"><span class="nav-number">4.</span> <span class="nav-text">Glide源码解析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Retrofit源码分析"><span class="nav-number">5.</span> <span class="nav-text">Retrofit源码分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EventBus源码分析"><span class="nav-number">6.</span> <span class="nav-text">EventBus源码分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#greenDAO"><span class="nav-number">7.</span> <span class="nav-text">greenDAO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RxJava"><span class="nav-number">8.</span> <span class="nav-text">RxJava</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eddy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"eddywiki"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EF3CoMp2LzWRzehcBHJveykz-gzGzoHsz", "SVD7NmzGndSjO8es0BzwclRp");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>

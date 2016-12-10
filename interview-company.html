@@ -1,0 +1,1192 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Android 面试," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Eddy Wiki" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
+
+
+
+
+
+
+<meta name="description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-company.html
+
+本文从网络上收集了一些公司的 Android 面试题。
+Alibaba一面
+
+说一下你怎么学习安卓的？
+项目中遇到哪些问题，如何解决的？
+Android事件分发机制？
+三级缓存底层实现？
+HashMap底层实现，hashCode如何对应bucket?
+Java的垃圾回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android 面试之某些公司的面试题">
+<meta property="og:url" content="http://eddy.wiki/interview-company.html">
+<meta property="og:site_name" content="Eddy Wiki">
+<meta property="og:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-company.html
+
+本文从网络上收集了一些公司的 Android 面试题。
+Alibaba一面
+
+说一下你怎么学习安卓的？
+项目中遇到哪些问题，如何解决的？
+Android事件分发机制？
+三级缓存底层实现？
+HashMap底层实现，hashCode如何对应bucket?
+Java的垃圾回">
+<meta property="og:updated_time" content="2016-12-10T06:46:49.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android 面试之某些公司的面试题">
+<meta name="twitter:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-company.html
+
+本文从网络上收集了一些公司的 Android 面试题。
+Alibaba一面
+
+说一下你怎么学习安卓的？
+项目中遇到哪些问题，如何解决的？
+Android事件分发机制？
+三级缓存底层实现？
+HashMap底层实现，hashCode如何对应bucket?
+Java的垃圾回">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"always"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://eddy.wiki/interview-company.html"/>
+
+
+  <title> Android 面试之某些公司的面试题 | Eddy Wiki </title>
+</head>
+
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Eddy Wiki</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">I do what I do.</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
+</div>
+
+
+    </div>
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 面试之某些公司的面试题
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-29T14:08:19+08:00" content="2016-10-29">
+              2016-10-29
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Android-面试/" itemprop="url" rel="index">
+                    <span itemprop="name">Android 面试</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/interview-company.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="interview-company.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/interview-company.html" class="leancloud_visitors" data-flag-title="Android 面试之某些公司的面试题">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-company.html">http://eddy.wiki/interview-company.html</a></p>
+</blockquote>
+<p>本文从网络上收集了一些公司的 Android 面试题。</p>
+<h2 id="Alibaba"><a href="#Alibaba" class="headerlink" title="Alibaba"></a>Alibaba</h2><p>一面</p>
+<ul>
+<li>说一下你怎么学习安卓的？</li>
+<li>项目中遇到哪些问题，如何解决的？</li>
+<li>Android事件分发机制？</li>
+<li>三级缓存底层实现？</li>
+<li>HashMap底层实现，hashCode如何对应bucket?</li>
+<li>Java的垃圾回收机制，引用计数法两个对象互相引用如何解决？</li>
+<li>用过的开源框架的源码分析</li>
+<li>Acticity的生命周期，Activity异常退出该如何处理？</li>
+<li>tcp和udp的区别，tcp如何保证可靠的，丢包如何处理？</li>
+</ul>
+<p>二面：</p>
+<ul>
+<li>标号1-n的n个人首尾相接，1到3报数，报到3的退出，求最后一个人的标号</li>
+<li>给定一个字符串，求第一个不重复的字符 abbcad -&gt; c<a id="more"></a></li>
+</ul>
+<h2 id="新浪微博"><a href="#新浪微博" class="headerlink" title="新浪微博"></a>新浪微博</h2><hr>
+<h3 id="一面"><a href="#一面" class="headerlink" title="一面"></a>一面</h3><p>静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">静态内部类：使用static修饰的内部类</div><div class="line">匿名内部类：使用new生成的内部类</div><div class="line">因为内部类的产生依赖于外部类，持有的引用是类名.this。</div></pre></td></tr></table></figure>
+<p>ArrayList和Vector的主要区别是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">ArrayList在Java1.2引入，用于替换Vector</div><div class="line"></div><div class="line">Vector:</div><div class="line"></div><div class="line">线程同步</div><div class="line">当Vector中的元素超过它的初始大小时，Vector会将它的容量翻倍</div><div class="line"></div><div class="line">ArrayList:</div><div class="line"></div><div class="line">线程不同步，但性能很好</div><div class="line">当ArrayList中的元素超过它的初始大小时，ArrayList只增加50%的大小</div></pre></td></tr></table></figure>
+<p><a href="http://yuweiguocn.github.io/2016/01/06/java-collection/" target="_blank" rel="external">Java集合类框架</a></p>
+<p>Java中try catch finally的执行顺序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">先执行try中代码发生异常执行catch中代码，最后一定会执行finally中代码</div></pre></td></tr></table></figure>
+<p>switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">switch支持使用byte类型，不支持long类型，String支持在java1.7引入</div></pre></td></tr></table></figure>
+<p>Activity和Fragment生命周期有哪些？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Activity——onCreate-&gt;onStart-&gt;onResume-&gt;onPause-&gt;onStop-&gt;onDestroy</div><div class="line"></div><div class="line">Fragment——onAttach-&gt;onCreate-&gt;onCreateView-&gt;onActivityCreated-&gt;onStart-&gt;onResume-&gt;onPause-&gt;onStop-&gt;onDestroyView-&gt;onDestroy-&gt;onDetach</div></pre></td></tr></table></figure>
+<p>onInterceptTouchEvent()和onTouchEvent()的区别？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">onInterceptTouchEvent()用于拦截触摸事件</div><div class="line">onTouchEvent()用于处理触摸事件</div></pre></td></tr></table></figure>
+<p>RemoteView在哪些功能中使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">APPwidget和Notification中</div></pre></td></tr></table></figure>
+<p>SurfaceView和View的区别是什么？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">SurfaceView中采用了双缓存技术，在单独的线程中更新界面</div><div class="line">View在UI线程中更新界面</div></pre></td></tr></table></figure>
+<p>讲一下android中进程的优先级？</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">前台进程</div><div class="line">可见进程</div><div class="line">服务进程</div><div class="line">后台进程</div><div class="line">空进程</div></pre></td></tr></table></figure>
+<p>tips：静态类持有Activity引用会导致内存泄露</p>
+<h3 id="二面"><a href="#二面" class="headerlink" title="二面"></a>二面</h3><ul>
+<li>service生命周期，可以执行耗时操作吗？</li>
+<li>JNI开发流程</li>
+<li>Java线程池，线程同步</li>
+<li>自己设计一个图片加载框架</li>
+<li>自定义View相关方法</li>
+<li>http ResponseCode</li>
+<li>插件化，动态加载</li>
+<li>性能优化，MAT</li>
+<li>AsyncTask原理</li>
+<li>65k限制</li>
+<li>Serializable和Parcelable</li>
+<li>文件和数据库哪个效率高</li>
+<li>断点续传</li>
+<li>WebView和JS</li>
+<li>所使用的开源框架的实现原理，源码</li>
+</ul>
+<h2 id="网易杭研"><a href="#网易杭研" class="headerlink" title="网易杭研"></a>网易杭研</h2><hr>
+<h3 id="一面："><a href="#一面：" class="headerlink" title="一面："></a>一面：</h3><ul>
+<li>自我介绍</li>
+<li>Android中ClassLoader和java中有什么关系和区别？</li>
+<li>熟不熟jvm，说一下Jvm的自动内存管理？</li>
+<li>语言基础，String类可以被继承吗？为什么？</li>
+<li>Final能修饰什么？（当时我说class、field、method，他说还有吗？然后又叫我不要在意，后来回想起，应该是问到我在参数里面要不要用final，接下来是因为匿名内部类）</li>
+<li>Java中有内存泄露吗？（先说本质，再结合handler+匿名内部类）当时如何分析的？</li>
+<li>描述下Aidl？觉得aidl有什么缺陷（这里在这个问题上回答有欠缺）</li>
+<li><strong>评价一下我，如果顺利进网易，需要往技术栈加什么点尽快投入业务？</strong></li>
+</ul>
+<h3 id="二面："><a href="#二面：" class="headerlink" title="二面："></a>二面：</h3><ul>
+<li>用过什么开源，举一个例子？（volley）</li>
+<li>Activity生命周期？情景：现在在一张act1点了新的act2，周期如何？</li>
+<li>Act的launchMode，有没有结合项目用过（自己的程序锁和微信的PC端登陆对比，不过我现在又发现，应该大约估计可能是动态加载的一个缺陷，如果有找到相关信息，请务必跟我说。具体问题就是，当在PC端登录时，Android终端的微信会跳出，即使wechat的task不是在fore，当按下确认，返回的是wechat，而不是自己先前的app）</li>
+<li>View的绘制原理，有没有用canvas自己画过ui？</li>
+<li>以后想做Android什么方向？（中间件+SDK）</li>
+<li>怎么看待前端和后端？</li>
+<li>如果学前端会如何学？</li>
+<li>优缺点？兴趣？</li>
+<li>想不想来杭州？</li>
+<li><strong>评价一下我？往技术栈加什么？</strong></li>
+</ul>
+<h3 id="三面HR："><a href="#三面HR：" class="headerlink" title="三面HR："></a>三面HR：</h3><ul>
+<li>为什么想来网易？</li>
+<li>有投其他公司吗？</li>
+<li>网易最吸引你的是什么？</li>
+<li>想来杭州吗？</li>
+<li><strong>评价一下我？</strong></li>
+</ul>
+<h2 id="美团"><a href="#美团" class="headerlink" title="美团"></a>美团</h2><hr>
+<p>一面</p>
+<ul>
+<li>自我介绍</li>
+<li>面向对象三大特性</li>
+<li>Java虚拟机，垃圾回收</li>
+<li>GSON</li>
+<li>RxJava+Retrofit</li>
+<li>图片缓存，三级缓存</li>
+<li>Android启动模式</li>
+<li>四大组件</li>
+<li>Fragment生命周期，嵌套</li>
+<li>AsyncTask机制</li>
+<li>Handler机制</li>
+</ul>
+<p>二面</p>
+<ul>
+<li>面试官写程序，看错误。</li>
+<li>面试官写程序让判断GC引用计数法循环引用会发生什么情况</li>
+<li>Android进程间通信，Binder机制</li>
+<li>Handler消息机制，postDelayed会造成线程阻塞吗？对内存有什么影响？</li>
+<li>Debug和Release状态的不同</li>
+<li>实现stack 的pop和push接口 要求：<ul>
+<li>1.用基本的数组实现</li>
+<li>2.考虑范型</li>
+<li>3.考虑下同步问题</li>
+<li>4.考虑扩容问题</li>
+</ul>
+</li>
+</ul>
+<h2 id="蜻蜓FM"><a href="#蜻蜓FM" class="headerlink" title="蜻蜓FM"></a>蜻蜓FM</h2><hr>
+<p>一面</p>
+<ul>
+<li>Toolbar的使用</li>
+<li>如何判断本地缓存的时候数据需要从网络端获取</li>
+<li>跨进程间通信</li>
+<li>Handler消息机制</li>
+<li>SharedPreference实现</li>
+<li>快速排序</li>
+<li>项目难点</li>
+</ul>
+<h2 id="豌豆荚三面"><a href="#豌豆荚三面" class="headerlink" title="豌豆荚三面"></a>豌豆荚三面</h2><hr>
+<p>豌豆荚一面</p>
+<ul>
+<li>介绍一下你的项目</li>
+<li>网络框架的搭建</li>
+<li>图片加载框架的实现</li>
+<li>写个图片浏览器，说出你的思路</li>
+<li>上网站写代码，如下： 有一个容器类 ArrayList，保存整数类型的元素，现在要求编写一个帮助类，类内提供一个帮助函数，帮助函数的功能是删除 容器中&lt;10的元素。</li>
+</ul>
+<p>豌豆荚二面</p>
+<ul>
+<li>Activity的启动模式 </li>
+<li>事件分发机制</li>
+<li>写代码，LeetCode上股票利益最大化问题 </li>
+<li>写代码，剑指offer上第一次只出现一次的字符</li>
+</ul>
+<p>豌豆荚三面</p>
+<ul>
+<li>聊项目，聊大学做过的事</li>
+<li>写代码，反转字符串</li>
+<li>写代码，字符串中出现最多的字符。</li>
+</ul>
+<h2 id="2016年4月某公司面试题及面试流程。"><a href="#2016年4月某公司面试题及面试流程。" class="headerlink" title="2016年4月某公司面试题及面试流程。"></a>2016年4月某公司面试题及面试流程。</h2><h4 id="静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？"><a href="#静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？" class="headerlink" title="静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？"></a>静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？</h4><ul>
+<li>静态内部类：使用static修饰的内部类</li>
+<li>内部类：就是在某个类的内部又定义了一个类，内部类所嵌入的类称为外部类</li>
+<li>匿名内部类：使用new生成的内部类</li>
+<li>因为内部类的产生依赖于外部类，持有的引用是类名.this</li>
+</ul>
+<h4 id="ArrayList和Vector的主要区别是什么？"><a href="#ArrayList和Vector的主要区别是什么？" class="headerlink" title="ArrayList和Vector的主要区别是什么？"></a>ArrayList和Vector的主要区别是什么？</h4><p>ArrayList在Java1.2引入，用于替换Vector</p>
+<p><strong>Vector:</strong>  </p>
+<ul>
+<li>线程同步  </li>
+<li>当Vector中的元素超过它的初始大小时，Vector会将它的容量翻倍</li>
+</ul>
+<p><strong>ArrayList:</strong>  </p>
+<ul>
+<li>线程不同步，但性能很好    </li>
+<li>当ArrayList中的元素超过它的初始大小时，ArrayList只增加50%的大小</li>
+</ul>
+<p><a href="http://yuweiguocn.github.io/java-collection/" target="_blank" rel="external">java集合类框架</a></p>
+<h4 id="Java中try-catch-finally的执行顺序"><a href="#Java中try-catch-finally的执行顺序" class="headerlink" title="Java中try catch finally的执行顺序"></a>Java中try catch finally的执行顺序</h4><p>先执行try中代码发生异常执行catch中代码，最后一定会执行finally中代码</p>
+<h4 id="switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？"><a href="#switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？" class="headerlink" title="switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？"></a>switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？</h4><p>switch支持使用byte类型，不支持long类型，String支持在java1.7引入</p>
+<h4 id="Activity和Fragment生命周期有哪些？"><a href="#Activity和Fragment生命周期有哪些？" class="headerlink" title="Activity和Fragment生命周期有哪些？"></a>Activity和Fragment生命周期有哪些？</h4><ul>
+<li>Activity——onCreate-&gt;onStart-&gt;onResume-&gt;onPause-&gt;onStop-&gt;onDestroy</li>
+<li>Fragment——onAttach-&gt;onCreate-&gt;onCreateView-&gt;onActivityCreated-&gt;onStart-&gt;onResume-&gt;onPause-&gt;onStop-&gt;onDestroyView-&gt;onDestroy-&gt;onDetach</li>
+</ul>
+<h4 id="onInterceptTouchEvent-和onTouchEvent-的区别？"><a href="#onInterceptTouchEvent-和onTouchEvent-的区别？" class="headerlink" title="onInterceptTouchEvent()和onTouchEvent()的区别？"></a>onInterceptTouchEvent()和onTouchEvent()的区别？</h4><p>onInterceptTouchEvent()用于拦截触摸事件<br>onTouchEvent()用于处理触摸事件</p>
+<h4 id="RemoteView在哪些功能中使用"><a href="#RemoteView在哪些功能中使用" class="headerlink" title="RemoteView在哪些功能中使用"></a>RemoteView在哪些功能中使用</h4><p>APPwidget和Notification中</p>
+<h4 id="SurfaceView和View的区别是什么？"><a href="#SurfaceView和View的区别是什么？" class="headerlink" title="SurfaceView和View的区别是什么？"></a>SurfaceView和View的区别是什么？</h4><p>SurfaceView中采用了双缓存技术，在单独的线程中更新界面<br>View在UI线程中更新界面</p>
+<h4 id="讲一下android中进程的优先级？"><a href="#讲一下android中进程的优先级？" class="headerlink" title="讲一下android中进程的优先级？"></a>讲一下android中进程的优先级？</h4><ul>
+<li>前台进程</li>
+<li>可见进程</li>
+<li>服务进程</li>
+<li>后台进程</li>
+<li>空进程</li>
+</ul>
+<h4 id="代码查错题，没记下来"><a href="#代码查错题，没记下来" class="headerlink" title="代码查错题，没记下来"></a>代码查错题，没记下来</h4><p>tips：静态变量持有Activity引用会导致内存泄露</p>
+<h2 id="某公司面试题"><a href="#某公司面试题" class="headerlink" title="某公司面试题"></a>某公司面试题</h2><h3 id="一面-1"><a href="#一面-1" class="headerlink" title="一面"></a>一面</h3><ul>
+<li>service生命周期，可以执行耗时操作吗？</li>
+<li>JNI开发流程</li>
+<li>Java线程池，线程同步</li>
+<li>自己设计一个图片加载框架</li>
+<li>自定义View相关方法</li>
+<li>http ResponseCode</li>
+<li>插件化，动态加载</li>
+<li>性能优化，MAT</li>
+<li>AsyncTask原理</li>
+<li>65k限制</li>
+<li>Serializable和Parcelable</li>
+<li>文件和数据库哪个效率高</li>
+<li>断点续传</li>
+<li>WebView和JS</li>
+</ul>
+<p><a href="http://yuweiguocn.github.io/android-basic-service/" target="_blank" rel="external">Android基础——Service</a><br><a href="http://yuweiguocn.github.io/android-basic-intentservice/" target="_blank" rel="external">Android基础——IntentService</a><br><a href="http://yuweiguocn.github.io/android-guide-service/" target="_blank" rel="external">Android开发指导——Service</a><br><a href="http://yuweiguocn.github.io/android-guide-bound-service/" target="_blank" rel="external">Android开发指导——绑定Service</a><br><a href="http://yuweiguocn.github.io/android-guide-aidl/" target="_blank" rel="external">Android开发指导——进程间通信AIDL</a></p>
+<p><a href="http://yuweiguocn.github.io/android-interview-basic-1/" target="_blank" rel="external">Android面试基础知识总结（一）</a></p>
+<p><a href="http://yuweiguocn.github.io/android-interview-peformance/" target="_blank" rel="external">Android面试——APP性能优化</a></p>
+<p><a href="http://droidyue.com/blog/2014/09/20/interaction-between-java-and-javascript-in-android/" target="_blank" rel="external">Android中Java和JavaScript交互</a><br><a href="http://jaq.alibaba.com/blog.htm?spm=0.0.0.0.oMsDAl&amp;id=48" target="_blank" rel="external">WebView 远程代码执行漏洞浅析</a><br><a href="https://github.com/pedant/safe-java-js-webview-bridge" target="_blank" rel="external">WebView中的Java与JavaScript提供【安全可靠】的多样互通方案</a></p>
+<h3 id="二面-1"><a href="#二面-1" class="headerlink" title="二面"></a>二面</h3><ul>
+<li>所使用的开源框架的实现原理，源码</li>
+<li>没看过，被pass了</li>
+<li>去面试之前把用到的开源框架源码分析一定要看看啊</li>
+</ul>
+<p><a href="http://codekk.com/open-source-project-analysis" target="_blank" rel="external">codekk：开源框架源码解析</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Android-面试/" rel="tag">#Android 面试</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/interview-work.html" rel="next" title="Android 面试之面试官提问篇">
+                <i class="fa fa-chevron-left"></i> Android 面试之面试官提问篇
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/interview-opensource.html" rel="prev" title="Android 面试之常用开源库">
+                Android 面试之常用开源库 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        
+  <div class="bdsharebuttonbox">
+    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+    <a href="#" class="bds_douban" data-cmd="douban" title="分享到豆瓣网"></a>
+    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+    <a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a>
+    <a href="#" class="bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+    <a href="#" class="bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+    <a href="#" class="bds_more" data-cmd="more"></a>
+    <a class="bds_count" data-cmd="count"></a>
+  </div>
+  <script>
+    window._bd_share_config = {
+      "common": {
+        "bdText": "",
+        "bdMini": "2",
+        "bdMiniList": false,
+        "bdPic": ""
+      },
+      "share": {
+        "bdSize": "16",
+        "bdStyle": "0"
+      },
+      "image": {
+        "viewList": ["tsina", "douban", "sqq", "qzone", "weixin", "twi", "fbook"],
+        "viewText": "分享到：",
+        "viewSize": "16"
+      }
+    }
+  </script>
+
+<script>
+  with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='//bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="interview-company.html"
+           data-title="Android 面试之某些公司的面试题" data-url="http://eddy.wiki/interview-company.html">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/icon.jpg"
+               alt="Eddy" />
+          <p class="site-author-name" itemprop="name">Eddy</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">12</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alibaba"><span class="nav-number">1.</span> <span class="nav-text">Alibaba</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新浪微博"><span class="nav-number">2.</span> <span class="nav-text">新浪微博</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一面"><span class="nav-number">2.1.</span> <span class="nav-text">一面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二面"><span class="nav-number">2.2.</span> <span class="nav-text">二面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网易杭研"><span class="nav-number">3.</span> <span class="nav-text">网易杭研</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一面："><span class="nav-number">3.1.</span> <span class="nav-text">一面：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二面："><span class="nav-number">3.2.</span> <span class="nav-text">二面：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三面HR："><span class="nav-number">3.3.</span> <span class="nav-text">三面HR：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#美团"><span class="nav-number">4.</span> <span class="nav-text">美团</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#蜻蜓FM"><span class="nav-number">5.</span> <span class="nav-text">蜻蜓FM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#豌豆荚三面"><span class="nav-number">6.</span> <span class="nav-text">豌豆荚三面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2016年4月某公司面试题及面试流程。"><span class="nav-number">7.</span> <span class="nav-text">2016年4月某公司面试题及面试流程。</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？"><span class="nav-number">7.0.1.</span> <span class="nav-text">静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ArrayList和Vector的主要区别是什么？"><span class="nav-number">7.0.2.</span> <span class="nav-text">ArrayList和Vector的主要区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java中try-catch-finally的执行顺序"><span class="nav-number">7.0.3.</span> <span class="nav-text">Java中try catch finally的执行顺序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？"><span class="nav-number">7.0.4.</span> <span class="nav-text">switch是否能作用在byte上，是否能作用在long上，是否能作用在String上？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Activity和Fragment生命周期有哪些？"><span class="nav-number">7.0.5.</span> <span class="nav-text">Activity和Fragment生命周期有哪些？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#onInterceptTouchEvent-和onTouchEvent-的区别？"><span class="nav-number">7.0.6.</span> <span class="nav-text">onInterceptTouchEvent()和onTouchEvent()的区别？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RemoteView在哪些功能中使用"><span class="nav-number">7.0.7.</span> <span class="nav-text">RemoteView在哪些功能中使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SurfaceView和View的区别是什么？"><span class="nav-number">7.0.8.</span> <span class="nav-text">SurfaceView和View的区别是什么？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#讲一下android中进程的优先级？"><span class="nav-number">7.0.9.</span> <span class="nav-text">讲一下android中进程的优先级？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#代码查错题，没记下来"><span class="nav-number">7.0.10.</span> <span class="nav-text">代码查错题，没记下来</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#某公司面试题"><span class="nav-number">8.</span> <span class="nav-text">某公司面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一面-1"><span class="nav-number">8.1.</span> <span class="nav-text">一面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二面-1"><span class="nav-number">8.2.</span> <span class="nav-text">二面</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Eddy</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"eddywiki"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+       search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
+      $('.popup').toggle();
+
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+    'use strict';
+    $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
+                    }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
+
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
+                        }
+                        str += "</li>";
+                    }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
+            });
+            proceedsearch();
+        }
+    });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("EF3CoMp2LzWRzehcBHJveykz-gzGzoHsz", "SVD7NmzGndSjO8es0BzwclRp");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+
+</body>
+</html>
