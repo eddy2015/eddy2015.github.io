@@ -2,16 +2,23 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://eddy.wiki/interview-algorithm.html</loc>
+    <loc>http://eddy.wiki/interview-start.html</loc>
     
-    <lastmod>2016-12-10T07:11:40.000Z</lastmod>
+    <lastmod>2016-12-10T07:59:47.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://eddy.wiki/interview-start.html</loc>
+    <loc>http://eddy.wiki/interview-work.html</loc>
     
-    <lastmod>2016-12-10T07:10:36.000Z</lastmod>
+    <lastmod>2016-12-10T07:24:30.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://eddy.wiki/interview-algorithm.html</loc>
+    
+    <lastmod>2016-12-10T07:11:40.000Z</lastmod>
     
   </url>
   
@@ -47,13 +54,6 @@
     <loc>http://eddy.wiki/interview-company.html</loc>
     
     <lastmod>2016-12-10T06:46:49.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://eddy.wiki/interview-work.html</loc>
-    
-    <lastmod>2016-12-10T06:41:22.000Z</lastmod>
     
   </url>
   
