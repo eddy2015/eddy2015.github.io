@@ -1,13 +1,15 @@
 ---
-title: Android 面试：某些公司的试题
-date: 2016-10-26 14:08:19
+title: Android 面试之某些公司的面试题
+date: 2016-10-29 14:08:19
 tags:
 - Android 面试
 categories:
 - Android 面试
 ---
 
-本文从网络上收集了一些公司的 Android 面试题。<!--more-->
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/interview-company.html](http://eddy.wiki/interview-company.html)
+
+本文从网络上收集了一些公司的 Android 面试题。
 
 ## Alibaba
 
@@ -26,13 +28,13 @@ categories:
 二面：
 
 - 标号1-n的n个人首尾相接，1到3报数，报到3的退出，求最后一个人的标号
-- 给定一个字符串，求第一个不重复的字符 abbcad -> c
+- 给定一个字符串，求第一个不重复的字符 abbcad -> c<!--more-->
 
-# 新浪微博
+## 新浪微博
 
 ------
 
-## 一面
+### 一面
 
 静态内部类、内部类、匿名内部类，为什么内部类会持有外部类的引用？持有的引用是this？还是其它？
 
@@ -121,7 +123,7 @@ View在UI线程中更新界面
 
 tips：静态类持有Activity引用会导致内存泄露
 
-## 二面
+### 二面
 
 - service生命周期，可以执行耗时操作吗？
 - JNI开发流程
@@ -139,7 +141,7 @@ tips：静态类持有Activity引用会导致内存泄露
 - WebView和JS
 - 所使用的开源框架的实现原理，源码
 
-# 网易杭研
+## 网易杭研
 
 ------
 
@@ -175,7 +177,7 @@ tips：静态类持有Activity引用会导致内存泄露
 - 想来杭州吗？
 - **评价一下我？**
 
-# 美团
+## 美团
 
 ------
 
@@ -206,7 +208,7 @@ tips：静态类持有Activity引用会导致内存泄露
   - 3.考虑下同步问题
   - 4.考虑扩容问题
 
-# 蜻蜓FM
+## 蜻蜓FM
 
 ------
 
@@ -220,7 +222,7 @@ tips：静态类持有Activity引用会导致内存泄露
 - 快速排序
 - 项目难点
 
-# 豌豆荚三面
+## 豌豆荚三面
 
 ------
 
@@ -245,7 +247,7 @@ tips：静态类持有Activity引用会导致内存泄露
 - 写代码，反转字符串
 - 写代码，字符串中出现最多的字符。
 
-# 2016年4月某公司面试题及面试流程。
+## 2016年4月某公司面试题及面试流程。
 
 
 
@@ -311,9 +313,9 @@ View在UI线程中更新界面
 
 tips：静态变量持有Activity引用会导致内存泄露
 
-# 某公司面试题
+## 某公司面试题
 
-#### 一面
+### 一面
 
 - service生命周期，可以执行耗时操作吗？
 - JNI开发流程
@@ -344,7 +346,7 @@ tips：静态变量持有Activity引用会导致内存泄露
 [WebView 远程代码执行漏洞浅析](http://jaq.alibaba.com/blog.htm?spm=0.0.0.0.oMsDAl&id=48)
 [WebView中的Java与JavaScript提供【安全可靠】的多样互通方案](https://github.com/pedant/safe-java-js-webview-bridge)
 
-#### 二面
+### 二面
 
 - 所使用的开源框架的实现原理，源码
 - 没看过，被pass了

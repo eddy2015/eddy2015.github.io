@@ -8,13 +8,15 @@ tags:
 - AnySDK
 
 ---
-本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。<!--more-->
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/creator-anysdk.html](http://eddy.wiki/creator-anysdk.html)
+
+本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。
 
 ## 本人开发环境
 CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3
 
 ## Android 平台集成 AnySDK 详细步骤
-由于本人使用 git 对项目进行版本控制管理，所以下列步骤中会有一些与 git 相关的操作。如果你没有使用 git，那么你可以直接忽略下列步骤中与 git 相关的操作。
+由于本人使用 git 对项目进行版本控制管理，所以下列步骤中会有一些与 git 相关的操作。如果你没有使用 git，那么你可以直接忽略下列步骤中与 git 相关的操作。<!--more-->
 
 ### 获取 AnySDK Framework
 安装 AnySDK 客户端，然后在 AnySDK 客户端的【安妮市场】【分类】【框架】中找到 JS(Android) 框架并下载。如下图：
@@ -364,5 +366,3 @@ onExitBtnClicked: function () {
 
 ## 总结
 本文主要讲解了如何在 CocosCreator 项目的 Android 平台集成 AnySDK ，并提供了一个快速集成方法。ios 平台请参考 AnySDK 的官方文档自行尝试。
-
-本文出自 [Eddy Wiki](http://eddy.wiki) 转载请注明出处：http://eddy.wiki/2016-10-23-creator-anysdk.html

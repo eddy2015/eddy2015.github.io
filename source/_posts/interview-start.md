@@ -1,6 +1,6 @@
 ---
 title: Android 面试之开篇
-date: 2016-10-31 17:02:44
+date: 2016-10-25 17:02:44
 tags:
 - Android 面试
 categories:
@@ -8,11 +8,20 @@ categories:
 
 ---
 
-由于最近在找 Android 应用开发的相关工作，故在面试准备期间把 Android 面试相关的知识等整理成 “**Android 面试**” 系列文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/interview-start.html](http://eddy.wiki/interview-start.html)
+
+由于最近准备转行搞 Android 应用开发，故在面试准备期间把 Android 面试相关的知识等整理成 “**Android 面试系列**” 文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。
 
 ##  Android 面试系列目录
 
-
+1. [Android 面试之 Java 篇](http://eddy.wiki/interview-java.html)
+2. [Android 面试之 Android 篇](http://eddy.wiki/interview-android.html)
+3. [Android 面试之简历篇](http://eddy.wiki/interview-resume.html)
+4. [Android 面试之面试官提问篇](http://eddy.wiki/interview-work.html)
+5. [Android 面试之某些公司的面试题](http://eddy.wiki/interview-company.html)
+6. [Android 面试之常用开源库](http://eddy.wiki/interview-opensource.html)
+7. [Android 面试之排序算法](http://eddy.wiki/interview-algorithm.html)
+8. [Android 面试之编程算法题](http://eddy.wiki/interview-code.html)
 
 <!-- more -->
 

@@ -1,13 +1,15 @@
 ---
-title: Android 面试：Android 简述题
-date: 2016-10-26 11:06:15
+title: Android 面试之 Android 篇
+date: 2016-10-27 11:06:15
 categories:
 - Android 面试
 tags:
 - Android 面试
 ---
 
-本文收集整理了 Android 面试中会遇到与 Android 知识相关的简述题。<!--more-->
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/interview-android.html](http://eddy.wiki/interview-android.html)
+
+本文收集整理了 Android 面试中会遇到与 Android 知识相关的简述题。
 
 # 基本概念
 
@@ -33,7 +35,7 @@ android平台提供了Content Provider使一个应用程序的指定数据集提
 
 参考：
 
-[Android四大基本组件介绍与生命周期](http://www.cnblogs.com/bravestarrhu/archive/2012/05/02/2479461.html)
+[Android四大基本组件介绍与生命周期](http://www.cnblogs.com/bravestarrhu/archive/2012/05/02/2479461.html)<!--more-->
 
 ## 四大组件的具体作用以及用法
 
@@ -744,16 +746,16 @@ Content Provider,因为只是把自己的数据库暴露出去，其他程序都
 **基础知识**
 
 1. 所有Touch事件都被封装成了MotionEvent对象，包括Touch的位置、时间、历史记录以及第几个手指(多指触摸)等。
-2.  事件类型分为ACTION_DOWN, ACTION_UP, ACTION_MOVE, ACTION_POINTER_DOWN, ACTION_POINTER_UP, ACTION_CANCEL，每个事件都是以ACTION_DOWN开始ACTION_UP结束。
+2. 事件类型分为ACTION_DOWN, ACTION_UP, ACTION_MOVE, ACTION_POINTER_DOWN, ACTION_POINTER_UP, ACTION_CANCEL，每个事件都是以ACTION_DOWN开始ACTION_UP结束。
 3. 对事件的处理包括三类，分别为传递——dispatchTouchEvent()函数、拦截——onInterceptTouchEvent()函数、消费——onTouchEvent()函数和OnTouchListener
 
 **传递流程**
 
 1.  事件从Activity.dispatchTouchEvent()开始传递，只要没有被停止或拦截，从最上层的View(ViewGroup)开始一直往下(子View)传递。子View可以通过onTouchEvent()对事件进行处理。
-2. 事件由父View(ViewGroup)传递给子View，ViewGroup可以通过onInterceptTouchEvent()对事件做拦截，停止其往下传递。
-3. 如果事件从上往下传递过程中一直没有被停止，且最底层子View没有消费事件，事件会反向往上传递，这时父View(ViewGroup)可以进行消费，如果还是没有被消费的话，最后会到Activity的onTouchEvent()函数。
+2.  事件由父View(ViewGroup)传递给子View，ViewGroup可以通过onInterceptTouchEvent()对事件做拦截，停止其往下传递。
+3.  如果事件从上往下传递过程中一直没有被停止，且最底层子View没有消费事件，事件会反向往上传递，这时父View(ViewGroup)可以进行消费，如果还是没有被消费的话，最后会到Activity的onTouchEvent()函数。
 4.  如果View没有对ACTION_DOWN进行消费，之后的其他事件不会传递过来。
-5. OnTouchListener优先于onTouchEvent()对事件进行消费。
+5.  OnTouchListener优先于onTouchEvent()对事件进行消费。
 
 上面的消费即表示相应函数返回值为true。
 

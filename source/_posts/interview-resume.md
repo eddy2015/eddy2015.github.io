@@ -1,6 +1,6 @@
 ---
-title: Android 面试：简历
-date: 2016-10-31 11:09:21
+title: Android 面试之简历篇
+date: 2016-10-28 11:09:21
 tags: 
 - Android 面试
 - 简历
@@ -8,7 +8,9 @@ categories:
 - Android 面试
 ---
 
-在网上搜索了一下，经过浏览筛选出下面6篇关于怎么写技术简历的文章。相信看完下面这6篇文章后，你就知道怎么写出一份合适的技术简历了。
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/interview-resume.html](http://eddy.wiki/interview-resume.html)
+
+在网上搜索了一下，经过浏览筛选出下面6篇关于怎么写技术简历的文章。看完下面这6篇文章后，相信你就知道怎么写出一份合适的技术简历了。
 
 **怎么写简历？请参考以下文章：**
 

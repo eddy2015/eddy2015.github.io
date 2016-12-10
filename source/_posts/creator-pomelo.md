@@ -8,6 +8,8 @@ tags:
 - Pomelo
 
 ---
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/creator-pomelo.html](http://eddy.wiki/creator-pomelo.html)
+
 本文主要介绍怎么在 CocosCreator 中集成 Pomelo， 以及使用CocosCreattor + Pomelo 开发一个多人聊天应用。
 
 使用 Pomelo 官方多人聊天 demo（下文统一称为 pomelo-chat-demo）的服务端代码作为本多人聊天应用的服务端，而本聊天应用客户端（下文统一称为 ccc-pomelo-chat-client）则是参考 pomelo-chat-demo 的web客户端使用CocosCreattor实现。<!--more-->
@@ -106,6 +108,4 @@ ccc-pomelo-chat-client 中的 pomelo 库生成过程：
 
 ## 最后
 这是我博客的第一篇博文（除了 HelloWord 外^_^），希望大家喜欢。由于本人水平有限，文章中难免错漏之处，请各位不吝指正。
-
-本文出自 [Eddy Wiki](http://eddy.wiki) 转载请注明出处：http://eddy.wiki/2016-10-23-creator-pomelo.html
 

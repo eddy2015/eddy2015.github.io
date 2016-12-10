@@ -1,11 +1,13 @@
 ---
-title: Android 面试：编程算法题
-date: 2016-10-26 12:07:03
+title: Android 面试之编程算法题
+date: 2016-10-31 12:07:03
 categories:
 - Android 面试
 tags:
 - Android 面试
 ---
+
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/interview-code.html](http://eddy.wiki/interview-code.html)
 
 本文收集整理了 Android 面试中会遇到的编程算法题。
 
@@ -23,7 +25,13 @@ tags:
 
 [牛客网-剑指 Offer](http://www.nowcoder.com/ta/coding-interviews?page=1)
 
-## 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。 
+## 二维数组中查找
+
+**题目：**
+
+在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+
+**分析：**
 
 根据题意画了个简单的图，首先我们要确定查找开始的位置，因为它是二维的数组，它的下标变化是两个方向的，根据四个边界点来分析。
 
@@ -39,11 +47,11 @@ tags:
 >
 > Ｄ：向左　减　，向上　减
 
-　　可以看出从B 或Ｃ点开始查找刚好可以构建一个二叉查找树。
+可以看出从B 或Ｃ点开始查找刚好可以构建一个二叉查找树。
 
-> 　　二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为二叉排序树。
+> 二叉查找树（Binary Search Tree），（又：二叉搜索树，二叉排序树）它或者是一棵空树，或者是具有下列性质的二叉树： 若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为二叉排序树。
 
-　　先确定二维数组的行数和列数，把 查找值 与 二叉查找树的根节点（Ｂ或者　Ｃ）开始比较，如果相等返回true，小于查找左子树，大于就查找右子树。如果遍历超过数组边界，就返回 false。
+先确定二维数组的行数和列数，把 查找值 与 二叉查找树的根节点（Ｂ或者　Ｃ）开始比较，如果相等返回true，小于查找左子树，大于就查找右子树。如果遍历超过数组边界，就返回 false。
 
 > 以C为根节点查找
 
@@ -200,11 +208,6 @@ public class Solution {
 }
 ```
 
-思路：实现两个栈，stack用来存储数据，min用来保存最小值；为了使min栈顶元素一直是当前stack栈中的最小值，要在stack入栈时进行判断，如果入栈值比当前min栈顶值更小，则把该值入为min新的栈顶，否则再**重复入一次min栈顶元素**（为了stack和min同时出栈，虽然出栈值可能不一样，但并不影响min栈顶是当前stack中的最小元素）。
-　　在min函数中min.peek()就行了，返回栈顶但不出栈。
-
-
-
 ## 请实现一个函数，将一个字符串中的空格替换成“%20”。例如，当字符串为We Are Happy.则经过替换之后的字符串为We%20Are%20Happy。
 
 输入描述
@@ -269,35 +272,35 @@ public class Solution {
 源码（可以看出它调用的是父类的方法）
 
 ```java
-  public synchronized StringBuffer More ...replace(int start, int end, String str) {
-453        toStringCache = null;
-454        super.replace(start, end, str);
-455        return this;
-456    }
+  public synchronized StringBuffer More ...replace(int start, int end, String str){
+        toStringCache = null;
+        super.replace(start, end, str);
+        return this;
+ }
 ```
 
 父类AbstractStringBuilder
 
 ```java
-822     public AbstractStringBuilder More ...replace(int start, int end, String str) {
-823         if (start < 0)
-824             throw new StringIndexOutOfBoundsException(start);
-825         if (start > count)
-826             throw new StringIndexOutOfBoundsException("start > length()");
-827         if (start > end)
-828             throw new StringIndexOutOfBoundsException("start > end");
-829 
-830         if (end > count)
-831             end = count;
-832         int len = str.length();
-833         int newCount = count + len - (end - start);
-834         ensureCapacityInternal(newCount);
-835 
-836         System.arraycopy(value, end, value, start + len, count - end);
-837         str.getChars(value, start);
-838         count = newCount;
-839         return this;
-840     }
+     public AbstractStringBuilder More ...replace(int start, int end, String str) {
+         if (start < 0)
+             throw new StringIndexOutOfBoundsException(start);
+         if (start > count)
+             throw new StringIndexOutOfBoundsException("start > length()");
+         if (start > end)
+             throw new StringIndexOutOfBoundsException("start > end");
+ 
+         if (end > count)
+             end = count;
+         int len = str.length();
+         int newCount = count + len - (end - start);
+         ensureCapacityInternal(newCount);
+ 
+         System.arraycopy(value, end, value, start + len, count - end);
+         str.getChars(value, start);
+         count = newCount;
+         return this;
+     }
 ```
 
 　　可以看出StringBuffer类 提供了 插入的函数，值得注意的是 StringBuilder 也是继承于AbstractStringBuilder这个抽象类的。所以它也有这个方法，但是String并没有。　　
@@ -324,13 +327,13 @@ public class Solution {
 
 题目分析
 
-　　这是一个字符串全排列的问题，把全部序列存在TreeSet中默认可得到字典顺序。
+这是一个字符串全排列的问题，把全部序列存在TreeSet中默认可得到字典顺序。
 
 > TreeSet  　　　　基于TreeMap实现的SortedSet，可以对Set集合中的元素进行排序，排序后按升序排列元素（缺省是按照自然排序），非线程安全。
 
 思路：
 
-　　固定一个字符串之后，之后再将问题变小，只需求出后面子串的排列个数就可以得出结果，然后依次将后面的字符串与前面的交换，再递归子串的排列结果，最后当所有字符都固定结束递归。
+固定一个字符串之后，之后再将问题变小，只需求出后面子串的排列个数就可以得出结果，然后依次将后面的字符串与前面的交换，再递归子串的排列结果，最后当所有字符都固定结束递归。
 
 下面这张图很清楚的给出了递归的过程：
 
@@ -350,13 +353,14 @@ public class Solution {
        if(str==null || str.length()==0) return list;
 
        Permutation(str.toCharArray(),0);
-       //容器转换
+       //容器转换，TreeSet中的元素已经是按照字母顺序排序，所以这里做了排序
        list.addAll(set);
        return list;
     }
     public void Permutation(char[] s,int index){
         if(s==null ||s.length==0 || index<0 || index>s.length-1)  return ;
         if(index==s.length-1){//递归固定到最后一个位置，把该串加入集合
+          	// set不能添加重复元素，所以这里的add()解决了有重复字符的问题
             set.add(new String(s));
         }else{//固定前index+1个字符，递归后面所有可能的子串
            for(int i = index;i<s.length;i++){
@@ -1098,7 +1102,6 @@ public class Solution {
 
     }
 }
-
 ```
 
 ## 圆圈中最后剩下的数字

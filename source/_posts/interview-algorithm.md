@@ -1,13 +1,15 @@
 ---
-title: Android 面试：排序和查找算法
-date: 2016-10-28 12:31:18
+title: Android 面试之排序算法
+date: 2016-10-30 12:31:18
 tags:
 - Android 面试
 categories:
 - Android 面试
 
 ---
-本文收集整理了排序、查找算法相关的知识。<!-- more -->
+> 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/interview-algorithm.html](http://eddy.wiki/interview-algorithm.html)
+
+本文收集整理了排序、查找算法相关的知识。
 
 ## 排序算法参考
 
@@ -15,7 +17,7 @@ categories:
 
 [九大基础排序总结和对比](https://github.com/Mr-YangCheng/ForAndroidInterview/blob/master/data%20structure/%5B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%5D%20%E4%B9%9D%E5%A4%A7%E5%9F%BA%E7%A1%80%E6%8E%92%E5%BA%8F%E6%80%BB%E7%BB%93%E4%B8%8E%E5%AF%B9%E6%AF%94.md)
 
-[各种排序算法的分析及java实现](http://www.cnblogs.com/liuling/p/2013-7-24-01.html)
+[各种排序算法的分析及java实现](http://www.cnblogs.com/liuling/p/2013-7-24-01.html)<!-- more -->
 
 ## 选择排序
 
