@@ -4,9 +4,9 @@
   <subtitle>I do what I do.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://eddy.wiki/"/>
+  <link href="http://www.eddy.wiki/"/>
   <updated>2016-12-10T06:51:41.000Z</updated>
-  <id>http://eddy.wiki/</id>
+  <id>http://www.eddy.wiki/</id>
   
   <author>
     <name>Eddy</name>
@@ -17,13 +17,13 @@
   
   <entry>
     <title>Android 面试之编程算法题</title>
-    <link href="http://eddy.wiki/interview-code.html"/>
-    <id>http://eddy.wiki/interview-code.html</id>
+    <link href="http://www.eddy.wiki/interview-code.html"/>
+    <id>http://www.eddy.wiki/interview-code.html</id>
     <published>2016-10-31T04:07:03.000Z</published>
     <updated>2016-12-10T06:51:41.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-code.html">http://eddy.wiki/interview-code.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-code.html" target="_blank" rel="external">http://eddy.wiki/interview-code.html</a></p>
 </blockquote>
 <p>本文收集整理了 Android 面试中会遇到的编程算法题。</p>
 <p><strong>推荐几个做编程题目的网站：</strong></p>
@@ -370,22 +370,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之排序算法</title>
-    <link href="http://eddy.wiki/interview-algorithm.html"/>
-    <id>http://eddy.wiki/interview-algorithm.html</id>
+    <link href="http://www.eddy.wiki/interview-algorithm.html"/>
+    <id>http://www.eddy.wiki/interview-algorithm.html</id>
     <published>2016-10-30T04:31:18.000Z</published>
     <updated>2016-12-10T07:11:40.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-algorithm.html">http://eddy.wiki/interview-algorithm.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-algorithm.html" target="_blank" rel="external">http://eddy.wiki/interview-algorithm.html</a></p>
 </blockquote>
 <p>本文收集整理了排序、查找算法相关的知识。</p>
 <h2 id="排序算法参考"><a href="#排序算法参考" class="headerlink" title="排序算法参考"></a>排序算法参考</h2><p> <a href="http://www.atool.org/sort.php" target="_blank" rel="external">排序算法过程演示动画</a></p>
@@ -433,22 +433,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之常用开源库</title>
-    <link href="http://eddy.wiki/interview-opensource.html"/>
-    <id>http://eddy.wiki/interview-opensource.html</id>
+    <link href="http://www.eddy.wiki/interview-opensource.html"/>
+    <id>http://www.eddy.wiki/interview-opensource.html</id>
     <published>2016-10-29T14:56:25.000Z</published>
     <updated>2016-12-10T06:50:03.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-opensource.html">http://eddy.wiki/interview-opensource.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-opensource.html" target="_blank" rel="external">http://eddy.wiki/interview-opensource.html</a></p>
 </blockquote>
 <p>本文收集整理了 Android 中常用的一些开源库。</p>
 <h1 id="图片加载开源库"><a href="#图片加载开源库" class="headerlink" title="图片加载开源库"></a>图片加载开源库</h1><p>参考：</p>
@@ -501,22 +501,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之某些公司的面试题</title>
-    <link href="http://eddy.wiki/interview-company.html"/>
-    <id>http://eddy.wiki/interview-company.html</id>
+    <link href="http://www.eddy.wiki/interview-company.html"/>
+    <id>http://www.eddy.wiki/interview-company.html</id>
     <published>2016-10-29T06:08:19.000Z</published>
     <updated>2016-12-10T06:46:49.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-company.html">http://eddy.wiki/interview-company.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-company.html" target="_blank" rel="external">http://eddy.wiki/interview-company.html</a></p>
 </blockquote>
 <p>本文从网络上收集了一些公司的 Android 面试题。</p>
 <h2 id="Alibaba"><a href="#Alibaba" class="headerlink" title="Alibaba"></a>Alibaba</h2><p>一面</p>
@@ -755,22 +755,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之面试官提问篇</title>
-    <link href="http://eddy.wiki/interview-work.html"/>
-    <id>http://eddy.wiki/interview-work.html</id>
+    <link href="http://www.eddy.wiki/interview-work.html"/>
+    <id>http://www.eddy.wiki/interview-work.html</id>
     <published>2016-10-28T10:09:21.000Z</published>
     <updated>2016-12-10T07:24:30.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-work.html">http://eddy.wiki/interview-work.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-work.html" target="_blank" rel="external">http://eddy.wiki/interview-work.html</a></p>
 </blockquote>
 <p>本文收集整理了 Android 面试中面试官经常会问的问题，例如：自我介绍、职业规划等等。</p>
 <h2 id="请简单介绍一下自己（自我介绍）"><a href="#请简单介绍一下自己（自我介绍）" class="headerlink" title="请简单介绍一下自己（自我介绍）"></a>请简单介绍一下自己（自我介绍）</h2><p>参考：</p>
@@ -849,22 +849,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之简历篇</title>
-    <link href="http://eddy.wiki/interview-resume.html"/>
-    <id>http://eddy.wiki/interview-resume.html</id>
+    <link href="http://www.eddy.wiki/interview-resume.html"/>
+    <id>http://www.eddy.wiki/interview-resume.html</id>
     <published>2016-10-28T03:09:21.000Z</published>
     <updated>2016-12-10T03:37:15.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-resume.html">http://eddy.wiki/interview-resume.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-resume.html" target="_blank" rel="external">http://eddy.wiki/interview-resume.html</a></p>
 </blockquote>
 <p>在网上搜索了一下，经过浏览筛选出下面6篇关于怎么写技术简历的文章。看完下面这6篇文章后，相信你就知道怎么写出一份合适的技术简历了。</p>
 <p><strong>怎么写简历？请参考以下文章：</strong></p>
@@ -881,28 +881,28 @@
     <summary type="html">
     
       &lt;blockquote&gt;
-&lt;p&gt;本文出自 &lt;a href=&quot;http://eddy.wiki&quot;&gt;Eddy Wiki&lt;/a&gt; ，转载请注明出处：&lt;a href=&quot;http://eddy.wiki/interview-resume.html&quot;&gt;http://eddy.wiki/int
+&lt;p&gt;本文出自 &lt;a href=&quot;http://eddy.wiki&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Eddy Wiki&lt;/a&gt; ，转载请注明出处：&lt;a href=&quot;http://eddy.wiki/interview-re
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
-      <category term="简历" scheme="http://eddy.wiki/tags/%E7%AE%80%E5%8E%86/"/>
+      <category term="简历" scheme="http://www.eddy.wiki/tags/%E7%AE%80%E5%8E%86/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之 Android 篇</title>
-    <link href="http://eddy.wiki/interview-android.html"/>
-    <id>http://eddy.wiki/interview-android.html</id>
+    <link href="http://www.eddy.wiki/interview-android.html"/>
+    <id>http://www.eddy.wiki/interview-android.html</id>
     <published>2016-10-27T03:06:15.000Z</published>
     <updated>2016-12-10T03:27:20.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-android.html">http://eddy.wiki/interview-android.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-android.html" target="_blank" rel="external">http://eddy.wiki/interview-android.html</a></p>
 </blockquote>
 <p>本文收集整理了 Android 面试中会遇到与 Android 知识相关的简述题。</p>
 <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="Android-的四大组件"><a href="#Android-的四大组件" class="headerlink" title="Android 的四大组件"></a>Android 的四大组件</h2><p>Acitivity、Service、BroadcastReceiver、ContentProvider</p>
@@ -1727,22 +1727,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之 Java 篇</title>
-    <link href="http://eddy.wiki/interview-java.html"/>
-    <id>http://eddy.wiki/interview-java.html</id>
+    <link href="http://www.eddy.wiki/interview-java.html"/>
+    <id>http://www.eddy.wiki/interview-java.html</id>
     <published>2016-10-26T15:15:14.000Z</published>
     <updated>2016-12-10T03:34:49.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-java.html">http://eddy.wiki/interview-java.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-java.html" target="_blank" rel="external">http://eddy.wiki/interview-java.html</a></p>
 </blockquote>
 <p>本文收集整理了 Android 面试中会遇到与 Java 知识相关的简述题。</p>
 <h1 id="面向对象"><a href="#面向对象" class="headerlink" title="面向对象"></a>面向对象</h1><h2 id="Java面向对象的三个特征与含义"><a href="#Java面向对象的三个特征与含义" class="headerlink" title="Java面向对象的三个特征与含义"></a>Java面向对象的三个特征与含义</h2><ul>
@@ -2831,33 +2831,33 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>Android 面试之开篇</title>
-    <link href="http://eddy.wiki/interview-start.html"/>
-    <id>http://eddy.wiki/interview-start.html</id>
+    <link href="http://www.eddy.wiki/interview-start.html"/>
+    <id>http://www.eddy.wiki/interview-start.html</id>
     <published>2016-10-25T09:02:44.000Z</published>
     <updated>2016-12-10T07:59:47.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-start.html">http://eddy.wiki/interview-start.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-start.html" target="_blank" rel="external">http://eddy.wiki/interview-start.html</a></p>
 </blockquote>
 <p>由于最近准备转行搞 Android 应用开发，故在面试准备期间把 Android 面试相关的知识等整理成 “<strong>Android 面试系列</strong>” 文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。</p>
 <h2 id="Android-面试系列目录"><a href="#Android-面试系列目录" class="headerlink" title="Android 面试系列目录"></a>Android 面试系列目录</h2><ol>
-<li><a href="http://eddy.wiki/interview-java.html">Android 面试之 Java 篇</a></li>
-<li><a href="http://eddy.wiki/interview-android.html">Android 面试之 Android 篇</a></li>
-<li><a href="http://eddy.wiki/interview-resume.html">Android 面试之简历篇</a></li>
-<li><a href="http://eddy.wiki/interview-work.html">Android 面试之面试官提问篇</a></li>
-<li><a href="http://eddy.wiki/interview-company.html">Android 面试之某些公司的面试题</a></li>
-<li><a href="http://eddy.wiki/interview-opensource.html">Android 面试之常用开源库</a></li>
-<li><a href="http://eddy.wiki/interview-algorithm.html">Android 面试之排序算法</a></li>
-<li><a href="http://eddy.wiki/interview-code.html">Android 面试之编程算法题</a></li>
+<li><a href="http://eddy.wiki/interview-java.html" target="_blank" rel="external">Android 面试之 Java 篇</a></li>
+<li><a href="http://eddy.wiki/interview-android.html" target="_blank" rel="external">Android 面试之 Android 篇</a></li>
+<li><a href="http://eddy.wiki/interview-resume.html" target="_blank" rel="external">Android 面试之简历篇</a></li>
+<li><a href="http://eddy.wiki/interview-work.html" target="_blank" rel="external">Android 面试之面试官提问篇</a></li>
+<li><a href="http://eddy.wiki/interview-company.html" target="_blank" rel="external">Android 面试之某些公司的面试题</a></li>
+<li><a href="http://eddy.wiki/interview-opensource.html" target="_blank" rel="external">Android 面试之常用开源库</a></li>
+<li><a href="http://eddy.wiki/interview-algorithm.html" target="_blank" rel="external">Android 面试之排序算法</a></li>
+<li><a href="http://eddy.wiki/interview-code.html" target="_blank" rel="external">Android 面试之编程算法题</a></li>
 </ol>
 <a id="more"></a>
 <h2 id="参考来源链接"><a href="#参考来源链接" class="headerlink" title="参考来源链接"></a>参考来源链接</h2><ol>
@@ -2895,22 +2895,22 @@
     
     </summary>
     
-      <category term="Android 面试" scheme="http://eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/categories/Android-%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="Android 面试" scheme="http://eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
+      <category term="Android 面试" scheme="http://www.eddy.wiki/tags/Android-%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
   <entry>
     <title>CocosCreator 集成 AnySDK 教程</title>
-    <link href="http://eddy.wiki/creator-anysdk.html"/>
-    <id>http://eddy.wiki/creator-anysdk.html</id>
+    <link href="http://www.eddy.wiki/creator-anysdk.html"/>
+    <id>http://www.eddy.wiki/creator-anysdk.html</id>
     <published>2016-10-23T13:00:50.000Z</published>
     <updated>2016-12-10T07:00:37.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/creator-anysdk.html">http://eddy.wiki/creator-anysdk.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/creator-anysdk.html" target="_blank" rel="external">http://eddy.wiki/creator-anysdk.html</a></p>
 </blockquote>
 <p>本文主要介绍怎么在 CocosCreator 项目中集成 AnySDK 。</p>
 <h2 id="本人开发环境"><a href="#本人开发环境" class="headerlink" title="本人开发环境"></a>本人开发环境</h2><p>CocosCreator 1.1.1, AnySDK 2.1.2, AnySDK_Framework_JS_Android_2.1.2, MacOS 10.10.3</p>
@@ -2995,24 +2995,24 @@ build/jsb-default/frameworks/cocos2d-x/cocos/platform/android/java/gen/
     
     </summary>
     
-      <category term="CocosCreator" scheme="http://eddy.wiki/categories/CocosCreator/"/>
+      <category term="CocosCreator" scheme="http://www.eddy.wiki/categories/CocosCreator/"/>
     
     
-      <category term="CocosCreator" scheme="http://eddy.wiki/tags/CocosCreator/"/>
+      <category term="CocosCreator" scheme="http://www.eddy.wiki/tags/CocosCreator/"/>
     
-      <category term="AnySDK" scheme="http://eddy.wiki/tags/AnySDK/"/>
+      <category term="AnySDK" scheme="http://www.eddy.wiki/tags/AnySDK/"/>
     
   </entry>
   
   <entry>
     <title>CocosCreator 集成 Pomelo 教程</title>
-    <link href="http://eddy.wiki/creator-pomelo.html"/>
-    <id>http://eddy.wiki/creator-pomelo.html</id>
+    <link href="http://www.eddy.wiki/creator-pomelo.html"/>
+    <id>http://www.eddy.wiki/creator-pomelo.html</id>
     <published>2016-10-23T12:10:50.000Z</published>
     <updated>2016-12-10T07:01:50.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
-<p>本文出自 <a href="http://eddy.wiki">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/creator-pomelo.html">http://eddy.wiki/creator-pomelo.html</a></p>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/creator-pomelo.html" target="_blank" rel="external">http://eddy.wiki/creator-pomelo.html</a></p>
 </blockquote>
 <p>本文主要介绍怎么在 CocosCreator 中集成 Pomelo， 以及使用CocosCreattor + Pomelo 开发一个多人聊天应用。</p>
 <p>使用 Pomelo 官方多人聊天 demo（下文统一称为 pomelo-chat-demo）的服务端代码作为本多人聊天应用的服务端，而本聊天应用客户端（下文统一称为 ccc-pomelo-chat-client）则是参考 pomelo-chat-demo 的web客户端使用CocosCreattor实现。<a id="more"></a></p>
@@ -3073,28 +3073,28 @@ $ git clone https://github.com/eddy2015/ccc-pomelo-chat-client.git
     
     </summary>
     
-      <category term="CocosCreator" scheme="http://eddy.wiki/categories/CocosCreator/"/>
+      <category term="CocosCreator" scheme="http://www.eddy.wiki/categories/CocosCreator/"/>
     
     
-      <category term="CocosCreator" scheme="http://eddy.wiki/tags/CocosCreator/"/>
+      <category term="CocosCreator" scheme="http://www.eddy.wiki/tags/CocosCreator/"/>
     
-      <category term="Pomelo" scheme="http://eddy.wiki/tags/Pomelo/"/>
+      <category term="Pomelo" scheme="http://www.eddy.wiki/tags/Pomelo/"/>
     
   </entry>
   
   <entry>
     <title>Hello World</title>
-    <link href="http://eddy.wiki/hello-world.html"/>
-    <id>http://eddy.wiki/hello-world.html</id>
+    <link href="http://www.eddy.wiki/hello-world.html"/>
+    <id>http://www.eddy.wiki/hello-world.html</id>
     <published>2016-10-23T12:00:50.000Z</published>
     <updated>2016-11-01T15:04:57.000Z</updated>
     
-    <content type="html"><![CDATA[<p>欢迎来到本博客！本博客永久地址为：<a href="http://eddy.wiki">http://eddy.wiki</a></p>
+    <content type="html"><![CDATA[<p>欢迎来到本博客！本博客永久地址为：<a href="http://eddy.wiki" target="_blank" rel="external">http://eddy.wiki</a></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;欢迎来到本博客！本博客永久地址为：&lt;a href=&quot;http://eddy.wiki&quot;&gt;http://eddy.wiki&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;欢迎来到本博客！本博客永久地址为：&lt;a href=&quot;http://eddy.wiki&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://eddy.wiki&lt;/a&gt;&lt;/p&gt;
 
     
     </summary>

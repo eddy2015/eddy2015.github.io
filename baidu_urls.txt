@@ -1,3 +1,12 @@
-http://eddy.wiki/interview-code.html
-http://eddy.wiki/interview-algorithm.html
-http://eddy.wiki/interview-opensource.html
+http://www.eddy.wiki/interview-code.html
+http://www.eddy.wiki/interview-algorithm.html
+http://www.eddy.wiki/interview-opensource.html
+http://www.eddy.wiki/interview-company.html
+http://www.eddy.wiki/interview-work.html
+http://www.eddy.wiki/interview-resume.html
+http://www.eddy.wiki/interview-android.html
+http://www.eddy.wiki/interview-java.html
+http://www.eddy.wiki/interview-start.html
+http://www.eddy.wiki/creator-anysdk.html
+http://www.eddy.wiki/creator-pomelo.html
+http://www.eddy.wiki/hello-world.html
