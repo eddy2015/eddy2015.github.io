@@ -1,3 +1,4 @@
+http://www.eddy.wiki/setup-cocos2d-x.html
 http://www.eddy.wiki/interview-code.html
 http://www.eddy.wiki/interview-algorithm.html
 http://www.eddy.wiki/interview-opensource.html

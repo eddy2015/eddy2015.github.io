@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Android 面试," />
+  <meta name="keywords" content="Cocos2d-x," />
 
 
 
@@ -86,25 +86,21 @@
 
 
 
-<meta name="description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-start.html
-
-由于最近准备转行搞 Android 应用开发，故在面试准备期间把 Android 面试相关的知识等整理成 “Android 面试系列” 文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。
-Android">
+<meta name="description" content="在这里向 Coccos2d-x 新手简单介绍一下如何在 Windows 7 平台上搭建 Cocos2d-x 开发环境，老手、大牛和大神请跳过。其他平台的开发环境搭建也可以参考本文，只需要安装对应平台软件和配置环境变量即可。本文使用 Cocos2d-x 3.15 版本，但对于 Cocos2d-x 3.0 以上版本的开发环境搭建应该也是适用的，可能 NDK 的版本需要稍作改动，请自行尝试。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android 面试之开篇">
-<meta property="og:url" content="http://www.eddy.wiki/interview-start.html">
+<meta property="og:title" content="在 Windows7 平台搭建 Cocos2d-x 开发环境">
+<meta property="og:url" content="http://www.eddy.wiki/setup-cocos2d-x.html">
 <meta property="og:site_name" content="Eddy Wiki">
-<meta property="og:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-start.html
-
-由于最近准备转行搞 Android 应用开发，故在面试准备期间把 Android 面试相关的知识等整理成 “Android 面试系列” 文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。
-Android">
-<meta property="og:updated_time" content="2016-12-10T07:59:47.000Z">
+<meta property="og:description" content="在这里向 Coccos2d-x 新手简单介绍一下如何在 Windows 7 平台上搭建 Cocos2d-x 开发环境，老手、大牛和大神请跳过。其他平台的开发环境搭建也可以参考本文，只需要安装对应平台软件和配置环境变量即可。本文使用 Cocos2d-x 3.15 版本，但对于 Cocos2d-x 3.0 以上版本的开发环境搭建应该也是适用的，可能 NDK 的版本需要稍作改动，请自行尝试。">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202257.png">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202439.png">
+<meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202514.png">
+<meta property="og:image" content="http://www.androiddevtools.cn/static/image/sdk-manager-proxy-settings.png">
+<meta property="og:updated_time" content="2017-06-09T15:07:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android 面试之开篇">
-<meta name="twitter:description" content="本文出自 Eddy Wiki ，转载请注明出处：http://eddy.wiki/interview-start.html
-
-由于最近准备转行搞 Android 应用开发，故在面试准备期间把 Android 面试相关的知识等整理成 “Android 面试系列” 文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。
-Android">
+<meta name="twitter:title" content="在 Windows7 平台搭建 Cocos2d-x 开发环境">
+<meta name="twitter:description" content="在这里向 Coccos2d-x 新手简单介绍一下如何在 Windows 7 平台上搭建 Cocos2d-x 开发环境，老手、大牛和大神请跳过。其他平台的开发环境搭建也可以参考本文，只需要安装对应平台软件和配置环境变量即可。本文使用 Cocos2d-x 3.15 版本，但对于 Cocos2d-x 3.0 以上版本的开发环境搭建应该也是适用的，可能 NDK 的版本需要稍作改动，请自行尝试。">
+<meta name="twitter:image" content="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202257.png">
 
 
 
@@ -125,10 +121,10 @@ Android">
 
 
 
-  <link rel="canonical" href="http://www.eddy.wiki/interview-start.html"/>
+  <link rel="canonical" href="http://www.eddy.wiki/setup-cocos2d-x.html"/>
 
 
-  <title> Android 面试之开篇 | Eddy Wiki </title>
+  <title> 在 Windows7 平台搭建 Cocos2d-x 开发环境 | Eddy Wiki </title>
 </head>
 
 <body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
@@ -281,7 +277,7 @@ Android">
             
             
               
-                Android 面试之开篇
+                在 Windows7 平台搭建 Cocos2d-x 开发环境
               
             
           </h1>
@@ -293,8 +289,8 @@ Android">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-25T17:02:44+08:00" content="2016-10-25">
-              2016-10-25
+            <time itemprop="dateCreated" datetime="2017-06-08T23:41:25+08:00" content="2017-06-08">
+              2017-06-08
             </time>
           </span>
 
@@ -307,8 +303,8 @@ Android">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Android-面试/" itemprop="url" rel="index">
-                    <span itemprop="name">Android 面试</span>
+                  <a href="/categories/Cocos2d-x/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocos2d-x</span>
                   </a>
                 </span>
 
@@ -323,8 +319,8 @@ Android">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/interview-start.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="interview-start.html" itemprop="commentsCount"></span>
+                <a href="/setup-cocos2d-x.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="setup-cocos2d-x.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -334,7 +330,7 @@ Android">
 
           
           
-             <span id="/interview-start.html" class="leancloud_visitors" data-flag-title="Android 面试之开篇">
+             <span id="/setup-cocos2d-x.html" class="leancloud_visitors" data-flag-title="在 Windows7 平台搭建 Cocos2d-x 开发环境">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -356,35 +352,103 @@ Android">
       
 
       
-        <blockquote>
-<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/interview-start.html" target="_blank" rel="external">http://eddy.wiki/interview-start.html</a></p>
+        <p>在这里向 Coccos2d-x 新手简单介绍一下如何在 Windows 7 平台上搭建 Cocos2d-x 开发环境，老手、大牛和大神请跳过。其他平台的开发环境搭建也可以参考本文，只需要安装对应平台软件和配置环境变量即可。本文使用 Cocos2d-x 3.15 版本，但对于 Cocos2d-x 3.0 以上版本的开发环境搭建应该也是适用的，可能 NDK 的版本需要稍作改动，请自行尝试。<a id="more"></a></p>
+<h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><p>Windows 7 64位；Cocos2d-x 3.15</p>
+<h1 id="下载-Cocos2d-x-3-15"><a href="#下载-Cocos2d-x-3-15" class="headerlink" title="下载 Cocos2d-x 3.15"></a>下载 Cocos2d-x 3.15</h1><p>下载 <a href="http://www.cocos.com/download" target="_blank" rel="external">Cocos2d-x 3.15</a>  并解压。</p>
+<p>查看 Cocos2d-x 3.15 目录下的 README.md 文件，你会发现有以下说明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">Build Requirements</div><div class="line">------------------</div><div class="line"></div><div class="line">* Mac OS X 10.7+, Xcode 7+</div><div class="line">* or Ubuntu 12.10+, CMake 2.6+</div><div class="line">* or Windows 7+, VS 2013+</div><div class="line">* Python 2.7.5</div><div class="line">* NDK r11+ and API level 19 is required to build Android games</div><div class="line">* Windows Phone/Store 8.1 VS 2013 Update 4+ or VS 2015</div><div class="line">* Windows Phone/Store 10.0 VS 2015</div><div class="line">* JRE or JDK 1.6+ is required for web publishing</div></pre></td></tr></table></figure>
+<h1 id="安装-Visual-Studio-2013"><a href="#安装-Visual-Studio-2013" class="headerlink" title="安装 Visual Studio 2013+"></a>安装 Visual Studio 2013+</h1><p>下载安装 Visual Studio 2013 以上版本，因为Cocos2d-x-v3.x引擎不能用老版本的 VS 编译（貌似可以使用 VS 2012，请自行验证）。安装的时候如果你只使用 VS 当做 Cocos2d-x 开发工具，那么你可以只安装 c++ 开发相关的功能，这样可以节省空间和减少安装时间。</p>
+<h1 id="安装-Python"><a href="#安装-Python" class="headerlink" title="安装 Python"></a>安装 Python</h1><p>下载 <a href="http://www.python.org/download/releases/2.7.3/" target="_blank" rel="external">Python 2.7.3</a> 并安装（虽然 README.md 中写着 Python 2.7.5 ，亲测可用 Python 2.7.3版本），安装后把 <code>D:\tools\Python27;</code> 添加到系统环境变量 Path 中，最后打开  cmd 控制台输入 “python -V” 检查是否安装成功并配好环境变量。</p>
+<p>注意：由于 Python 2.x 和 Python 3.x 是不兼容的，所以如果安装了 Python 3.x 是应该是有问题的，请自行验证。</p>
+<h1 id="安装-Java-JDK"><a href="#安装-Java-JDK" class="headerlink" title="安装 Java JDK"></a>安装 Java JDK</h1><p>根据你的系统平台下载对应的 <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">JDK</a> 并安装，我这里下载的是 Windows 7  64位对应的安装包。</p>
+<ol>
+<li>新建环境变量：JAVA_HOME 值为：<code>D:\Program Files\Java\jdk1.7.0</code></li>
+<li>新建环境变量：CLASSPATH  值为：<code>.;%JAVA_HOME%\lib;</code> （注意：点号表示当前目录，不能省略）</li>
+<li>在系统环境变量 Path 中加入：<code>%JAVA_HOME%\bin;</code> （注意:这里的分号不能省略）</li>
+<li>打开 cmd 控制台输入 “java -version” 检查是否安装并配置好环境变量。</li>
+</ol>
+<p>注意：JDK 最好使用 1.6 以上版本，使用 1.5 版本可能会有问题，请自行验证。</p>
+<h1 id="安装-Android-SDK"><a href="#安装-Android-SDK" class="headerlink" title="安装 Android SDK"></a>安装 Android SDK</h1><p>下载 <a href="http://www.androiddevtools.cn/" target="_blank" rel="external">ADT Bundle 23.0.0</a> ，解压并把文件夹名称修改为 ”adt-bundle“。ADT Bundle包含了Eclipse、ADT 插件和 SDK Tools，推荐初学者下载ADT Bundle，不用再折腾开发环境。</p>
+<ol>
+<li>新建环境变量：ANDROID_SDK 值为：<code>D:\tools\adt-bundle\sdk\platforms;D:\tools\adt-bundle\sdk\platform-tools;D:\tools\adt-bundle\sdk\tools;</code></li>
+<li>打开 cmd 控制台输入 “adb -h” 检查是否安装并配置好环境变量。</li>
+</ol>
+<p>注意：我下载的是 ADT Bundle，里面的 SDK 才是必须要用到的，但在开发过程中总会有需要用到 Eclipse 的时候。你也可以单独下载 SDK，然后在需要修改 Android 代码或者调试 Android 的时候使用其他 IDE，例如 Android Studio。</p>
+<h1 id="安装-Android-NDK"><a href="#安装-Android-NDK" class="headerlink" title="安装 Android NDK"></a>安装 Android NDK</h1><p>下载 <a href="https://developer.android.google.cn/ndk/downloads/older_releases.html#ndk-10c-downloads" target="_blank" rel="external">android-ndk-r11c</a> 并解压。</p>
+<p>新建环境变量：NDK_ROOT 值为：<code>D:\tools\android-ndk-r11c</code></p>
+<h1 id="安装-ant"><a href="#安装-ant" class="headerlink" title="安装 ant"></a>安装 ant</h1><p>下载 <a href="http://ant.apache.org/" target="_blank" rel="external">apache-ant</a> 并解压。</p>
+<p>新建环境变量：ANT_ROOT 值为：<code>D:\tools\apache-ant-1.9.7\bin</code></p>
+<h1 id="配置-cocos2d-console"><a href="#配置-cocos2d-console" class="headerlink" title="配置 cocos2d-console"></a>配置 cocos2d-console</h1><p>cocos2d-console 是 Cocos2d-x 的命令行工具，使用它可以很方便地创建、编译和发布 Cocos2d-x 工程。</p>
+<p>打开 cmd 控制台，输入 <code>cd /d D:\tools\cocos2d-x-3.15</code>  进入引擎根目录，然后输入 <code>python setup.py</code> 执行 Cocos2d-x 配置文件 setup.py ，根据提示输入对应的 SDK、NDK、ant 等路径完成 Cocos2d-x 环境变量设置（应该只用输入部分路径，根据提示输入即可）。完成配置后就可以使用 cocos2d-console 了，详细的使用说明请查看<a href="http://www.cocos2d-x.org/wiki/Cocos2d-console" target="_blank" rel="external">官方 cocos2d-console 使用说明文档</a>。</p>
+<p>最后打开 cmd 控制台输入 “cocos -v” 检查 Cocos2d-x 环境变量是否已经设置正确。</p>
+<h1 id="新建-Cocos2d-x-工程"><a href="#新建-Cocos2d-x-工程" class="headerlink" title="新建 Cocos2d-x 工程"></a>新建 Cocos2d-x 工程</h1><p>打开 cmd 控制台，输入 <code>cd /d D:\myproj</code> 进入存放新工程的目录，然后输入 <code>cocos new TestLua -l lua -p org.cocos2dx.mygame</code> 创建一个新的 Cocos2d-x lua 工程。</p>
+<p>使用 VS 打开 <code>D:\myproj\TestLua\frameworks\runtime-src\proj.win32</code> 下的 VS 工程，然后就可以在 VS 中运行和调试 Cocos2d-x 工程了。</p>
+<p>PS：至于如果运行官方示例 Cocos2d-x test-cpp，请参考<a href="http://www.cocos2d-x.org/wiki/How_to_run_cpp-tests_on_Windows" target="_blank" rel="external">官方文档</a>。</p>
+<h1 id="打包-Android-apk"><a href="#打包-Android-apk" class="headerlink" title="打包 Android apk"></a>打包 Android apk</h1><ul>
+<li>使用 cocos2d-console 打包：</li>
+</ul>
+<p>打开 cmd 控制台并进入到刚刚新建的 Cocos2d-x 工程根目录，然后输入 <code>cocos compile -p android -m debug</code> 就可以编译出 debug 版本的 Android apk 了。更详细的打包说明请查看<a href="http://www.cocos2d-x.org/wiki/Cocos2d-console" target="_blank" rel="external">官方 cocos2d-console 使用说明文档</a>。</p>
+<ul>
+<li>使用 Eclipse 打包：</li>
+</ul>
+<p>按照下图导入 Cocos2d-x Android 相关工程：<code>D:\myproj\TestLua\frameworks\cocos2d-x\cocos\platform\android\java</code> 以及 <code>D:\myproj\TestLua\frameworks\runtime-src\proj.android</code>。然后使用 Eclipse 打包 apk 即可。</p>
+<p><img src="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202257.png" alt=""></p>
+<p><img src="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202439.png" alt=""></p>
+<p><img src="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202514.png" alt=""></p>
+<p>打包 apk 过程中可能会遇到找不到对应的 Android API 版本问题，这是由于 Android SDK 中未按照对应的 Andriod 引起的。解决方法有以下两种：</p>
+<ol>
+<li>查看 Android SDK 中的 platforms 目录存在的 Android 版本是多少，例如 platforms 目录下存在 <code>android-22</code>。那么就把 <code>D:\myproj\TestLua\frameworks\runtime-src\proj.android\project.properties</code> 和 <code>D:\myproj\TestLua\frameworks\cocos2d-x\cocos\platform\android\java\project.properties</code> 文件中的 <code>target=android-22</code> 都设置成 SDK 中已下载好的 Android 版本。</li>
+<li>运行 <code>D:\tools\adt-bundle\SDK Manager.exe</code>，并下载对应的 Android 版本。下载过程可能需要翻墙，这时就需要按以下方法设置代理：<blockquote>
+<p>Android SDK在线更新镜像服务器</p>
+<ol>
+<li><p>中国科学院开源协会镜像站地址:</p>
+<ul>
+<li>IPV4/IPV6: <code>mirrors.opencas.cn</code> 端口：80</li>
+<li>IPV4/IPV6: <code>mirrors.opencas.org</code> 端口：80</li>
+<li>IPV4/IPV6: <code>mirrors.opencas.ac.cn</code> 端口：80</li>
+</ul>
+</li>
+<li><p>上海GDG镜像服务器地址:</p>
+<p><code>sdk.gdgshanghai.com</code> 端口：8000</p>
+</li>
+<li><p>北京化工大学镜像服务器地址: </p>
+<ul>
+<li>IPv4: <code>ubuntu.buct.edu.cn/</code> 端口：80</li>
+<li>IPv4: <code>ubuntu.buct.cn/</code> 端口：80</li>
+<li>IPv6: <code>ubuntu.buct6.edu.cn/</code> 端口：80</li>
+</ul>
+</li>
+<li><p>大连东软信息学院镜像服务器地址: </p>
+<p><code>mirrors.neusoft.edu.cn</code> 端口：80</p>
+</li>
+<li><p>郑州大学开源镜像站: </p>
+<p><code>mirrors.zzu.edu.cn</code> 端口：80</p>
+</li>
+</ol>
+<p><strong>使用方法：</strong></p>
+<ol>
+<li><p>启动 Android SDK Manager ，打开主界面，依次选择『<strong>Tools</strong>』、『<strong>Options…</strong>』，弹出『<strong>Android SDK Manager - Settings</strong>』窗口；</p>
+</li>
+<li><p>在『<strong>Android SDK Manager - Settings</strong>』窗口中，在『<strong>HTTP Proxy Server』和『HTTP Proxy Port</strong>』输入框内填入上面镜像服务器地址(<strong>不包含http://</strong>，如下图)和端口，并且选中『<strong>Force https://… sources to be fetched using http://…</strong>』复选框。设置完成后单击『<strong>Close</strong>』按钮关闭『<strong>Android SDK Manager - Settings</strong>』窗口返回到主界面；</p>
+</li>
+<li><p>依次选择『<strong>Packages</strong>』、『<strong>Reload</strong>』。</p>
+<p><img src="http://www.androiddevtools.cn/static/image/sdk-manager-proxy-settings.png" alt="SDK Manager Proxy Settings"></p>
+</li>
+</ol>
 </blockquote>
-<p>由于最近准备转行搞 Android 应用开发，故在面试准备期间把 Android 面试相关的知识等整理成 “<strong>Android 面试系列</strong>” 文章。在整理的过程中复习 Android 的相关知识，并留下一些记录，希望对其他的 Android 面试者有一定的帮助。</p>
-<h2 id="Android-面试系列目录"><a href="#Android-面试系列目录" class="headerlink" title="Android 面试系列目录"></a>Android 面试系列目录</h2><ol>
-<li><a href="http://eddy.wiki/interview-java.html" target="_blank" rel="external">Android 面试之 Java 篇</a></li>
-<li><a href="http://eddy.wiki/interview-android.html" target="_blank" rel="external">Android 面试之 Android 篇</a></li>
-<li><a href="http://eddy.wiki/interview-resume.html" target="_blank" rel="external">Android 面试之简历篇</a></li>
-<li><a href="http://eddy.wiki/interview-work.html" target="_blank" rel="external">Android 面试之面试官提问篇</a></li>
-<li><a href="http://eddy.wiki/interview-company.html" target="_blank" rel="external">Android 面试之某些公司的面试题</a></li>
-<li><a href="http://eddy.wiki/interview-opensource.html" target="_blank" rel="external">Android 面试之常用开源库</a></li>
-<li><a href="http://eddy.wiki/interview-algorithm.html" target="_blank" rel="external">Android 面试之排序算法</a></li>
-<li><a href="http://eddy.wiki/interview-code.html" target="_blank" rel="external">Android 面试之编程算法题</a></li>
+</li>
 </ol>
-<a id="more"></a>
-<h2 id="参考来源链接"><a href="#参考来源链接" class="headerlink" title="参考来源链接"></a>参考来源链接</h2><ol>
-<li><a href="https://github.com/Freelander/Android_Data" target="_blank" rel="external"> Android 学习资料收集</a></li>
-<li><a href="http://www.jianshu.com/p/d1efe2f31b6d" target="_blank" rel="external">史上最全Android面试资料集合</a></li>
-<li><a href="https://github.com/JackyAndroid/AndroidInterview-Q-A/blob/master/README-CN.md" target="_blank" rel="external">国内一线互联网公司内部面试题库</a></li>
-<li><a href="https://github.com/GeniusVJR/LearningNotes" target="_blank" rel="external">LearningNotes</a></li>
-<li><a href="https://github.com/Mr-YangCheng/ForAndroidInterview" target="_blank" rel="external">Android 名企面试题及涉及知识点整理</a></li>
-<li><a href="http://yuweiguocn.github.io/interview-2016-big-company/" target="_blank" rel="external">2016某公司面试题</a></li>
-<li><a href="http://yuweiguocn.github.io/android-interview-list/" target="_blank" rel="external">Android 面试题集合</a></li>
-<li><a href="http://yuweiguocn.github.io/android-interview-basic-1/" target="_blank" rel="external">Android 面试基础知识总结</a></li>
-<li><a href="http://blog.csdn.net/x605940745/article/category/1808335" target="_blank" rel="external">Android 面试题整理</a></li>
-<li><a href="http://www.cnblogs.com/hackerd/p/3750541.html" target="_blank" rel="external">Android 面试复习</a></li>
-<li>其他…</li>
-</ol>
-<h2 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h2><p> “<strong>Android 面试</strong>” 系列文章是本人参考上面的网站、文章等整理而成，在此感谢以上网站、文章的作者，谢谢！如果你觉得该系列文章对你的权益造成了侵害，那么请在本文下面留言，我会删除相关的文章。</p>
+<p>以上文字从 <a href="http://www.androiddevtools.cn/" target="_blank" rel="external">http://www.androiddevtools.cn/</a> 引用。</p>
+<h1 id="可能会遇到的错误"><a href="#可能会遇到的错误" class="headerlink" title="可能会遇到的错误"></a>可能会遇到的错误</h1><ul>
+<li>VS 运行 Cocos2d-x 工程出错：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Can&apos;t create window</div><div class="line">More info:</div><div class="line">GLFWError #65537 Happen,The GLFW library is not initialized</div></pre></td></tr></table></figure>
+<p>解决方法：更新电脑显卡驱动，一般是新安装的系统会出现这种错误。</p>
+<ul>
+<li>打包 Cocos2d-x lua 工程出错：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">luajit-win32.exe</div><div class="line">无法启动此程序，因为计算机中丢失 VCRUNTIME140.dll。尝试重新安装该程序以解决此问</div></pre></td></tr></table></figure>
+<p>解决方法：下载  <a href="http://www.cnblogs.com/xxoome/p/5612411.html" target="_blank" rel="external">vc++2015 </a> 并安装即可。</p>
 
       
     </div>
@@ -407,7 +471,7 @@ Android">
       
         <div class="post-tags">
           
-            <a href="/tags/Android-面试/" rel="tag">#Android 面试</a>
+            <a href="/tags/Cocos2d-x/" rel="tag">#Cocos2d-x</a>
           
         </div>
       
@@ -416,17 +480,13 @@ Android">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/creator-anysdk.html" rel="next" title="CocosCreator 集成 AnySDK 教程">
-                <i class="fa fa-chevron-left"></i> CocosCreator 集成 AnySDK 教程
+              <a href="/interview-code.html" rel="next" title="Android 面试之编程算法题">
+                <i class="fa fa-chevron-left"></i> Android 面试之编程算法题
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/interview-java.html" rel="prev" title="Android 面试之 Java 篇">
-                Android 面试之 Java 篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -490,8 +550,8 @@ Android">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="interview-start.html"
-           data-title="Android 面试之开篇" data-url="http://www.eddy.wiki/interview-start.html">
+      <div class="ds-thread" data-thread-key="setup-cocos2d-x.html"
+           data-title="在 Windows7 平台搭建 Cocos2d-x 开发环境" data-url="http://www.eddy.wiki/setup-cocos2d-x.html">
       </div>
     
   </div>
@@ -589,7 +649,7 @@ Android">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-面试系列目录"><span class="nav-number">1.</span> <span class="nav-text">Android 面试系列目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考来源链接"><span class="nav-number">2.</span> <span class="nav-text">参考来源链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说明"><span class="nav-number">3.</span> <span class="nav-text">说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统环境"><span class="nav-number">1.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载-Cocos2d-x-3-15"><span class="nav-number">2.</span> <span class="nav-text">下载 Cocos2d-x 3.15</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Visual-Studio-2013"><span class="nav-number">3.</span> <span class="nav-text">安装 Visual Studio 2013+</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Python"><span class="nav-number">4.</span> <span class="nav-text">安装 Python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Java-JDK"><span class="nav-number">5.</span> <span class="nav-text">安装 Java JDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Android-SDK"><span class="nav-number">6.</span> <span class="nav-text">安装 Android SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Android-NDK"><span class="nav-number">7.</span> <span class="nav-text">安装 Android NDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-ant"><span class="nav-number">8.</span> <span class="nav-text">安装 ant</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-cocos2d-console"><span class="nav-number">9.</span> <span class="nav-text">配置 cocos2d-console</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-Cocos2d-x-工程"><span class="nav-number">10.</span> <span class="nav-text">新建 Cocos2d-x 工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包-Android-apk"><span class="nav-number">11.</span> <span class="nav-text">打包 Android apk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可能会遇到的错误"><span class="nav-number">12.</span> <span class="nav-text">可能会遇到的错误</span></a></li></ol></div>
             
           </div>
         </section>
