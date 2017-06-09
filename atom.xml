@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.eddy.wiki/"/>
-  <updated>2017-06-09T15:07:24.000Z</updated>
+  <updated>2017-06-09T15:15:41.000Z</updated>
   <id>http://www.eddy.wiki/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://www.eddy.wiki/setup-cocos2d-x.html"/>
     <id>http://www.eddy.wiki/setup-cocos2d-x.html</id>
     <published>2017-06-08T15:41:25.000Z</published>
-    <updated>2017-06-09T15:07:24.000Z</updated>
+    <updated>2017-06-09T15:15:41.000Z</updated>
     
     <content type="html"><![CDATA[<p>在这里向 Coccos2d-x 新手简单介绍一下如何在 Windows 7 平台上搭建 Cocos2d-x 开发环境，老手、大牛和大神请跳过。其他平台的开发环境搭建也可以参考本文，只需要安装对应平台软件和配置环境变量即可。本文使用 Cocos2d-x 3.15 版本，但对于 Cocos2d-x 3.0 以上版本的开发环境搭建应该也是适用的，可能 NDK 的版本需要稍作改动，请自行尝试。<a id="more"></a></p>
 <h1 id="系统环境"><a href="#系统环境" class="headerlink" title="系统环境"></a>系统环境</h1><p>Windows 7 64位；Cocos2d-x 3.15</p>
@@ -119,6 +119,9 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">luajit-win32.exe</div><div class="line">无法启动此程序，因为计算机中丢失 VCRUNTIME140.dll。尝试重新安装该程序以解决此问</div></pre></td></tr></table></figure>
 <p>解决方法：下载  <a href="http://www.cnblogs.com/xxoome/p/5612411.html" target="_blank" rel="external">vc++2015 </a> 并安装即可。</p>
+<blockquote>
+<p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/setup-cocos2d-x.html" target="_blank" rel="external">http://eddy.wiki/setup-cocos2d-x.html</a></p>
+</blockquote>
 ]]></content>
     
     <summary type="html">
