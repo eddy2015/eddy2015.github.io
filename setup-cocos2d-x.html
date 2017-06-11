@@ -96,7 +96,7 @@
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202439.png">
 <meta property="og:image" content="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202514.png">
 <meta property="og:image" content="http://www.androiddevtools.cn/static/image/sdk-manager-proxy-settings.png">
-<meta property="og:updated_time" content="2017-06-09T15:15:41.000Z">
+<meta property="og:updated_time" content="2017-06-11T12:47:18.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 Windows7 平台搭建 Cocos2d-x 开发环境">
 <meta name="twitter:description" content="在这里向 Coccos2d-x 新手简单介绍一下如何在 Windows 7 平台上搭建 Cocos2d-x 开发环境，老手、大牛和大神请跳过。其他平台的开发环境搭建也可以参考本文，只需要安装对应平台软件和配置环境变量即可。本文使用 Cocos2d-x 3.15 版本，但对于 Cocos2d-x 3.0 以上版本的开发环境搭建应该也是适用的，可能 NDK 的版本需要稍作改动，请自行尝试。">
@@ -395,7 +395,7 @@
 <p><img src="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202257.png" alt=""></p>
 <p><img src="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202439.png" alt=""></p>
 <p><img src="http://o9sn2y8lr.bkt.clouddn.com/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_20170606202514.png" alt=""></p>
-<p>打包 apk 过程中可能会遇到找不到对应的 Android API 版本问题，这是由于 Android SDK 中未按照对应的 Andriod 引起的。解决方法有以下两种：</p>
+<p>打包 apk 过程中可能会遇到找不到对应的 Android API 版本问题，这是由于 Android SDK 中未安装对应的 Andriod 引起的。解决方法有以下两种：</p>
 <ol>
 <li>查看 Android SDK 中的 platforms 目录存在的 Android 版本是多少，例如 platforms 目录下存在 <code>android-22</code>。那么就把 <code>D:\myproj\TestLua\frameworks\runtime-src\proj.android\project.properties</code> 和 <code>D:\myproj\TestLua\frameworks\cocos2d-x\cocos\platform\android\java\project.properties</code> 文件中的 <code>target=android-22</code> 都设置成 SDK 中已下载好的 Android 版本。</li>
 <li>运行 <code>D:\tools\adt-bundle\SDK Manager.exe</code>，并下载对应的 Android 版本。下载过程可能需要翻墙，这时就需要按以下方法设置代理：<blockquote>
@@ -449,6 +449,11 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">luajit-win32.exe</div><div class="line">无法启动此程序，因为计算机中丢失 VCRUNTIME140.dll。尝试重新安装该程序以解决此问</div></pre></td></tr></table></figure>
 <p>解决方法：下载  <a href="http://www.cnblogs.com/xxoome/p/5612411.html" target="_blank" rel="external">vc++2015 </a> 并安装即可。</p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><ol>
+<li><a href="http://www.cocos.com/docs/native/v3/getting-started/setting-up-development-environments-on-windows7-with-vs2013/zh.html" target="_blank" rel="external">在Windows7上搭建Cocos2d-x 3.2alpha0开发环境</a></li>
+<li><a href="http://www.cocos.com/docs/native/v3/getting-started/setting-up-development-environments-on-windows7-with-eclipse/zh.html" target="_blank" rel="external">如何在Windows 7平台搭建Android Cocos2d-x3.2alpha0开发环境</a></li>
+</ol>
+<hr>
 <blockquote>
 <p>本文出自 <a href="http://eddy.wiki" target="_blank" rel="external">Eddy Wiki</a> ，转载请注明出处：<a href="http://eddy.wiki/setup-cocos2d-x.html" target="_blank" rel="external">http://eddy.wiki/setup-cocos2d-x.html</a></p>
 </blockquote>
@@ -490,6 +495,10 @@
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/lua-quick-start.html" rel="prev" title="Lua 快速入门">
+                Lua 快速入门 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -599,7 +608,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -607,7 +616,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -616,7 +625,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -652,7 +661,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统环境"><span class="nav-number">1.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载-Cocos2d-x-3-15"><span class="nav-number">2.</span> <span class="nav-text">下载 Cocos2d-x 3.15</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Visual-Studio-2013"><span class="nav-number">3.</span> <span class="nav-text">安装 Visual Studio 2013+</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Python"><span class="nav-number">4.</span> <span class="nav-text">安装 Python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Java-JDK"><span class="nav-number">5.</span> <span class="nav-text">安装 Java JDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Android-SDK"><span class="nav-number">6.</span> <span class="nav-text">安装 Android SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Android-NDK"><span class="nav-number">7.</span> <span class="nav-text">安装 Android NDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-ant"><span class="nav-number">8.</span> <span class="nav-text">安装 ant</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-cocos2d-console"><span class="nav-number">9.</span> <span class="nav-text">配置 cocos2d-console</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-Cocos2d-x-工程"><span class="nav-number">10.</span> <span class="nav-text">新建 Cocos2d-x 工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包-Android-apk"><span class="nav-number">11.</span> <span class="nav-text">打包 Android apk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可能会遇到的错误"><span class="nav-number">12.</span> <span class="nav-text">可能会遇到的错误</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#系统环境"><span class="nav-number">1.</span> <span class="nav-text">系统环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#下载-Cocos2d-x-3-15"><span class="nav-number">2.</span> <span class="nav-text">下载 Cocos2d-x 3.15</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Visual-Studio-2013"><span class="nav-number">3.</span> <span class="nav-text">安装 Visual Studio 2013+</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Python"><span class="nav-number">4.</span> <span class="nav-text">安装 Python</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Java-JDK"><span class="nav-number">5.</span> <span class="nav-text">安装 Java JDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Android-SDK"><span class="nav-number">6.</span> <span class="nav-text">安装 Android SDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-Android-NDK"><span class="nav-number">7.</span> <span class="nav-text">安装 Android NDK</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#安装-ant"><span class="nav-number">8.</span> <span class="nav-text">安装 ant</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-cocos2d-console"><span class="nav-number">9.</span> <span class="nav-text">配置 cocos2d-console</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建-Cocos2d-x-工程"><span class="nav-number">10.</span> <span class="nav-text">新建 Cocos2d-x 工程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包-Android-apk"><span class="nav-number">11.</span> <span class="nav-text">打包 Android apk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#可能会遇到的错误"><span class="nav-number">12.</span> <span class="nav-text">可能会遇到的错误</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考"><span class="nav-number">13.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
           </div>
         </section>
