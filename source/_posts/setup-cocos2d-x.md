@@ -109,7 +109,7 @@ PS：至于如果运行官方示例 Cocos2d-x test-cpp，请参考[官方文档]
 
 
 
-打包 apk 过程中可能会遇到找不到对应的 Android API 版本问题，这是由于 Android SDK 中未按照对应的 Andriod 引起的。解决方法有以下两种：
+打包 apk 过程中可能会遇到找不到对应的 Android API 版本问题，这是由于 Android SDK 中未安装对应的 Andriod 引起的。解决方法有以下两种：
 
 1. 查看 Android SDK 中的 platforms 目录存在的 Android 版本是多少，例如 platforms 目录下存在 `android-22`。那么就把 `D:\myproj\TestLua\frameworks\runtime-src\proj.android\project.properties ` 和 `D:\myproj\TestLua\frameworks\cocos2d-x\cocos\platform\android\java\project.properties ` 文件中的 `target=android-22` 都设置成 SDK 中已下载好的 Android 版本。
 2. 运行 `D:\tools\adt-bundle\SDK Manager.exe`，并下载对应的 Android 版本。下载过程可能需要翻墙，这时就需要按以下方法设置代理：
@@ -173,5 +173,12 @@ luajit-win32.exe
 ```
 
 解决方法：下载  [vc++2015 ](http://www.cnblogs.com/xxoome/p/5612411.html) 并安装即可。
+
+# 参考
+
+1. [在Windows7上搭建Cocos2d-x 3.2alpha0开发环境](http://www.cocos.com/docs/native/v3/getting-started/setting-up-development-environments-on-windows7-with-vs2013/zh.html)
+2. [如何在Windows 7平台搭建Android Cocos2d-x3.2alpha0开发环境](http://www.cocos.com/docs/native/v3/getting-started/setting-up-development-environments-on-windows7-with-eclipse/zh.html)
+
+---
 
 > 本文出自 [Eddy Wiki](http://eddy.wiki) ，转载请注明出处：[http://eddy.wiki/setup-cocos2d-x.html](http://eddy.wiki/setup-cocos2d-x.html)
