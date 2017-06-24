@@ -94,7 +94,7 @@ Lua 中的每个值都有一个元表。table 和 userdata 可以有各自独立
 <meta property="og:site_name" content="Eddy Wiki">
 <meta property="og:description" content="table 作为 Lua 中唯一的数据结构，我们可以利用 table 实现面向对象编程中的类、继承、多重继承等等。在这就介绍一下和 table 密切相关的 Lua 元表和元方法。
 Lua 中的每个值都有一个元表。table 和 userdata 可以有各自独立的元表，而其他类型的值则共享其类型所属的单一元表。任何 table 都可以作为任何值的元表，而一组相关的 table 也可以共享一个通用的元">
-<meta property="og:updated_time" content="2017-06-24T11:40:06.000Z">
+<meta property="og:updated_time" content="2017-06-24T11:42:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lua 元表和元方法">
 <meta name="twitter:description" content="table 作为 Lua 中唯一的数据结构，我们可以利用 table 实现面向对象编程中的类、继承、多重继承等等。在这就介绍一下和 table 密切相关的 Lua 元表和元方法。
@@ -318,7 +318,7 @@ Lua 中的每个值都有一个元表。table 和 userdata 可以有各自独立
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
                 <a href="/lua-metatable.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="lua-metatable.html" itemprop="commentsCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="lua-metatable.html" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -508,8 +508,11 @@ Lua 中的每个值都有一个元表。table 和 userdata 可以有各自独立
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="lua-metatable.html"
-           data-title="Lua 元表和元方法" data-url="http://www.eddy.wiki/lua-metatable.html">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
       </div>
     
   </div>
@@ -728,30 +731,35 @@ Lua 中的每个值都有一个元表。table 和 userdata 可以有各自独立
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"eddywiki"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
-
-  
-    
-    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
-  
 
 
+  
+
+    <script type="text/javascript">
+      var disqus_shortname = 'eddy.wiki';
+      var disqus_identifier = 'lua-metatable.html';
+      var disqus_title = "Lua 元表和元方法";
+      var disqus_url = 'http://www.eddy.wiki/lua-metatable.html';
+
+      function run_disqus_script(disqus_script){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }
+
+      run_disqus_script('count.js');
+      
+        var disqus_config = function () {
+            this.page.url = disqus_url;
+            this.page.identifier = disqus_identifier;
+            this.page.title = disqus_title;
+        };
+        run_disqus_script('embed.js');
+      
+    </script>
+  
 
 
 
