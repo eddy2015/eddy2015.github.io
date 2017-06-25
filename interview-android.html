@@ -5,17 +5,11 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-
-
-
-
-
-
 
 
 
@@ -33,12 +27,9 @@
 
 
 
-
-
-
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
 
 
 
@@ -72,9 +63,9 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
 
-<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+<link href="/css/main.css?v=5.0.2" rel="stylesheet" type="text/css" />
 
 
   <meta name="keywords" content="Android 面试," />
@@ -88,7 +79,7 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.2" />
 
 
 
@@ -134,88 +125,70 @@ Activity :
 
 
 
-<script type="text/javascript" id="hexo.configurations">
+<script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    root: '/',
     scheme: 'Pisces',
-    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    sidebar: {"position":"left","display":"always"},
     fancybox: true,
     motion: true,
     duoshuo: {
       userId: '0',
       author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
 
 
 
+
   <link rel="canonical" href="http://www.eddy.wiki/interview-android.html"/>
 
 
-
-
-
-  <title>Android 面试之 Android 篇 | Eddy Wiki</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <title> Android 面试之 Android 篇 | Eddy Wiki </title>
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="//schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
 
   
   
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
-    
+    <header id="header" class="header" itemscope itemtype="//schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
 
-    <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Eddy Wiki</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-      
-        <p class="site-subtitle">I do what I do.</p>
-      
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Eddy Wiki</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
   </div>
+  <p class="site-subtitle">I do what I do.</p>
+</div>
 
-  <div class="site-nav-toggle">
-    <button>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
 </div>
 
 <nav class="site-nav">
@@ -283,30 +256,17 @@ Activity :
   
     <div class="site-search">
       
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
+  <div class="popup">
+ <span class="search-icon fa fa-search"></span>
+ <input type="text" id="local-search-input">
+ <div id="local-search-result"></div>
+ <span class="popup-btn-close">close</span>
 </div>
-
 
 
     </div>
   
 </nav>
-
-
 
  </div>
     </header>
@@ -321,64 +281,49 @@ Activity :
     
 
   
+  
 
   
   
   
 
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://www.eddy.wiki/interview-android.html">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Eddy">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eddy Wiki">
-    </span>
+  <article class="post post-type-normal " itemscope itemtype="//schema.org/Article">
 
     
       <header class="post-header">
 
         
         
-          <h1 class="post-title" itemprop="name headline">Android 面试之 Android 篇</h1>
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Android 面试之 Android 篇
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-10-27T11:06:15+08:00">
-                2016-10-27
-              </time>
-            
-
-            
-
-            
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T11:06:15+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
           </span>
 
           
             <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
+              &nbsp; | &nbsp;
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
+              <span class="post-meta-item-text">分类于</span>
               
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
                   <a href="/categories/Android-面试/" itemprop="url" rel="index">
                     <span itemprop="name">Android 面试</span>
                   </a>
@@ -386,48 +331,34 @@ Activity :
 
                 
                 
+
               
             </span>
           
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/interview-android.html#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="interview-android.html" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
+          
+
           
 
           
           
              <span id="/interview-android.html" class="leancloud_visitors" data-flag-title="Android 面试之 Android 篇">
-               <span class="post-meta-divider">|</span>
+               &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
                </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
           
 
           
-
-          
-
-          
-
         </div>
       </header>
     
+
 
     <div class="post-body" itemprop="articleBody">
 
@@ -1257,24 +1188,13 @@ Activity :
       
     </div>
 
-    <div>
-      
-        
-
-      
-    </div>
-
     <footer class="post-footer">
       
         <div class="post-tags">
           
-            <a href="/tags/Android-面试/" rel="tag"># Android 面试</a>
+            <a href="/tags/Android-面试/" rel="tag">#Android 面试</a>
           
         </div>
-      
-
-      
-      
       
 
       
@@ -1286,8 +1206,6 @@ Activity :
               </a>
             
           </div>
-
-          <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
@@ -1357,13 +1275,6 @@ Activity :
           
   <div class="comments" id="comments">
     
-      <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-      </div>
-    
   </div>
 
 
@@ -1395,32 +1306,25 @@ Activity :
         </ul>
       
 
-      <section class="site-overview sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="//schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/icon.jpg"
                alt="Eddy" />
           <p class="site-author-name" itemprop="name">Eddy</p>
-           
-              <p class="site-description motion-element" itemprop="description"></p>
-          
+          <p class="site-description motion-element" itemprop="description"></p>
         </div>
         <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">16</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
 
           
-            <div class="site-state-item site-state-posts">
-              <a href="/archives">
-                <span class="site-state-item-count">16</span>
-                <span class="site-state-item-name">日志</span>
-              </a>
-            </div>
-          
-
-          
-            
-            
             <div class="site-state-item site-state-categories">
-              <a href="/categories/index.html">
+              <a href="/categories">
                 <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">分类</span>
               </a>
@@ -1428,10 +1332,8 @@ Activity :
           
 
           
-            
-            
             <div class="site-state-item site-state-tags">
-              <a href="/tags/index.html">
+              <a href="/tags">
                 <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
@@ -1459,29 +1361,19 @@ Activity :
         
         
 
-        
-
-
       </section>
 
       
-      <!--noindex-->
         <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
           <div class="post-toc">
-
             
               
             
-
             
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#基本概念"><span class="nav-number">1.</span> <span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-的四大组件"><span class="nav-number">1.1.</span> <span class="nav-text">Android 的四大组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四大组件的具体作用以及用法"><span class="nav-number">1.2.</span> <span class="nav-text">四大组件的具体作用以及用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android平台的framework的层次结构？"><span class="nav-number">1.3.</span> <span class="nav-text">Android平台的framework的层次结构？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Activity"><span class="nav-number">2.</span> <span class="nav-text">Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity-生命周期"><span class="nav-number">2.1.</span> <span class="nav-text">Activity 生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity和Fragment生命周期有哪些？"><span class="nav-number">2.2.</span> <span class="nav-text">Activity和Fragment生命周期有哪些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity四种启动模式的区别（LanchMode-的应用场景）"><span class="nav-number">2.3.</span> <span class="nav-text">Activity四种启动模式的区别（LanchMode 的应用场景）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity中类似onCreate、onStart运用了哪种设计模式，优点是什么"><span class="nav-number">2.4.</span> <span class="nav-text">Activity中类似onCreate、onStart运用了哪种设计模式，优点是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何将一个Activity设置成窗口的样式"><span class="nav-number">2.5.</span> <span class="nav-text">如何将一个Activity设置成窗口的样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity的启动过程"><span class="nav-number">2.6.</span> <span class="nav-text">Activity的启动过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window和activity之间关系？"><span class="nav-number">2.7.</span> <span class="nav-text">window和activity之间关系？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WindowManager-的相关知识"><span class="nav-number">2.8.</span> <span class="nav-text">WindowManager 的相关知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity、Window-和-View-三者的区别"><span class="nav-number">2.9.</span> <span class="nav-text">Activity、Window 和 View 三者的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个activity打开另外一个activity，再打开一个activity？回去的时候发生了什么操作？"><span class="nav-number">2.10.</span> <span class="nav-text">一个activity打开另外一个activity，再打开一个activity？回去的时候发生了什么操作？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onActivityResult-int-requestCode-int-resultCode-Intent-data-方法的用法；"><span class="nav-number">2.11.</span> <span class="nav-text">onActivityResult(int requestCode, int resultCode, Intent data)方法的用法；</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不用Service-B页面为音乐播放，从A跳到B，再返回，如何使音乐继续播放？"><span class="nav-number">2.12.</span> <span class="nav-text">不用Service,B页面为音乐播放，从A跳到B，再返回，如何使音乐继续播放？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#内存不足时，怎么保持Activity的一些状态，在哪个方法里面做具体操作？"><span class="nav-number">2.13.</span> <span class="nav-text">内存不足时，怎么保持Activity的一些状态，在哪个方法里面做具体操作？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onSaveInstanceState方法"><span class="nav-number">2.14.</span> <span class="nav-text">onSaveInstanceState方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onRestoreInstanceState-Bundle-savedInstanceState-方法"><span class="nav-number">2.15.</span> <span class="nav-text">onRestoreInstanceState(Bundle savedInstanceState)方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同一个程序不同的Activity如何放在不同的任务栈中？"><span class="nav-number">2.16.</span> <span class="nav-text">同一个程序不同的Activity如何放在不同的任务栈中？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何安全退出已调用多个Activity的Application？"><span class="nav-number">2.17.</span> <span class="nav-text">如何安全退出已调用多个Activity的Application？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有几种在activity之间切换的方法？"><span class="nav-number">2.18.</span> <span class="nav-text">有几种在activity之间切换的方法？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Fragment"><span class="nav-number">3.</span> <span class="nav-text">Fragment</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment生命周期"><span class="nav-number">3.1.</span> <span class="nav-text">Fragment生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity中如何动态的添加Fragment？"><span class="nav-number">3.2.</span> <span class="nav-text">Activity中如何动态的添加Fragment？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment-特点"><span class="nav-number">3.3.</span> <span class="nav-text">Fragment 特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fragment嵌套多个Fragment会出现bug吗？"><span class="nav-number">3.4.</span> <span class="nav-text">Fragment嵌套多个Fragment会出现bug吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么理解Activity和Fragment的关系？"><span class="nav-number">3.5.</span> <span class="nav-text">怎么理解Activity和Fragment的关系？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Service"><span class="nav-number">4.</span> <span class="nav-text">Service</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Service的生命周期。"><span class="nav-number">4.1.</span> <span class="nav-text">Service的生命周期。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service有哪些启动方法，有什么区别，怎样停用Service？"><span class="nav-number">4.2.</span> <span class="nav-text">Service有哪些启动方法，有什么区别，怎样停用Service？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注册Service需要注意什么"><span class="nav-number">4.3.</span> <span class="nav-text">注册Service需要注意什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#service-可以执行耗时操作吗"><span class="nav-number">4.4.</span> <span class="nav-text">service 可以执行耗时操作吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service和Activity在同一个线程吗"><span class="nav-number">4.5.</span> <span class="nav-text">Service和Activity在同一个线程吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service与Activity怎么实现通信"><span class="nav-number">4.6.</span> <span class="nav-text">Service与Activity怎么实现通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service里面可以弹出-dialog-或-Toast-吗"><span class="nav-number">4.7.</span> <span class="nav-text">Service里面可以弹出 dialog 或 Toast 吗</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么时候使用Service"><span class="nav-number">4.8.</span> <span class="nav-text">什么时候使用Service?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说说Activity、Intent、Service是什么关系"><span class="nav-number">4.9.</span> <span class="nav-text">说说Activity、Intent、Service是什么关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么在启动一个activity时就启动一个service"><span class="nav-number">4.10.</span> <span class="nav-text">怎么在启动一个activity时就启动一个service</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么在Service中创建子线程而不是Activity中"><span class="nav-number">4.11.</span> <span class="nav-text">为什么在Service中创建子线程而不是Activity中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Service-与-Thread-的区别"><span class="nav-number">4.12.</span> <span class="nav-text">Service 与 Thread 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何保证-Service-在后台不被-kill"><span class="nav-number">4.13.</span> <span class="nav-text">如何保证 Service 在后台不被 kill</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是IntentService？有何优点？"><span class="nav-number">4.14.</span> <span class="nav-text">什么是IntentService？有何优点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntentService-作用是什么"><span class="nav-number">4.15.</span> <span class="nav-text">IntentService 作用是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntentService-与-Service的异同"><span class="nav-number">4.16.</span> <span class="nav-text">IntentService 与 Service的异同</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ContentProvider"><span class="nav-number">5.</span> <span class="nav-text">ContentProvider</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider-简介"><span class="nav-number">5.1.</span> <span class="nav-text">ContentProvider 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请介绍下ContentProvider是如何实现数据共享的"><span class="nav-number">5.2.</span> <span class="nav-text">请介绍下ContentProvider是如何实现数据共享的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ContentProvider使用方法"><span class="nav-number">5.3.</span> <span class="nav-text">ContentProvider使用方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Broadcast"><span class="nav-number">6.</span> <span class="nav-text">Broadcast</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册广播有哪几种方式-有什么区别"><span class="nav-number">6.1.</span> <span class="nav-text">注册广播有哪几种方式,有什么区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一个-app-被杀掉进程后，是否还能收到广播"><span class="nav-number">6.2.</span> <span class="nav-text">一个 app 被杀掉进程后，是否还能收到广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android引入广播机制的用意？"><span class="nav-number">6.3.</span> <span class="nav-text">Android引入广播机制的用意？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#无序广播、有序广播"><span class="nav-number">6.4.</span> <span class="nav-text">无序广播、有序广播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本地广播和全局广播有什么差别"><span class="nav-number">6.5.</span> <span class="nav-text">本地广播和全局广播有什么差别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Intent"><span class="nav-number">7.</span> <span class="nav-text">Intent</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Intent的使用方法，可以传递哪些数据类型。"><span class="nav-number">7.1.</span> <span class="nav-text">Intent的使用方法，可以传递哪些数据类型。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍一下Intent、IntentFilter"><span class="nav-number">7.2.</span> <span class="nav-text">介绍一下Intent、IntentFilter</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Context"><span class="nav-number">8.</span> <span class="nav-text">Context</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Context区别"><span class="nav-number">8.1.</span> <span class="nav-text">Context区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Application-Context-和-Activity-Context-异同"><span class="nav-number">8.2.</span> <span class="nav-text">Application Context 和 Activity Context 异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Context-的理解"><span class="nav-number">8.3.</span> <span class="nav-text">Context 的理解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Handler"><span class="nav-number">9.</span> <span class="nav-text">Handler</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler-原理"><span class="nav-number">9.1.</span> <span class="nav-text">Handler 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler消息机制，postDelayed会造成线程阻塞吗？对内存有什么影响？"><span class="nav-number">9.2.</span> <span class="nav-text">Handler消息机制，postDelayed会造成线程阻塞吗？对内存有什么影响？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler-Looper的理解"><span class="nav-number">9.3.</span> <span class="nav-text">Handler, Looper的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler-Message-Looper异步实现机制与源码分析"><span class="nav-number">9.4.</span> <span class="nav-text">Handler,Message,Looper异步实现机制与源码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler有何作用？如何使用之（具体讲需要实现什么function）？"><span class="nav-number">9.5.</span> <span class="nav-text">Handler有何作用？如何使用之（具体讲需要实现什么function）？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler、Thread-和-HandlerThread-的区别"><span class="nav-number">9.6.</span> <span class="nav-text">Handler、Thread 和 HandlerThread 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Handler-时怎么避免引起内存泄漏"><span class="nav-number">9.7.</span> <span class="nav-text">使用 Handler 时怎么避免引起内存泄漏</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AsyncTask"><span class="nav-number">10.</span> <span class="nav-text">AsyncTask</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncTask原理"><span class="nav-number">10.1.</span> <span class="nav-text">AsyncTask原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络请求是怎么做的异步呢？什么情况下用Handler，什么情况下用AsyncTask"><span class="nav-number">10.2.</span> <span class="nav-text">网络请求是怎么做的异步呢？什么情况下用Handler，什么情况下用AsyncTask</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handler和AsyncTask的区别"><span class="nav-number">10.3.</span> <span class="nav-text">Handler和AsyncTask的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AsyncTask的优缺点？能否同时并发100-AsyncTask呢？"><span class="nav-number">10.4.</span> <span class="nav-text">AsyncTask的优缺点？能否同时并发100+AsyncTask呢？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程"><span class="nav-number">11.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#子线程中更新UI的方法"><span class="nav-number">11.1.</span> <span class="nav-text">子线程中更新UI的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多线程"><span class="nav-number">11.2.</span> <span class="nav-text">多线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#线程同步"><span class="nav-number">11.3.</span> <span class="nav-text">线程同步</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#进程"><span class="nav-number">12.</span> <span class="nav-text">进程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#进程优先级"><span class="nav-number">12.1.</span> <span class="nav-text">进程优先级</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AIDL-解决了什么问题"><span class="nav-number">12.2.</span> <span class="nav-text">AIDL 解决了什么问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AIDL的全称是什么？如何工作？能处理哪些类型的数据"><span class="nav-number">12.3.</span> <span class="nav-text">AIDL的全称是什么？如何工作？能处理哪些类型的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Broadcast、Content-Provider-和-AIDL的区别和联系"><span class="nav-number">12.4.</span> <span class="nav-text">Broadcast、Content Provider 和 AIDL的区别和联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程间传输方式"><span class="nav-number">12.5.</span> <span class="nav-text">进程间传输方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android进程间通信，Binder机制"><span class="nav-number">12.6.</span> <span class="nav-text">Android进程间通信，Binder机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android跨进程通讯的方式"><span class="nav-number">12.7.</span> <span class="nav-text">Android跨进程通讯的方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-Mashup设计的理解"><span class="nav-number">12.8.</span> <span class="nav-text">Android Mashup设计的理解</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#触摸事件"><span class="nav-number">13.</span> <span class="nav-text">触摸事件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#View-的触摸事件分发机制"><span class="nav-number">13.1.</span> <span class="nav-text">View 的触摸事件分发机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#onInterceptTouchEvent-和onTouchEvent-的区别？"><span class="nav-number">13.2.</span> <span class="nav-text">onInterceptTouchEvent()和onTouchEvent()的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#view的事件冲突处理"><span class="nav-number">13.3.</span> <span class="nav-text">view的事件冲突处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#View"><span class="nav-number">14.</span> <span class="nav-text">View</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#View-绘制流程"><span class="nav-number">14.1.</span> <span class="nav-text">View 绘制流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-绘图机制原理"><span class="nav-number">14.2.</span> <span class="nav-text">Android 绘图机制原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#requertlayout-onlayout-onDraw-drawChild-的区别和联系"><span class="nav-number">14.3.</span> <span class="nav-text">requertlayout onlayout onDraw drawChild 的区别和联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#View-刷新机制"><span class="nav-number">14.4.</span> <span class="nav-text">View 刷新机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#invalidata-和-postInvalidata-的区别及使用"><span class="nav-number">14.5.</span> <span class="nav-text">invalidata() 和 postInvalidata() 的区别及使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#notifyDataSetChanged和notifyDataSetInvalidated的区别"><span class="nav-number">14.6.</span> <span class="nav-text">notifyDataSetChanged和notifyDataSetInvalidated的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SurfaceView和View的区别是什么？"><span class="nav-number">14.7.</span> <span class="nav-text">SurfaceView和View的区别是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RemoteView在哪些功能中使用"><span class="nav-number">14.8.</span> <span class="nav-text">RemoteView在哪些功能中使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#自定义-View"><span class="nav-number">15.</span> <span class="nav-text">自定义 View</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义View相关方法"><span class="nav-number">15.1.</span> <span class="nav-text">自定义View相关方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何自定义控件"><span class="nav-number">15.2.</span> <span class="nav-text">如何自定义控件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有哪些实现自定义控件的方法？"><span class="nav-number">15.3.</span> <span class="nav-text">有哪些实现自定义控件的方法？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化自定义-View"><span class="nav-number">15.4.</span> <span class="nav-text">优化自定义 View</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自定义view控件以及自定义属性的使用"><span class="nav-number">15.5.</span> <span class="nav-text">自定义view控件以及自定义属性的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NavigationDrawer，PageAdapter等UI模式的使用和定制"><span class="nav-number">15.6.</span> <span class="nav-text">NavigationDrawer，PageAdapter等UI模式的使用和定制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Layout-布局"><span class="nav-number">16.</span> <span class="nav-text">Layout 布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中常用的五种布局"><span class="nav-number">16.1.</span> <span class="nav-text">Android中常用的五种布局</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinearLayout和RelativeLayout性能对比"><span class="nav-number">16.2.</span> <span class="nav-text">LinearLayout和RelativeLayout性能对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中px-sp-dip-dp的区别与联系"><span class="nav-number">16.3.</span> <span class="nav-text">Android中px,sp,dip,dp的区别与联系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#asset目录与res目录的区别。"><span class="nav-number">16.4.</span> <span class="nav-text">asset目录与res目录的区别。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android屏幕适配"><span class="nav-number">16.5.</span> <span class="nav-text">Android屏幕适配</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动画"><span class="nav-number">17.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android属性动画特性"><span class="nav-number">17.1.</span> <span class="nav-text">Android属性动画特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android动画框架实现原理"><span class="nav-number">17.2.</span> <span class="nav-text">Android动画框架实现原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#图片缓存"><span class="nav-number">18.</span> <span class="nav-text">图片缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#图片三级缓存实现？自己设计一个图片加载框架"><span class="nav-number">18.1.</span> <span class="nav-text">图片三级缓存实现？自己设计一个图片加载框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对-LruCache-的理解"><span class="nav-number">18.2.</span> <span class="nav-text">对 LruCache 的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DiskLruCache"><span class="nav-number">18.3.</span> <span class="nav-text">DiskLruCache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存算法"><span class="nav-number">18.4.</span> <span class="nav-text">缓存算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmap的分析与使用"><span class="nav-number">18.5.</span> <span class="nav-text">Bitmap的分析与使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmap-压缩"><span class="nav-number">18.6.</span> <span class="nav-text">Bitmap 压缩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ARGB-8888格式图片占用内存大小"><span class="nav-number">18.7.</span> <span class="nav-text">ARGB_8888格式图片占用内存大小</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断本地缓存的时候数据需要从网络端获取"><span class="nav-number">18.8.</span> <span class="nav-text">如何判断本地缓存的时候数据需要从网络端获取</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片加载机制"><span class="nav-number">18.9.</span> <span class="nav-text">图片加载机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ListView"><span class="nav-number">19.</span> <span class="nav-text">ListView</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView的优化"><span class="nav-number">19.1.</span> <span class="nav-text">ListView的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView卡顿原因"><span class="nav-number">19.2.</span> <span class="nav-text">ListView卡顿原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView-的实现原理"><span class="nav-number">19.3.</span> <span class="nav-text">ListView 的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ViewHolder"><span class="nav-number">19.4.</span> <span class="nav-text">ViewHolder</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ListView-下拉刷新、上拉加载更多实现原理"><span class="nav-number">19.5.</span> <span class="nav-text">ListView 下拉刷新、上拉加载更多实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RecyclerView和ListView的异同"><span class="nav-number">19.6.</span> <span class="nav-text">RecyclerView和ListView的异同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#能否讲讲你用过的adapter？"><span class="nav-number">19.7.</span> <span class="nav-text">能否讲讲你用过的adapter？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#容器"><span class="nav-number">20.</span> <span class="nav-text">容器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SparseArray-和-HashMap-的区别"><span class="nav-number">20.1.</span> <span class="nav-text">SparseArray 和 HashMap 的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内存相关"><span class="nav-number">21.</span> <span class="nav-text">内存相关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况会导致内存泄漏"><span class="nav-number">21.1.</span> <span class="nav-text">什么情况会导致内存泄漏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么情况会导致-OOM"><span class="nav-number">21.2.</span> <span class="nav-text">什么情况会导致 OOM</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免-OOM："><span class="nav-number">21.3.</span> <span class="nav-text">如何避免 OOM：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-为每个应用程序分配的内存大小是多少"><span class="nav-number">21.4.</span> <span class="nav-text">Android 为每个应用程序分配的内存大小是多少</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看每个应用程序最高可用内存"><span class="nav-number">21.5.</span> <span class="nav-text">查看每个应用程序最高可用内存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中弱引用与软引用的应用场景。"><span class="nav-number">21.6.</span> <span class="nav-text">Android中弱引用与软引用的应用场景。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#预防内存泄漏！擅用WeakReference"><span class="nav-number">21.7.</span> <span class="nav-text">预防内存泄漏！擅用WeakReference!</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ANR"><span class="nav-number">22.</span> <span class="nav-text">ANR</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ANR-定位和修正"><span class="nav-number">22.1.</span> <span class="nav-text">ANR 定位和修正</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是ANR，如何避免ANR。"><span class="nav-number">22.2.</span> <span class="nav-text">什么是ANR，如何避免ANR。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是FC？如何避免FC的发生，另外FC发生时如何捕获相应的uncaught-exception？"><span class="nav-number">22.3.</span> <span class="nav-text">什么是FC？如何避免FC的发生，另外FC发生时如何捕获相应的uncaught exception？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#性能优化"><span class="nav-number">23.</span> <span class="nav-text">性能优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#怎么对-Android-APP-进行性能优化"><span class="nav-number">23.1.</span> <span class="nav-text">怎么对 Android APP 进行性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-APP-内存分析工具有哪些"><span class="nav-number">23.2.</span> <span class="nav-text">Android APP 内存分析工具有哪些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#屏幕适配经验"><span class="nav-number">23.3.</span> <span class="nav-text">屏幕适配经验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据存储"><span class="nav-number">24.</span> <span class="nav-text">数据存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据存储，数据持久化的方式有哪些"><span class="nav-number">24.1.</span> <span class="nav-text">数据存储，数据持久化的方式有哪些</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件和数据库哪个效率高"><span class="nav-number">24.2.</span> <span class="nav-text">文件和数据库哪个效率高</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SharedPreference-实现"><span class="nav-number">24.3.</span> <span class="nav-text">SharedPreference 实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何导入外部数据库"><span class="nav-number">24.4.</span> <span class="nav-text">如何导入外部数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#谈谈-SQLite"><span class="nav-number">24.5.</span> <span class="nav-text">谈谈 SQLite</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLite-数据库升级更新如何保留原来数据"><span class="nav-number">24.6.</span> <span class="nav-text">SQLite 数据库升级更新如何保留原来数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SQLite-性能优化"><span class="nav-number">24.7.</span> <span class="nav-text">SQLite 性能优化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#网络通讯"><span class="nav-number">25.</span> <span class="nav-text">网络通讯</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#描述一次网络请求的流程"><span class="nav-number">25.1.</span> <span class="nav-text">描述一次网络请求的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#推送心跳包是TCP包还是UDP包或者HTTP包"><span class="nav-number">25.2.</span> <span class="nav-text">推送心跳包是TCP包还是UDP包或者HTTP包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-代码中实现-WAP-方式联网"><span class="nav-number">25.3.</span> <span class="nav-text">Android 代码中实现 WAP 方式联网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CMWAP-CMNET有何区别，网络通讯时是否要特殊处理？如何切换接入点？"><span class="nav-number">25.4.</span> <span class="nav-text">CMWAP, CMNET有何区别，网络通讯时是否要特殊处理？如何切换接入点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#断点续传"><span class="nav-number">25.5.</span> <span class="nav-text">断点续传</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络的优化"><span class="nav-number">25.6.</span> <span class="nav-text">网络的优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpClient"><span class="nav-number">25.7.</span> <span class="nav-text">HttpClient</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#动态加载"><span class="nav-number">26.</span> <span class="nav-text">动态加载</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件化，动态加载"><span class="nav-number">26.1.</span> <span class="nav-text">插件化，动态加载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android中ClassLoader和java中有什么关系和区别？"><span class="nav-number">26.2.</span> <span class="nav-text">Android中ClassLoader和java中有什么关系和区别？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#注解"><span class="nav-number">27.</span> <span class="nav-text">注解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是注解"><span class="nav-number">27.1.</span> <span class="nav-text">什么是注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用注解是否会影响性能"><span class="nav-number">27.2.</span> <span class="nav-text">使用注解是否会影响性能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JNI"><span class="nav-number">28.</span> <span class="nav-text">JNI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JNI开发流程"><span class="nav-number">28.1.</span> <span class="nav-text">JNI开发流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebView"><span class="nav-number">29.</span> <span class="nav-text">WebView</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#WebView和JS"><span class="nav-number">29.1.</span> <span class="nav-text">WebView和JS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Native"><span class="nav-number">29.2.</span> <span class="nav-text">React Native</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jar"><span class="nav-number">30.</span> <span class="nav-text">jar</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#65k限制-做内部库设计时，最重要的考虑是jar的成本，方法数、体积。"><span class="nav-number">30.1.</span> <span class="nav-text">65k限制 做内部库设计时，最重要的考虑是jar的成本，方法数、体积。</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其他"><span class="nav-number">31.</span> <span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#APP启动过程"><span class="nav-number">31.1.</span> <span class="nav-text">APP启动过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何判断应用被强杀"><span class="nav-number">31.2.</span> <span class="nav-text">如何判断应用被强杀</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用被强杀如何解决"><span class="nav-number">31.3.</span> <span class="nav-text">应用被强杀如何解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述静默安装的原理，如何在无需root权限的情况下实现静默安装？"><span class="nav-number">31.4.</span> <span class="nav-text">简述静默安装的原理，如何在无需root权限的情况下实现静默安装？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Serializable和Parcelable的区别"><span class="nav-number">31.5.</span> <span class="nav-text">Serializable和Parcelable的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Debug和Release状态的不同"><span class="nav-number">31.6.</span> <span class="nav-text">Debug和Release状态的不同</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Toolbar的使用"><span class="nav-number">31.7.</span> <span class="nav-text">Toolbar的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#低版本-SDK-如何实现高版本-API"><span class="nav-number">31.8.</span> <span class="nav-text">低版本 SDK 如何实现高版本 API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现一个单例"><span class="nav-number">31.9.</span> <span class="nav-text">实现一个单例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如-View-的事件分发，屏幕适配经验，性能优化的经验、Java-线程几种用法等"><span class="nav-number">31.10.</span> <span class="nav-text">如 View 的事件分发，屏幕适配经验，性能优化的经验、Java 线程几种用法等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如-AIDL、插件化-如网络的优化-如缓存的处理-如插件化-如-Service-保活"><span class="nav-number">31.11.</span> <span class="nav-text">如 AIDL、插件化, 如网络的优化, 如缓存的处理, 如插件化, 如 Service 保活</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数调用Trace-怎么玩"><span class="nav-number">31.12.</span> <span class="nav-text">函数调用Trace 怎么玩</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AlarmManager以及Wakelock的使用"><span class="nav-number">31.13.</span> <span class="nav-text">AlarmManager以及Wakelock的使用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#算法理解"><span class="nav-number">32.</span> <span class="nav-text">算法理解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是二分算法"><span class="nav-number">32.1.</span> <span class="nav-text">什么是二分算法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式"><span class="nav-number">33.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Android-中主要用到的几种设计模式"><span class="nav-number">33.1.</span> <span class="nav-text">Android 中主要用到的几种设计模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Android设计模式"><span class="nav-number">33.2.</span> <span class="nav-text">Android设计模式</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#架构设计"><span class="nav-number">34.</span> <span class="nav-text">架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#mvc-mvp-mvvm"><span class="nav-number">34.1.</span> <span class="nav-text">mvc mvp mvvm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#你怎么看待在android上面应用MVC框架，是否有必要抽象独立于activity的C？"><span class="nav-number">34.2.</span> <span class="nav-text">你怎么看待在android上面应用MVC框架，是否有必要抽象独立于activity的C？</span></a></li></ol></li></ol></div>
             
-
           </div>
         </section>
-      <!--/noindex-->
-      
-
       
 
     </div>
@@ -1504,7 +1396,6 @@ Activity :
   <span class="author" itemprop="copyrightHolder">Eddy</span>
 </div>
 
-
 <div class="powered-by">
   由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
 </div>
@@ -1516,20 +1407,15 @@ Activity :
   </a>
 </div>
 
-
         
 
         
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
   </div>
 
   
@@ -1552,40 +1438,31 @@ Activity :
 
 
 
-
-
-
-
-
-
-
-
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
 
   
-  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
 
   
-  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
   
-  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
 
   
 
 
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.2"></script>
 
 
 
@@ -1593,56 +1470,26 @@ Activity :
   
 
 
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.2"></script>
 
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.1"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.2"></script>
 
 
 
   
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.2"></script>
 
 
 
   
 
 
-  
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.2"></script>
 
-    
-      <script id="dsq-count-scr" src="https://eddy-wiki.disqus.com/count.js" async></script>
-    
 
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://www.eddy.wiki/interview-android.html';
-          this.page.identifier = 'interview-android.html';
-          this.page.title = 'Android 面试之 Android 篇';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://eddy-wiki.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
 
   
-
-
-
-
-	
-
-
 
 
 
@@ -1651,338 +1498,136 @@ Activity :
 
 
 
-
   
-
-
-
-
-
-
-
-
   
-
   <script type="text/javascript">
     // Popup Window;
     var isfetched = false;
-    var isXml = true;
     // Search DB path;
     var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
+    if (search_path.length == 0) {
+       search_path = "search.xml";
     }
     var path = "/" + search_path;
     // monitor main search box;
 
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
     function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
+      $("body").append('<div class="popoverlay">').css('overflow', 'hidden');
       $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
 
+    }
     // search function;
     var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
-      $.ajax({
+    'use strict';
+    $.ajax({
         url: path,
-        dataType: isXml ? "xml" : "json",
+        dataType: "xml",
         async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
+        success: function( xmlResponse ) {
+            // get the contents from search data
+            isfetched = true;
+            $('.popup').detach().appendTo('.header-inner');
+            var datas = $( "entry", xmlResponse ).map(function() {
+                return {
+                    title: $( "title", this ).text(),
+                    content: $("content",this).text(),
+                    url: $( "url" , this).text()
+                };
+            }).get();
+            var $input = document.getElementById(search_id);
+            var $resultContent = document.getElementById(content_id);
+            $input.addEventListener('input', function(){
+                var matchcounts = 0;
+                var str='<ul class=\"search-result-list\">';
+                var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                $resultContent.innerHTML = "";
+                if (this.value.trim().length > 1) {
+                // perform local searching
+                datas.forEach(function(data) {
+                    var isMatch = false;
+                    var content_index = [];
+                    var data_title = data.title.trim().toLowerCase();
+                    var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                    var data_url = data.url;
+                    var index_title = -1;
+                    var index_content = -1;
+                    var first_occur = -1;
+                    // only match artiles with not empty titles and contents
+                    if(data_title != '') {
+                        keywords.forEach(function(keyword, i) {
+                            index_title = data_title.indexOf(keyword);
+                            index_content = data_content.indexOf(keyword);
+                            if( index_title >= 0 || index_content >= 0 ){
+                                isMatch = true;
+								if (i == 0) {
+                                    first_occur = index_content;
+                                }
+                            } 
+							
+                        });
                     }
+                    // show search results
+                    if (isMatch) {
+                        matchcounts += 1;
+                        str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                        var content = data.content.trim().replace(/<[^>]+>/g,"");
+                        if (first_occur >= 0) {
+                            // cut out 100 characters
+                            var start = first_occur - 20;
+                            var end = first_occur + 80;
+                            if(start < 0){
+                                start = 0;
+                            }
+                            if(start == 0){
+                                end = 50;
+                            }
+                            if(end > content.length){
+                                end = content.length;
+                            }
+                            var match_content = content.substring(start, end);
+                            // highlight all keywords
+                            keywords.forEach(function(keyword){
+                                var regS = new RegExp(keyword, "gi");
+                                match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                            });
 
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
+                            str += "<p class=\"search-result\">" + match_content +"...</p>"
                         }
-                      }
+                        str += "</li>";
                     }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
+                })};
+                str += "</ul>";
+                if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+                if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+                $resultContent.innerHTML = str;
             });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
+            proceedsearch();
         }
-      });
-    }
+    });}
 
     // handle and trigger popup window;
     $('.popup-trigger').click(function(e) {
       e.stopPropagation();
-      if (isfetched === false) {
+      if (isfetched == false) {
         searchFunc(path, 'local-search-input', 'local-search-result');
       } else {
         proceedsearch();
       };
+
     });
 
-    $('.popup-btn-close').click(onPopupClose);
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".popoverlay").remove();
+      $('body').css('overflow', '');
+    });
     $('.popup').click(function(e){
       e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
     });
   </script>
 
 
-
-
+  
 
   
 
@@ -2097,11 +1742,6 @@ Activity :
 
   
 
-  
-
-  
-
-  
 
 </body>
 </html>
