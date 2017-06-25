@@ -1,3 +1,4 @@
+http://www.eddy.wiki/lua-index-metafunc.html
 http://www.eddy.wiki/lua-metatable.html
 http://www.eddy.wiki/lua-quick-start.html
 http://www.eddy.wiki/setup-cocos2d-x.html
