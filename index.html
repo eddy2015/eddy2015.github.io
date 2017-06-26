@@ -272,7 +272,7 @@
               
                 
                 <a class="post-title-link" href="/lua-index-metafunc.html" itemprop="url">
-                  lua-index-metafunc
+                  Lua index 和 newindex 元方法
                 </a>
               
             
@@ -291,6 +291,25 @@
           </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Lua/" itemprop="url" rel="index">
+                    <span itemprop="name">Lua</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
 
           
             
@@ -307,7 +326,7 @@
 
           
           
-             <span id="/lua-index-metafunc.html" class="leancloud_visitors" data-flag-title="lua-index-metafunc">
+             <span id="/lua-index-metafunc.html" class="leancloud_visitors" data-flag-title="Lua index 和 newindex 元方法">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -330,9 +349,19 @@
 
       
         
-          
-            
-          
+          <p><a href="http://eddy.wiki/lua-metatable.html">上一篇文章</a>简单介绍了 Lua 中的元表和元方法，那么在这里就接着重点讲解一下 Lua 中的 index 和 newindex 元方法。</p>
+<blockquote>
+<ul>
+<li><strong>“index”: </strong>索引 <code>table[key]</code>。当 <code>table</code> 不是表或是表 <code>table</code> 中不存在<code>key</code> 这个键时，这个事件被触发。此时，会读出 <code>table</code> 相应的元方法。尽管名字取成这样，这个事件的元方法其实可以是一个函数也可以是一张表。如果它是一个函数，则以 <code>table</code> 和 <code>key</code> 作为参数调用它。如果它是一张表，最终的结果就是以 <code>key</code> 取索引这张表的结果。（这个索引过程是走常规的流程，而不是直接索引，所以这次索引有可能引发另一次元方法。）</li>
+<li><strong>“newindex”: </strong>索引赋值 <code>table[key] = value</code> 。和索引事件类似，它发生在<code>table</code> 不是表或是表 <code>table</code> 中不存在<code>key</code> 这个键的时候。此时，会读出 <code>table</code> 相应的元方法。同索引过程那样，这个事件的元方法即可以是函数，也可以是一张表。如果是一个函数，则以 <code>table</code>、 <code>key</code>、以及 <code>value</code> 为参数传入。如果是一张表，Lua 对这张表做索引赋值操作。（这个索引过程是走常规的流程，而不是直接索引赋值，所以这次索引赋值有可能引发另一次元方法。）一旦有了 “newindex” 元方法，Lua 就不再做最初的赋值操作。（如果有必要，在元方法内部可以调用 <a href="http://cloudwu.github.io/lua53doc/manual.html#pdf-rawset"><code>rawset</code></a>来做赋值。）</li>
+</ul>
+</blockquote>
+<p>上面对 index 和 newindex 元方法的概念已经说得很清楚，在这就不再重复了。
+          <div class="post-more-link text-center">
+            <a class="btn" href="/lua-index-metafunc.html" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
